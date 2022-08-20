@@ -1,0 +1,90 @@
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\Urgent Manager.exe.config
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent Manager.exe
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent Manager.pdb
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\Urgent Manager.exe
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\Urgent Manager.pdb
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\eCryptography.dll
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\Guna.UI2.dll
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\LiveCharts.dll
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\LiveCharts.WinForms.dll
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\LiveCharts.pdb
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\LiveCharts.xml
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\LiveCharts.WinForms.pdb
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\LiveCharts.WinForms.xml
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.Login.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.Properties.Resources.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.Alimentation.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Area.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Bobine.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Dashboard.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.FamilyView.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Group.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Machine.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Marker.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Protection.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Seal.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Statistics.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Terminal.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Tool.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.User.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Wire.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.WireData.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.Operateur.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.OptimaisationWindows.ArchivedUrgents.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.OptimaisationWindows.ArchiveManager.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.OptimaisationWindows.UrgentManager.resources
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent Manager.csproj.GenerateResource.Cache
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\zxing.dll
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\zxing.presentation.dll
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\zxing.xml
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\bin\Debug\zxing.presentation.xml
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent Manager.csprojResolveAssemblyReference.cache
+C:\Users\21267\Documents\Visual Studio 2015\Projects\Urgent Manager\Urgent Manager\obj\Debug\Urgent Manager.csproj.ResolveComReference.cache
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\bin\Debug\Urgent Manager.exe.config
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent Manager.csproj.ResolveComReference.cache
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent Manager.exe
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent Manager.pdb
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\bin\Debug\Urgent Manager.exe
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\bin\Debug\Urgent Manager.pdb
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\bin\Debug\eCryptography.dll
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\bin\Debug\Guna.UI2.dll
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\bin\Debug\LiveCharts.dll
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\bin\Debug\LiveCharts.WinForms.dll
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\bin\Debug\zxing.dll
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\bin\Debug\zxing.presentation.dll
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\bin\Debug\LiveCharts.pdb
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\bin\Debug\LiveCharts.xml
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\bin\Debug\LiveCharts.WinForms.pdb
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\bin\Debug\LiveCharts.WinForms.xml
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\bin\Debug\zxing.xml
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\bin\Debug\zxing.presentation.xml
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.Login.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.Properties.Resources.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.Alimentation.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Area.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Bobine.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Dashboard.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.FamilyView.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Group.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Machine.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Marker.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Protection.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Seal.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Statistics.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Terminal.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Tool.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.User.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Wire.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.WireData.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.Operateur.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.OptimaisationWindows.ArchivedUrgents.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.OptimaisationWindows.ArchiveManager.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent_Manager.View.OptimaisationWindows.UrgentManager.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager-fee76eb0964bef1ef34070f26861f8816b658819\Urgent Manager\obj\Debug\Urgent Manager.csproj.GenerateResource.Cache
