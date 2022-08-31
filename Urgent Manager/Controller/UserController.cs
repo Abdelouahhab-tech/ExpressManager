@@ -146,7 +146,7 @@ namespace Urgent_Manager.Controller
 
         // Get Data From dbo_User
 
-        public List<UserModel> fetch()
+        public List<UserModel> fetch(bool dbRole)
         {
             List<UserModel> list = new List<UserModel>();
 
@@ -154,7 +154,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT * FROM dbo_User";
+                string QUERY = dbRole ? "SELECT * FROM dbo_User" : "SELECT * FROM dbo_User WHERE DbRole <> 1";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -170,6 +170,7 @@ namespace Urgent_Manager.Controller
                         user.Zone = reader[4].ToString();
                         user.IsUpdated = Convert.ToInt32(reader[5]);
                         user.Entry = reader[6].ToString();
+                        user.DbOwner = Convert.ToInt32(reader[7]);
                         list.Add(user);
                     }
 
@@ -215,6 +216,7 @@ namespace Urgent_Manager.Controller
                         user.Role = reader[3].ToString();
                         user.Zone = reader[4].ToString();
                         user.IsUpdated = Convert.ToInt32(reader[5]);
+                        user.DbOwner = Convert.ToInt32(reader[7]);
                     }
 
                     DbHelper.connection.Close();

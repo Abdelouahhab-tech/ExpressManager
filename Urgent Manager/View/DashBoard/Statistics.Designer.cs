@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.piechart = new LiveCharts.WinForms.PieChart();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -45,8 +48,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.livePreview = new System.Windows.Forms.Timer(this.components);
+            this.gSTotalUrgentsPerM = new Guna.UI2.WinForms.Guna2ToggleSwitch();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.gradientPanel1 = new Urgent_Manager.CustomViews.GradientPanel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lblLoading = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -58,11 +69,13 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(720, 138);
             this.flowLayoutPanel1.TabIndex = 0;
+            this.flowLayoutPanel1.Visible = false;
             // 
             // piechart
             // 
             this.piechart.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.piechart.Location = new System.Drawing.Point(849, 91);
+            this.piechart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.piechart.Location = new System.Drawing.Point(840, 91);
             this.piechart.Name = "piechart";
             this.piechart.Size = new System.Drawing.Size(248, 216);
             this.piechart.TabIndex = 1;
@@ -77,7 +90,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1184, 50);
+            this.panel1.Size = new System.Drawing.Size(1167, 50);
             this.panel1.TabIndex = 2;
             // 
             // gSwitchMode
@@ -124,6 +137,7 @@
             this.btnRefresh.ImageSize = new System.Drawing.Size(35, 35);
             this.btnRefresh.Location = new System.Drawing.Point(204, 4);
             this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.btnRefresh.Size = new System.Drawing.Size(66, 40);
             this.btnRefresh.TabIndex = 1;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click_1);
@@ -164,9 +178,10 @@
             // 
             this.cartesianChart1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cartesianChart1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cartesianChart1.Location = new System.Drawing.Point(27, 394);
             this.cartesianChart1.Name = "cartesianChart1";
-            this.cartesianChart1.Size = new System.Drawing.Size(1111, 244);
+            this.cartesianChart1.Size = new System.Drawing.Size(1094, 244);
             this.cartesianChart1.TabIndex = 6;
             this.cartesianChart1.Text = "Hourly Urgents";
             // 
@@ -185,9 +200,9 @@
             this.cmbMachine.ForeColor = System.Drawing.Color.White;
             this.cmbMachine.IntegralHeight = false;
             this.cmbMachine.ItemHeight = 30;
-            this.cmbMachine.Location = new System.Drawing.Point(123, 329);
+            this.cmbMachine.Location = new System.Drawing.Point(454, 328);
             this.cmbMachine.Name = "cmbMachine";
-            this.cmbMachine.Size = new System.Drawing.Size(243, 36);
+            this.cmbMachine.Size = new System.Drawing.Size(173, 36);
             this.cmbMachine.TabIndex = 7;
             this.cmbMachine.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.cmbMachine.SelectedIndexChanged += new System.EventHandler(this.cmbMachine_SelectedIndexChanged_1);
@@ -207,9 +222,9 @@
             this.cmbArea.ForeColor = System.Drawing.Color.White;
             this.cmbArea.IntegralHeight = false;
             this.cmbArea.ItemHeight = 30;
-            this.cmbArea.Location = new System.Drawing.Point(445, 329);
+            this.cmbArea.Location = new System.Drawing.Point(713, 328);
             this.cmbArea.Name = "cmbArea";
-            this.cmbArea.Size = new System.Drawing.Size(243, 36);
+            this.cmbArea.Size = new System.Drawing.Size(173, 36);
             this.cmbArea.TabIndex = 8;
             this.cmbArea.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.cmbArea.SelectedIndexChanged += new System.EventHandler(this.cmbArea_SelectedIndexChanged_1);
@@ -255,7 +270,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(30, 338);
+            this.label3.Location = new System.Drawing.Point(361, 337);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(86, 18);
             this.label3.TabIndex = 11;
@@ -266,7 +281,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(382, 338);
+            this.label5.Location = new System.Drawing.Point(648, 337);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 18);
             this.label5.TabIndex = 12;
@@ -277,6 +292,71 @@
             this.livePreview.Interval = 10000;
             this.livePreview.Tick += new System.EventHandler(this.livePreview_Tick_1);
             // 
+            // gSTotalUrgentsPerM
+            // 
+            this.gSTotalUrgentsPerM.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(241)))));
+            this.gSTotalUrgentsPerM.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gSTotalUrgentsPerM.CheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.gSTotalUrgentsPerM.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.gSTotalUrgentsPerM.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.gSTotalUrgentsPerM.Location = new System.Drawing.Point(302, 336);
+            this.gSTotalUrgentsPerM.Name = "gSTotalUrgentsPerM";
+            this.gSTotalUrgentsPerM.Size = new System.Drawing.Size(43, 20);
+            this.gSTotalUrgentsPerM.TabIndex = 15;
+            this.gSTotalUrgentsPerM.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.gSTotalUrgentsPerM.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.gSTotalUrgentsPerM.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.gSTotalUrgentsPerM.UncheckedState.InnerColor = System.Drawing.Color.White;
+            this.gSTotalUrgentsPerM.CheckedChanged += new System.EventHandler(this.gSTotalUrgentsPerM_CheckedChanged);
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.ForeColor = System.Drawing.Color.White;
+            this.lblTotal.Location = new System.Drawing.Point(29, 337);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(256, 18);
+            this.lblTotal.TabIndex = 14;
+            this.lblTotal.Text = "Show Total Urgents Per Machine";
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.AutoScroll = true;
+            this.panel2.Controls.Add(this.chart1);
+            this.panel2.Location = new System.Drawing.Point(27, 394);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1111, 244);
+            this.panel2.TabIndex = 16;
+            this.panel2.Visible = false;
+            // 
+            // chart1
+            // 
+            this.chart1.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            chartArea7.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.chart1.Legends.Add(legend7);
+            this.chart1.Location = new System.Drawing.Point(0, 0);
+            this.chart1.Name = "chart1";
+            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
+            this.chart1.PaletteCustomColors = new System.Drawing.Color[] {
+        System.Drawing.Color.Red};
+            series7.BackImageTransparentColor = System.Drawing.Color.Black;
+            series7.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            series7.ChartArea = "ChartArea1";
+            series7.Color = System.Drawing.Color.Red;
+            series7.LabelBackColor = System.Drawing.Color.Black;
+            series7.LabelForeColor = System.Drawing.Color.White;
+            series7.Legend = "Legend1";
+            series7.Name = "Express";
+            this.chart1.Series.Add(series7);
+            this.chart1.Size = new System.Drawing.Size(1108, 244);
+            this.chart1.TabIndex = 15;
+            this.chart1.Text = "chart1";
+            // 
             // gradientPanel1
             // 
             this.gradientPanel1.BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
@@ -286,12 +366,35 @@
             this.gradientPanel1.TabIndex = 3;
             this.gradientPanel1.TopColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // lblLoading
+            // 
+            this.lblLoading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLoading.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLoading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.lblLoading.Location = new System.Drawing.Point(228, 291);
+            this.lblLoading.Name = "lblLoading";
+            this.lblLoading.Size = new System.Drawing.Size(362, 29);
+            this.lblLoading.TabIndex = 13;
+            this.lblLoading.Text = "Loading...";
+            this.lblLoading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLoading.Visible = false;
+            // 
             // Statistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(1184, 650);
+            this.ClientSize = new System.Drawing.Size(1167, 650);
+            this.Controls.Add(this.lblLoading);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.gSTotalUrgentsPerM);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
@@ -306,10 +409,13 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Statistics";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Statistics";
             this.Load += new System.EventHandler(this.Statistics_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -334,5 +440,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Timer livePreview;
+        private Guna.UI2.WinForms.Guna2ToggleSwitch gSTotalUrgentsPerM;
+        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lblLoading;
     }
 }

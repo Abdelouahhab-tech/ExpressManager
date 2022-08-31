@@ -96,7 +96,7 @@ namespace Urgent_Manager.View.DashBoard
             {
                 if (machineController.IsExist(gtxtMachineName.Text, "Machine", "Machine"))
                 {
-                    if (cmbZone.Text.Trim() != "")
+                    if (cmbZone.Text.Trim() != "" && cmbZone.Text != "All")
                     {
                         MachineModel machine = new MachineModel();
                         machine.Machine = gtxtMachineName.Text;

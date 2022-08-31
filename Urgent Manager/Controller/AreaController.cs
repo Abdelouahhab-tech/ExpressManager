@@ -88,7 +88,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT A.ZoneName,A.parentZone,U.FullName FROM Area A, dbo_User U WHERE A.userID = U.userID";
+                string QUERY = "SELECT A.ZoneName,A.parentZone,U.FullName FROM Area A, dbo_User U WHERE A.userID = U.userID ORDER BY A.ZoneName";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 SqlDataReader reader = cmd.ExecuteReader();
 

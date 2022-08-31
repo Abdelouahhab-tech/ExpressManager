@@ -50,6 +50,7 @@ namespace Urgent_Manager.View.DashBoard
                     familyController.InsertFamily(gtxtFamilyName.Text,Login.username);
                     gtxtFamilyName.Text = "";
                     gtxtFamilyName.Focus();
+                    LoadData();
                 }
                 else
                 {

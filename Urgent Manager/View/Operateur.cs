@@ -17,7 +17,7 @@ namespace Urgent_Manager.View
     {
         UrgentController urgentController = new UrgentController();
         WireController wireController = new WireController();
-        WPCSController wpcsController = new WPCSController(@"C:\Users\21267\Desktop\Database\Job.sdc.arc");
+        WPCSController wpcsController = new WPCSController();
         string mc = Environment.MachineName;
         public Operateur()
         {

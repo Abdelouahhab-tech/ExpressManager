@@ -50,7 +50,7 @@ namespace Urgent_Manager.View.DashBoard
                 user.Entry = Login.username != "" ? Login.username : "";
                 user.IsUpdated = chUpdate.Checked ? 1 : 0;
 
-                if (userController.IsExist(gtxtUsername.Text, "dbo_User", "userID"))
+                if (!userController.IsExist(gtxtUsername.Text, "dbo_User", "userID"))
                     userController.InsertUser(user);
                 else
                 {
@@ -225,6 +225,11 @@ namespace Urgent_Manager.View.DashBoard
         {
             gtxtUsername.Focus();
             LoadData();
+            if (Login.DbRole == 1)
+            {
+                icServerConnection.Visible = true;
+                icDirectories.Visible = true;
+            }
             
         }
 
@@ -234,13 +239,14 @@ namespace Urgent_Manager.View.DashBoard
         {
             // fetch Data
             guna2DataGridView1.Rows.Clear();
-            List<UserModel> list = userController.fetch();
+            List<UserModel> list;
+            list = Login.DbRole == 1 ? userController.fetch(true) : userController.fetch(false);
 
             foreach (var user in list)
             {
                 string status = user.IsUpdated == 0 ? "No" : "Yes";
-                guna2DataGridView1.Rows.Add(user.UserName, user.Password, user.Fullname, user.Role,user.Zone, status, user.Entry);
-            }
+                guna2DataGridView1.Rows.Add(user.UserName, user.Password, user.Fullname, user.Role, user.Zone, status, user.Entry);
+            }   
         }
 
         private void guna2DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -285,6 +291,18 @@ namespace Urgent_Manager.View.DashBoard
                 MessageBox.Show("This User Doesn't Exist !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 init();
             }
+        }
+
+        private void icServerConnection_Click(object sender, EventArgs e)
+        {
+            ServerData server = new ServerData();
+            server.ShowDialog();
+        }
+
+        private void icDirectories_Click(object sender, EventArgs e)
+        {
+            Directories directories = new Directories();
+            directories.ShowDialog();
         }
     }
 }

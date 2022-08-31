@@ -21,6 +21,7 @@ namespace Urgent_Manager
         public static string username = "";
         public static string FullName = "";
         public static string role = "";
+        public static int DbRole;
         UserController controller = new UserController();
         public Login()
         {
@@ -59,9 +60,8 @@ namespace Urgent_Manager
 
         private void Login_Load(object sender, EventArgs e)
         {
-
             btnLogin.Location = new Point(28,270);
-            this.Size = new Size(755, 500);
+            this.Size = new Size(755, 550);
         }
 
         private void cmbRoles_SelectedIndexChanged(object sender, EventArgs e)
@@ -83,7 +83,7 @@ namespace Urgent_Manager
                     btnLogin.Visible = true;
                     btnLogin.Location = new Point(28,400);
                     lblLoading.Location = new Point(28, 480);
-                    this.Size = new Size(755, 600);
+                    lblWrongCredentials.Location = new Point(28, 500);
                     btnLogin.Image = Properties.Resources.user__1_;
                     btnLogin.Text = "Log In";
                 }
@@ -95,7 +95,7 @@ namespace Urgent_Manager
                     btnLogin.Visible = true;
                     btnLogin.Location = new Point(28, 400);
                     lblLoading.Location = new Point(28, 480);
-                    this.Size = new Size(755, 600);
+                    lblWrongCredentials.Location = new Point(28, 500);
                     btnLogin.Image = Properties.Resources.user__1_;
                     btnLogin.Text = "Log In";
                 }
@@ -133,6 +133,7 @@ namespace Urgent_Manager
                                 UserModel user = controller.SingleRecord(gtxtUserName.Text);
                                 username = user.UserName;
                                 FullName = user.Fullname;
+                                DbRole = user.DbOwner;
                                 role = user.Role;
                                 if(user.Role == "Administrator" || user.Role == "Shift Leader" || user.Role == "Entry Agent")
                                 {
@@ -171,7 +172,6 @@ namespace Urgent_Manager
                             gtxtUserName.Focus();
                             gtxtPass.Text = "";
                             lblWrongCredentials.Visible = true;
-                            timer1.Start();
                         }
                     }
                     else
@@ -259,7 +259,6 @@ namespace Urgent_Manager
                             gtxtUserName.Focus();
                             gtxtPass.Text = "";
                             lblWrongCredentials.Visible = true;
-                            timer1.Start();
                         }
                     }
                     else
@@ -308,7 +307,6 @@ namespace Urgent_Manager
         {
             gtxtUpdatedPass.FocusedState.BorderColor = Color.FromArgb(255, 234, 79, 12);
             gtxtUpdatedPass.IconLeft = Properties.Resources.locked_padlock_;
-            lblWrongCredentials.Visible = false;
             if (e.KeyCode == Keys.Enter)
                 btnLogin.PerformClick();
         }
@@ -322,20 +320,6 @@ namespace Urgent_Manager
 
             gtxtPass.FocusedState.BorderColor = Color.FromArgb(255, 234, 79, 12);
             gtxtPass.IconLeft = Properties.Resources.locked_padlock_;
-            lblWrongCredentials.Visible = false;
-        }
-
-        int count = 0;
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if(count == 3)
-            {
-                timer1.Stop();
-                lblWrongCredentials.Visible = false;
-                count = 0;
-                return;
-            }
-            count++;
         }
 
         private void guna2ControlBox1_Click(object sender, EventArgs e)

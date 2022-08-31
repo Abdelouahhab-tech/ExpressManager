@@ -32,20 +32,21 @@ namespace Urgent_Manager.View.DashBoard
             gtxtUnico.Focus();
             try
             {
-                wireController.FillCombobox("Cable", "Cable", cmbCable);
-                wireController.FillCombobox("Terminal", "TerminalID", cmbTerG);
-                wireController.FillCombobox("Marker", "Color", cmbMarkerG);
-                wireController.FillCombobox("Marker", "Color", cmbMarkerD);
-                wireController.FillCombobox("Terminal", "TerminalID", cmbTerD);
-                wireController.FillCombobox("Seal", "Seal", cmbSealG);
-                wireController.FillCombobox("Seal", "Seal", cmbSealD);
-                wireController.FillCombobox("Protection", "Type", cmbProtectionG);
-                wireController.FillCombobox("Protection", "Type", cmbProtectionD);
-                wireController.FillCombobox("Tool", "ToolID", cmbToolG);
-                wireController.FillCombobox("Tool", "ToolID", cmbToolD);
-                wireController.FillCombobox("Family", "FAM", cmbFamily);
-                wireController.FillCombobox("Groupe", "GroupRef", cmbGroup);
-                wireController.FillCombobox("Machine", "Machine", cmbMc);
+                AutoComplete.AutoComplete auto = new AutoComplete.AutoComplete();
+                auto.autoComplete(gtxtCable, DbHelper.connection, "SELECT Cable FROM Cable");
+                auto.autoComplete(gtxtFamily, DbHelper.connection, "SELECT FAM FROM Family");
+                auto.autoComplete(gtxtGroup, DbHelper.connection, "SELECT GroupRef FROM Groupe");
+                auto.autoComplete(gtxtMachine, DbHelper.connection, "SELECT Machine FROM Machine");
+                auto.autoComplete(gtxtMarkerD, DbHelper.connection, "SELECT Color FROM Marker");
+                auto.autoComplete(gtxtMarkerG, DbHelper.connection, "SELECT Color FROM Marker");
+                auto.autoComplete(gtxtProtectionD, DbHelper.connection, "SELECT Type FROM Protection");
+                auto.autoComplete(gtxtProtectionG, DbHelper.connection, "SELECT Type FROM Protection");
+                auto.autoComplete(gtxtSealD, DbHelper.connection, "SELECT Seal FROM Seal");
+                auto.autoComplete(gtxtSealG, DbHelper.connection, "SELECT Seal FROM Seal");
+                auto.autoComplete(gtxtTerminalD, DbHelper.connection, "SELECT TerminalID FROM Terminal");
+                auto.autoComplete(gtxtTerminalG, DbHelper.connection, "SELECT TerminalID FROM Terminal");
+                auto.autoComplete(gtxtToolD, DbHelper.connection, "SELECT ToolID FROM Tool");
+                auto.autoComplete(gtxtToolG, DbHelper.connection, "SELECT ToolID FROM Tool");
             }
             catch (Exception ex)
             {
@@ -58,30 +59,41 @@ namespace Urgent_Manager.View.DashBoard
             Regex regex = new Regex("[1-9]");
             try
             {
-                if (gtxtUnico.Text.Trim() != "" && gtxtLeadCode.Text.Trim() != "" && gtxtLength.Text.Trim() != "" && regex.IsMatch(gtxtLength.Text) && cmbCable.Text.Trim() != "" && cmbFamily.Text.Trim() != "" && cmbMc.Text.Trim() != "" && cmbGroup.Text.Trim() != "" && Login.username != "" )
+                if (gtxtUnico.Text.Trim() != "" && gtxtLeadCode.Text.Trim() != "" 
+                    && gtxtLength.Text.Trim() != "" && regex.IsMatch(gtxtLength.Text) 
+                    && gtxtCable.Text.Trim() != "" && gtxtFamily.Text.Trim() != "" 
+                    && gtxtMachine.Text.Trim() != "" && gtxtGroup.Text.Trim() != "" 
+                    && Login.username != "" && wireController.IsExist(gtxtCable.Text,"Cable","Cable")
+                    && wireController.IsExist(gtxtFamily.Text, "Family", "FAM") && wireController.IsExist(gtxtGroup.Text, "Groupe", "GroupRef")
+                    && wireController.IsExist(gtxtMachine.Text, "Machine", "Machine") && wireController.IsExist(gtxtMarkerD.Text, "Marker", "Color")
+                    && wireController.IsExist(gtxtMarkerG.Text, "Marker", "Color") && wireController.IsExist(gtxtProtectionD.Text, "Protection", "Type")
+                    && wireController.IsExist(gtxtProtectionG.Text, "Protection", "Type") && wireController.IsExist(gtxtSealD.Text, "Seal", "Seal")
+                    && wireController.IsExist(gtxtSealG.Text, "Seal", "Seal") && wireController.IsExist(gtxtTerminalD.Text, "Terminal", "TerminalID")
+                    && wireController.IsExist(gtxtTerminalG.Text, "Terminal", "TerminalID") && wireController.IsExist(gtxtToolD.Text, "Tool", "ToolID")
+                    && wireController.IsExist(gtxtToolG.Text, "Tool", "ToolG"))
                 {
                     if (!wireController.IsExist(gtxtUnico.Text, "Wire", "Unico"))
                     {
                         WireModel wire = new WireModel();
-                        wire.Family = cmbFamily.Text;
+                        wire.Family = gtxtFamily.Text;
                         wire.Unico = gtxtUnico.Text;
                         wire.LeadCode = gtxtLeadCode.Text;
                         wire.Length = gtxtLength.Text;
-                        wire.Cable = cmbCable.Text;
-                        wire.MarkL = cmbMarkerG.Text;
-                        wire.SealL = cmbSealG.Text;
-                        wire.TerL = cmbTerG.Text;
-                        wire.ToolL = cmbToolG.Text;
-                        wire.ProtectionL = cmbProtectionG.Text;
-                        wire.MarkR = cmbMarkerD.Text;
-                        wire.SealR = cmbSealD.Text;
-                        wire.TerR = cmbTerD.Text;
-                        wire.ToolR = cmbToolD.Text;
-                        wire.ProtectionR = cmbProtectionD.Text;
-                        wire.GroupRef = cmbGroup.Text;
+                        wire.Cable = gtxtCable.Text;
+                        wire.MarkL = gtxtMarkerG.Text;
+                        wire.SealL = gtxtSealG.Text;
+                        wire.TerL = gtxtTerminalG.Text;
+                        wire.ToolL = gtxtToolG.Text;
+                        wire.ProtectionL = gtxtProtectionG.Text;
+                        wire.MarkR = gtxtMarkerD.Text;
+                        wire.SealR = gtxtSealD.Text;
+                        wire.TerR = gtxtTerminalD.Text;
+                        wire.ToolR = gtxtToolD.Text;
+                        wire.ProtectionR = gtxtProtectionD.Text;
+                        wire.GroupRef = gtxtGroup.Text;
                         wire.LeadPrep = gtxtLeadPrep.Text;
                         wire.Adress = gtxtAdress.Text;
-                        wire.Mc = cmbMc.Text;
+                        wire.Mc = gtxtMachine.Text;
                         wire.UserID = Login.username;
 
                         wireController.InsertWire(wire);
@@ -130,31 +142,31 @@ namespace Urgent_Manager.View.DashBoard
                         MessageBox.Show("The Length Must Be a Number More Than 0", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                     }
-                    else if (cmbCable.Text == "")
+                    else if (gtxtCable.Text == "")
                     {
                         lblCable.ForeColor = Color.Red;
-                        cmbCable.Focus();
-                        cmbCable.FocusedState.BorderColor = Color.White;
+                        gtxtCable.Focus();
+                        gtxtCable.FocusedState.BorderColor = Color.White;
                     }
-                    else if (cmbFamily.Text == "")
+                    else if (gtxtFamily.Text == "")
                     {
 
                         lblFamily.ForeColor = Color.Red;
-                        cmbFamily.Focus();
-                        cmbFamily.FocusedState.BorderColor = Color.White;
+                        gtxtFamily.Focus();
+                        gtxtFamily.FocusedState.BorderColor = Color.White;
 
                     }
-                    else if (cmbGroup.Text == "")
+                    else if (gtxtGroup.Text == "")
                     {
                         lblGroup.ForeColor = Color.Red;
-                        cmbGroup.Focus();
-                        cmbGroup.FocusedState.BorderColor = Color.White;
+                        gtxtGroup.Focus();
+                        gtxtGroup.FocusedState.BorderColor = Color.White;
                     }
-                    else if (cmbMc.Text == "")
+                    else if (gtxtMachine.Text == "")
                     {
                         lblMc.ForeColor = Color.Red;
-                        cmbMc.Focus();
-                        cmbMc.FocusedState.BorderColor = Color.White;
+                        gtxtMachine.Focus();
+                        gtxtMachine.FocusedState.BorderColor = Color.White;
                     }
                     else if (Login.username == "")
                     {
@@ -162,6 +174,10 @@ namespace Urgent_Manager.View.DashBoard
                         Login l = new Login();
                         this.Close();
                         l.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please Choose The Data From The List", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
@@ -178,20 +194,20 @@ namespace Urgent_Manager.View.DashBoard
             gtxtAdress.Text = "";
             gtxtLeadPrep.Text = "";
             gtxtLength.Text = "";
-            cmbCable.SelectedIndex = -1;
-            cmbTerG.SelectedIndex = -1;
-            cmbTerD.SelectedIndex = -1;
-            cmbSealG.SelectedIndex = -1;
-            cmbSealD.SelectedIndex = -1;
-            cmbToolG.SelectedIndex = -1;
-            cmbToolD.SelectedIndex = -1;
-            cmbMarkerG.SelectedIndex = -1;
-            cmbMarkerD.SelectedIndex = -1;
-            cmbProtectionG.SelectedIndex = -1;
-            cmbProtectionD.SelectedIndex = -1;
-            cmbMc.SelectedIndex = -1;
-            cmbFamily.SelectedIndex = -1;
-            cmbGroup.SelectedIndex = -1;
+            gtxtGroup.Text = "";
+            gtxtTerminalG.Text = "";
+            gtxtTerminalD.Text = "";
+            gtxtSealG.Text = "";
+            gtxtSealD.Text = "";
+            gtxtToolG.Text = "";
+            gtxtToolD.Text = "";
+            gtxtMarkerD.Text = "";
+            gtxtMarkerG.Text = "";
+            gtxtProtectionD.Text = "";
+            gtxtProtectionG.Text = "";
+            gtxtMachine.Text = "";
+            gtxtFamily.Text = "";
+            gtxtGroup.Text = "";
             gtxtUnico.Focus();
         }
 
@@ -246,25 +262,25 @@ namespace Urgent_Manager.View.DashBoard
         private void cmbCable_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblCable.ForeColor = Color.White;
-            cmbCable.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+            gtxtCable.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
         }
 
         private void cmbFamily_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblFamily.ForeColor = Color.White;
-            cmbFamily.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+            gtxtFamily.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
         }
 
         private void cmbGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblGroup.ForeColor = Color.White;
-            cmbGroup.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+            gtxtGroup.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
         }
 
         private void cmbMc_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblMc.ForeColor = Color.White;
-            cmbMc.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+            gtxtMachine.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -277,28 +293,28 @@ namespace Urgent_Manager.View.DashBoard
                 {
                     if (wireController.IsExist(gtxtUnico.Text, "Wire", "Unico"))
                     {
-                        if (gtxtLeadCode.Text.Trim() != "" && gtxtLength.Text.Trim() != "" && regex.IsMatch(gtxtLength.Text) && cmbCable.Text.Trim() != "" && cmbFamily.Text.Trim() != "" && cmbMc.Text.Trim() != "" && cmbGroup.Text.Trim() != "" && Login.username != "")
+                        if (gtxtLeadCode.Text.Trim() != "" && gtxtLength.Text.Trim() != "" && regex.IsMatch(gtxtLength.Text) && gtxtCable.Text.Trim() != "" && gtxtFamily.Text.Trim() != "" && gtxtMachine.Text.Trim() != "" && gtxtGroup.Text.Trim() != "" && Login.username != "")
                         {
                             WireModel wire = new WireModel();
-                            wire.Family = cmbFamily.Text;
+                            wire.Family = gtxtFamily.Text;
                             wire.Unico = gtxtUnico.Text;
                             wire.LeadCode = gtxtLeadCode.Text;
                             wire.Length = gtxtLength.Text;
-                            wire.Cable = cmbCable.Text;
-                            wire.MarkL = cmbMarkerG.Text;
-                            wire.SealL = cmbSealG.Text;
-                            wire.TerL = cmbTerG.Text;
-                            wire.ToolL = cmbToolG.Text;
-                            wire.ProtectionL = cmbProtectionG.Text;
-                            wire.MarkR = cmbMarkerD.Text;
-                            wire.SealR = cmbSealD.Text;
-                            wire.TerR = cmbTerD.Text;
-                            wire.ToolR = cmbToolD.Text;
-                            wire.ProtectionR = cmbProtectionD.Text;
-                            wire.GroupRef = cmbGroup.Text;
+                            wire.Cable = gtxtCable.Text;
+                            wire.MarkL = gtxtMarkerG.Text;
+                            wire.SealL = gtxtSealG.Text;
+                            wire.TerL = gtxtTerminalG.Text;
+                            wire.ToolL = gtxtToolG.Text;
+                            wire.ProtectionL = gtxtProtectionG.Text;
+                            wire.MarkR = gtxtMarkerD.Text;
+                            wire.SealR = gtxtSealD.Text;
+                            wire.TerR = gtxtTerminalD.Text;
+                            wire.ToolR = gtxtToolD.Text;
+                            wire.ProtectionR = gtxtProtectionD.Text;
+                            wire.GroupRef = gtxtGroup.Text;
                             wire.LeadPrep = gtxtLeadPrep.Text;
                             wire.Adress = gtxtAdress.Text;
-                            wire.Mc = cmbMc.Text;
+                            wire.Mc = gtxtMachine.Text;
                             wire.UserID = Login.username;
 
                             wireController.UpdateWire(wire);
@@ -333,31 +349,31 @@ namespace Urgent_Manager.View.DashBoard
                                 MessageBox.Show("The Length Must Be a Number More Than 0", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                             }
-                            else if (cmbCable.Text == "")
+                            else if (gtxtCable.Text == "")
                             {
                                 lblCable.ForeColor = Color.Red;
-                                cmbCable.Focus();
-                                cmbCable.FocusedState.BorderColor = Color.White;
+                                gtxtCable.Focus();
+                                gtxtCable.FocusedState.BorderColor = Color.White;
                             }
-                            else if (cmbFamily.Text == "")
+                            else if (gtxtFamily.Text == "")
                             {
 
                                 lblFamily.ForeColor = Color.Red;
-                                cmbFamily.Focus();
-                                cmbFamily.FocusedState.BorderColor = Color.White;
+                                gtxtFamily.Focus();
+                                gtxtFamily.FocusedState.BorderColor = Color.White;
 
                             }
-                            else if (cmbGroup.Text == "")
+                            else if (gtxtGroup.Text == "")
                             {
                                 lblGroup.ForeColor = Color.Red;
-                                cmbGroup.Focus();
-                                cmbGroup.FocusedState.BorderColor = Color.White;
+                                gtxtGroup.Focus();
+                                gtxtGroup.FocusedState.BorderColor = Color.White;
                             }
-                            else if (cmbMc.Text == "")
+                            else if (gtxtMachine.Text == "")
                             {
                                 lblMc.ForeColor = Color.Red;
-                                cmbMc.Focus();
-                                cmbMc.FocusedState.BorderColor = Color.White;
+                                gtxtMachine.Focus();
+                                gtxtMachine.FocusedState.BorderColor = Color.White;
                             }
                             else if (Login.username == "")
                             {
@@ -397,22 +413,22 @@ namespace Urgent_Manager.View.DashBoard
 
                 gtxtLeadCode.Text = wire.LeadCode;
                 gtxtLength.Text = wire.Length;
-                cmbCable.Text = wire.Cable;
+                gtxtCable.Text = wire.Cable;
                 gtxtLeadPrep.Text = wire.LeadPrep;
                 gtxtAdress.Text = wire.Adress;
-                cmbTerG.Text = wire.TerL;
-                cmbTerD.Text = wire.TerR;
-                cmbSealG.Text = wire.SealL;
-                cmbSealD.Text = wire.SealR;
-                cmbMarkerG.Text = wire.MarkL;
-                cmbMarkerD.Text = wire.MarkR;
-                cmbProtectionG.Text = wire.ProtectionL;
-                cmbProtectionD.Text = wire.ProtectionR;
-                cmbToolG.Text = wire.ToolL;
-                cmbToolD.Text = wire.ToolR;
-                cmbFamily.Text = wire.Family;
-                cmbGroup.Text = wire.GroupRef;
-                cmbMc.Text = wire.Mc;
+                gtxtTerminalG.Text = wire.TerL;
+                gtxtTerminalD.Text = wire.TerR;
+                gtxtSealG.Text = wire.SealL;
+                gtxtSealD.Text = wire.SealR;
+                gtxtMarkerG.Text = wire.MarkL;
+                gtxtMarkerD.Text = wire.MarkR;
+                gtxtProtectionG.Text = wire.ProtectionL;
+                gtxtProtectionD.Text = wire.ProtectionR;
+                gtxtToolG.Text = wire.ToolL;
+                gtxtToolD.Text = wire.ToolR;
+                gtxtFamily.Text = wire.Family;
+                gtxtGroup.Text = wire.GroupRef;
+                gtxtMachine.Text = wire.Mc;
                 
             }
             catch (Exception ex)

@@ -15,6 +15,7 @@ namespace Urgent_Manager.Model
         private string zone = "";
         private string EntryAgent = "";
         private int isUpdated = 0;
+        private int dbOwner = 0;
         
         public string UserName
         {
@@ -53,6 +54,19 @@ namespace Urgent_Manager.Model
         {
             get { return isUpdated; }
             set { isUpdated = value; }
+        }
+
+        public int DbOwner
+        {
+            get
+            {
+                return dbOwner;
+            }
+
+            set
+            {
+                dbOwner = value;
+            }
         }
     }
 }

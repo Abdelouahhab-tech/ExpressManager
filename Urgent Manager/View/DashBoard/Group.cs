@@ -39,6 +39,7 @@ namespace Urgent_Manager.View.DashBoard
                     groupController.InsertGroup(group);
                     gtxtGroup.Text = "";
                     gtxtGroup.Focus();
+                    LoadData();
                 }
                 else
                 {

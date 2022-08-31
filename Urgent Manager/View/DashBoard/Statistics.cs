@@ -18,6 +18,7 @@ namespace Urgent_Manager.View.DashBoard
     public partial class Statistics : Form
     {
         StatisticsController statisticsController = new StatisticsController();
+        UrgentController urgentController = new UrgentController();
         string status = "All";
         public Statistics()
         {
@@ -26,21 +27,28 @@ namespace Urgent_Manager.View.DashBoard
 
         private void Statistics_Load(object sender, EventArgs e)
         {
-            statisticsController.FillCombobox("Machine", "Machine", cmbMachine);
-            statisticsController.FillCombobox("Area", "ZoneName", cmbArea);
+            timer1.Start();
+            DefaultLegend customLegend = new DefaultLegend();
+            customLegend.Foreground = System.Windows.Media.Brushes.White;
+            cartesianChart1.DefaultLegend = customLegend;
+            totalUrgentCount();
+            urgentController.FillCombobox("Machine", "Machine", cmbMachine);
+            urgentController.FillCombobox("Area", "ZoneName", cmbArea);
             guna2DateTimePicker1.Value = DateTime.Now;
             cmbStatus.SelectedIndex = 0;
             chart();
             string[] hours = getShift() == "Matin" ? new string[] { "6", "7", "8", "9", "10", "11", "12", "13" } : getShift() == "Soir" ? new string[] { "14", "15", "16", "17", "18", "19", "20", "21" } : new string[] { "22", "23", "00", "1", "2", "3", "4", "5" };
-            ChartValues<int> CurrentUrgent = statisticsController.getValues("Express", hours, false, DateTime.Now.ToShortDateString());
+            ChartValues<int> CurrentUrgent;
             ChartValues<int> FinishedUrgents;
             if (DateTime.Now.Hour >= 00 && DateTime.Now.Hour < 6)
             {
-                string date = Convert.ToDateTime(DateTime.Now).Subtract(TimeSpan.FromDays(1)).ToString("dd/MM/yyyy");
+                string date     = Convert.ToDateTime(DateTime.Now).Subtract(TimeSpan.FromDays(1)).ToString("dd/MM/yyyy");
+                CurrentUrgent   = statisticsController.getValues("Express", hours, false, date);
                 FinishedUrgents = statisticsController.getValues("Finished", hours, true, date);
             }
             else
             {
+                CurrentUrgent   = statisticsController.getValues("Express", hours, false, DateTime.Now.ToShortDateString());
                 FinishedUrgents = statisticsController.getValues("Finished", hours, true, DateTime.Now.ToShortDateString());
             }
             HourlyChart(CurrentUrgent, FinishedUrgents);
@@ -144,10 +152,6 @@ namespace Urgent_Manager.View.DashBoard
                 }
             };
 
-            DefaultLegend customLegend = new DefaultLegend();
-            customLegend.Foreground = System.Windows.Media.Brushes.White;
-            cartesianChart1.DefaultLegend = customLegend;
-
             cartesianChart1.Series = series2;
             cartesianChart1.LegendLocation = LegendLocation.Top;
         }
@@ -173,6 +177,8 @@ namespace Urgent_Manager.View.DashBoard
                 {
                     Guna2Panel p2 = card("Cutting Total", CuttingAreaTotal, Color.FromArgb(255, 0, 152, 120));
                     flowLayoutPanel1.Controls.Add(p2);
+                    Guna2Panel p1 = card("Line Total", statisticsController.leadPrepTotal("Cutting","Finished",true,date), Color.FromArgb(255, 0, 152, 120));
+                    flowLayoutPanel1.Controls.Add(p1);
                     Guna2Panel p3 = card("Twist Total", statisticsController.leadPrepTotal("Twist", "Finished", true, date), Color.FromArgb(255, 0, 152, 120));
                     flowLayoutPanel1.Controls.Add(p3);
                     Guna2Panel p4 = card("LP Total", statisticsController.leadPrepTotal("LP", "Finished", true, date), Color.FromArgb(255, 0, 152, 120));
@@ -182,6 +188,8 @@ namespace Urgent_Manager.View.DashBoard
                 {
                     Guna2Panel p2 = card("Cutting Total", CuttingAreaTotal, Color.FromArgb(255, 0, 152, 120));
                     flowLayoutPanel1.Controls.Add(p2);
+                    Guna2Panel p1 = card("Production Line Total", statisticsController.leadPrepTotal("Cutting", "Finished", true, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 0, 152, 120));
+                    flowLayoutPanel1.Controls.Add(p1);
                     Guna2Panel p3 = card("Twist Total", statisticsController.leadPrepTotal("Twist", "Finished", true, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 0, 152, 120));
                     flowLayoutPanel1.Controls.Add(p3);
                     Guna2Panel p4 = card("LP Total", statisticsController.leadPrepTotal("LP", "Finished", true, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 0, 152, 120));
@@ -204,6 +212,8 @@ namespace Urgent_Manager.View.DashBoard
 
                 Guna2Panel p2 = card("Cutting Total", CuttingAreaTotal, Color.FromArgb(255, 255, 6, 6));
                 flowLayoutPanel1.Controls.Add(p2);
+                Guna2Panel p1 = card("Production Line Total", statisticsController.leadPrepTotal("Cutting", "Finished", false, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 255, 6, 6));
+                flowLayoutPanel1.Controls.Add(p1);
                 Guna2Panel p3 = card("Twist Total", statisticsController.leadPrepTotal("Twist", "Express", false, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 255, 6, 6));
                 flowLayoutPanel1.Controls.Add(p3);
                 Guna2Panel p4 = card("LP Total", statisticsController.leadPrepTotal("LP", "Express", false, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 255, 6, 6));
@@ -262,6 +272,7 @@ namespace Urgent_Manager.View.DashBoard
         private void livePreview_Tick_1(object sender, EventArgs e)
         {
             int CuttingAreaTotal = 0;
+            totalUrgentCount();
             shiftHours();
             chart();
             if (cmbStatus.Text == "Finished")
@@ -282,6 +293,8 @@ namespace Urgent_Manager.View.DashBoard
                 {
                     Guna2Panel p2 = card("Cutting Total", CuttingAreaTotal, Color.FromArgb(255, 0, 152,120));
                     flowLayoutPanel1.Controls.Add(p2);
+                    Guna2Panel p1 = card("Production Line Total", statisticsController.leadPrepTotal("Cutting", "Finished", true, date), Color.FromArgb(255, 0, 152, 120));
+                    flowLayoutPanel1.Controls.Add(p1);
                     Guna2Panel p3 = card("Twist Total", statisticsController.leadPrepTotal("Twist", "Finished", true, date), Color.FromArgb(255, 0, 152, 120));
                     flowLayoutPanel1.Controls.Add(p3);
                     Guna2Panel p4 = card("LP Total", statisticsController.leadPrepTotal("LP", "Finished", true, date), Color.FromArgb(255, 0, 152, 120));
@@ -291,6 +304,8 @@ namespace Urgent_Manager.View.DashBoard
                 {
                     Guna2Panel p2 = card("Cutting Total", CuttingAreaTotal, Color.FromArgb(255, 0, 152, 120));
                     flowLayoutPanel1.Controls.Add(p2);
+                    Guna2Panel p1 = card("Production Line Total", statisticsController.leadPrepTotal("Cutting", "Finished", true, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 0, 152, 120));
+                    flowLayoutPanel1.Controls.Add(p1);
                     Guna2Panel p3 = card("Twist Total", statisticsController.leadPrepTotal("Twist", "Finished", true, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 0, 152, 120));
                     flowLayoutPanel1.Controls.Add(p3);
                     Guna2Panel p4 = card("LP Total", statisticsController.leadPrepTotal("LP", "Finished", true, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 0, 152, 120));
@@ -313,6 +328,8 @@ namespace Urgent_Manager.View.DashBoard
 
                 Guna2Panel p2 = card("Cutting Total", CuttingAreaTotal, Color.FromArgb(255, 255, 6, 6));
                 flowLayoutPanel1.Controls.Add(p2);
+                Guna2Panel p1 = card("Production Line Total", statisticsController.leadPrepTotal("Cutting", "Express", false, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 255, 6, 6));
+                flowLayoutPanel1.Controls.Add(p1);
                 Guna2Panel p3 = card("Twist Total", statisticsController.leadPrepTotal("Twist", "Express", false, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 255, 6, 6));
                 flowLayoutPanel1.Controls.Add(p3);
                 Guna2Panel p4 = card("LP Total", statisticsController.leadPrepTotal("LP", "Express", false, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 255, 6, 6));
@@ -322,45 +339,51 @@ namespace Urgent_Manager.View.DashBoard
 
             if (status == "All")
             {
-                ChartValues<int> CurrentUrgent = statisticsController.getValues("Express", hours, false, DateTime.Now.ToShortDateString());
+                ChartValues<int> CurrentUrgent;
                 ChartValues<int> FinishedUrgents;
                 if (DateTime.Now.Hour >= 00 && DateTime.Now.Hour < 6)
                 {
                     string date = Convert.ToDateTime(DateTime.Now).Subtract(TimeSpan.FromDays(1)).ToString("dd/MM/yyyy");
+                    CurrentUrgent = statisticsController.getValues("Express", hours, false, date);
                     FinishedUrgents = statisticsController.getValues("Finished", hours, true, date);
                 }
                 else
                 {
+                    CurrentUrgent = statisticsController.getValues("Express", hours, false, DateTime.Now.ToShortDateString());
                     FinishedUrgents = statisticsController.getValues("Finished", hours, true, DateTime.Now.ToShortDateString());
                 }
                 HourlyChart(CurrentUrgent, FinishedUrgents);
             }
             else if (status == "Machine")
             {
-                ChartValues<int> CurrentUrgent = statisticsController.getValues(cmbMachine.Text, "Express", hours, false, DateTime.Now.ToShortDateString());
+                ChartValues<int> CurrentUrgent;
                 ChartValues<int> FinishedUrgents;
                 if (DateTime.Now.Hour >= 00 && DateTime.Now.Hour < 6)
                 {
                     string date = Convert.ToDateTime(DateTime.Now).Subtract(TimeSpan.FromDays(1)).ToString("dd/MM/yyyy");
+                    CurrentUrgent = statisticsController.getValues(cmbMachine.Text, "Express", hours, false, date);
                     FinishedUrgents = statisticsController.getValues(cmbMachine.Text, "Finished", hours, true, date);
                 }
                 else
                 {
+                    CurrentUrgent = statisticsController.getValues(cmbMachine.Text, "Express", hours, false, DateTime.Now.ToShortDateString());
                     FinishedUrgents = statisticsController.getValues(cmbMachine.Text, "Finished", hours, true, DateTime.Now.ToShortDateString());
                 }
                 HourlyChart(CurrentUrgent, FinishedUrgents);
             }
             else if (status == "Area")
             {
-                ChartValues<int> CurrentUrgent = statisticsController.getValuesPerArea(cmbArea.Text, "Express", hours, false, DateTime.Now.ToShortDateString());
+                ChartValues<int> CurrentUrgent;
                 ChartValues<int> FinishedUrgents;
                 if (DateTime.Now.Hour >= 00 && DateTime.Now.Hour < 6)
                 {
                     string date = Convert.ToDateTime(DateTime.Now).Subtract(TimeSpan.FromDays(1)).ToString("dd/MM/yyyy");
+                    CurrentUrgent = statisticsController.getValuesPerArea(cmbArea.Text, "Express", hours, false,date);
                     FinishedUrgents = statisticsController.getValuesPerArea(cmbArea.Text, "Finished", hours, true, date);
                 }
                 else
                 {
+                    CurrentUrgent   =  statisticsController.getValuesPerArea(cmbArea.Text, "Express", hours, false, DateTime.Now.ToShortDateString());
                     FinishedUrgents = statisticsController.getValuesPerArea(cmbArea.Text, "Finished", hours, true, DateTime.Now.ToShortDateString());
                 }
                 HourlyChart(CurrentUrgent, FinishedUrgents);
@@ -385,6 +408,8 @@ namespace Urgent_Manager.View.DashBoard
                 }
                 Guna2Panel p2 = card("Cutting Total", CuttingTotal, Color.FromArgb(255, 0, 152, 120));
                 flowLayoutPanel1.Controls.Add(p2);
+                Guna2Panel p1 = card("Production Line Total", statisticsController.leadPrepTotal("Cutting", "Finished", true, guna2DateTimePicker1.Value.ToShortDateString()), Color.FromArgb(255, 0, 152, 120));
+                flowLayoutPanel1.Controls.Add(p1);
                 Guna2Panel p3 = card("Twist Total", statisticsController.leadPrepTotal("Twist", "Finished", true, guna2DateTimePicker1.Value.ToShortDateString()), Color.FromArgb(255, 0, 152, 120));
                 flowLayoutPanel1.Controls.Add(p3);
                 Guna2Panel p4 = card("LP Total", statisticsController.leadPrepTotal("LP", "Finished", true, guna2DateTimePicker1.Value.ToShortDateString()), Color.FromArgb(255, 0, 152, 120));
@@ -405,15 +430,17 @@ namespace Urgent_Manager.View.DashBoard
                 if (cmbMachine.Text != "")
                 {
                     string[] hours = getShift() == "Matin" ? new string[] { "6", "7", "8", "9", "10", "11", "12", "13" } : getShift() == "Soir" ? new string[] { "14", "15", "16", "17", "18", "19", "20", "21" } : new string[] { "22", "23", "00", "1", "2", "3", "4", "5" };
-                    ChartValues<int> CurrentUrgent = statisticsController.getValues(cmbMachine.Text, "Express", hours, false, DateTime.Now.ToShortDateString());
+                    ChartValues<int> CurrentUrgent;
                     ChartValues<int> FinishedUrgents;
                     if (DateTime.Now.Hour >= 00 && DateTime.Now.Hour < 6)
                     {
                         string date = Convert.ToDateTime(DateTime.Now).Subtract(TimeSpan.FromDays(1)).ToString("dd/MM/yyyy");
+                        CurrentUrgent   = statisticsController.getValues(cmbMachine.Text, "Express", hours, false,date);
                         FinishedUrgents = statisticsController.getValues(cmbMachine.Text, "Finished", hours, true, date);
                     }
                     else
                     {
+                        CurrentUrgent   = statisticsController.getValues(cmbMachine.Text, "Express", hours, false, DateTime.Now.ToShortDateString());
                         FinishedUrgents = statisticsController.getValues(cmbMachine.Text, "Finished", hours, true, DateTime.Now.ToShortDateString());
                     }
                     HourlyChart(CurrentUrgent, FinishedUrgents);
@@ -433,15 +460,17 @@ namespace Urgent_Manager.View.DashBoard
                 if (cmbArea.Text != "")
                 {
                     string[] hours = getShift() == "Matin" ? new string[] { "6", "7", "8", "9", "10", "11", "12", "13" } : getShift() == "Soir" ? new string[] { "14", "15", "16", "17", "18", "19", "20", "21" } : new string[] { "22", "23", "00", "1", "2", "3", "4", "5" };
-                    ChartValues<int> CurrentUrgent = statisticsController.getValuesPerArea(cmbArea.Text, "Express", hours, false, DateTime.Now.ToShortDateString());
+                    ChartValues<int> CurrentUrgent;
                     ChartValues<int> FinishedUrgents;
                     if (DateTime.Now.Hour >= 00 && DateTime.Now.Hour < 6)
                     {
                         string date = Convert.ToDateTime(DateTime.Now).Subtract(TimeSpan.FromDays(1)).ToString("dd/MM/yyyy");
+                        CurrentUrgent   = statisticsController.getValuesPerArea(cmbArea.Text, "Express", hours, false,date);
                         FinishedUrgents = statisticsController.getValues(cmbArea.Text, "Finished", hours, true, date);
                     }
                     else
                     {
+                        CurrentUrgent   = statisticsController.getValuesPerArea(cmbArea.Text, "Express", hours, false, DateTime.Now.ToShortDateString());
                         FinishedUrgents = statisticsController.getValues(cmbArea.Text, "Finished", hours, true, DateTime.Now.ToShortDateString());
                     }
                     HourlyChart(CurrentUrgent, FinishedUrgents);
@@ -457,6 +486,7 @@ namespace Urgent_Manager.View.DashBoard
         private void btnRefresh_Click_1(object sender, EventArgs e)
         {
             shiftHours();
+            totalUrgentCount();
             int CuttingAreaTotal = 0;
             cmbMachine.SelectedIndex = -1;
             cmbArea.SelectedIndex = -1;
@@ -466,14 +496,16 @@ namespace Urgent_Manager.View.DashBoard
             {
                 chart();
                 string[] hours = getShift() == "Matin" ? new string[] { "6", "7", "8", "9", "10", "11", "12", "13" } : getShift() == "Soir" ? new string[] { "14", "15", "16", "17", "18", "19", "20", "21" } : new string[] { "22", "23", "00", "1", "2", "3", "4", "5" };
-                ChartValues<int> CurrentUrgent = statisticsController.getValues("Express", hours, false, DateTime.Now.ToShortDateString());
+                ChartValues<int> CurrentUrgent;
                 ChartValues<int> FinishedUrgents;
                 if (DateTime.Now.Hour >= 00 && DateTime.Now.Hour < 6)
                 {
+                    CurrentUrgent   = statisticsController.getValues("Express", hours, false, date);
                     FinishedUrgents = statisticsController.getValues("Finished", hours, true, date);
                 }
                 else
                 {
+                    CurrentUrgent   = statisticsController.getValues("Express", hours, false, DateTime.Now.ToShortDateString());
                     FinishedUrgents = statisticsController.getValues("Finished", hours, true, DateTime.Now.ToShortDateString());
                 }
                 HourlyChart(CurrentUrgent, FinishedUrgents);
@@ -489,6 +521,8 @@ namespace Urgent_Manager.View.DashBoard
 
                 Guna2Panel p2 = card("Cutting Total", CuttingAreaTotal, Color.FromArgb(255, 255, 6, 6));
                 flowLayoutPanel1.Controls.Add(p2);
+                Guna2Panel p1 = card("Production Line Total", statisticsController.leadPrepTotal("Cutting", "Express", false, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 255, 6, 6));
+                flowLayoutPanel1.Controls.Add(p1);
                 Guna2Panel p3 = card("Twist Total", statisticsController.leadPrepTotal("Twist", "Express", false, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 255, 6, 6));
                 flowLayoutPanel1.Controls.Add(p3);
                 Guna2Panel p4 = card("LP Total", statisticsController.leadPrepTotal("LP", "Express", false, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 255, 6, 6));
@@ -498,14 +532,16 @@ namespace Urgent_Manager.View.DashBoard
             {
                 chart();
                 string[] hours = getShift() == "Matin" ? new string[] { "6", "7", "8", "9", "10", "11", "12", "13" } : getShift() == "Soir" ? new string[] { "14", "15", "16", "17", "18", "19", "20", "21" } : new string[] { "22", "23", "00", "1", "2", "3", "4", "5" };
-                ChartValues<int> CurrentUrgent = statisticsController.getValues("Express", hours, false, DateTime.Now.ToShortDateString());
+                ChartValues<int> CurrentUrgent;
                 ChartValues<int> FinishedUrgents;
                 if (DateTime.Now.Hour >= 00 && DateTime.Now.Hour < 6)
                 {
+                    CurrentUrgent   = statisticsController.getValues("Express", hours, false,date);
                     FinishedUrgents = statisticsController.getValues("Finished", hours, true, date);
                 }
                 else
                 {
+                    CurrentUrgent   = statisticsController.getValues("Express", hours, false, DateTime.Now.ToShortDateString());
                     FinishedUrgents = statisticsController.getValues("Finished", hours, true, DateTime.Now.ToShortDateString());
                 }
                 HourlyChart(CurrentUrgent, FinishedUrgents);
@@ -523,6 +559,8 @@ namespace Urgent_Manager.View.DashBoard
                 {
                     Guna2Panel p2 = card("Cutting Total", CuttingAreaTotal, Color.FromArgb(255, 0, 152, 120));
                     flowLayoutPanel1.Controls.Add(p2);
+                    Guna2Panel p1 = card("Production Line Total", statisticsController.leadPrepTotal("Cutting", "Finished", true, date), Color.FromArgb(255, 0, 152, 120));
+                    flowLayoutPanel1.Controls.Add(p1);
                     Guna2Panel p3 = card("Twist Total", statisticsController.leadPrepTotal("Twist", "Finished", true, date), Color.FromArgb(255, 0, 152, 120));
                     flowLayoutPanel1.Controls.Add(p3);
                     Guna2Panel p4 = card("LP Total", statisticsController.leadPrepTotal("LP", "Finished", true, date), Color.FromArgb(255, 0, 152, 120));
@@ -532,6 +570,8 @@ namespace Urgent_Manager.View.DashBoard
                 {
                     Guna2Panel p2 = card("Cutting Total", CuttingAreaTotal, Color.FromArgb(255, 0, 152, 120));
                     flowLayoutPanel1.Controls.Add(p2);
+                    Guna2Panel p1 = card("Production Line Total", statisticsController.leadPrepTotal("Cutting", "Finished", true, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 0, 152, 120));
+                    flowLayoutPanel1.Controls.Add(p1);
                     Guna2Panel p3 = card("Twist Total", statisticsController.leadPrepTotal("Twist", "Finished", true, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 0, 152, 120));
                     flowLayoutPanel1.Controls.Add(p3);
                     Guna2Panel p4 = card("LP Total", statisticsController.leadPrepTotal("LP", "Finished", true, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 0, 152, 120));
@@ -553,6 +593,84 @@ namespace Urgent_Manager.View.DashBoard
                 livePreview.Stop();
                 livePreview.Enabled = false;
             }
+        }
+
+        private void gSTotalUrgentsPerM_CheckedChanged(object sender, EventArgs e)
+        {
+            if (gSTotalUrgentsPerM.Checked)
+            {
+                lblTotal.Text = "Show Urgents Status Hourly";
+                cartesianChart1.Visible = false;
+                panel2.Visible = true;
+                cmbMachine.Enabled = false;
+                cmbArea.Enabled = false;
+            }
+            else
+            {
+                lblTotal.Text = "Show Total Urgents Per Machine";
+                cartesianChart1.Visible = true;
+                panel2.Visible = false;
+                cmbMachine.Enabled = true;
+                cmbArea.Enabled = true;
+            }
+        }
+
+        private void totalUrgentCount()
+        {
+            try
+            {
+                chart1.Series["Express"].Points.Clear();
+                chart1.BackColor = Color.FromArgb(255, 34, 34, 34);
+                chart1.ChartAreas[0].AxisX.LineColor = Color.White;
+                chart1.ChartAreas[0].AxisY.LineColor = Color.White;
+                chart1.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.White;
+                chart1.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.White;
+                chart1.ChartAreas[0].BackColor = Color.FromArgb(255, 34, 34, 34);
+                chart1.ChartAreas[0].AxisX.LabelStyle.ForeColor = Color.White;
+                chart1.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.White;
+                chart1.ChartAreas[0].AxisX.Interval = 1;
+                chart1.ChartAreas[0].AxisX.IsLabelAutoFit = true;
+                
+
+                ArrayList list = urgentController.machines("Express");
+
+                foreach (string machine in list)
+                {
+                    int data = statisticsController.totalCount(machine);
+                    chart1.Series["Express"].Points.AddXY(machine, data);
+                    chart1.Series["Express"].IsValueShownAsLabel = true;
+                    chart1.Series["Express"].LabelBackColor = Color.White;
+                    chart1.Series["Express"].LabelForeColor = Color.FromArgb(255, 34, 34, 34);
+                    chart1.ChartAreas[0].AxisX.Title = "Machines";
+                    chart1.ChartAreas[0].AxisY.Title = "Total Urgents Per Machine";
+                    chart1.ChartAreas[0].AxisX.TitleForeColor = Color.White;
+                    chart1.ChartAreas[0].AxisY.TitleForeColor = Color.White;
+                    if (list.Count > 20)
+                        chart1.Width += 10;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        int count = 0;
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblLoading.Visible = true;
+            lblLoading.Location = new Point(228, 180);
+            if(count == 3)
+            {
+                flowLayoutPanel1.Visible = true;
+                timer1.Stop();
+                timer1.Enabled = false;
+                lblLoading.Visible = false;
+                lblLoading.Location = new Point(228, 291);
+            }
+
+            count++;
         }
     }
 }

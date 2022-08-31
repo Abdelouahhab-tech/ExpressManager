@@ -62,7 +62,7 @@ namespace Urgent_Manager.View.DashBoard
             btnArchiveManager.Location = new Point(0, 216);
 
             // Give The Access Depend On User's Role
-            if(Login.role != "")
+            if (Login.role != "")
             {
                 if(Login.role == "Entry Agent")
                 {
@@ -203,6 +203,11 @@ namespace Urgent_Manager.View.DashBoard
         private void btnStatistics_Click(object sender, EventArgs e)
         {
             subForm(new Statistics());
+        }
+
+        private void icServerData_Click(object sender, EventArgs e)
+        {
+            subForm(new ServerData());
         }
     }
 }

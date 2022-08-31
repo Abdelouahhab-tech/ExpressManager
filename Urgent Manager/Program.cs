@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Urgent_Manager.Controller;
 using Urgent_Manager.View;
 using Urgent_Manager.View.DashBoard;
 
@@ -18,7 +19,11 @@ namespace Urgent_Manager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            if (WPCSController.isConnect())
+                Application.Run(new Login());
+            else
+                Application.Run(new ServerAccess());
+
         }
     }
 }

@@ -42,35 +42,21 @@
             this.lblTerG = new System.Windows.Forms.Label();
             this.lblTerD = new System.Windows.Forms.Label();
             this.lblSealG = new System.Windows.Forms.Label();
-            this.cmbMarkerD = new Guna.UI2.WinForms.Guna2ComboBox();
             this.lblMarkerD = new System.Windows.Forms.Label();
-            this.cmbMarkerG = new Guna.UI2.WinForms.Guna2ComboBox();
             this.lblMarkG = new System.Windows.Forms.Label();
             this.lblSealD = new System.Windows.Forms.Label();
             this.lblToolG = new System.Windows.Forms.Label();
-            this.cmbProtectionD = new Guna.UI2.WinForms.Guna2ComboBox();
             this.lblProtectionD = new System.Windows.Forms.Label();
-            this.cmbProtectionG = new Guna.UI2.WinForms.Guna2ComboBox();
             this.lblProtectionG = new System.Windows.Forms.Label();
-            this.cmbGroup = new Guna.UI2.WinForms.Guna2ComboBox();
             this.lblGroup = new System.Windows.Forms.Label();
             this.lblCable = new System.Windows.Forms.Label();
             this.lblToolD = new System.Windows.Forms.Label();
             this.lblFamily = new System.Windows.Forms.Label();
-            this.cmbMc = new Guna.UI2.WinForms.Guna2ComboBox();
             this.lblMc = new System.Windows.Forms.Label();
             this.btnUpdate = new Guna.UI2.WinForms.Guna2Button();
             this.btnSave = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.gradientPanel1 = new Urgent_Manager.CustomViews.GradientPanel();
-            this.cmbFamily = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.cmbCable = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.cmbTerG = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.cmbTerD = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.cmbSealG = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.cmbSealD = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.cmbToolD = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.cmbToolG = new Guna.UI2.WinForms.Guna2ComboBox();
             this.gtxtLeadPrep = new Guna.UI2.WinForms.Guna2TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -79,6 +65,20 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.gtxtCable = new Guna.UI2.WinForms.Guna2TextBox();
+            this.gtxtTerminalG = new Guna.UI2.WinForms.Guna2TextBox();
+            this.gtxtTerminalD = new Guna.UI2.WinForms.Guna2TextBox();
+            this.gtxtSealG = new Guna.UI2.WinForms.Guna2TextBox();
+            this.gtxtSealD = new Guna.UI2.WinForms.Guna2TextBox();
+            this.gtxtMarkerG = new Guna.UI2.WinForms.Guna2TextBox();
+            this.gtxtMarkerD = new Guna.UI2.WinForms.Guna2TextBox();
+            this.gtxtProtectionG = new Guna.UI2.WinForms.Guna2TextBox();
+            this.gtxtProtectionD = new Guna.UI2.WinForms.Guna2TextBox();
+            this.gtxtToolG = new Guna.UI2.WinForms.Guna2TextBox();
+            this.gtxtToolD = new Guna.UI2.WinForms.Guna2TextBox();
+            this.gtxtFamily = new Guna.UI2.WinForms.Guna2TextBox();
+            this.gtxtGroup = new Guna.UI2.WinForms.Guna2TextBox();
+            this.gtxtMachine = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -310,30 +310,6 @@
             this.lblSealG.TabIndex = 38;
             this.lblSealG.Text = "Seal G : ";
             // 
-            // cmbMarkerD
-            // 
-            this.cmbMarkerD.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbMarkerD.BackColor = System.Drawing.Color.Transparent;
-            this.cmbMarkerD.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbMarkerD.BorderRadius = 20;
-            this.cmbMarkerD.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbMarkerD.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbMarkerD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbMarkerD.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.cmbMarkerD.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbMarkerD.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbMarkerD.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbMarkerD.ForeColor = System.Drawing.Color.White;
-            this.cmbMarkerD.IntegralHeight = false;
-            this.cmbMarkerD.ItemHeight = 35;
-            this.cmbMarkerD.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbMarkerD.ItemsAppearance.SelectedForeColor = System.Drawing.Color.White;
-            this.cmbMarkerD.Location = new System.Drawing.Point(869, 292);
-            this.cmbMarkerD.Name = "cmbMarkerD";
-            this.cmbMarkerD.Size = new System.Drawing.Size(191, 41);
-            this.cmbMarkerD.TabIndex = 11;
-            this.cmbMarkerD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // lblMarkerD
             // 
             this.lblMarkerD.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -345,30 +321,6 @@
             this.lblMarkerD.Size = new System.Drawing.Size(85, 18);
             this.lblMarkerD.TabIndex = 44;
             this.lblMarkerD.Text = "Marker D : ";
-            // 
-            // cmbMarkerG
-            // 
-            this.cmbMarkerG.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbMarkerG.BackColor = System.Drawing.Color.Transparent;
-            this.cmbMarkerG.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbMarkerG.BorderRadius = 20;
-            this.cmbMarkerG.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbMarkerG.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbMarkerG.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbMarkerG.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.cmbMarkerG.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbMarkerG.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbMarkerG.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbMarkerG.ForeColor = System.Drawing.Color.White;
-            this.cmbMarkerG.IntegralHeight = false;
-            this.cmbMarkerG.ItemHeight = 35;
-            this.cmbMarkerG.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbMarkerG.ItemsAppearance.SelectedForeColor = System.Drawing.Color.White;
-            this.cmbMarkerG.Location = new System.Drawing.Point(566, 292);
-            this.cmbMarkerG.Name = "cmbMarkerG";
-            this.cmbMarkerG.Size = new System.Drawing.Size(191, 41);
-            this.cmbMarkerG.TabIndex = 10;
-            this.cmbMarkerG.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblMarkG
             // 
@@ -406,30 +358,6 @@
             this.lblToolG.TabIndex = 50;
             this.lblToolG.Text = "Tool G : ";
             // 
-            // cmbProtectionD
-            // 
-            this.cmbProtectionD.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbProtectionD.BackColor = System.Drawing.Color.Transparent;
-            this.cmbProtectionD.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbProtectionD.BorderRadius = 20;
-            this.cmbProtectionD.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbProtectionD.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbProtectionD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbProtectionD.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.cmbProtectionD.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbProtectionD.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbProtectionD.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbProtectionD.ForeColor = System.Drawing.Color.White;
-            this.cmbProtectionD.IntegralHeight = false;
-            this.cmbProtectionD.ItemHeight = 35;
-            this.cmbProtectionD.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbProtectionD.ItemsAppearance.SelectedForeColor = System.Drawing.Color.White;
-            this.cmbProtectionD.Location = new System.Drawing.Point(566, 353);
-            this.cmbProtectionD.Name = "cmbProtectionD";
-            this.cmbProtectionD.Size = new System.Drawing.Size(191, 41);
-            this.cmbProtectionD.TabIndex = 13;
-            this.cmbProtectionD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // lblProtectionD
             // 
             this.lblProtectionD.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -442,30 +370,6 @@
             this.lblProtectionD.TabIndex = 48;
             this.lblProtectionD.Text = "Protection D :";
             // 
-            // cmbProtectionG
-            // 
-            this.cmbProtectionG.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbProtectionG.BackColor = System.Drawing.Color.Transparent;
-            this.cmbProtectionG.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbProtectionG.BorderRadius = 20;
-            this.cmbProtectionG.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbProtectionG.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbProtectionG.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbProtectionG.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.cmbProtectionG.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbProtectionG.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbProtectionG.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbProtectionG.ForeColor = System.Drawing.Color.White;
-            this.cmbProtectionG.IntegralHeight = false;
-            this.cmbProtectionG.ItemHeight = 35;
-            this.cmbProtectionG.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbProtectionG.ItemsAppearance.SelectedForeColor = System.Drawing.Color.White;
-            this.cmbProtectionG.Location = new System.Drawing.Point(250, 353);
-            this.cmbProtectionG.Name = "cmbProtectionG";
-            this.cmbProtectionG.Size = new System.Drawing.Size(191, 41);
-            this.cmbProtectionG.TabIndex = 12;
-            this.cmbProtectionG.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // lblProtectionG
             // 
             this.lblProtectionG.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -477,31 +381,6 @@
             this.lblProtectionG.Size = new System.Drawing.Size(110, 18);
             this.lblProtectionG.TabIndex = 46;
             this.lblProtectionG.Text = "Protection G : ";
-            // 
-            // cmbGroup
-            // 
-            this.cmbGroup.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbGroup.BackColor = System.Drawing.Color.Transparent;
-            this.cmbGroup.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbGroup.BorderRadius = 20;
-            this.cmbGroup.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbGroup.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbGroup.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.cmbGroup.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbGroup.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbGroup.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbGroup.ForeColor = System.Drawing.Color.White;
-            this.cmbGroup.IntegralHeight = false;
-            this.cmbGroup.ItemHeight = 35;
-            this.cmbGroup.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbGroup.ItemsAppearance.SelectedForeColor = System.Drawing.Color.White;
-            this.cmbGroup.Location = new System.Drawing.Point(869, 421);
-            this.cmbGroup.Name = "cmbGroup";
-            this.cmbGroup.Size = new System.Drawing.Size(191, 41);
-            this.cmbGroup.TabIndex = 17;
-            this.cmbGroup.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.cmbGroup.SelectedIndexChanged += new System.EventHandler(this.cmbGroup_SelectedIndexChanged);
             // 
             // lblGroup
             // 
@@ -551,31 +430,6 @@
             this.lblFamily.TabIndex = 62;
             this.lblFamily.Text = "Wire Family : ";
             // 
-            // cmbMc
-            // 
-            this.cmbMc.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbMc.BackColor = System.Drawing.Color.Transparent;
-            this.cmbMc.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbMc.BorderRadius = 20;
-            this.cmbMc.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbMc.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbMc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbMc.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.cmbMc.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbMc.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbMc.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbMc.ForeColor = System.Drawing.Color.White;
-            this.cmbMc.IntegralHeight = false;
-            this.cmbMc.ItemHeight = 35;
-            this.cmbMc.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbMc.ItemsAppearance.SelectedForeColor = System.Drawing.Color.White;
-            this.cmbMc.Location = new System.Drawing.Point(250, 491);
-            this.cmbMc.Name = "cmbMc";
-            this.cmbMc.Size = new System.Drawing.Size(191, 41);
-            this.cmbMc.TabIndex = 18;
-            this.cmbMc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.cmbMc.SelectedIndexChanged += new System.EventHandler(this.cmbMc_SelectedIndexChanged);
-            // 
             // lblMc
             // 
             this.lblMc.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -606,7 +460,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(413, 559);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(157, 41);
-            this.btnUpdate.TabIndex = 22;
+            this.btnUpdate.TabIndex = 20;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -629,7 +483,7 @@
             this.btnSave.Location = new System.Drawing.Point(250, 559);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(157, 41);
-            this.btnSave.TabIndex = 21;
+            this.btnSave.TabIndex = 19;
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -651,7 +505,7 @@
             this.guna2Button1.Location = new System.Drawing.Point(576, 559);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.Size = new System.Drawing.Size(157, 41);
-            this.guna2Button1.TabIndex = 24;
+            this.guna2Button1.TabIndex = 21;
             this.guna2Button1.Text = "Delete";
             this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
@@ -665,200 +519,6 @@
             this.gradientPanel1.Size = new System.Drawing.Size(1200, 2);
             this.gradientPanel1.TabIndex = 16;
             this.gradientPanel1.TopColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
-            // 
-            // cmbFamily
-            // 
-            this.cmbFamily.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbFamily.BackColor = System.Drawing.Color.Transparent;
-            this.cmbFamily.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbFamily.BorderRadius = 20;
-            this.cmbFamily.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbFamily.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbFamily.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbFamily.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.cmbFamily.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbFamily.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbFamily.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbFamily.ForeColor = System.Drawing.Color.White;
-            this.cmbFamily.IntegralHeight = false;
-            this.cmbFamily.ItemHeight = 35;
-            this.cmbFamily.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbFamily.ItemsAppearance.SelectedForeColor = System.Drawing.Color.White;
-            this.cmbFamily.Location = new System.Drawing.Point(566, 421);
-            this.cmbFamily.Name = "cmbFamily";
-            this.cmbFamily.Size = new System.Drawing.Size(191, 41);
-            this.cmbFamily.TabIndex = 16;
-            this.cmbFamily.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.cmbFamily.SelectedIndexChanged += new System.EventHandler(this.cmbFamily_SelectedIndexChanged);
-            // 
-            // cmbCable
-            // 
-            this.cmbCable.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbCable.BackColor = System.Drawing.Color.Transparent;
-            this.cmbCable.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbCable.BorderRadius = 20;
-            this.cmbCable.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbCable.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbCable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCable.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.cmbCable.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbCable.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbCable.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbCable.ForeColor = System.Drawing.Color.White;
-            this.cmbCable.IntegralHeight = false;
-            this.cmbCable.ItemHeight = 35;
-            this.cmbCable.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbCable.ItemsAppearance.SelectedForeColor = System.Drawing.Color.White;
-            this.cmbCable.Location = new System.Drawing.Point(250, 168);
-            this.cmbCable.Name = "cmbCable";
-            this.cmbCable.Size = new System.Drawing.Size(191, 41);
-            this.cmbCable.TabIndex = 3;
-            this.cmbCable.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.cmbCable.SelectedIndexChanged += new System.EventHandler(this.cmbCable_SelectedIndexChanged);
-            // 
-            // cmbTerG
-            // 
-            this.cmbTerG.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbTerG.BackColor = System.Drawing.Color.Transparent;
-            this.cmbTerG.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbTerG.BorderRadius = 20;
-            this.cmbTerG.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbTerG.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbTerG.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTerG.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.cmbTerG.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbTerG.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbTerG.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbTerG.ForeColor = System.Drawing.Color.White;
-            this.cmbTerG.IntegralHeight = false;
-            this.cmbTerG.ItemHeight = 35;
-            this.cmbTerG.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbTerG.ItemsAppearance.SelectedForeColor = System.Drawing.Color.White;
-            this.cmbTerG.Location = new System.Drawing.Point(250, 230);
-            this.cmbTerG.Name = "cmbTerG";
-            this.cmbTerG.Size = new System.Drawing.Size(191, 41);
-            this.cmbTerG.TabIndex = 6;
-            this.cmbTerG.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // cmbTerD
-            // 
-            this.cmbTerD.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbTerD.BackColor = System.Drawing.Color.Transparent;
-            this.cmbTerD.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbTerD.BorderRadius = 20;
-            this.cmbTerD.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbTerD.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbTerD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTerD.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.cmbTerD.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbTerD.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbTerD.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbTerD.ForeColor = System.Drawing.Color.White;
-            this.cmbTerD.IntegralHeight = false;
-            this.cmbTerD.ItemHeight = 35;
-            this.cmbTerD.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbTerD.ItemsAppearance.SelectedForeColor = System.Drawing.Color.White;
-            this.cmbTerD.Location = new System.Drawing.Point(566, 230);
-            this.cmbTerD.Name = "cmbTerD";
-            this.cmbTerD.Size = new System.Drawing.Size(191, 41);
-            this.cmbTerD.TabIndex = 7;
-            this.cmbTerD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // cmbSealG
-            // 
-            this.cmbSealG.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbSealG.BackColor = System.Drawing.Color.Transparent;
-            this.cmbSealG.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbSealG.BorderRadius = 20;
-            this.cmbSealG.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbSealG.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbSealG.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSealG.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.cmbSealG.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbSealG.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbSealG.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbSealG.ForeColor = System.Drawing.Color.White;
-            this.cmbSealG.IntegralHeight = false;
-            this.cmbSealG.ItemHeight = 35;
-            this.cmbSealG.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbSealG.ItemsAppearance.SelectedForeColor = System.Drawing.Color.White;
-            this.cmbSealG.Location = new System.Drawing.Point(869, 230);
-            this.cmbSealG.Name = "cmbSealG";
-            this.cmbSealG.Size = new System.Drawing.Size(191, 41);
-            this.cmbSealG.TabIndex = 8;
-            this.cmbSealG.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // cmbSealD
-            // 
-            this.cmbSealD.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbSealD.BackColor = System.Drawing.Color.Transparent;
-            this.cmbSealD.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbSealD.BorderRadius = 20;
-            this.cmbSealD.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbSealD.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbSealD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSealD.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.cmbSealD.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbSealD.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbSealD.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbSealD.ForeColor = System.Drawing.Color.White;
-            this.cmbSealD.IntegralHeight = false;
-            this.cmbSealD.ItemHeight = 35;
-            this.cmbSealD.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbSealD.ItemsAppearance.SelectedForeColor = System.Drawing.Color.White;
-            this.cmbSealD.Location = new System.Drawing.Point(250, 292);
-            this.cmbSealD.Name = "cmbSealD";
-            this.cmbSealD.Size = new System.Drawing.Size(191, 41);
-            this.cmbSealD.TabIndex = 9;
-            this.cmbSealD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // cmbToolD
-            // 
-            this.cmbToolD.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbToolD.BackColor = System.Drawing.Color.Transparent;
-            this.cmbToolD.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbToolD.BorderRadius = 20;
-            this.cmbToolD.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbToolD.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbToolD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbToolD.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.cmbToolD.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbToolD.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbToolD.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbToolD.ForeColor = System.Drawing.Color.White;
-            this.cmbToolD.IntegralHeight = false;
-            this.cmbToolD.ItemHeight = 35;
-            this.cmbToolD.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbToolD.ItemsAppearance.SelectedForeColor = System.Drawing.Color.White;
-            this.cmbToolD.Location = new System.Drawing.Point(250, 421);
-            this.cmbToolD.Name = "cmbToolD";
-            this.cmbToolD.Size = new System.Drawing.Size(191, 41);
-            this.cmbToolD.TabIndex = 15;
-            this.cmbToolD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // cmbToolG
-            // 
-            this.cmbToolG.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbToolG.BackColor = System.Drawing.Color.Transparent;
-            this.cmbToolG.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbToolG.BorderRadius = 20;
-            this.cmbToolG.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbToolG.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbToolG.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbToolG.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.cmbToolG.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbToolG.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbToolG.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cmbToolG.ForeColor = System.Drawing.Color.White;
-            this.cmbToolG.IntegralHeight = false;
-            this.cmbToolG.ItemHeight = 35;
-            this.cmbToolG.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.cmbToolG.ItemsAppearance.SelectedForeColor = System.Drawing.Color.White;
-            this.cmbToolG.Location = new System.Drawing.Point(869, 353);
-            this.cmbToolG.Name = "cmbToolG";
-            this.cmbToolG.Size = new System.Drawing.Size(191, 41);
-            this.cmbToolG.TabIndex = 14;
-            this.cmbToolG.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // gtxtLeadPrep
             // 
@@ -970,12 +630,390 @@
             this.label8.TabIndex = 69;
             this.label8.Text = "*";
             // 
+            // gtxtCable
+            // 
+            this.gtxtCable.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gtxtCable.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtCable.BorderRadius = 20;
+            this.gtxtCable.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtCable.DefaultText = "";
+            this.gtxtCable.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtCable.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtCable.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtCable.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtCable.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gtxtCable.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtCable.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gtxtCable.ForeColor = System.Drawing.Color.White;
+            this.gtxtCable.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtCable.Location = new System.Drawing.Point(250, 169);
+            this.gtxtCable.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gtxtCable.Name = "gtxtCable";
+            this.gtxtCable.PasswordChar = '\0';
+            this.gtxtCable.PlaceholderText = "Cable";
+            this.gtxtCable.SelectedText = "";
+            this.gtxtCable.Size = new System.Drawing.Size(191, 41);
+            this.gtxtCable.TabIndex = 3;
+            this.gtxtCable.TextOffset = new System.Drawing.Point(20, 0);
+            // 
+            // gtxtTerminalG
+            // 
+            this.gtxtTerminalG.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gtxtTerminalG.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtTerminalG.BorderRadius = 20;
+            this.gtxtTerminalG.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtTerminalG.DefaultText = "";
+            this.gtxtTerminalG.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtTerminalG.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtTerminalG.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtTerminalG.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtTerminalG.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gtxtTerminalG.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtTerminalG.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gtxtTerminalG.ForeColor = System.Drawing.Color.White;
+            this.gtxtTerminalG.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtTerminalG.Location = new System.Drawing.Point(250, 231);
+            this.gtxtTerminalG.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gtxtTerminalG.Name = "gtxtTerminalG";
+            this.gtxtTerminalG.PasswordChar = '\0';
+            this.gtxtTerminalG.PlaceholderText = "Terminal G";
+            this.gtxtTerminalG.SelectedText = "";
+            this.gtxtTerminalG.Size = new System.Drawing.Size(191, 41);
+            this.gtxtTerminalG.TabIndex = 6;
+            this.gtxtTerminalG.TextOffset = new System.Drawing.Point(20, 0);
+            // 
+            // gtxtTerminalD
+            // 
+            this.gtxtTerminalD.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gtxtTerminalD.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtTerminalD.BorderRadius = 20;
+            this.gtxtTerminalD.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtTerminalD.DefaultText = "";
+            this.gtxtTerminalD.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtTerminalD.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtTerminalD.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtTerminalD.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtTerminalD.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gtxtTerminalD.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtTerminalD.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gtxtTerminalD.ForeColor = System.Drawing.Color.White;
+            this.gtxtTerminalD.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtTerminalD.Location = new System.Drawing.Point(566, 231);
+            this.gtxtTerminalD.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gtxtTerminalD.Name = "gtxtTerminalD";
+            this.gtxtTerminalD.PasswordChar = '\0';
+            this.gtxtTerminalD.PlaceholderText = "Terminal D";
+            this.gtxtTerminalD.SelectedText = "";
+            this.gtxtTerminalD.Size = new System.Drawing.Size(191, 41);
+            this.gtxtTerminalD.TabIndex = 7;
+            this.gtxtTerminalD.TextOffset = new System.Drawing.Point(20, 0);
+            // 
+            // gtxtSealG
+            // 
+            this.gtxtSealG.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gtxtSealG.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtSealG.BorderRadius = 20;
+            this.gtxtSealG.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtSealG.DefaultText = "";
+            this.gtxtSealG.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtSealG.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtSealG.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtSealG.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtSealG.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gtxtSealG.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtSealG.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gtxtSealG.ForeColor = System.Drawing.Color.White;
+            this.gtxtSealG.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtSealG.Location = new System.Drawing.Point(869, 231);
+            this.gtxtSealG.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gtxtSealG.Name = "gtxtSealG";
+            this.gtxtSealG.PasswordChar = '\0';
+            this.gtxtSealG.PlaceholderText = "Seal G";
+            this.gtxtSealG.SelectedText = "";
+            this.gtxtSealG.Size = new System.Drawing.Size(191, 41);
+            this.gtxtSealG.TabIndex = 8;
+            this.gtxtSealG.TextOffset = new System.Drawing.Point(20, 0);
+            // 
+            // gtxtSealD
+            // 
+            this.gtxtSealD.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gtxtSealD.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtSealD.BorderRadius = 20;
+            this.gtxtSealD.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtSealD.DefaultText = "";
+            this.gtxtSealD.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtSealD.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtSealD.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtSealD.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtSealD.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gtxtSealD.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtSealD.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gtxtSealD.ForeColor = System.Drawing.Color.White;
+            this.gtxtSealD.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtSealD.Location = new System.Drawing.Point(250, 292);
+            this.gtxtSealD.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gtxtSealD.Name = "gtxtSealD";
+            this.gtxtSealD.PasswordChar = '\0';
+            this.gtxtSealD.PlaceholderText = "Seal D";
+            this.gtxtSealD.SelectedText = "";
+            this.gtxtSealD.Size = new System.Drawing.Size(191, 41);
+            this.gtxtSealD.TabIndex = 9;
+            this.gtxtSealD.TextOffset = new System.Drawing.Point(20, 0);
+            // 
+            // gtxtMarkerG
+            // 
+            this.gtxtMarkerG.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gtxtMarkerG.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtMarkerG.BorderRadius = 20;
+            this.gtxtMarkerG.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtMarkerG.DefaultText = "";
+            this.gtxtMarkerG.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtMarkerG.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtMarkerG.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtMarkerG.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtMarkerG.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gtxtMarkerG.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtMarkerG.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gtxtMarkerG.ForeColor = System.Drawing.Color.White;
+            this.gtxtMarkerG.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtMarkerG.Location = new System.Drawing.Point(566, 292);
+            this.gtxtMarkerG.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gtxtMarkerG.Name = "gtxtMarkerG";
+            this.gtxtMarkerG.PasswordChar = '\0';
+            this.gtxtMarkerG.PlaceholderText = "MarkerG";
+            this.gtxtMarkerG.SelectedText = "";
+            this.gtxtMarkerG.Size = new System.Drawing.Size(191, 41);
+            this.gtxtMarkerG.TabIndex = 10;
+            this.gtxtMarkerG.TextOffset = new System.Drawing.Point(20, 0);
+            // 
+            // gtxtMarkerD
+            // 
+            this.gtxtMarkerD.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gtxtMarkerD.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtMarkerD.BorderRadius = 20;
+            this.gtxtMarkerD.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtMarkerD.DefaultText = "";
+            this.gtxtMarkerD.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtMarkerD.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtMarkerD.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtMarkerD.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtMarkerD.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gtxtMarkerD.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtMarkerD.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gtxtMarkerD.ForeColor = System.Drawing.Color.White;
+            this.gtxtMarkerD.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtMarkerD.Location = new System.Drawing.Point(869, 292);
+            this.gtxtMarkerD.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gtxtMarkerD.Name = "gtxtMarkerD";
+            this.gtxtMarkerD.PasswordChar = '\0';
+            this.gtxtMarkerD.PlaceholderText = "Marker D";
+            this.gtxtMarkerD.SelectedText = "";
+            this.gtxtMarkerD.Size = new System.Drawing.Size(191, 41);
+            this.gtxtMarkerD.TabIndex = 11;
+            this.gtxtMarkerD.TextOffset = new System.Drawing.Point(20, 0);
+            // 
+            // gtxtProtectionG
+            // 
+            this.gtxtProtectionG.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gtxtProtectionG.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtProtectionG.BorderRadius = 20;
+            this.gtxtProtectionG.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtProtectionG.DefaultText = "";
+            this.gtxtProtectionG.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtProtectionG.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtProtectionG.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtProtectionG.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtProtectionG.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gtxtProtectionG.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtProtectionG.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gtxtProtectionG.ForeColor = System.Drawing.Color.White;
+            this.gtxtProtectionG.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtProtectionG.Location = new System.Drawing.Point(250, 353);
+            this.gtxtProtectionG.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gtxtProtectionG.Name = "gtxtProtectionG";
+            this.gtxtProtectionG.PasswordChar = '\0';
+            this.gtxtProtectionG.PlaceholderText = "Protection G";
+            this.gtxtProtectionG.SelectedText = "";
+            this.gtxtProtectionG.Size = new System.Drawing.Size(191, 41);
+            this.gtxtProtectionG.TabIndex = 12;
+            this.gtxtProtectionG.TextOffset = new System.Drawing.Point(20, 0);
+            // 
+            // gtxtProtectionD
+            // 
+            this.gtxtProtectionD.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gtxtProtectionD.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtProtectionD.BorderRadius = 20;
+            this.gtxtProtectionD.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtProtectionD.DefaultText = "";
+            this.gtxtProtectionD.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtProtectionD.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtProtectionD.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtProtectionD.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtProtectionD.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gtxtProtectionD.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtProtectionD.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gtxtProtectionD.ForeColor = System.Drawing.Color.White;
+            this.gtxtProtectionD.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtProtectionD.Location = new System.Drawing.Point(566, 353);
+            this.gtxtProtectionD.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gtxtProtectionD.Name = "gtxtProtectionD";
+            this.gtxtProtectionD.PasswordChar = '\0';
+            this.gtxtProtectionD.PlaceholderText = "Protection D";
+            this.gtxtProtectionD.SelectedText = "";
+            this.gtxtProtectionD.Size = new System.Drawing.Size(191, 41);
+            this.gtxtProtectionD.TabIndex = 13;
+            this.gtxtProtectionD.TextOffset = new System.Drawing.Point(20, 0);
+            // 
+            // gtxtToolG
+            // 
+            this.gtxtToolG.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gtxtToolG.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtToolG.BorderRadius = 20;
+            this.gtxtToolG.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtToolG.DefaultText = "";
+            this.gtxtToolG.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtToolG.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtToolG.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtToolG.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtToolG.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gtxtToolG.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtToolG.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gtxtToolG.ForeColor = System.Drawing.Color.White;
+            this.gtxtToolG.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtToolG.Location = new System.Drawing.Point(869, 353);
+            this.gtxtToolG.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gtxtToolG.Name = "gtxtToolG";
+            this.gtxtToolG.PasswordChar = '\0';
+            this.gtxtToolG.PlaceholderText = "Tool G";
+            this.gtxtToolG.SelectedText = "";
+            this.gtxtToolG.Size = new System.Drawing.Size(191, 41);
+            this.gtxtToolG.TabIndex = 14;
+            this.gtxtToolG.TextOffset = new System.Drawing.Point(20, 0);
+            // 
+            // gtxtToolD
+            // 
+            this.gtxtToolD.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gtxtToolD.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtToolD.BorderRadius = 20;
+            this.gtxtToolD.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtToolD.DefaultText = "";
+            this.gtxtToolD.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtToolD.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtToolD.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtToolD.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtToolD.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gtxtToolD.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtToolD.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gtxtToolD.ForeColor = System.Drawing.Color.White;
+            this.gtxtToolD.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtToolD.Location = new System.Drawing.Point(250, 421);
+            this.gtxtToolD.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gtxtToolD.Name = "gtxtToolD";
+            this.gtxtToolD.PasswordChar = '\0';
+            this.gtxtToolD.PlaceholderText = "Tool D";
+            this.gtxtToolD.SelectedText = "";
+            this.gtxtToolD.Size = new System.Drawing.Size(191, 41);
+            this.gtxtToolD.TabIndex = 15;
+            this.gtxtToolD.TextOffset = new System.Drawing.Point(20, 0);
+            // 
+            // gtxtFamily
+            // 
+            this.gtxtFamily.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gtxtFamily.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtFamily.BorderRadius = 20;
+            this.gtxtFamily.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtFamily.DefaultText = "";
+            this.gtxtFamily.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtFamily.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtFamily.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtFamily.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtFamily.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gtxtFamily.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtFamily.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gtxtFamily.ForeColor = System.Drawing.Color.White;
+            this.gtxtFamily.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtFamily.Location = new System.Drawing.Point(566, 421);
+            this.gtxtFamily.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gtxtFamily.Name = "gtxtFamily";
+            this.gtxtFamily.PasswordChar = '\0';
+            this.gtxtFamily.PlaceholderText = "Family";
+            this.gtxtFamily.SelectedText = "";
+            this.gtxtFamily.Size = new System.Drawing.Size(191, 41);
+            this.gtxtFamily.TabIndex = 16;
+            this.gtxtFamily.TextOffset = new System.Drawing.Point(20, 0);
+            // 
+            // gtxtGroup
+            // 
+            this.gtxtGroup.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gtxtGroup.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtGroup.BorderRadius = 20;
+            this.gtxtGroup.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtGroup.DefaultText = "";
+            this.gtxtGroup.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtGroup.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtGroup.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtGroup.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtGroup.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gtxtGroup.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtGroup.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gtxtGroup.ForeColor = System.Drawing.Color.White;
+            this.gtxtGroup.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtGroup.Location = new System.Drawing.Point(869, 419);
+            this.gtxtGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gtxtGroup.Name = "gtxtGroup";
+            this.gtxtGroup.PasswordChar = '\0';
+            this.gtxtGroup.PlaceholderText = "Group";
+            this.gtxtGroup.SelectedText = "";
+            this.gtxtGroup.Size = new System.Drawing.Size(191, 41);
+            this.gtxtGroup.TabIndex = 17;
+            this.gtxtGroup.TextOffset = new System.Drawing.Point(20, 0);
+            // 
+            // gtxtMachine
+            // 
+            this.gtxtMachine.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gtxtMachine.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtMachine.BorderRadius = 20;
+            this.gtxtMachine.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtMachine.DefaultText = "";
+            this.gtxtMachine.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtMachine.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtMachine.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtMachine.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtMachine.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gtxtMachine.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtMachine.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gtxtMachine.ForeColor = System.Drawing.Color.White;
+            this.gtxtMachine.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtMachine.Location = new System.Drawing.Point(250, 491);
+            this.gtxtMachine.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gtxtMachine.Name = "gtxtMachine";
+            this.gtxtMachine.PasswordChar = '\0';
+            this.gtxtMachine.PlaceholderText = "Machine";
+            this.gtxtMachine.SelectedText = "";
+            this.gtxtMachine.Size = new System.Drawing.Size(191, 41);
+            this.gtxtMachine.TabIndex = 18;
+            this.gtxtMachine.TextOffset = new System.Drawing.Point(20, 0);
+            // 
             // Wire
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.ClientSize = new System.Drawing.Size(1184, 666);
+            this.Controls.Add(this.gtxtMachine);
+            this.Controls.Add(this.gtxtGroup);
+            this.Controls.Add(this.gtxtFamily);
+            this.Controls.Add(this.gtxtToolD);
+            this.Controls.Add(this.gtxtToolG);
+            this.Controls.Add(this.gtxtProtectionD);
+            this.Controls.Add(this.gtxtProtectionG);
+            this.Controls.Add(this.gtxtMarkerD);
+            this.Controls.Add(this.gtxtMarkerG);
+            this.Controls.Add(this.gtxtSealD);
+            this.Controls.Add(this.gtxtSealG);
+            this.Controls.Add(this.gtxtTerminalD);
+            this.Controls.Add(this.gtxtTerminalG);
+            this.Controls.Add(this.gtxtCable);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -984,32 +1022,18 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.gtxtLeadPrep);
-            this.Controls.Add(this.cmbToolG);
-            this.Controls.Add(this.cmbToolD);
-            this.Controls.Add(this.cmbSealD);
-            this.Controls.Add(this.cmbSealG);
-            this.Controls.Add(this.cmbTerD);
-            this.Controls.Add(this.cmbTerG);
-            this.Controls.Add(this.cmbCable);
             this.Controls.Add(this.guna2Button1);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.cmbFamily);
             this.Controls.Add(this.lblFamily);
-            this.Controls.Add(this.cmbMc);
             this.Controls.Add(this.lblMc);
-            this.Controls.Add(this.cmbGroup);
             this.Controls.Add(this.lblGroup);
             this.Controls.Add(this.lblCable);
             this.Controls.Add(this.lblToolD);
             this.Controls.Add(this.lblToolG);
-            this.Controls.Add(this.cmbProtectionD);
             this.Controls.Add(this.lblProtectionD);
-            this.Controls.Add(this.cmbProtectionG);
             this.Controls.Add(this.lblProtectionG);
-            this.Controls.Add(this.cmbMarkerD);
             this.Controls.Add(this.lblMarkerD);
-            this.Controls.Add(this.cmbMarkerG);
             this.Controls.Add(this.lblMarkG);
             this.Controls.Add(this.lblSealD);
             this.Controls.Add(this.lblSealG);
@@ -1053,34 +1077,20 @@
         private System.Windows.Forms.Label lblTerG;
         private System.Windows.Forms.Label lblTerD;
         private System.Windows.Forms.Label lblSealG;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbMarkerD;
         private System.Windows.Forms.Label lblMarkerD;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbMarkerG;
         private System.Windows.Forms.Label lblMarkG;
         private System.Windows.Forms.Label lblSealD;
         private System.Windows.Forms.Label lblToolG;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbProtectionD;
         private System.Windows.Forms.Label lblProtectionD;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbProtectionG;
         private System.Windows.Forms.Label lblProtectionG;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbGroup;
         private System.Windows.Forms.Label lblGroup;
         private System.Windows.Forms.Label lblCable;
         private System.Windows.Forms.Label lblToolD;
         private System.Windows.Forms.Label lblFamily;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbMc;
         private System.Windows.Forms.Label lblMc;
         private Guna.UI2.WinForms.Guna2Button btnUpdate;
         private Guna.UI2.WinForms.Guna2Button btnSave;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbFamily;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbCable;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbTerG;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbTerD;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbSealG;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbSealD;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbToolD;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbToolG;
         private Guna.UI2.WinForms.Guna2TextBox gtxtLeadPrep;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
@@ -1089,5 +1099,19 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private Guna.UI2.WinForms.Guna2TextBox gtxtCable;
+        private Guna.UI2.WinForms.Guna2TextBox gtxtTerminalG;
+        private Guna.UI2.WinForms.Guna2TextBox gtxtTerminalD;
+        private Guna.UI2.WinForms.Guna2TextBox gtxtSealG;
+        private Guna.UI2.WinForms.Guna2TextBox gtxtSealD;
+        private Guna.UI2.WinForms.Guna2TextBox gtxtMarkerG;
+        private Guna.UI2.WinForms.Guna2TextBox gtxtMarkerD;
+        private Guna.UI2.WinForms.Guna2TextBox gtxtProtectionG;
+        private Guna.UI2.WinForms.Guna2TextBox gtxtProtectionD;
+        private Guna.UI2.WinForms.Guna2TextBox gtxtToolG;
+        private Guna.UI2.WinForms.Guna2TextBox gtxtToolD;
+        private Guna.UI2.WinForms.Guna2TextBox gtxtFamily;
+        private Guna.UI2.WinForms.Guna2TextBox gtxtGroup;
+        private Guna.UI2.WinForms.Guna2TextBox gtxtMachine;
     }
 }

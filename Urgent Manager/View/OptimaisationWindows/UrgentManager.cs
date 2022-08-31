@@ -65,6 +65,8 @@ namespace Urgent_Manager.View.OptimaisationWindows
                     lblLoading.Location = new Point(336, 31);
                     btnUrgentDelete.Visible = false;
                     btnOptimized.Visible = false;
+                    chAllUrgents.Visible = false;
+                    chOptimizedRecords.Visible = false;
                 }
             }
 

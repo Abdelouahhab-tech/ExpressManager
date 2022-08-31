@@ -152,7 +152,7 @@
             this.sideBar.Dock = System.Windows.Forms.DockStyle.Left;
             this.sideBar.Location = new System.Drawing.Point(0, 47);
             this.sideBar.Name = "sideBar";
-            this.sideBar.Size = new System.Drawing.Size(204, 653);
+            this.sideBar.Size = new System.Drawing.Size(204, 683);
             this.sideBar.TabIndex = 2;
             // 
             // label1
@@ -182,7 +182,7 @@
             this.btnArchiveManager.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnArchiveManager.IconSize = 35;
             this.btnArchiveManager.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnArchiveManager.Location = new System.Drawing.Point(0, 549);
+            this.btnArchiveManager.Location = new System.Drawing.Point(0, 537);
             this.btnArchiveManager.Name = "btnArchiveManager";
             this.btnArchiveManager.Size = new System.Drawing.Size(204, 38);
             this.btnArchiveManager.TabIndex = 7;
@@ -205,7 +205,7 @@
             this.btnUrgentManager.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnUrgentManager.IconSize = 35;
             this.btnUrgentManager.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUrgentManager.Location = new System.Drawing.Point(0, 505);
+            this.btnUrgentManager.Location = new System.Drawing.Point(0, 499);
             this.btnUrgentManager.Name = "btnUrgentManager";
             this.btnUrgentManager.Size = new System.Drawing.Size(204, 38);
             this.btnUrgentManager.TabIndex = 6;
@@ -596,7 +596,7 @@
             this.btnLogout.Image = global::Urgent_Manager.Properties.Resources.turn_off;
             this.btnLogout.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btnLogout.ImageOffset = new System.Drawing.Point(20, 0);
-            this.btnLogout.Location = new System.Drawing.Point(0, 615);
+            this.btnLogout.Location = new System.Drawing.Point(0, 645);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(135)))), ((int)(((byte)(120)))));
             this.btnLogout.Size = new System.Drawing.Size(204, 38);
@@ -639,7 +639,7 @@
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(204, 47);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1049, 653);
+            this.mainPanel.Size = new System.Drawing.Size(1049, 683);
             this.mainPanel.TabIndex = 3;
             // 
             // guna2DragControl1
@@ -659,7 +659,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(1253, 700);
+            this.ClientSize = new System.Drawing.Size(1253, 730);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.sideBar);
             this.Controls.Add(this.NavBar);

@@ -118,7 +118,7 @@ namespace Urgent_Manager.Controller
                 foreach(string hour in hours)
                 {
                     DbHelper.connection.Open();
-                    string QUERY = isFinished ? "SELECT count(*) as total FROM Urgent WHERE UrgentStatus=@status AND FinishedDate=@date AND DATEPART(HOUR,HUrgent) = @hour" : "SELECT count(*) as total FROM Urgent WHERE DATEPART(HOUR,HUrgent) = @hour AND UrgentStatus = @status";
+                    string QUERY = isFinished ? "SELECT count(*) as total FROM Urgent WHERE UrgentStatus=@status AND FinishedDate=@date AND DATEPART(HOUR,HUrgent) = @hour" : "SELECT count(*) as total FROM Urgent WHERE DATEPART(HOUR,HUrgent) = @hour AND UrgentStatus = @status AND DateUrgent=@date";
                     SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                     cmd.Parameters.AddWithValue("@status", status);
                     cmd.Parameters.AddWithValue("@date", date);
@@ -154,7 +154,7 @@ namespace Urgent_Manager.Controller
                 foreach (string hour in hours)
                 {
                     DbHelper.connection.Open();
-                    string QUERY = isFinished ? "SELECT count(*) as total FROM Urgent U,Wire W WHERE U.UrgentUnico=W.Unico AND U.UrgentStatus=@status AND U.FinishedDate=@date AND DATEPART(HOUR,U.HUrgent) = @hour AND W.MC=@MC" : "SELECT count(*) as total FROM Urgent U,Wire W WHERE U.UrgentUnico=W.Unico AND U.UrgentStatus=@status AND DATEPART(HOUR,U.HUrgent) = @hour AND W.MC=@MC";
+                    string QUERY = isFinished ? "SELECT count(*) as total FROM Urgent U,Wire W WHERE U.UrgentUnico=W.Unico AND U.UrgentStatus=@status AND U.FinishedDate=@date AND DATEPART(HOUR,U.HUrgent) = @hour AND W.MC=@MC" : "SELECT count(*) as total FROM Urgent U,Wire W WHERE U.UrgentUnico=W.Unico AND U.UrgentStatus=@status AND DATEPART(HOUR,U.HUrgent) = @hour AND W.MC=@MC AND U.DateUrgent=@date";
                     SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                     cmd.Parameters.AddWithValue("@status", status);
                     cmd.Parameters.AddWithValue("@date", date);
@@ -191,7 +191,7 @@ namespace Urgent_Manager.Controller
                 foreach (string hour in hours)
                 {
                     DbHelper.connection.Open();
-                    string QUERY = isFinished ? "SELECT count(*) as total FROM Urgent U,Wire W,Machine M WHERE U.UrgentUnico=W.Unico AND M.Machine=W.MC AND M.ParentZone=@area AND U.UrgentStatus=@status AND U.FinishedDate=@date AND DATEPART(HOUR,U.HUrgent) = @hour" : "SELECT count(*) as total FROM Urgent U,Wire W,Machine M WHERE U.UrgentUnico=W.Unico AND M.Machine=W.MC AND M.ParentZone=@area AND U.UrgentStatus=@status AND DATEPART(HOUR,U.HUrgent) = @hour";
+                    string QUERY = isFinished ? "SELECT count(*) as total FROM Urgent U,Wire W,Machine M WHERE U.UrgentUnico=W.Unico AND M.Machine=W.MC AND M.ParentZone=@area AND U.UrgentStatus=@status AND U.FinishedDate=@date AND DATEPART(HOUR,U.HUrgent) = @hour" : "SELECT count(*) as total FROM Urgent U,Wire W,Machine M WHERE U.UrgentUnico=W.Unico AND M.Machine=W.MC AND M.ParentZone=@area AND U.UrgentStatus=@status AND DATEPART(HOUR,U.HUrgent) = @hour AND U.DateUrgent=@date";
                     SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                     cmd.Parameters.AddWithValue("@status", status);
                     cmd.Parameters.AddWithValue("@date", date);
@@ -249,6 +249,39 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Close();
                 return total;
+            }
+        }
+
+        // Get Total Urgents Per Machine
+
+        public int totalCount(string MC)
+        {
+            int count = 0;
+            try
+            {
+                DbHelper.connection.Open();
+                string QUERY = "SELECT COUNT(*) FROM Urgent U,Wire W WHERE U.UrgentUnico=W.Unico AND W.MC=@machine AND U.UrgentStatus='Express'";
+                SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                cmd.Parameters.AddWithValue("@machine", MC);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        count = Convert.ToInt32(reader[0]);
+                        DbHelper.connection.Close();
+                        return count;
+                    }
+                }
+
+                DbHelper.connection.Close();
+                return count;
+            }
+            catch (Exception)
+            {
+
+                DbHelper.connection.Close();
+                return count;
             }
         }
 
