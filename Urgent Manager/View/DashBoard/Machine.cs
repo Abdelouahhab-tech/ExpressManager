@@ -180,14 +180,14 @@ namespace Urgent_Manager.View.DashBoard
 
         private void gtxtMachineName_KeyUp(object sender, KeyEventArgs e)
         {
-            if (gtxtMachineName.Text == "")
+            if(gtxtMachineName.Text.Trim() != "")
+            {
+                getSingleRecord(gtxtMachineName.Text);
+            }
+            else
             {
                 LoadData();
                 init();
-            }
-            else if (gtxtMachineName.Text != "")
-            {
-                getSingleRecord(gtxtMachineName.Text);
             }
         }
 
@@ -205,8 +205,6 @@ namespace Urgent_Manager.View.DashBoard
             {
                 MachineModel machine = new MachineModel();
                 machine = machineController.fetchSingleRecord(machineName);
-
-                gtxtMachineName.Text = machine.Machine;
                 cmbZone.Text = machine.ParentZone;
 
                 guna2DataGridView1.Rows.Clear();
@@ -225,6 +223,7 @@ namespace Urgent_Manager.View.DashBoard
                 if(machineName != "")
                 {
                     getSingleRecord(machineName);
+                    gtxtMachineName.Text = machineName;
                 }
             }
         }

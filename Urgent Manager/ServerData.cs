@@ -42,12 +42,12 @@ namespace Urgent_Manager
             {
                 gtxtPass.UseSystemPasswordChar = false;
                 gtxtPass.PasswordChar = '\0';
-                icEyes.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
+                icEyeNewPass.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
             }
             else
             {
                 gtxtPass.UseSystemPasswordChar = true;
-                icEyes.IconChar = FontAwesome.Sharp.IconChar.Eye;
+                icEyeNewPass.IconChar = FontAwesome.Sharp.IconChar.Eye;
             }
         }
 
@@ -55,12 +55,20 @@ namespace Urgent_Manager
         {
             try
             {
+                if(cmbDirectories.Text.Trim() != "" && gtxtServerName.Text.Trim() == "" && gtxtDbName.Text.Trim() == "" && gtxtUser.Text.Trim() == "" && gtxtPass.Text.Trim() == "")
+                {
+                    Properties.Settings.Default.WpcsDirectory = cmbDirectories.Text;
+                    Properties.Settings.Default.Save();
+                    Properties.Settings.Default.Reload();
+                    Application.Exit();
+                }
                 if(gtxtServerName.Text.Trim() != "" && gtxtDbName.Text.Trim() != "" && gtxtUser.Text.Trim() != "" && gtxtPass.Text.Trim() != "")
                 {
                     Properties.Settings.Default.ServerName = gtxtServerName.Text;
                     Properties.Settings.Default.DatabaseName = gtxtDbName.Text;
                     Properties.Settings.Default.userName = gtxtUser.Text;
                     Properties.Settings.Default.password = gtxtPass.Text;
+                    Properties.Settings.Default.WpcsDirectory = cmbDirectories.Text.Trim() != "" ? cmbDirectories.Text : @"D:\Komax\TopWin\WPCS-Feedback\Job.sdc.arc";
                     Properties.Settings.Default.Save();
                     Properties.Settings.Default.Reload();
 
@@ -133,25 +141,21 @@ namespace Urgent_Manager
             }
         }
 
-        private void chIsConnect_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chIsConnect.Checked)
-            {
-                wpcsController.updateIsConnect(1);
-                Application.Restart();
-            }
-            else
-            {
-                wpcsController.updateIsConnect(0);
-                Application.Restart();
-            }
-        }
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try
             {
-                if(gtxtUserConnect.Text.Trim() != "" && gtxtUserPass.Text.Trim() != "")
+                if (chIsConnect.Checked)
+                {
+                    wpcsController.updateIsConnect(1);
+                    Application.Exit();
+                }
+                else
+                {
+                    wpcsController.updateIsConnect(0);
+                    Application.Exit();
+                }
+                if (gtxtUserConnect.Text.Trim() != "" && gtxtUserPass.Text.Trim() != "")
                 {
                     Properties.Settings.Default.userConnect = gtxtUserConnect.Text;
                     Properties.Settings.Default.userPass = gtxtUserPass.Text;
@@ -161,7 +165,7 @@ namespace Urgent_Manager
                 }
                 else
                 {
-                    if(gtxtUserConnect.Text == "")
+                    if (gtxtUserConnect.Text == "")
                     {
 
                         gtxtUserConnect.Focus();
@@ -208,6 +212,96 @@ namespace Urgent_Manager
         private void guna2ControlBox1_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void ServerData_Load(object sender, EventArgs e)
+        {
+            chIsConnect.Checked = Properties.Settings.Default.isConnect ? true : false;
+            if (WPCSController.isConnect())
+            {
+                cmbDirectories.Items.Clear();
+            }
+            wpcsController.FillCombobox("Directories", "PathName", cmbDirectories);
+        }
+
+        private void icEye_Click(object sender, EventArgs e)
+        {
+            if (gtxtPassAuth.UseSystemPasswordChar)
+            {
+                gtxtPassAuth.UseSystemPasswordChar = false;
+                gtxtPassAuth.PasswordChar = '\0';
+                icEyeConnect.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
+            }
+            else
+            {
+                gtxtPassAuth.UseSystemPasswordChar = true;
+                icEyeConnect.IconChar = FontAwesome.Sharp.IconChar.Eye;
+            }
+        }
+
+        private void btxtConnect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(gtxtUserAuth.Text.Trim() != "" && gtxtPassAuth.Text.Trim() != "")
+                {
+                    if (gtxtUserAuth.Text == Properties.Settings.Default.DBOwner && gtxtPassAuth.Text == Properties.Settings.Default.DBPass)
+                    {
+                        gtxtUserConnect.Visible = true;
+                        gtxtUserPass.Visible = true;
+                        chIsConnect.Visible = true;
+                        btnUpdate.Visible = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sorry you are not authorized", "Forbidden", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        Application.Exit();
+                    }
+                }
+                else
+                {
+                    if (gtxtUserAuth.Text == "")
+                    {
+
+                        gtxtUserAuth.Focus();
+                        gtxtUserAuth.FocusedState.BorderColor = Color.Red;
+
+                    }
+                    else if (gtxtPassAuth.Text == "")
+                    {
+                        gtxtPassAuth.Focus();
+                        gtxtPassAuth.FocusedState.BorderColor = Color.Red;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void gtxtUserAuth_KeyDown(object sender, KeyEventArgs e)
+        {
+            gtxtUserAuth.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+            if (gtxtUserAuth.Text.Trim() != "" && e.KeyCode == Keys.Enter)
+            {
+                gtxtPassAuth.Focus();
+            }
+        }
+
+        private void gtxtPassAuth_KeyDown(object sender, KeyEventArgs e)
+        {
+            gtxtPassAuth.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+            if (gtxtPassAuth.Text.Trim() != "" && e.KeyCode == Keys.Enter)
+            {
+                btnConnect.PerformClick();
+            }
+        }
+
+        private void cmbDirectories_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.WpcsDirectory = cmbDirectories.Text;
         }
     }
 }

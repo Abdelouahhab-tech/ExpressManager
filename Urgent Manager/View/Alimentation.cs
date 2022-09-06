@@ -106,7 +106,7 @@ namespace Urgent_Manager.View
                     }
                     else
                     {
-                        MessageBox.Show("Sorry This Wire Doesn't Exist Try To Type An Other One", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Sorry This Urgent Is Not Exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         gtxtScanne.FocusedState.BorderColor = Color.Red;
                         gtxtScanne.Focus();
                         gtxtScanne.SelectAll();

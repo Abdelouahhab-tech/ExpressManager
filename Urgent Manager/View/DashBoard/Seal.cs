@@ -116,7 +116,7 @@ namespace Urgent_Manager.View.DashBoard
                     MessageBox.Show("Sorry This Seal Doesn't Exist ! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     lblSealName.ForeColor = System.Drawing.Color.Red;
                     gtxtSealRef.Focus();
-                    gtxtSealColor.SelectAll();
+                    gtxtSealRef.SelectAll();
                     gtxtSealRef.FocusedState.BorderColor = System.Drawing.Color.White;
                 }
             }
@@ -149,7 +149,7 @@ namespace Urgent_Manager.View.DashBoard
                     MessageBox.Show("This Seal Doesn't Exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     lblSealName.ForeColor = System.Drawing.Color.Red;
                     gtxtSealRef.Focus();
-                    gtxtSealColor.SelectAll();
+                    gtxtSealRef.SelectAll();
                     gtxtSealRef.FocusedState.BorderColor = System.Drawing.Color.White;
                 }
             }

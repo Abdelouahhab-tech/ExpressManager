@@ -88,7 +88,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT A.ZoneName,A.parentZone,U.FullName FROM Area A, dbo_User U WHERE A.userID = U.userID ORDER BY A.ZoneName";
+                string QUERY = "SELECT * FROM Area ORDER BY ZoneName";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -106,11 +106,8 @@ namespace Urgent_Manager.Controller
                     DbHelper.connection.Close();
                     return list;
                 }
-                else
-                {
-                    DbHelper.connection.Close();
-                    return list;
-                }
+                DbHelper.connection.Close();
+                return list;
             }
             catch (Exception ex)
             {
@@ -129,7 +126,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT A.ZoneName,A.parentZone,U.FullName FROM Area A, dbo_User U WHERE A.userID = U.userID AND A.ZoneName=@areaName";
+                string QUERY = "SELECT * FROM Area WHERE ZoneName=@areaName";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@areaName", areaName);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -147,6 +144,7 @@ namespace Urgent_Manager.Controller
                     return area;
                 }
 
+                DbHelper.connection.Close();
                 return area;
             }
             catch (Exception ex)

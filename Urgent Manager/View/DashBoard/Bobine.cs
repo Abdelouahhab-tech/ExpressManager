@@ -59,6 +59,9 @@ namespace Urgent_Manager.View.DashBoard
                 else
                 {
                     MessageBox.Show("Sorry This Cable Aleardy Exist Try To Add An Other One !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lblCable.ForeColor = Color.Red;
+                    gtxtCableName.Focus();
+                    gtxtCableName.SelectAll();
                 }
             }
             else
@@ -194,7 +197,10 @@ namespace Urgent_Manager.View.DashBoard
             {
                 string cableName = guna2DataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 if (cableName != "")
+                {
                     getSingleRecord(cableName);
+                    gtxtCableName.Text = cableName;
+                }
             }
         }
 
@@ -206,7 +212,6 @@ namespace Urgent_Manager.View.DashBoard
             {
                 CableModel cable = new CableModel();
                 cable = cableController.fetchSingleRecord(cableName);
-                gtxtCableName.Text = cable.Cable;
                 gtxtPvc.Text = cable.Pvc;
                 gtxtColor.Text = cable.Color;
                 gtxtSection.Text = cable.Section;
@@ -220,14 +225,14 @@ namespace Urgent_Manager.View.DashBoard
 
         private void gtxtCableName_KeyUp(object sender, KeyEventArgs e)
         {
-            if (gtxtCableName.Text == "")
+            if(gtxtCableName.Text.Trim() != "")
+            {
+                getSingleRecord(gtxtCableName.Text);
+            }
+            else
             {
                 LoadData();
                 init();
-            }
-            else if (gtxtCableName.Text.Trim() != "")
-            {
-                getSingleRecord(gtxtCableName.Text);
             }
 
 

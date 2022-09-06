@@ -35,17 +35,21 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.btnUpdate = new Guna.UI2.WinForms.Guna2Button();
-            this.gtxtPathName = new Guna.UI2.WinForms.Guna2TextBox();
-            this.lblPathName = new System.Windows.Forms.Label();
-            this.gradientPanel1 = new Urgent_Manager.CustomViews.GradientPanel();
             this.PathName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.User = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnUpdate = new Guna.UI2.WinForms.Guna2Button();
+            this.gtxtOldPathName = new Guna.UI2.WinForms.Guna2TextBox();
+            this.lblOldPathName = new System.Windows.Forms.Label();
+            this.gradientPanel1 = new Urgent_Manager.CustomViews.GradientPanel();
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.guna2ControlBox3 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            this.gtxtNewPathName = new Guna.UI2.WinForms.Guna2TextBox();
+            this.lblNewPathName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,7 +72,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.label1.Location = new System.Drawing.Point(668, 99);
+            this.label1.Location = new System.Drawing.Point(668, 68);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(15, 18);
             this.label1.TabIndex = 50;
@@ -111,7 +115,7 @@
             this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle12;
             this.guna2DataGridView1.EnableHeadersVisualStyles = false;
             this.guna2DataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.guna2DataGridView1.Location = new System.Drawing.Point(33, 239);
+            this.guna2DataGridView1.Location = new System.Drawing.Point(33, 269);
             this.guna2DataGridView1.Name = "guna2DataGridView1";
             this.guna2DataGridView1.ReadOnly = true;
             this.guna2DataGridView1.RowHeadersVisible = false;
@@ -146,6 +150,19 @@
             this.guna2DataGridView1.ThemeStyle.RowsStyle.Height = 22;
             this.guna2DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(191)))), ((int)(((byte)(173)))));
             this.guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.guna2DataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.guna2DataGridView1_CellClick);
+            // 
+            // PathName
+            // 
+            this.PathName.HeaderText = "Path Name";
+            this.PathName.Name = "PathName";
+            this.PathName.ReadOnly = true;
+            // 
+            // User
+            // 
+            this.User.HeaderText = "Entry Agent";
+            this.User.Name = "User";
+            this.User.ReadOnly = true;
             // 
             // btnUpdate
             // 
@@ -163,51 +180,52 @@
             this.btnUpdate.Image = global::Urgent_Manager.Properties.Resources.update;
             this.btnUpdate.ImageOffset = new System.Drawing.Point(-3, 0);
             this.btnUpdate.IndicateFocus = true;
-            this.btnUpdate.Location = new System.Drawing.Point(304, 178);
+            this.btnUpdate.Location = new System.Drawing.Point(441, 209);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(211, 41);
-            this.btnUpdate.TabIndex = 45;
+            this.btnUpdate.Size = new System.Drawing.Size(124, 41);
+            this.btnUpdate.TabIndex = 3;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // gtxtPathName
+            // gtxtOldPathName
             // 
-            this.gtxtPathName.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.gtxtPathName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.gtxtPathName.BorderRadius = 20;
-            this.gtxtPathName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.gtxtPathName.DefaultText = "";
-            this.gtxtPathName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.gtxtPathName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.gtxtPathName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.gtxtPathName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.gtxtPathName.FillColor = System.Drawing.Color.Black;
-            this.gtxtPathName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtPathName.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.gtxtPathName.ForeColor = System.Drawing.Color.White;
-            this.gtxtPathName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtPathName.Location = new System.Drawing.Point(302, 121);
-            this.gtxtPathName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gtxtPathName.Name = "gtxtPathName";
-            this.gtxtPathName.PasswordChar = '\0';
-            this.gtxtPathName.PlaceholderText = "Path";
-            this.gtxtPathName.SelectedText = "";
-            this.gtxtPathName.Size = new System.Drawing.Size(401, 41);
-            this.gtxtPathName.TabIndex = 44;
-            this.gtxtPathName.TextOffset = new System.Drawing.Point(20, 0);
-            this.gtxtPathName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtPathName_KeyDown);
+            this.gtxtOldPathName.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gtxtOldPathName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtOldPathName.BorderRadius = 20;
+            this.gtxtOldPathName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtOldPathName.DefaultText = "";
+            this.gtxtOldPathName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtOldPathName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtOldPathName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtOldPathName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtOldPathName.FillColor = System.Drawing.Color.Black;
+            this.gtxtOldPathName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtOldPathName.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gtxtOldPathName.ForeColor = System.Drawing.Color.White;
+            this.gtxtOldPathName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtOldPathName.Location = new System.Drawing.Point(302, 90);
+            this.gtxtOldPathName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gtxtOldPathName.Name = "gtxtOldPathName";
+            this.gtxtOldPathName.PasswordChar = '\0';
+            this.gtxtOldPathName.PlaceholderText = "Path";
+            this.gtxtOldPathName.SelectedText = "";
+            this.gtxtOldPathName.Size = new System.Drawing.Size(401, 41);
+            this.gtxtOldPathName.TabIndex = 0;
+            this.gtxtOldPathName.TextOffset = new System.Drawing.Point(20, 0);
+            this.gtxtOldPathName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtPathName_KeyDown);
+            this.gtxtOldPathName.Leave += new System.EventHandler(this.gtxtOldPathName_Leave);
             // 
-            // lblPathName
+            // lblOldPathName
             // 
-            this.lblPathName.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lblPathName.AutoSize = true;
-            this.lblPathName.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPathName.ForeColor = System.Drawing.Color.White;
-            this.lblPathName.Location = new System.Drawing.Point(174, 133);
-            this.lblPathName.Name = "lblPathName";
-            this.lblPathName.Size = new System.Drawing.Size(92, 18);
-            this.lblPathName.TabIndex = 49;
-            this.lblPathName.Text = "Path Name :";
+            this.lblOldPathName.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblOldPathName.AutoSize = true;
+            this.lblOldPathName.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOldPathName.ForeColor = System.Drawing.Color.White;
+            this.lblOldPathName.Location = new System.Drawing.Point(174, 102);
+            this.lblOldPathName.Name = "lblOldPathName";
+            this.lblOldPathName.Size = new System.Drawing.Size(121, 18);
+            this.lblOldPathName.TabIndex = 49;
+            this.lblOldPathName.Text = "Old Path Name :";
             // 
             // gradientPanel1
             // 
@@ -219,18 +237,6 @@
             this.gradientPanel1.Size = new System.Drawing.Size(858, 2);
             this.gradientPanel1.TabIndex = 52;
             this.gradientPanel1.TopColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
-            // 
-            // PathName
-            // 
-            this.PathName.HeaderText = "Path Name";
-            this.PathName.Name = "PathName";
-            this.PathName.ReadOnly = true;
-            // 
-            // User
-            // 
-            this.User.HeaderText = "Entry Agent";
-            this.User.Name = "User";
-            this.User.ReadOnly = true;
             // 
             // guna2DragControl1
             // 
@@ -279,12 +285,102 @@
             this.guna2Elipse1.BorderRadius = 10;
             this.guna2Elipse1.TargetControl = this.guna2DataGridView1;
             // 
+            // guna2Button1
+            // 
+            this.guna2Button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.guna2Button1.BorderRadius = 20;
+            this.guna2Button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.guna2Button1.ForeColor = System.Drawing.Color.White;
+            this.guna2Button1.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
+            this.guna2Button1.Image = global::Urgent_Manager.Properties.Resources.check;
+            this.guna2Button1.ImageOffset = new System.Drawing.Point(-3, 0);
+            this.guna2Button1.IndicateFocus = true;
+            this.guna2Button1.Location = new System.Drawing.Point(304, 209);
+            this.guna2Button1.Name = "guna2Button1";
+            this.guna2Button1.Size = new System.Drawing.Size(124, 41);
+            this.guna2Button1.TabIndex = 2;
+            this.guna2Button1.Text = "Save";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
+            // 
+            // guna2Button2
+            // 
+            this.guna2Button2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.guna2Button2.BorderRadius = 20;
+            this.guna2Button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.guna2Button2.ForeColor = System.Drawing.Color.White;
+            this.guna2Button2.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
+            this.guna2Button2.Image = global::Urgent_Manager.Properties.Resources.delete;
+            this.guna2Button2.ImageOffset = new System.Drawing.Point(-3, 0);
+            this.guna2Button2.IndicateFocus = true;
+            this.guna2Button2.Location = new System.Drawing.Point(578, 209);
+            this.guna2Button2.Name = "guna2Button2";
+            this.guna2Button2.Size = new System.Drawing.Size(124, 41);
+            this.guna2Button2.TabIndex = 4;
+            this.guna2Button2.Text = "Delete";
+            this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
+            // 
+            // gtxtNewPathName
+            // 
+            this.gtxtNewPathName.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gtxtNewPathName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtNewPathName.BorderRadius = 20;
+            this.gtxtNewPathName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtNewPathName.DefaultText = "";
+            this.gtxtNewPathName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtNewPathName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtNewPathName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtNewPathName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtNewPathName.FillColor = System.Drawing.Color.Black;
+            this.gtxtNewPathName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtNewPathName.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gtxtNewPathName.ForeColor = System.Drawing.Color.White;
+            this.gtxtNewPathName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtNewPathName.Location = new System.Drawing.Point(302, 155);
+            this.gtxtNewPathName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gtxtNewPathName.Name = "gtxtNewPathName";
+            this.gtxtNewPathName.PasswordChar = '\0';
+            this.gtxtNewPathName.PlaceholderText = "Path";
+            this.gtxtNewPathName.SelectedText = "";
+            this.gtxtNewPathName.Size = new System.Drawing.Size(401, 41);
+            this.gtxtNewPathName.TabIndex = 1;
+            this.gtxtNewPathName.TextOffset = new System.Drawing.Point(20, 0);
+            this.gtxtNewPathName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtNewPathName_KeyDown);
+            this.gtxtNewPathName.Leave += new System.EventHandler(this.gtxtNewPathName_Leave);
+            // 
+            // lblNewPathName
+            // 
+            this.lblNewPathName.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblNewPathName.AutoSize = true;
+            this.lblNewPathName.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNewPathName.ForeColor = System.Drawing.Color.White;
+            this.lblNewPathName.Location = new System.Drawing.Point(174, 167);
+            this.lblNewPathName.Name = "lblNewPathName";
+            this.lblNewPathName.Size = new System.Drawing.Size(127, 18);
+            this.lblNewPathName.TabIndex = 59;
+            this.lblNewPathName.Text = "New Path Name :";
+            // 
             // Directories
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(842, 521);
+            this.Controls.Add(this.gtxtNewPathName);
+            this.Controls.Add(this.lblNewPathName);
+            this.Controls.Add(this.guna2Button2);
+            this.Controls.Add(this.guna2Button1);
             this.Controls.Add(this.guna2ControlBox3);
             this.Controls.Add(this.guna2ControlBox2);
             this.Controls.Add(this.guna2ControlBox1);
@@ -293,8 +389,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.guna2DataGridView1);
             this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.gtxtPathName);
-            this.Controls.Add(this.lblPathName);
+            this.Controls.Add(this.gtxtOldPathName);
+            this.Controls.Add(this.lblOldPathName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Directories";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -312,8 +408,8 @@
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView1;
         private Guna.UI2.WinForms.Guna2Button btnUpdate;
-        private Guna.UI2.WinForms.Guna2TextBox gtxtPathName;
-        private System.Windows.Forms.Label lblPathName;
+        private Guna.UI2.WinForms.Guna2TextBox gtxtOldPathName;
+        private System.Windows.Forms.Label lblOldPathName;
         private CustomViews.GradientPanel gradientPanel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn PathName;
         private System.Windows.Forms.DataGridViewTextBoxColumn User;
@@ -322,5 +418,9 @@
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox2;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2TextBox gtxtNewPathName;
+        private System.Windows.Forms.Label lblNewPathName;
     }
 }

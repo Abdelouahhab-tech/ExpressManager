@@ -21,7 +21,7 @@ namespace Urgent_Manager.Controller
 
                     DbHelper.connection.Open();
 
-                    string QUERY = "INSERT INTO dbo_User VALUES(@userID,@Pass,@FullName,@role,@zone,@isUpdated,@EntryAgent)";
+                    string QUERY = "INSERT INTO dbo_User VALUES(@userID,@Pass,@FullName,@role,@zone,@isUpdated,@EntryAgent,@dbOwner)";
 
                     SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                     cmd.Parameters.AddWithValue("@userID", user.UserName);
@@ -32,8 +32,9 @@ namespace Urgent_Manager.Controller
                     cmd.Parameters.AddWithValue("@zone", user.Zone);
                     cmd.Parameters.AddWithValue("@isUpdated", user.IsUpdated);
                     cmd.Parameters.AddWithValue("@EntryAgent", user.Entry);
+                cmd.Parameters.AddWithValue("@dbOwner", user.DbOwner);
 
-                    int result = cmd.ExecuteNonQuery();
+                int result = cmd.ExecuteNonQuery();
                     if (result == 1)
                         MessageBox.Show("Data Added Successfuly", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     else
@@ -84,7 +85,7 @@ namespace Urgent_Manager.Controller
 
                 DbHelper.connection.Open();
 
-                string QUERY = "UPDATE dbo_User SET Pass=@Pass,FullName=@FullName,zone=@zone,role=@role,isUpdated=@isUpdated,EntryAgent=@EntryAgent WHERE userID = @id";
+                string QUERY = "UPDATE dbo_User SET Pass=@Pass,FullName=@FullName,zone=@zone,role=@role,isUpdated=@isUpdated,EntryAgent=@EntryAgent WHERE userID = @id AND DbRole <> 1";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 string encryptedPass = Eramake.eCryptography.Encrypt(user.Password);
                 cmd.Parameters.AddWithValue("@Pass", encryptedPass);
@@ -154,7 +155,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = dbRole ? "SELECT * FROM dbo_User" : "SELECT * FROM dbo_User WHERE DbRole <> 1";
+                string QUERY = dbRole ? "SELECT * FROM dbo_User" : "SELECT * FROM dbo_User WHERE DbRole <> 1 AND role <> 'Administrator'";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -172,6 +173,30 @@ namespace Urgent_Manager.Controller
                         user.Entry = reader[6].ToString();
                         user.DbOwner = Convert.ToInt32(reader[7]);
                         list.Add(user);
+                    }
+
+                    DbHelper.connection.Close();
+                    DbHelper.connection.Open();
+                    string Q = "SELECT * FROM dbo_User WHERE DbRole <> 1 AND userID=@user";
+                    SqlCommand command = new SqlCommand(Q, DbHelper.connection);
+                    command.Parameters.AddWithValue("@user", Login.username);
+                    SqlDataReader r = command.ExecuteReader();
+
+                    if (r.HasRows)
+                    {
+                        while (r.Read())
+                        {
+                            UserModel user = new UserModel();
+                            user.UserName = r[0].ToString();
+                            user.Password = r[1].ToString();
+                            user.Fullname = r[2].ToString();
+                            user.Role = r[3].ToString();
+                            user.Zone = r[4].ToString();
+                            user.IsUpdated = Convert.ToInt32(r[5]);
+                            user.Entry = r[6].ToString();
+                            user.DbOwner = Convert.ToInt32(r[7]);
+                            list.Add(user);
+                        }
                     }
 
                     DbHelper.connection.Close();
@@ -227,6 +252,50 @@ namespace Urgent_Manager.Controller
                 return user;
 
             }catch(Exception ex)
+            {
+                MessageBox.Show("It Was An Error While Fetching Data Try Again ! \n\n" + ex.Message, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DbHelper.connection.Close();
+                return user;
+            }
+        }
+
+        // Get Single User From dbo_User
+
+        public UserModel SingleRecordForUserForm(string id)
+        {
+            UserModel user = new UserModel();
+
+            try
+            {
+
+                DbHelper.connection.Open();
+
+                string QUERY = id == Login.username && Login.DbRole == 0 ? "SELECT * FROM dbo_User WHERE userID=@userID" : Login.DbRole == 1 ? "SELECT * FROM dbo_User WHERE userID=@userID" : "SELECT * FROM dbo_User WHERE userID=@userID AND role <> 'Administrator'";
+                SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                cmd.Parameters.AddWithValue("@userID", id);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        user.UserName = reader[0].ToString();
+                        user.Password = Eramake.eCryptography.Decrypt(reader[1].ToString());
+                        user.Fullname = reader[2].ToString();
+                        user.Role = reader[3].ToString();
+                        user.Zone = reader[4].ToString();
+                        user.IsUpdated = Convert.ToInt32(reader[5]);
+                        user.DbOwner = Convert.ToInt32(reader[7]);
+                    }
+
+                    DbHelper.connection.Close();
+                    return user;
+                }
+
+                DbHelper.connection.Close();
+                return user;
+
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("It Was An Error While Fetching Data Try Again ! \n\n" + ex.Message, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DbHelper.connection.Close();
@@ -349,7 +418,6 @@ namespace Urgent_Manager.Controller
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Sorry It Was An Error While Processing Your Request Try Again !\n\n" + ex.Message, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DbHelper.connection.Close();
             }
         }

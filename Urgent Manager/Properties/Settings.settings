@@ -23,5 +23,14 @@
     <Setting Name="userPass" Type="System.String" Scope="User">
       <Value Profile="(Default)">Aptiv4764105</Value>
     </Setting>
+    <Setting Name="DBOwner" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Aptiv</Value>
+    </Setting>
+    <Setting Name="DBPass" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Abdo47645301995?</Value>
+    </Setting>
+    <Setting Name="WpcsDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\Komax\TopWin\WPCS-Feedback\Job.sdc.arc</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

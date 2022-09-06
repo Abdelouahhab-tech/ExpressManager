@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Urgent_Manager.Model;
+using Urgent_Manager.View;
 
 namespace Urgent_Manager.Controller
 {
-    public class WPCSController
+    public class WPCSController : UserController
     {
         private string path = "";
         UrgentController urgentController = new UrgentController();
@@ -24,12 +25,23 @@ namespace Urgent_Manager.Controller
         {
             try
             {
-                bool isUpdated = urgentController.UpdateUrgent(UrgentModel.Status.Finished.ToString(), DateTime.Now.ToShortDateString(), urgentController.getUnico(updateStatus()));
+                string shift = "";
+                if(DateTime.Now.Hour >= 6 && DateTime.Now.Hour < 14)
+                {
+                    shift = "Matin";
+                }else if(DateTime.Now.Hour >= 14 && DateTime.Now.Hour < 22)
+                {
+                    shift = "Soir";
+                }
+                else
+                {
+                    shift = "Nuit";
+                }
+                bool isUpdated = urgentController.UpdateUrgent(UrgentModel.Status.Finished.ToString(), DateTime.Now.ToShortDateString(), urgentController.getUnico(updateStatus()),shift);
                 return isUpdated ? true : false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 return false;
             }
         }
@@ -79,25 +91,11 @@ namespace Urgent_Manager.Controller
             string pathName = "";
             try
             {
-                DbHelper.connection.Open();
-                string QUERY = "SELECT PathName FROM Directories WHERE id=1";
-                SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        pathName = reader[0].ToString();
-                        DbHelper.connection.Close();
-                        return pathName;
-                    }
-                }
-                DbHelper.connection.Close();
+                pathName = Properties.Settings.Default.WpcsDirectory;
                 return pathName;
             }
             catch (Exception ex)
             {
-                DbHelper.connection.Close();
                 return pathName;
             }
         }
@@ -136,17 +134,70 @@ namespace Urgent_Manager.Controller
             }
         }
 
+        // Fetch Single Directory
+
+        public DirectoriesModel singlePath(string pathName)
+        {
+            DirectoriesModel dir = new DirectoriesModel();
+            try
+            {
+                DbHelper.connection.Open();
+                string QUERY = "SELECT * FROM Directories WHERE PathName=@path";
+                SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                cmd.Parameters.AddWithValue("@path", pathName);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        dir.PathName = reader[0].ToString();
+                        dir.UserID = reader[2].ToString();
+                    }
+                }
+                DbHelper.connection.Close();
+                return dir;
+            }
+            catch (Exception)
+            {
+                DbHelper.connection.Close();
+                return dir;
+            }
+        }
+
+        // Save The Directory Path
+
+        public void SaveDirectory(DirectoriesModel dir)
+        {
+            try
+            {
+                DbHelper.connection.Open();
+                string QUERY = "INSERT INTO Directories VALUES(@path,@isConnect,@user)";
+                SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                cmd.Parameters.AddWithValue("@path", dir.PathName);
+                cmd.Parameters.AddWithValue("@isConnect", 1);
+                cmd.Parameters.AddWithValue("@user", dir.UserID);
+                cmd.ExecuteNonQuery();
+                DbHelper.connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Sorry It Was An Error While Processing Your Request\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DbHelper.connection.Close();
+            }
+        }
+
         // Update The Directory Path
 
-        public bool updatePath(string pathName,string userID)
+        public bool updatePath(string pathName,string userID,string OldPathName)
         {
            
             try
             {
                 DbHelper.connection.Open();
-                string QUERY = "UPDATE Directories SET PathName=@pathName,userID=@user WHERE id=1";
+                string QUERY = "UPDATE Directories SET PathName=@pathName,userID=@user WHERE PathName=@oldPathName";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@pathName", pathName);
+                cmd.Parameters.AddWithValue("@oldPathName", OldPathName);
                 cmd.Parameters.AddWithValue("@user", userID);
                 int result = cmd.ExecuteNonQuery();
                 DbHelper.connection.Close();
@@ -167,7 +218,7 @@ namespace Urgent_Manager.Controller
             try
             {
                 DbHelper.connection.Open();
-                string QUERY = "SELECT isConnect FROM Directories WHERE id=1";
+                string QUERY = "select isConnect From Directories";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)

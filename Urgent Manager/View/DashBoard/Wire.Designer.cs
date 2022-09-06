@@ -56,8 +56,6 @@
             this.btnUpdate = new Guna.UI2.WinForms.Guna2Button();
             this.btnSave = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            this.gradientPanel1 = new Urgent_Manager.CustomViews.GradientPanel();
-            this.gtxtLeadPrep = new Guna.UI2.WinForms.Guna2TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -79,6 +77,8 @@
             this.gtxtFamily = new Guna.UI2.WinForms.Guna2TextBox();
             this.gtxtGroup = new Guna.UI2.WinForms.Guna2TextBox();
             this.gtxtMachine = new Guna.UI2.WinForms.Guna2TextBox();
+            this.cmbLeadPrep = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.gradientPanel1 = new Urgent_Manager.CustomViews.GradientPanel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -509,43 +509,6 @@
             this.guna2Button1.Text = "Delete";
             this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
-            // gradientPanel1
-            // 
-            this.gradientPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gradientPanel1.BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
-            this.gradientPanel1.Location = new System.Drawing.Point(0, 40);
-            this.gradientPanel1.Name = "gradientPanel1";
-            this.gradientPanel1.Size = new System.Drawing.Size(1200, 2);
-            this.gradientPanel1.TabIndex = 16;
-            this.gradientPanel1.TopColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
-            // 
-            // gtxtLeadPrep
-            // 
-            this.gtxtLeadPrep.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.gtxtLeadPrep.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.gtxtLeadPrep.BorderRadius = 20;
-            this.gtxtLeadPrep.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.gtxtLeadPrep.DefaultText = "";
-            this.gtxtLeadPrep.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.gtxtLeadPrep.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.gtxtLeadPrep.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.gtxtLeadPrep.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.gtxtLeadPrep.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.gtxtLeadPrep.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtLeadPrep.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.gtxtLeadPrep.ForeColor = System.Drawing.Color.White;
-            this.gtxtLeadPrep.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtLeadPrep.Location = new System.Drawing.Point(566, 168);
-            this.gtxtLeadPrep.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gtxtLeadPrep.Name = "gtxtLeadPrep";
-            this.gtxtLeadPrep.PasswordChar = '\0';
-            this.gtxtLeadPrep.PlaceholderText = "Lead Prep";
-            this.gtxtLeadPrep.SelectedText = "";
-            this.gtxtLeadPrep.Size = new System.Drawing.Size(191, 41);
-            this.gtxtLeadPrep.TabIndex = 4;
-            this.gtxtLeadPrep.TextOffset = new System.Drawing.Point(20, 0);
-            // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -655,6 +618,8 @@
             this.gtxtCable.Size = new System.Drawing.Size(191, 41);
             this.gtxtCable.TabIndex = 3;
             this.gtxtCable.TextOffset = new System.Drawing.Point(20, 0);
+            this.gtxtCable.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtCable_KeyDown);
+            this.gtxtCable.Leave += new System.EventHandler(this.gtxtCable_Leave);
             // 
             // gtxtTerminalG
             // 
@@ -681,6 +646,8 @@
             this.gtxtTerminalG.Size = new System.Drawing.Size(191, 41);
             this.gtxtTerminalG.TabIndex = 6;
             this.gtxtTerminalG.TextOffset = new System.Drawing.Point(20, 0);
+            this.gtxtTerminalG.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtTerminalG_KeyDown);
+            this.gtxtTerminalG.Leave += new System.EventHandler(this.gtxtTerminalG_Leave);
             // 
             // gtxtTerminalD
             // 
@@ -707,6 +674,8 @@
             this.gtxtTerminalD.Size = new System.Drawing.Size(191, 41);
             this.gtxtTerminalD.TabIndex = 7;
             this.gtxtTerminalD.TextOffset = new System.Drawing.Point(20, 0);
+            this.gtxtTerminalD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtTerminalD_KeyDown);
+            this.gtxtTerminalD.Leave += new System.EventHandler(this.gtxtTerminalD_Leave);
             // 
             // gtxtSealG
             // 
@@ -733,6 +702,8 @@
             this.gtxtSealG.Size = new System.Drawing.Size(191, 41);
             this.gtxtSealG.TabIndex = 8;
             this.gtxtSealG.TextOffset = new System.Drawing.Point(20, 0);
+            this.gtxtSealG.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtSealG_KeyDown);
+            this.gtxtSealG.Leave += new System.EventHandler(this.gtxtSealG_Leave);
             // 
             // gtxtSealD
             // 
@@ -759,6 +730,8 @@
             this.gtxtSealD.Size = new System.Drawing.Size(191, 41);
             this.gtxtSealD.TabIndex = 9;
             this.gtxtSealD.TextOffset = new System.Drawing.Point(20, 0);
+            this.gtxtSealD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtSealD_KeyDown);
+            this.gtxtSealD.Leave += new System.EventHandler(this.gtxtSealD_Leave);
             // 
             // gtxtMarkerG
             // 
@@ -785,6 +758,8 @@
             this.gtxtMarkerG.Size = new System.Drawing.Size(191, 41);
             this.gtxtMarkerG.TabIndex = 10;
             this.gtxtMarkerG.TextOffset = new System.Drawing.Point(20, 0);
+            this.gtxtMarkerG.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtMarkerG_KeyDown);
+            this.gtxtMarkerG.Leave += new System.EventHandler(this.gtxtMarkerG_Leave);
             // 
             // gtxtMarkerD
             // 
@@ -811,6 +786,8 @@
             this.gtxtMarkerD.Size = new System.Drawing.Size(191, 41);
             this.gtxtMarkerD.TabIndex = 11;
             this.gtxtMarkerD.TextOffset = new System.Drawing.Point(20, 0);
+            this.gtxtMarkerD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtMarkerD_KeyDown);
+            this.gtxtMarkerD.Leave += new System.EventHandler(this.gtxtMarkerD_Leave);
             // 
             // gtxtProtectionG
             // 
@@ -837,6 +814,8 @@
             this.gtxtProtectionG.Size = new System.Drawing.Size(191, 41);
             this.gtxtProtectionG.TabIndex = 12;
             this.gtxtProtectionG.TextOffset = new System.Drawing.Point(20, 0);
+            this.gtxtProtectionG.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtProtectionG_KeyDown);
+            this.gtxtProtectionG.Leave += new System.EventHandler(this.gtxtProtectionG_Leave);
             // 
             // gtxtProtectionD
             // 
@@ -863,6 +842,8 @@
             this.gtxtProtectionD.Size = new System.Drawing.Size(191, 41);
             this.gtxtProtectionD.TabIndex = 13;
             this.gtxtProtectionD.TextOffset = new System.Drawing.Point(20, 0);
+            this.gtxtProtectionD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtProtectionD_KeyDown);
+            this.gtxtProtectionD.Leave += new System.EventHandler(this.gtxtProtectionD_Leave);
             // 
             // gtxtToolG
             // 
@@ -889,6 +870,8 @@
             this.gtxtToolG.Size = new System.Drawing.Size(191, 41);
             this.gtxtToolG.TabIndex = 14;
             this.gtxtToolG.TextOffset = new System.Drawing.Point(20, 0);
+            this.gtxtToolG.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtToolG_KeyDown);
+            this.gtxtToolG.Leave += new System.EventHandler(this.gtxtToolG_Leave);
             // 
             // gtxtToolD
             // 
@@ -915,6 +898,8 @@
             this.gtxtToolD.Size = new System.Drawing.Size(191, 41);
             this.gtxtToolD.TabIndex = 15;
             this.gtxtToolD.TextOffset = new System.Drawing.Point(20, 0);
+            this.gtxtToolD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtToolD_KeyDown);
+            this.gtxtToolD.Leave += new System.EventHandler(this.gtxtToolD_Leave);
             // 
             // gtxtFamily
             // 
@@ -941,6 +926,8 @@
             this.gtxtFamily.Size = new System.Drawing.Size(191, 41);
             this.gtxtFamily.TabIndex = 16;
             this.gtxtFamily.TextOffset = new System.Drawing.Point(20, 0);
+            this.gtxtFamily.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtFamily_KeyDown);
+            this.gtxtFamily.Leave += new System.EventHandler(this.gtxtFamily_Leave);
             // 
             // gtxtGroup
             // 
@@ -967,6 +954,8 @@
             this.gtxtGroup.Size = new System.Drawing.Size(191, 41);
             this.gtxtGroup.TabIndex = 17;
             this.gtxtGroup.TextOffset = new System.Drawing.Point(20, 0);
+            this.gtxtGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtGroup_KeyDown);
+            this.gtxtGroup.Leave += new System.EventHandler(this.gtxtGroup_Leave);
             // 
             // gtxtMachine
             // 
@@ -993,6 +982,45 @@
             this.gtxtMachine.Size = new System.Drawing.Size(191, 41);
             this.gtxtMachine.TabIndex = 18;
             this.gtxtMachine.TextOffset = new System.Drawing.Point(20, 0);
+            this.gtxtMachine.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtMachine_KeyDown);
+            this.gtxtMachine.Leave += new System.EventHandler(this.gtxtMachine_Leave);
+            // 
+            // cmbLeadPrep
+            // 
+            this.cmbLeadPrep.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cmbLeadPrep.BackColor = System.Drawing.Color.Transparent;
+            this.cmbLeadPrep.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.cmbLeadPrep.BorderRadius = 20;
+            this.cmbLeadPrep.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbLeadPrep.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbLeadPrep.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLeadPrep.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.cmbLeadPrep.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbLeadPrep.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbLeadPrep.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbLeadPrep.ForeColor = System.Drawing.Color.White;
+            this.cmbLeadPrep.IntegralHeight = false;
+            this.cmbLeadPrep.ItemHeight = 35;
+            this.cmbLeadPrep.Items.AddRange(new object[] {
+            "LP",
+            "Cutting",
+            "Twist"});
+            this.cmbLeadPrep.Location = new System.Drawing.Point(566, 168);
+            this.cmbLeadPrep.Name = "cmbLeadPrep";
+            this.cmbLeadPrep.Size = new System.Drawing.Size(191, 41);
+            this.cmbLeadPrep.TabIndex = 4;
+            this.cmbLeadPrep.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // gradientPanel1
+            // 
+            this.gradientPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gradientPanel1.BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
+            this.gradientPanel1.Location = new System.Drawing.Point(0, 40);
+            this.gradientPanel1.Name = "gradientPanel1";
+            this.gradientPanel1.Size = new System.Drawing.Size(1200, 2);
+            this.gradientPanel1.TabIndex = 16;
+            this.gradientPanel1.TopColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
             // 
             // Wire
             // 
@@ -1000,6 +1028,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.ClientSize = new System.Drawing.Size(1184, 666);
+            this.Controls.Add(this.cmbLeadPrep);
             this.Controls.Add(this.gtxtMachine);
             this.Controls.Add(this.gtxtGroup);
             this.Controls.Add(this.gtxtFamily);
@@ -1021,7 +1050,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.gtxtLeadPrep);
             this.Controls.Add(this.guna2Button1);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnSave);
@@ -1091,7 +1119,6 @@
         private Guna.UI2.WinForms.Guna2Button btnUpdate;
         private Guna.UI2.WinForms.Guna2Button btnSave;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Guna.UI2.WinForms.Guna2TextBox gtxtLeadPrep;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -1113,5 +1140,6 @@
         private Guna.UI2.WinForms.Guna2TextBox gtxtFamily;
         private Guna.UI2.WinForms.Guna2TextBox gtxtGroup;
         private Guna.UI2.WinForms.Guna2TextBox gtxtMachine;
+        private Guna.UI2.WinForms.Guna2ComboBox cmbLeadPrep;
     }
 }

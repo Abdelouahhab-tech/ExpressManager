@@ -24,18 +24,30 @@ namespace Urgent_Manager.View.DashBoard
         {
             try
             {
-                if(gtxtPathName.Text.Trim() != "")
+                if(gtxtOldPathName.Text.Trim() != "" && gtxtNewPathName.Text.Trim() != "")
                 {
-                    wpcsController.updatePath(gtxtPathName.Text,Login.username);
-                    gtxtPathName.Text = "";
-                    gtxtPathName.Focus();
-                    LoadData();
+                    if (wpcsController.IsExist(gtxtOldPathName.Text,"Directories","PathName"))
+                    {
+                        wpcsController.updatePath(gtxtNewPathName.Text, Login.username, gtxtOldPathName.Text);
+                        gtxtOldPathName.Text = "";
+                        gtxtNewPathName.Text = "";
+                        gtxtOldPathName.Focus();
+                        LoadData();
+                    }
                 }
                 else
                 {
-                    lblPathName.ForeColor = Color.Red;
-                    gtxtPathName.Focus();
-                    gtxtPathName.FocusedState.BorderColor = Color.White;
+                   if(gtxtOldPathName.Text == "")
+                    {
+                        lblOldPathName.ForeColor = Color.Red;
+                        gtxtOldPathName.Focus();
+                        gtxtOldPathName.FocusedState.BorderColor = Color.White;
+                    }else if(gtxtNewPathName.Text == "")
+                    {
+                        lblNewPathName.ForeColor = Color.Red;
+                        gtxtNewPathName.Focus();
+                        gtxtNewPathName.FocusedState.BorderColor = Color.White;
+                    }
                 }
             }
             catch (Exception)
@@ -73,12 +85,107 @@ namespace Urgent_Manager.View.DashBoard
 
         private void gtxtPathName_KeyDown(object sender, KeyEventArgs e)
         {
-            lblPathName.ForeColor = Color.White;
-            gtxtPathName.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
-            if(gtxtPathName.Text.Trim() != "" && e.KeyCode == Keys.Enter)
+            lblOldPathName.ForeColor = Color.White;
+            gtxtOldPathName.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+            if(gtxtOldPathName.Text.Trim() != "" && e.KeyCode == Keys.Enter)
             {
-                btnUpdate.PerformClick();
+                gtxtNewPathName.Focus();
             }
+        }
+
+        private void gtxtNewPathName_KeyDown(object sender, KeyEventArgs e)
+        {
+            lblNewPathName.ForeColor = Color.White;
+            gtxtNewPathName.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(gtxtOldPathName.Text.Trim() != "")
+                {
+                    if (!wpcsController.IsExist(gtxtOldPathName.Text, "Directories", "PathName"))
+                    {
+                        DirectoriesModel dir = new DirectoriesModel();
+                        dir.PathName = gtxtOldPathName.Text;
+                        dir.UserID = Login.username;
+                        wpcsController.SaveDirectory(dir);
+                        LoadData();
+                        gtxtOldPathName.Text = "";
+                        gtxtOldPathName.Focus();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sorry This Path Already Exist Try To Add An Other One", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        gtxtOldPathName.Focus();
+                        gtxtOldPathName.SelectAll();
+                    }
+                }
+                else
+                {
+                    lblOldPathName.ForeColor = Color.Red;
+                    gtxtOldPathName.Focus();
+                    gtxtOldPathName.FocusedState.BorderColor = Color.White;
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void guna2DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DirectoriesModel dir = wpcsController.singlePath(guna2DataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+                gtxtOldPathName.Text = dir.PathName;
+            }
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(gtxtOldPathName.Text.Trim() != "")
+                {
+                    if (wpcsController.IsExist(gtxtOldPathName.Text, "Directories", "PathName"))
+                    {
+                        DialogResult res = MessageBox.Show("Are You Sure ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (res == DialogResult.Yes)
+                        {
+                            wpcsController.Delete(gtxtOldPathName.Text, "Directories", "PathName");
+                            LoadData();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("This Path Doesn't Exist", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    lblOldPathName.ForeColor = Color.Red;
+                    gtxtOldPathName.Focus();
+                    gtxtOldPathName.FocusedState.BorderColor = Color.White;
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void gtxtOldPathName_Leave(object sender, EventArgs e)
+        {
+            lblOldPathName.ForeColor = Color.White;
+            gtxtOldPathName.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void gtxtNewPathName_Leave(object sender, EventArgs e)
+        {
+            lblNewPathName.ForeColor = Color.White;
+            gtxtNewPathName.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
         }
     }
 }

@@ -23,7 +23,6 @@ namespace Urgent_Manager
                 Application.Run(new Login());
             else
                 Application.Run(new ServerAccess());
-
         }
     }
 }

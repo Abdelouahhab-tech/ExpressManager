@@ -1,7 +1,4 @@
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\Urgent Manager.exe.config
-C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.csproj.ResolveComReference.cache
-C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.exe
-C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.pdb
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\Urgent Manager.exe
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\Urgent Manager.pdb
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\eCryptography.dll
@@ -19,6 +16,7 @@ C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\Li
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\LiveCharts.Wpf.xml
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\zxing.xml
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\zxing.presentation.xml
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.csproj.ResolveComReference.cache
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.Login.resources
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.Properties.Resources.resources
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.ServerAccess.resources
@@ -45,3 +43,5 @@ C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Ur
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.OptimaisationWindows.ArchiveManager.resources
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.OptimaisationWindows.UrgentManager.resources
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.csproj.GenerateResource.Cache
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.exe
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.pdb

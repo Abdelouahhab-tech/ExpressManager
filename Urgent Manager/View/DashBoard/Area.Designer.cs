@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
@@ -40,7 +40,6 @@
             this.User = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblParentArea = new System.Windows.Forms.Label();
             this.cmbParentArea = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.gtxtAreaName = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblAreaName = new System.Windows.Forms.Label();
             this.btnDelete = new Guna.UI2.WinForms.Guna2Button();
             this.btnUpdate = new Guna.UI2.WinForms.Guna2Button();
@@ -48,6 +47,7 @@
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.gtxtAreaName = new Guna.UI2.WinForms.Guna2TextBox();
             this.gradientPanel1 = new Urgent_Manager.CustomViews.GradientPanel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
@@ -80,8 +80,8 @@
             this.guna2DataGridView1.AllowUserToAddRows = false;
             this.guna2DataGridView1.AllowUserToDeleteRows = false;
             this.guna2DataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(226)))), ((int)(((byte)(218)))));
-            this.guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(226)))), ((int)(((byte)(218)))));
+            this.guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.guna2DataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.guna2DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -89,28 +89,28 @@
             this.guna2DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.guna2DataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.guna2DataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.guna2DataGridView1.ColumnHeadersHeight = 25;
             this.guna2DataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MCName,
             this.MCType,
             this.User});
             this.guna2DataGridView1.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(235)))), ((int)(((byte)(230)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(191)))), ((int)(((byte)(173)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(235)))), ((int)(((byte)(230)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(191)))), ((int)(((byte)(173)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle12;
             this.guna2DataGridView1.EnableHeadersVisualStyles = false;
             this.guna2DataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
             this.guna2DataGridView1.Location = new System.Drawing.Point(33, 257);
@@ -209,35 +209,6 @@
             this.cmbParentArea.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.cmbParentArea.SelectedIndexChanged += new System.EventHandler(this.cmbParentArea_SelectedIndexChanged);
             this.cmbParentArea.Leave += new System.EventHandler(this.cmbParentArea_Leave);
-            // 
-            // gtxtAreaName
-            // 
-            this.gtxtAreaName.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.gtxtAreaName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.gtxtAreaName.BorderRadius = 20;
-            this.gtxtAreaName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.gtxtAreaName.DefaultText = "";
-            this.gtxtAreaName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.gtxtAreaName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.gtxtAreaName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.gtxtAreaName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.gtxtAreaName.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.gtxtAreaName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtAreaName.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.gtxtAreaName.ForeColor = System.Drawing.Color.White;
-            this.gtxtAreaName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtAreaName.Location = new System.Drawing.Point(286, 75);
-            this.gtxtAreaName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gtxtAreaName.Name = "gtxtAreaName";
-            this.gtxtAreaName.PasswordChar = '\0';
-            this.gtxtAreaName.PlaceholderText = "Area";
-            this.gtxtAreaName.SelectedText = "";
-            this.gtxtAreaName.Size = new System.Drawing.Size(401, 41);
-            this.gtxtAreaName.TabIndex = 0;
-            this.gtxtAreaName.TextOffset = new System.Drawing.Point(20, 0);
-            this.gtxtAreaName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtAreaName_KeyDown);
-            this.gtxtAreaName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gtxtAreaName_KeyUp);
-            this.gtxtAreaName.Leave += new System.EventHandler(this.gtxtAreaName_Leave);
             // 
             // lblAreaName
             // 
@@ -347,6 +318,35 @@
             this.label3.TabIndex = 43;
             this.label3.Text = "*";
             // 
+            // gtxtAreaName
+            // 
+            this.gtxtAreaName.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gtxtAreaName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtAreaName.BorderRadius = 20;
+            this.gtxtAreaName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtAreaName.DefaultText = "";
+            this.gtxtAreaName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtAreaName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtAreaName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtAreaName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtAreaName.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gtxtAreaName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtAreaName.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gtxtAreaName.ForeColor = System.Drawing.Color.White;
+            this.gtxtAreaName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtAreaName.Location = new System.Drawing.Point(288, 76);
+            this.gtxtAreaName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gtxtAreaName.Name = "gtxtAreaName";
+            this.gtxtAreaName.PasswordChar = '\0';
+            this.gtxtAreaName.PlaceholderText = "Area";
+            this.gtxtAreaName.SelectedText = "";
+            this.gtxtAreaName.Size = new System.Drawing.Size(401, 41);
+            this.gtxtAreaName.TabIndex = 0;
+            this.gtxtAreaName.TextOffset = new System.Drawing.Point(20, 0);
+            this.gtxtAreaName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtCableName_KeyDown);
+            this.gtxtAreaName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gtxtAreaName_KeyUp_2);
+            this.gtxtAreaName.Leave += new System.EventHandler(this.gtxtAreaName_Leave_1);
+            // 
             // gradientPanel1
             // 
             this.gradientPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -364,6 +364,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.ClientSize = new System.Drawing.Size(842, 521);
+            this.Controls.Add(this.gtxtAreaName);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.guna2DataGridView1);
@@ -372,7 +373,6 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblParentArea);
             this.Controls.Add(this.cmbParentArea);
-            this.Controls.Add(this.gtxtAreaName);
             this.Controls.Add(this.lblAreaName);
             this.Controls.Add(this.gradientPanel1);
             this.Controls.Add(this.panel1);
@@ -398,7 +398,6 @@
         private Guna.UI2.WinForms.Guna2Button btnSave;
         private System.Windows.Forms.Label lblParentArea;
         private Guna.UI2.WinForms.Guna2ComboBox cmbParentArea;
-        private Guna.UI2.WinForms.Guna2TextBox gtxtAreaName;
         private System.Windows.Forms.Label lblAreaName;
         private System.Windows.Forms.DataGridViewTextBoxColumn MCName;
         private System.Windows.Forms.DataGridViewTextBoxColumn MCType;
@@ -406,5 +405,6 @@
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
+        private Guna.UI2.WinForms.Guna2TextBox gtxtAreaName;
     }
 }

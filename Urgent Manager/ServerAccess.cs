@@ -41,8 +41,8 @@ namespace Urgent_Manager
                     if (gtxtUsername.Text == Properties.Settings.Default.userConnect && gtxtPass.Text == Properties.Settings.Default.userPass)
                     {
                         ServerData server = new ServerData();
-                        Hide();
                         lblLoading.Visible = true;
+                        Hide();
                         server.Show();
                     }
                     else

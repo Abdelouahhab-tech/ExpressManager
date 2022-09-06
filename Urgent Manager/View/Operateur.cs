@@ -19,6 +19,19 @@ namespace Urgent_Manager.View
         WireController wireController = new WireController();
         WPCSController wpcsController = new WPCSController();
         string mc = Environment.MachineName;
+        Panel p = new Panel();
+        Label bobineHeader = new Label();
+        Label bobineText = new Label();
+        Label bobineData = new Label();
+        Label sectionText = new Label();
+        Label sectionData = new Label();
+        Panel line = new Panel();
+        Label colorText = new Label();
+        Label colorData = new Label();
+        Label McText = new Label();
+        Label McData = new Label();
+        Label Date = new Label();
+        PictureBox imgBarcode = new PictureBox();
         public Operateur()
         {
             InitializeComponent();
@@ -28,6 +41,15 @@ namespace Urgent_Manager.View
 
         private void Operateur_Load(object sender, EventArgs e)
         {
+            if (!urgentController.IsExist(Environment.MachineName, "Machine", "Machine"))
+            {
+                MessageBox.Show("Access Denied", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Login l = new Login();
+                l.Show();
+                Close();
+                return;
+            }
+            p.Visible = true;
             updateUrgentStatus();
             urgentController.DeleteUrgent();
             wireController.FillCombobox("Machine", "Machine", cmbPlanBMc);
@@ -188,40 +210,56 @@ namespace Urgent_Manager.View
 
         private void chNormalWire_CheckedChanged(object sender, EventArgs e)
         {
-            if (chNormalWire.Checked)
+            try
             {
-                gtxtUnico.Visible = true;
-                gtxtUnico.Focus();
-                panelBorderBottom.Visible = true;
-                panelWire.Visible = true;
-                lblMessage.Visible = false;
-                // Fill DataGridView With Normal Wires
-
-                fetchNormalRecords(mc);
-                fetchNormalSingleRecord(mc, guna2DataGridView1.Rows[0].Cells[1].Value.ToString());
-            }
-            else
-            {
-                gtxtUnico.Visible = false;
-                panelBorderBottom.Visible = false;
-
-
-                // Fill DataGridView With Express Wires
-                fetchData(mc);
-                if(guna2DataGridView1.Rows.Count > 0)
+                if (chNormalWire.Checked)
                 {
-                    fetchExpressSingleRecord(mc, guna2DataGridView1.Rows[0].Cells[1].Value.ToString());
+                    gtxtUnico.Visible = true;
+                    gtxtUnico.Focus();
+                    panelBorderBottom.Visible = true;
                     panelWire.Visible = true;
+                    lblMessage.Visible = false;
+                    // Fill DataGridView With Normal Wires
+
+                    fetchNormalRecords(mc);
+                    if(guna2DataGridView1.Rows.Count > 0)
+                    {
+                        fetchNormalSingleRecord(mc, guna2DataGridView1.Rows[0].Cells[1].Value.ToString());
+                    }
+                    else
+                    {
+                        panelWire.Visible = false;
+                        lblMessage.Visible = true;
+                    }
                 }
                 else
                 {
-                    panelWire.Visible = false;
-                    lblMessage.Visible = true;
-                    lblUnico.Text = "Loading...";
-                    lblLeadCode.Text = "Loading...";
-                    lblAdress.Text = "Loading...";
-                    lblMachine.Text = mc;
+                    gtxtUnico.Visible = false;
+                    panelBorderBottom.Visible = false;
+
+
+                    // Fill DataGridView With Express Wires
+                    fetchData(mc);
+                    if (guna2DataGridView1.Rows.Count > 0)
+                    {
+                        fetchExpressSingleRecord(mc, guna2DataGridView1.Rows[0].Cells[1].Value.ToString());
+                        panelWire.Visible = true;
+                    }
+                    else
+                    {
+                        panelWire.Visible = false;
+                        lblMessage.Visible = true;
+                        lblUnico.Text = "Loading...";
+                        lblLeadCode.Text = "Loading...";
+                        lblAdress.Text = "Loading...";
+                        lblUrgents.Text = "Loading...";
+                        lblMachine.Text = mc;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -353,39 +391,112 @@ namespace Urgent_Manager.View
             lblBobine.ForeColor = System.Drawing.Color.White;
         }
 
-        private void lblBobine_Click(object sender, EventArgs e)
-        {
-            if(printPreviewDialog1.ShowDialog() == DialogResult.OK)
-            {
-                printDocument1.Print();
-            }
-        }
-
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             try
             {
                 CableModel cable = wireController.fetchCable(lblBobine.Text);
+                e.PageSettings.PaperSize = new System.Drawing.Printing.PaperSize("pprm", 170, 268);
+                p.Width = e.PageBounds.Width;
+                p.Height = e.PageBounds.Height;
+                Font f = new Font("Arial", 10, FontStyle.Bold);
+                Font fNormal = new Font("Arial", 9);
+                bobineHeader.Font = new Font("Arial", 11, FontStyle.Bold);
+                bobineHeader.Text = "Commande Bobine";
+                bobineHeader.Location = new Point(0 , 5);
+                bobineHeader.AutoSize = false;
+                bobineHeader.Width = p.Width;
+                bobineHeader.TextAlign = ContentAlignment.MiddleCenter;
 
-                Font fHeader = new Font("Arial", 62);
-                Font fItems = new Font("Arial", 40);
-                //printDocument1.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("pprm", 42, 64);
-                e.Graphics.DrawString("Commande Bobine", fHeader, Brushes.Black, new Point(20, 20));
-                e.Graphics.DrawLine(new Pen(System.Drawing.Color.Black), new Point(20, fHeader.Height + 30), new Point(e.PageBounds.Width - 10, fHeader.Height + 30));
-                e.Graphics.DrawString("Bobine", fItems, Brushes.Black, new Point(100, fHeader.Height + 50));
-                e.Graphics.DrawString(lblBobine.Text, fItems, Brushes.Black, new Point(420, fHeader.Height + 50));
-                e.Graphics.DrawString("Section", fItems, Brushes.Black, new Point(100, fHeader.Height + 150));
-                e.Graphics.DrawString(cable.Section, fItems, Brushes.Black, new Point(420, fHeader.Height + 150));
-                e.Graphics.DrawString("Color", fItems, Brushes.Black, new Point(100, fHeader.Height + 250));
-                e.Graphics.DrawString(cable.Color, fItems, Brushes.Black, new Point(420, fHeader.Height + 250));
-                e.Graphics.DrawString("MC", fItems, Brushes.Black, new Point(100, fHeader.Height + 350));
-                e.Graphics.DrawString(mc, fItems, Brushes.Black, new Point(420, fHeader.Height + 350));
+                line.Width = p.Width - 60;
+                line.Height = 2;
+                line.BackColor = System.Drawing.Color.Black;
+                line.Location = new Point(30, f.Height + 15);
+
+                bobineText.Font = f;
+                bobineText.Text = "Bobine";
+                bobineText.Location = new Point(30, f.Height + 30);
+                bobineText.AutoSize = false;
+                bobineText.Width = p.Width / 2;
+
+                bobineData.Font = fNormal;
+                bobineData.Text = lblBobine.Text;
+                bobineData.Location = new Point(bobineText.Width, f.Height + 30);
+                bobineData.AutoSize = false;
+                bobineData.Width = p.Width / 2;
+
+                sectionText.Font = f;
+                sectionText.Text = "Section";
+                sectionText.Location = new Point(30, f.Height + 60);
+                sectionText.AutoSize = false;
+                sectionText.Width = p.Width / 2;
+
+                sectionData.Font = fNormal;
+                sectionData.Text = cable.Section;
+                sectionData.Location = new Point(sectionText.Width, f.Height + 60);
+                sectionData.AutoSize = false;
+                sectionData.Width = p.Width / 2;
+
+                colorText.Font = f;
+                colorText.Text = "Color";
+                colorText.Location = new Point(30, f.Height + 90);
+                colorText.AutoSize = false;
+                colorText.Width = p.Width / 2;
+
+                colorData.Font = fNormal;
+                colorData.Text = cable.Color;
+                colorData.Location = new Point(colorText.Width, f.Height + 90);
+                colorData.AutoSize = false;
+                colorData.Width = p.Width / 2;
+
+                McText.Font = f;
+                McText.Text = "MC";
+                McText.Location = new Point(31, f.Height + 120);
+                McText.AutoSize = false;
+                McText.Width = p.Width / 2;
+
+                McData.Font = fNormal;
+                McData.Text = mc;
+                McData.Location = new Point(McText.Width, f.Height + 120);
+                McData.AutoSize = false;
+                McData.Width = p.Width / 2;
+
                 BarcodeWriter br = new BarcodeWriter() { Format = BarcodeFormat.CODE_128 };
-                br.Options.Width = e.PageBounds.Width - 20;
+                br.Options.Width = p.Width;
+                br.Options.Height = 40;
                 br.Options.PureBarcode = true;
-                Image img = br.Write(lblBobine.Text);
-                e.Graphics.DrawImage(img, new Point(0, fHeader.Height + 450));
-                e.Graphics.DrawString(DateTime.Now.ToString("dd/MM/yyyy HH:MM:ss"), fItems, Brushes.Black, new Point(120, fHeader.Height + 600));
+                Image img = br.Write("1P" + lblBobine.Text);
+                imgBarcode.Width = p.Width ;
+                imgBarcode.Location = new Point(0, 170);
+                imgBarcode.Image = img;
+                imgBarcode.SizeMode = PictureBoxSizeMode.AutoSize;
+
+                Date.Font = f;
+                Date.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                Date.Location = new Point(0, imgBarcode.Height + 180);
+                Date.AutoSize = false;
+                Date.Width = p.Width;
+                Date.TextAlign = ContentAlignment.MiddleCenter;
+
+                // Add Controlls
+                p.Controls.Add(bobineHeader);
+                p.Controls.Add(line);
+                p.Controls.Add(bobineText);
+                p.Controls.Add(bobineData);
+                p.Controls.Add(sectionText);
+                p.Controls.Add(sectionData);
+                p.Controls.Add(colorText);
+                p.Controls.Add(colorData);
+                p.Controls.Add(McText);
+                p.Controls.Add(McData);
+                p.Controls.Add(imgBarcode);
+                p.Controls.Add(Date);
+
+                Bitmap btm = new Bitmap(p.Width, p.Height);
+                p.DrawToBitmap(btm, new Rectangle(0, 0, p.Width, p.Height));
+
+                Rectangle rect = e.PageBounds;
+                e.Graphics.DrawImage(btm, new PointF(0, 0));
             }
             catch (Exception ex)
             {
@@ -433,6 +544,10 @@ namespace Urgent_Manager.View
 
         private void timer2_Tick(object sender, EventArgs e)
         {
+            if (!WPCSController.isConnect())
+            {
+                Application.Exit();
+            }
             if (!chNormalWire.Checked)
             {
                 fetchData(mc);
@@ -486,7 +601,13 @@ namespace Urgent_Manager.View
                     {
                         panelWire.Visible = false;
                         lblMessage.Visible = true;
+                        lblUnico.Text = "Loading...";
+                        lblLeadCode.Text = "Loading...";
+                        lblAdress.Text = "Loading...";
+                        lblMachine.Text = "Loading...";
+                        lblUrgents.Text = "Loading...";
                         lblMessage.Location = new Point(398, 156);
+                       
                     }
                 }
                 else
@@ -506,6 +627,11 @@ namespace Urgent_Manager.View
                     {
                         panelWire.Visible = false;
                         lblMessage.Visible = true;
+                        lblUnico.Text = "Loading...";
+                        lblLeadCode.Text = "Loading...";
+                        lblAdress.Text = "Loading...";
+                        lblMachine.Text = "Loading...";
+                        lblUrgents.Text = "Loading...";
                         lblMessage.Location = new Point(398, 156);
                     }
                 }
@@ -569,6 +695,11 @@ namespace Urgent_Manager.View
                     }
                 }
             }
+        }
+
+        private void lblBobine_DoubleClick(object sender, EventArgs e)
+        {
+                  printDocument1.Print();
         }
     }
 }

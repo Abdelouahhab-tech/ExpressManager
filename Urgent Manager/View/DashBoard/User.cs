@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -49,6 +50,7 @@ namespace Urgent_Manager.View.DashBoard
                 user.Zone = cmbArea.Text != "" && cmbArea.Text != "None" ? cmbArea.Text : "";
                 user.Entry = Login.username != "" ? Login.username : "";
                 user.IsUpdated = chUpdate.Checked ? 1 : 0;
+                user.DbOwner = 0;
 
                 if (!userController.IsExist(gtxtUsername.Text, "dbo_User", "userID"))
                     userController.InsertUser(user);
@@ -188,7 +190,12 @@ namespace Urgent_Manager.View.DashBoard
                 {
                     if (userController.IsExist(gtxtUsername.Text,"dbo_User","userID"))
                     {
-                        userController.Delete(gtxtUsername.Text, "dbo_User", "userID");
+                        //userController.Delete(gtxtUsername.Text, "dbo_User", "userID");
+                        DbHelper.connection.Open();
+                        SqlCommand cmd = new SqlCommand("DELETE FROM dbo_User WHERE userID=@id AND DbRole <> 1",DbHelper.connection);
+                        cmd.Parameters.AddWithValue("@id", gtxtUsername.Text);
+                        cmd.ExecuteNonQuery();
+                        DbHelper.connection.Close();
                         init();
                         LoadData();
                     }
@@ -276,7 +283,7 @@ namespace Urgent_Manager.View.DashBoard
             if (userController.IsExist(userName, "dbo_User", "userID"))
             {
                 UserModel user = new UserModel();
-                user = userController.SingleRecord(userName);
+                user = userController.SingleRecordForUserForm(userName);
                 gtxtUsername.Text = user.UserName;
                 gtxtPass.Text = user.Password;
                 gtxtFullName.Text = user.Fullname != "" ? user.Fullname : "";

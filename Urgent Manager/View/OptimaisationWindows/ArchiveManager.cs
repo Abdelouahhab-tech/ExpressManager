@@ -38,8 +38,16 @@ namespace Urgent_Manager.View.OptimaisationWindows
 
         private void gdateTimeUrgent_ValueChanged(object sender, EventArgs e)
         {
-            urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString());
-            isPerDate = true;
+            if (gSwitchFilter.Checked)
+            {
+                urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString(),cmbPlanBMc.Text);
+                isPerDate = true;
+            }
+            else
+            {
+                urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString());
+                isPerDate = true;
+            }
             if(guna2DataGridView1.Rows.Count > 0)
             {
                 lblMessage.Visible = false;
@@ -304,6 +312,48 @@ namespace Urgent_Manager.View.OptimaisationWindows
                 gSwitchFilter.Checked = false;
                 panelCmbPlanBMachine.BackColor = Color.FromArgb(255, 128, 255, 255);
                 cmbPlanBMc.SelectedIndex = -1;
+            }
+        }
+
+        private void gtxtUnico_KeyUp(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if(gtxtUnico.Text.Trim() != "")
+                {
+                    urgentController.UrgentManagerFinishedPerUnico(guna2DataGridView1,gtxtUnico.Text);
+                }
+                else
+                {
+                    urgentController.UrgentManagerFinished(guna2DataGridView1);
+                }
+
+                if (guna2DataGridView1.Rows.Count > 0)
+                {
+                    lblMessage.Visible = false;
+                    guna2DataGridView1.Visible = true;
+                }
+                else
+                {
+                    lblMessage.Visible = true;
+                    guna2DataGridView1.Visible = false;
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void gtxtUnico_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                urgentController.UrgentManagerFinished(guna2DataGridView1);
+            }
+            catch (Exception)
+            {
+
             }
         }
     }

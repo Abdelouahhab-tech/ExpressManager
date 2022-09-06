@@ -63,14 +63,7 @@ namespace Urgent_Manager.View.DashBoard
                     && gtxtLength.Text.Trim() != "" && regex.IsMatch(gtxtLength.Text) 
                     && gtxtCable.Text.Trim() != "" && gtxtFamily.Text.Trim() != "" 
                     && gtxtMachine.Text.Trim() != "" && gtxtGroup.Text.Trim() != "" 
-                    && Login.username != "" && wireController.IsExist(gtxtCable.Text,"Cable","Cable")
-                    && wireController.IsExist(gtxtFamily.Text, "Family", "FAM") && wireController.IsExist(gtxtGroup.Text, "Groupe", "GroupRef")
-                    && wireController.IsExist(gtxtMachine.Text, "Machine", "Machine") && wireController.IsExist(gtxtMarkerD.Text, "Marker", "Color")
-                    && wireController.IsExist(gtxtMarkerG.Text, "Marker", "Color") && wireController.IsExist(gtxtProtectionD.Text, "Protection", "Type")
-                    && wireController.IsExist(gtxtProtectionG.Text, "Protection", "Type") && wireController.IsExist(gtxtSealD.Text, "Seal", "Seal")
-                    && wireController.IsExist(gtxtSealG.Text, "Seal", "Seal") && wireController.IsExist(gtxtTerminalD.Text, "Terminal", "TerminalID")
-                    && wireController.IsExist(gtxtTerminalG.Text, "Terminal", "TerminalID") && wireController.IsExist(gtxtToolD.Text, "Tool", "ToolID")
-                    && wireController.IsExist(gtxtToolG.Text, "Tool", "ToolG"))
+                    && Login.username != "")
                 {
                     if (!wireController.IsExist(gtxtUnico.Text, "Wire", "Unico"))
                     {
@@ -91,7 +84,7 @@ namespace Urgent_Manager.View.DashBoard
                         wire.ToolR = gtxtToolD.Text;
                         wire.ProtectionR = gtxtProtectionD.Text;
                         wire.GroupRef = gtxtGroup.Text;
-                        wire.LeadPrep = gtxtLeadPrep.Text;
+                        wire.LeadPrep = cmbLeadPrep.Text;
                         wire.Adress = gtxtAdress.Text;
                         wire.Mc = gtxtMachine.Text;
                         wire.UserID = Login.username;
@@ -105,6 +98,7 @@ namespace Urgent_Manager.View.DashBoard
                         MessageBox.Show("Sorry This Wire Already Exist Try To Add Another One", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         lblUnico.ForeColor = Color.Red;
                         gtxtUnico.Focus();
+                        gtxtUnico.SelectAll();
                         gtxtUnico.FocusedState.BorderColor = Color.White;
                     }
                 }
@@ -172,12 +166,8 @@ namespace Urgent_Manager.View.DashBoard
                     {
                         MessageBox.Show("Sorry You Don't Have Prmissions", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         Login l = new Login();
-                        this.Close();
+                        Close();
                         l.Show();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Please Choose The Data From The List", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
@@ -192,7 +182,7 @@ namespace Urgent_Manager.View.DashBoard
             gtxtUnico.Text = "";
             gtxtLeadCode.Text = "";
             gtxtAdress.Text = "";
-            gtxtLeadPrep.Text = "";
+            gtxtCable.Text = "";
             gtxtLength.Text = "";
             gtxtGroup.Text = "";
             gtxtTerminalG.Text = "";
@@ -312,7 +302,7 @@ namespace Urgent_Manager.View.DashBoard
                             wire.ToolR = gtxtToolD.Text;
                             wire.ProtectionR = gtxtProtectionD.Text;
                             wire.GroupRef = gtxtGroup.Text;
-                            wire.LeadPrep = gtxtLeadPrep.Text;
+                            wire.LeadPrep = cmbLeadPrep.Text;
                             wire.Adress = gtxtAdress.Text;
                             wire.Mc = gtxtMachine.Text;
                             wire.UserID = Login.username;
@@ -389,6 +379,7 @@ namespace Urgent_Manager.View.DashBoard
                         MessageBox.Show("Sorry This Wire Doesn't Exist Try", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         lblUnico.ForeColor = Color.Red;
                         gtxtUnico.Focus();
+                        gtxtUnico.SelectAll();
                         gtxtUnico.FocusedState.BorderColor = Color.White;
                     }
                 }
@@ -414,7 +405,7 @@ namespace Urgent_Manager.View.DashBoard
                 gtxtLeadCode.Text = wire.LeadCode;
                 gtxtLength.Text = wire.Length;
                 gtxtCable.Text = wire.Cable;
-                gtxtLeadPrep.Text = wire.LeadPrep;
+                cmbLeadPrep.Text = wire.LeadPrep;
                 gtxtAdress.Text = wire.Adress;
                 gtxtTerminalG.Text = wire.TerL;
                 gtxtTerminalD.Text = wire.TerR;
@@ -473,6 +464,272 @@ namespace Urgent_Manager.View.DashBoard
             {
                 MessageBox.Show("It Was An Error Try Again\n" + ex.Message, "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
+        }
+
+        private void gtxtCable_Leave(object sender, EventArgs e)
+        {
+            if(gtxtCable.Text.Trim() != "")
+            {
+                if(!wireController.IsExist(gtxtCable.Text, "Cable", "Cable"))
+                {
+                    lblCable.ForeColor = Color.Red;
+                    gtxtCable.Focus();
+                    gtxtCable.Text = "";
+                }   
+            }
+        }
+
+        private void gtxtCable_KeyDown(object sender, KeyEventArgs e)
+        {
+            lblCable.ForeColor = Color.White;
+            gtxtCable.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void gtxtTerminalG_Leave(object sender, EventArgs e)
+        {
+            if (gtxtTerminalG.Text.Trim() != "")
+            {
+                if (!wireController.IsExist(gtxtTerminalG.Text, "Terminal", "TerminalID"))
+                {
+                    lblTerG.ForeColor = Color.Red;
+                    gtxtTerminalG.Focus();
+                    gtxtTerminalG.Text = "";
+                }
+            }
+        }
+
+        private void gtxtTerminalG_KeyDown(object sender, KeyEventArgs e)
+        {
+            lblTerG.ForeColor = Color.White;
+            gtxtTerminalG.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void gtxtTerminalD_KeyDown(object sender, KeyEventArgs e)
+        {
+            lblTerD.ForeColor = Color.White;
+            gtxtTerminalD.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void gtxtTerminalD_Leave(object sender, EventArgs e)
+        {
+            if (gtxtTerminalD.Text.Trim() != "")
+            {
+                if (!wireController.IsExist(gtxtTerminalD.Text, "Terminal", "TerminalID"))
+                {
+                    lblTerD.ForeColor = Color.Red;
+                    gtxtTerminalD.Focus();
+                    gtxtTerminalD.Text = "";
+                }
+            }
+        }
+
+        private void gtxtSealG_Leave(object sender, EventArgs e)
+        {
+            if (gtxtSealG.Text.Trim() != "")
+            {
+                if (!wireController.IsExist(gtxtSealG.Text, "Seal", "Seal"))
+                {
+                    lblSealG.ForeColor = Color.Red;
+                    gtxtSealG.Focus();
+                    gtxtSealG.Text = "";
+                }
+            }
+        }
+
+        private void gtxtSealG_KeyDown(object sender, KeyEventArgs e)
+        {
+            lblSealG.ForeColor = Color.White;
+            gtxtSealG.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void gtxtSealD_Leave(object sender, EventArgs e)
+        {
+            if (gtxtSealD.Text.Trim() != "")
+            {
+                if (!wireController.IsExist(gtxtSealD.Text, "Seal", "Seal"))
+                {
+                    lblSealD.ForeColor = Color.Red;
+                    gtxtSealD.Focus();
+                    gtxtSealD.Text = "";
+                }
+            }
+        }
+
+        private void gtxtSealD_KeyDown(object sender, KeyEventArgs e)
+        {
+            lblSealD.ForeColor = Color.White;
+            gtxtSealD.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void gtxtMarkerG_Leave(object sender, EventArgs e)
+        {
+            if (gtxtMarkerG.Text.Trim() != "")
+            {
+                if (!wireController.IsExist(gtxtMarkerG.Text, "Marker", "Color"))
+                {
+                    lblMarkG.ForeColor = Color.Red;
+                    gtxtMarkerG.Focus();
+                    gtxtMarkerG.Text = "";
+                }
+            }
+        }
+
+        private void gtxtMarkerG_KeyDown(object sender, KeyEventArgs e)
+        {
+            lblMarkG.ForeColor = Color.White;
+            gtxtMarkerG.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void gtxtMarkerD_Leave(object sender, EventArgs e)
+        {
+            if (gtxtMarkerD.Text.Trim() != "")
+            {
+                if (!wireController.IsExist(gtxtMarkerD.Text, "Marker", "Color"))
+                {
+                    lblMarkerD.ForeColor = Color.Red;
+                    gtxtMarkerD.Focus();
+                    gtxtMarkerD.Text = "";
+                }
+            }
+        }
+
+        private void gtxtMarkerD_KeyDown(object sender, KeyEventArgs e)
+        {
+            lblMarkerD.ForeColor = Color.White;
+            gtxtMarkerD.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void gtxtProtectionG_Leave(object sender, EventArgs e)
+        {
+            if (gtxtProtectionG.Text.Trim() != "")
+            {
+                if (!wireController.IsExist(gtxtProtectionG.Text, "Protection", "Type"))
+                {
+                    lblProtectionG.ForeColor = Color.Red;
+                    gtxtProtectionG.Focus();
+                    gtxtProtectionG.Text = "";
+                }
+            }
+        }
+
+        private void gtxtProtectionG_KeyDown(object sender, KeyEventArgs e)
+        {
+            lblProtectionG.ForeColor = Color.White;
+            gtxtProtectionG.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void gtxtProtectionD_Leave(object sender, EventArgs e)
+        {
+            if (gtxtProtectionD.Text.Trim() != "")
+            {
+                if (!wireController.IsExist(gtxtProtectionD.Text, "Protection", "Type"))
+                {
+                    lblProtectionD.ForeColor = Color.Red;
+                    gtxtProtectionD.Focus();
+                    gtxtProtectionD.Text = "";
+                }
+            }
+        }
+
+        private void gtxtProtectionD_KeyDown(object sender, KeyEventArgs e)
+        {
+            lblProtectionD.ForeColor = Color.White;
+            gtxtProtectionD.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void gtxtToolG_Leave(object sender, EventArgs e)
+        {
+            if (gtxtToolG.Text.Trim() != "")
+            {
+                if (!wireController.IsExist(gtxtToolG.Text, "Tool", "ToolID"))
+                {
+                    lblToolG.ForeColor = Color.Red;
+                    gtxtToolG.Focus();
+                    gtxtToolG.Text = "";
+                }
+            }
+        }
+
+        private void gtxtToolG_KeyDown(object sender, KeyEventArgs e)
+        {
+            lblToolG.ForeColor = Color.White;
+            gtxtToolG.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void gtxtToolD_Leave(object sender, EventArgs e)
+        {
+            if (gtxtToolD.Text.Trim() != "")
+            {
+                if (!wireController.IsExist(gtxtToolD.Text, "Tool", "ToolID"))
+                {
+                    lblToolD.ForeColor = Color.Red;
+                    gtxtToolD.Focus();
+                    gtxtToolD.Text = "";
+                }
+            }
+        }
+
+        private void gtxtToolD_KeyDown(object sender, KeyEventArgs e)
+        {
+            lblToolD.ForeColor = Color.White;
+            gtxtToolD.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void gtxtFamily_Leave(object sender, EventArgs e)
+        {
+            if (gtxtFamily.Text.Trim() != "")
+            {
+                if (!wireController.IsExist(gtxtFamily.Text, "Family", "FAM"))
+                {
+                    lblFamily.ForeColor = Color.Red;
+                    gtxtFamily.Focus();
+                    gtxtFamily.Text = "";
+                }
+            }
+        }
+
+        private void gtxtFamily_KeyDown(object sender, KeyEventArgs e)
+        {
+            lblFamily.ForeColor = Color.White;
+            gtxtFamily.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void gtxtGroup_Leave(object sender, EventArgs e)
+        {
+            if (gtxtGroup.Text.Trim() != "")
+            {
+                if (!wireController.IsExist(gtxtGroup.Text, "Groupe", "GroupRef"))
+                {
+                    lblGroup.ForeColor = Color.Red;
+                    gtxtGroup.Focus();
+                    gtxtGroup.Text = "";
+                }
+            }
+        }
+
+        private void gtxtGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            lblGroup.ForeColor = Color.White;
+            gtxtGroup.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void gtxtMachine_Leave(object sender, EventArgs e)
+        {
+            if (gtxtMachine.Text.Trim() != "")
+            {
+                if (!wireController.IsExist(gtxtMachine.Text, "Machine", "Machine"))
+                {
+                    lblMc.ForeColor = Color.Red;
+                    gtxtMachine.Focus();
+                    gtxtMachine.Text = "";
+                }
+            }
+        }
+
+        private void gtxtMachine_KeyDown(object sender, KeyEventArgs e)
+        {
+            lblMc.ForeColor = Color.White;
+            gtxtMachine.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
         }
     }
 }

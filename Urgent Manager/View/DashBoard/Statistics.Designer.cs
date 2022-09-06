@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.piechart = new LiveCharts.WinForms.PieChart();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -51,10 +51,15 @@
             this.gSTotalUrgentsPerM = new Guna.UI2.WinForms.Guna2ToggleSwitch();
             this.lblTotal = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblMessage = new System.Windows.Forms.Label();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.gradientPanel1 = new Urgent_Manager.CustomViews.GradientPanel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblLoading = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmbShifts = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.gradientPanel1 = new Urgent_Manager.CustomViews.GradientPanel();
+            this.lblTotalFinishedHead = new System.Windows.Forms.Label();
+            this.lblTotalFinished = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -200,9 +205,9 @@
             this.cmbMachine.ForeColor = System.Drawing.Color.White;
             this.cmbMachine.IntegralHeight = false;
             this.cmbMachine.ItemHeight = 30;
-            this.cmbMachine.Location = new System.Drawing.Point(454, 328);
+            this.cmbMachine.Location = new System.Drawing.Point(415, 328);
             this.cmbMachine.Name = "cmbMachine";
-            this.cmbMachine.Size = new System.Drawing.Size(173, 36);
+            this.cmbMachine.Size = new System.Drawing.Size(115, 36);
             this.cmbMachine.TabIndex = 7;
             this.cmbMachine.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.cmbMachine.SelectedIndexChanged += new System.EventHandler(this.cmbMachine_SelectedIndexChanged_1);
@@ -222,9 +227,9 @@
             this.cmbArea.ForeColor = System.Drawing.Color.White;
             this.cmbArea.IntegralHeight = false;
             this.cmbArea.ItemHeight = 30;
-            this.cmbArea.Location = new System.Drawing.Point(713, 328);
+            this.cmbArea.Location = new System.Drawing.Point(594, 328);
             this.cmbArea.Name = "cmbArea";
-            this.cmbArea.Size = new System.Drawing.Size(173, 36);
+            this.cmbArea.Size = new System.Drawing.Size(115, 36);
             this.cmbArea.TabIndex = 8;
             this.cmbArea.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.cmbArea.SelectedIndexChanged += new System.EventHandler(this.cmbArea_SelectedIndexChanged_1);
@@ -270,7 +275,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(361, 337);
+            this.label3.Location = new System.Drawing.Point(329, 337);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(86, 18);
             this.label3.TabIndex = 11;
@@ -281,7 +286,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(648, 337);
+            this.label5.Location = new System.Drawing.Point(535, 337);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 18);
             this.label5.TabIndex = 12;
@@ -299,7 +304,7 @@
             this.gSTotalUrgentsPerM.CheckedState.InnerBorderColor = System.Drawing.Color.White;
             this.gSTotalUrgentsPerM.CheckedState.InnerColor = System.Drawing.Color.White;
             this.gSTotalUrgentsPerM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.gSTotalUrgentsPerM.Location = new System.Drawing.Point(302, 336);
+            this.gSTotalUrgentsPerM.Location = new System.Drawing.Point(279, 336);
             this.gSTotalUrgentsPerM.Name = "gSTotalUrgentsPerM";
             this.gSTotalUrgentsPerM.Size = new System.Drawing.Size(43, 20);
             this.gSTotalUrgentsPerM.TabIndex = 15;
@@ -314,7 +319,7 @@
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.Color.White;
-            this.lblTotal.Location = new System.Drawing.Point(29, 337);
+            this.lblTotal.Location = new System.Drawing.Point(20, 337);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(256, 18);
             this.lblTotal.TabIndex = 14;
@@ -325,6 +330,7 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.AutoScroll = true;
+            this.panel2.Controls.Add(this.lblMessage);
             this.panel2.Controls.Add(this.chart1);
             this.panel2.Location = new System.Drawing.Point(27, 394);
             this.panel2.Name = "panel2";
@@ -332,39 +338,45 @@
             this.panel2.TabIndex = 16;
             this.panel2.Visible = false;
             // 
+            // lblMessage
+            // 
+            this.lblMessage.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage.ForeColor = System.Drawing.Color.White;
+            this.lblMessage.Location = new System.Drawing.Point(338, 99);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(421, 29);
+            this.lblMessage.TabIndex = 39;
+            this.lblMessage.Text = "You Don\'t Have Any Data For Now";
+            this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMessage.Visible = false;
+            // 
             // chart1
             // 
             this.chart1.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            chartArea7.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.chart1.Legends.Add(legend7);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.chart1.PaletteCustomColors = new System.Drawing.Color[] {
-        System.Drawing.Color.Red};
-            series7.BackImageTransparentColor = System.Drawing.Color.Black;
-            series7.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            series7.ChartArea = "ChartArea1";
-            series7.Color = System.Drawing.Color.Red;
-            series7.LabelBackColor = System.Drawing.Color.Black;
-            series7.LabelForeColor = System.Drawing.Color.White;
-            series7.Legend = "Legend1";
-            series7.Name = "Express";
-            this.chart1.Series.Add(series7);
+        System.Drawing.Color.Red,
+        System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))))};
+            series1.BackImageTransparentColor = System.Drawing.Color.Black;
+            series1.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            series1.ChartArea = "ChartArea1";
+            series1.Color = System.Drawing.Color.Red;
+            series1.LabelBackColor = System.Drawing.Color.Black;
+            series1.LabelForeColor = System.Drawing.Color.White;
+            series1.Legend = "Legend1";
+            series1.Name = "Express";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(1108, 244);
             this.chart1.TabIndex = 15;
             this.chart1.Text = "chart1";
-            // 
-            // gradientPanel1
-            // 
-            this.gradientPanel1.BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
-            this.gradientPanel1.Location = new System.Drawing.Point(0, 50);
-            this.gradientPanel1.Name = "gradientPanel1";
-            this.gradientPanel1.Size = new System.Drawing.Size(1200, 2);
-            this.gradientPanel1.TabIndex = 3;
-            this.gradientPanel1.TopColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
             // 
             // timer1
             // 
@@ -385,12 +397,88 @@
             this.lblLoading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblLoading.Visible = false;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(713, 337);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(61, 18);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Shifts :";
+            // 
+            // cmbShifts
+            // 
+            this.cmbShifts.BackColor = System.Drawing.Color.Transparent;
+            this.cmbShifts.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.cmbShifts.BorderRadius = 15;
+            this.cmbShifts.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cmbShifts.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbShifts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbShifts.Enabled = false;
+            this.cmbShifts.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.cmbShifts.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbShifts.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbShifts.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbShifts.ForeColor = System.Drawing.Color.White;
+            this.cmbShifts.IntegralHeight = false;
+            this.cmbShifts.ItemHeight = 30;
+            this.cmbShifts.Items.AddRange(new object[] {
+            "All",
+            "Matin",
+            "Soir",
+            "Nuit"});
+            this.cmbShifts.Location = new System.Drawing.Point(774, 328);
+            this.cmbShifts.Name = "cmbShifts";
+            this.cmbShifts.Size = new System.Drawing.Size(115, 36);
+            this.cmbShifts.TabIndex = 17;
+            this.cmbShifts.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.cmbShifts.SelectedIndexChanged += new System.EventHandler(this.cmbShifts_SelectedIndexChanged);
+            // 
+            // gradientPanel1
+            // 
+            this.gradientPanel1.BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
+            this.gradientPanel1.Location = new System.Drawing.Point(0, 50);
+            this.gradientPanel1.Name = "gradientPanel1";
+            this.gradientPanel1.Size = new System.Drawing.Size(1200, 2);
+            this.gradientPanel1.TabIndex = 3;
+            this.gradientPanel1.TopColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
+            // 
+            // lblTotalFinishedHead
+            // 
+            this.lblTotalFinishedHead.AutoSize = true;
+            this.lblTotalFinishedHead.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalFinishedHead.ForeColor = System.Drawing.Color.White;
+            this.lblTotalFinishedHead.Location = new System.Drawing.Point(895, 337);
+            this.lblTotalFinishedHead.Name = "lblTotalFinishedHead";
+            this.lblTotalFinishedHead.Size = new System.Drawing.Size(61, 18);
+            this.lblTotalFinishedHead.TabIndex = 19;
+            this.lblTotalFinishedHead.Text = "Total : ";
+            this.lblTotalFinishedHead.Visible = false;
+            // 
+            // lblTotalFinished
+            // 
+            this.lblTotalFinished.AutoSize = true;
+            this.lblTotalFinished.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalFinished.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
+            this.lblTotalFinished.Location = new System.Drawing.Point(956, 337);
+            this.lblTotalFinished.Name = "lblTotalFinished";
+            this.lblTotalFinished.Size = new System.Drawing.Size(17, 18);
+            this.lblTotalFinished.TabIndex = 20;
+            this.lblTotalFinished.Text = "0";
+            this.lblTotalFinished.Visible = false;
+            // 
             // Statistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.ClientSize = new System.Drawing.Size(1167, 650);
+            this.Controls.Add(this.lblTotalFinished);
+            this.Controls.Add(this.lblTotalFinishedHead);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.cmbShifts);
             this.Controls.Add(this.lblLoading);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.gSTotalUrgentsPerM);
@@ -415,6 +503,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -446,5 +535,10 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblLoading;
+        private System.Windows.Forms.Label label6;
+        private Guna.UI2.WinForms.Guna2ComboBox cmbShifts;
+        private System.Windows.Forms.Label lblMessage;
+        private System.Windows.Forms.Label lblTotalFinishedHead;
+        private System.Windows.Forms.Label lblTotalFinished;
     }
 }

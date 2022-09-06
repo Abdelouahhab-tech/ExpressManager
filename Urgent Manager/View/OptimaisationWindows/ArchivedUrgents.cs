@@ -26,13 +26,25 @@ namespace Urgent_Manager.View.OptimaisationWindows
         {
             try
             {
+                string shift = "";
+                if(DateTime.Now.Hour >= 6 && DateTime.Now.Hour < 14)
+                {
+                    shift = "Matin";
+                }else if(DateTime.Now.Hour >= 14 && DateTime.Now.Hour < 22)
+                {
+                    shift = "Soir";
+                }
+                else
+                {
+                    shift = "Nuit";
+                }
                 if(txtUnicos.Text.Trim() != "")
                 {
                     string[] str = txtUnicos.Text.Split('\n');
                     foreach (string l in str)
                     {
                         if (l.Trim() != "")
-                            i += urgentController.UpdateUrgent("Finished",Login.username, DateTime.Now.ToShortDateString(), l.Trim()) == true ? 1 : 0;
+                            i += urgentController.UpdateUrgent("Finished",Login.username, DateTime.Now.ToShortDateString(), l.Trim(),shift) == true ? 1 : 0;
                     }
 
                     if (i > 0)

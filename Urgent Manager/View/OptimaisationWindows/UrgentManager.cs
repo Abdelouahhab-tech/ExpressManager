@@ -59,10 +59,10 @@ namespace Urgent_Manager.View.OptimaisationWindows
             {
                 if (Login.role != "Administrator")
                 {
-                    icExport.Location = new Point(534, 23);
-                    icPrint.Location = new Point(483, 23);
-                    btnRefresh.Location = new Point(432,21);
-                    lblLoading.Location = new Point(336, 31);
+                    icExport.Location = new Point(534, 38);
+                    icPrint.Location = new Point(483, 38);
+                    btnRefresh.Location = new Point(432,36);
+                    lblLoading.Location = new Point(336, 46);
                     btnUrgentDelete.Visible = false;
                     btnOptimized.Visible = false;
                     chAllUrgents.Visible = false;

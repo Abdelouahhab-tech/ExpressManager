@@ -98,6 +98,7 @@ namespace Urgent_Manager.View.DashBoard
                         groupController.Delete(gtxtGroup.Text, "Groupe", "GroupRef");
                         gtxtGroup.Text = "";
                         gtxtGroup.Focus();
+                        LoadData();
                     }
                 }
                 else

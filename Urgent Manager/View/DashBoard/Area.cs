@@ -83,12 +83,6 @@ namespace Urgent_Manager.View.DashBoard
             LoadData();
         }
 
-        private void gtxtAreaName_KeyDown(object sender, KeyEventArgs e)
-        {
-            lblAreaName.ForeColor = Color.White;
-            gtxtAreaName.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
-        }
-
         private void cmbParentArea_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblParentArea.ForeColor = Color.White;
@@ -173,7 +167,6 @@ namespace Urgent_Manager.View.DashBoard
             {
                 AreaModel area = new AreaModel();
                 area = areaController.fetchSingleArea(areaName);
-                gtxtAreaName.Text = area.AreaName;
                 cmbParentArea.Text = area.ParentArea;
                 guna2DataGridView1.Rows.Clear();
                 guna2DataGridView1.Rows.Add(area.AreaName, area.ParentArea, area.UserID);
@@ -193,14 +186,6 @@ namespace Urgent_Manager.View.DashBoard
             }
         }
 
-        private void gtxtAreaName_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (gtxtAreaName.Text == "")
-                LoadData();
-            else if(gtxtAreaName.Text.Trim() != "")
-                getSingleRecord(gtxtAreaName.Text);
-        }
-
         private void gtxtAreaName_Leave(object sender, EventArgs e)
         {
             lblAreaName.ForeColor = Color.White;
@@ -211,6 +196,26 @@ namespace Urgent_Manager.View.DashBoard
         {
             lblParentArea.ForeColor = Color.White;
             cmbParentArea.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void gtxtCableName_KeyDown(object sender, KeyEventArgs e)
+        {
+            lblAreaName.ForeColor = Color.White;
+            gtxtAreaName.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void gtxtAreaName_KeyUp_2(object sender, KeyEventArgs e)
+        {
+            if (gtxtAreaName.Text.Trim() != "")
+                getSingleRecord(gtxtAreaName.Text);
+            else
+                LoadData();
+        }
+
+        private void gtxtAreaName_Leave_1(object sender, EventArgs e)
+        {
+            lblAreaName.ForeColor = Color.White;
+            gtxtAreaName.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
         }
     }
 }

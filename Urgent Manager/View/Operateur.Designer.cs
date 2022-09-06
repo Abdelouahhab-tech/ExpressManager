@@ -95,7 +95,6 @@
             this.cmbPlanBMc = new Guna.UI2.WinForms.Guna2ComboBox();
             this.chIsPlanB = new Guna.UI2.WinForms.Guna2CheckBox();
             this.lblMessage = new System.Windows.Forms.Label();
-            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
@@ -814,7 +813,7 @@
             this.lblBobine.TabIndex = 25;
             this.lblBobine.Text = "M4764105";
             this.lblBobine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblBobine.Click += new System.EventHandler(this.lblBobine_Click);
+            this.lblBobine.DoubleClick += new System.EventHandler(this.lblBobine_DoubleClick);
             this.lblBobine.MouseEnter += new System.EventHandler(this.lblBobine_MouseEnter_1);
             this.lblBobine.MouseLeave += new System.EventHandler(this.lblBobine_MouseLeave_1);
             // 
@@ -837,7 +836,7 @@
             // Wpcs
             // 
             this.Wpcs.Enabled = true;
-            this.Wpcs.Interval = 10000;
+            this.Wpcs.Interval = 5000;
             this.Wpcs.Tick += new System.EventHandler(this.Wpcs_Tick);
             // 
             // timer2
@@ -910,17 +909,6 @@
             this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblMessage.Visible = false;
             // 
-            // printPreviewDialog1
-            // 
-            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
-            this.printPreviewDialog1.Document = this.printDocument1;
-            this.printPreviewDialog1.Enabled = true;
-            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
-            this.printPreviewDialog1.Name = "printPreviewDialog1";
-            this.printPreviewDialog1.Visible = false;
-            // 
             // Operateur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -936,6 +924,7 @@
             this.Controls.Add(this.guna2DataGridView1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Operateur";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Operateur";
@@ -1020,6 +1009,5 @@
         private System.Windows.Forms.Panel pnlCmbPlanBMachine;
         private Guna.UI2.WinForms.Guna2ComboBox cmbPlanBMc;
         private System.Windows.Forms.Label lblMessage;
-        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }

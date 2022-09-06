@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
@@ -48,6 +48,8 @@
             this.btnOptimized = new Guna.UI2.WinForms.Guna2Button();
             this.chAllUrgents = new Guna.UI2.WinForms.Guna2CheckBox();
             this.chOptimizedRecords = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,8 +58,8 @@
             this.guna2DataGridView1.AllowUserToAddRows = false;
             this.guna2DataGridView1.AllowUserToDeleteRows = false;
             this.guna2DataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(226)))), ((int)(((byte)(218)))));
-            this.guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(226)))), ((int)(((byte)(218)))));
+            this.guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.guna2DataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.guna2DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -65,33 +67,33 @@
             this.guna2DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.guna2DataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.guna2DataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.guna2DataGridView1.ColumnHeadersHeight = 35;
             this.guna2DataGridView1.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(235)))), ((int)(((byte)(230)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(191)))), ((int)(((byte)(173)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(235)))), ((int)(((byte)(230)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(191)))), ((int)(((byte)(173)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle7;
             this.guna2DataGridView1.EnableHeadersVisualStyles = false;
             this.guna2DataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
             this.guna2DataGridView1.Location = new System.Drawing.Point(23, 119);
             this.guna2DataGridView1.Name = "guna2DataGridView1";
             this.guna2DataGridView1.ReadOnly = true;
             this.guna2DataGridView1.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2DataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2DataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.guna2DataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.guna2DataGridView1.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.guna2DataGridView1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -128,7 +130,7 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.panel1.Location = new System.Drawing.Point(845, 57);
+            this.panel1.Location = new System.Drawing.Point(845, 69);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(206, 2);
             this.panel1.TabIndex = 6;
@@ -156,7 +158,7 @@
             this.cmbMac.ItemHeight = 30;
             this.cmbMac.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
             this.cmbMac.ItemsAppearance.SelectedForeColor = System.Drawing.Color.White;
-            this.cmbMac.Location = new System.Drawing.Point(720, 23);
+            this.cmbMac.Location = new System.Drawing.Point(720, 35);
             this.cmbMac.Name = "cmbMac";
             this.cmbMac.Size = new System.Drawing.Size(109, 36);
             this.cmbMac.TabIndex = 1;
@@ -178,7 +180,7 @@
             this.btnUrgentDelete.Image = global::Urgent_Manager.Properties.Resources.check;
             this.btnUrgentDelete.ImageSize = new System.Drawing.Size(25, 25);
             this.btnUrgentDelete.IndicateFocus = true;
-            this.btnUrgentDelete.Location = new System.Drawing.Point(471, 21);
+            this.btnUrgentDelete.Location = new System.Drawing.Point(471, 33);
             this.btnUrgentDelete.Name = "btnUrgentDelete";
             this.btnUrgentDelete.Size = new System.Drawing.Size(117, 40);
             this.btnUrgentDelete.TabIndex = 2;
@@ -200,7 +202,7 @@
             this.icExport.IconColor = System.Drawing.Color.White;
             this.icExport.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.icExport.IconSize = 40;
-            this.icExport.Location = new System.Drawing.Point(280, 26);
+            this.icExport.Location = new System.Drawing.Point(280, 38);
             this.icExport.Name = "icExport";
             this.icExport.Size = new System.Drawing.Size(45, 38);
             this.icExport.TabIndex = 3;
@@ -224,7 +226,7 @@
             this.gtxtSearch.ForeColor = System.Drawing.Color.White;
             this.gtxtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.gtxtSearch.IconLeft = global::Urgent_Manager.Properties.Resources.search;
-            this.gtxtSearch.Location = new System.Drawing.Point(840, 21);
+            this.gtxtSearch.Location = new System.Drawing.Point(840, 33);
             this.gtxtSearch.Name = "gtxtSearch";
             this.gtxtSearch.PasswordChar = '\0';
             this.gtxtSearch.PlaceholderForeColor = System.Drawing.Color.White;
@@ -250,7 +252,7 @@
             this.icPrint.IconColor = System.Drawing.Color.White;
             this.icPrint.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.icPrint.IconSize = 40;
-            this.icPrint.Location = new System.Drawing.Point(229, 26);
+            this.icPrint.Location = new System.Drawing.Point(229, 38);
             this.icPrint.Name = "icPrint";
             this.icPrint.Size = new System.Drawing.Size(45, 38);
             this.icPrint.TabIndex = 7;
@@ -271,7 +273,7 @@
             this.btnRefresh.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.btnRefresh.Image = global::Urgent_Manager.Properties.Resources.refresh;
             this.btnRefresh.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnRefresh.Location = new System.Drawing.Point(178, 24);
+            this.btnRefresh.Location = new System.Drawing.Point(178, 36);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.btnRefresh.Size = new System.Drawing.Size(45, 38);
@@ -284,7 +286,7 @@
             this.lblLoading.AutoSize = true;
             this.lblLoading.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLoading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.lblLoading.Location = new System.Drawing.Point(82, 34);
+            this.lblLoading.Location = new System.Drawing.Point(82, 46);
             this.lblLoading.Name = "lblLoading";
             this.lblLoading.Size = new System.Drawing.Size(88, 19);
             this.lblLoading.TabIndex = 9;
@@ -327,7 +329,7 @@
             "Twist"});
             this.cmbLeadPrep.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
             this.cmbLeadPrep.ItemsAppearance.SelectedForeColor = System.Drawing.Color.White;
-            this.cmbLeadPrep.Location = new System.Drawing.Point(594, 23);
+            this.cmbLeadPrep.Location = new System.Drawing.Point(594, 35);
             this.cmbLeadPrep.Name = "cmbLeadPrep";
             this.cmbLeadPrep.Size = new System.Drawing.Size(109, 36);
             this.cmbLeadPrep.TabIndex = 39;
@@ -350,7 +352,7 @@
             this.btnOptimized.ImageOffset = new System.Drawing.Point(2, 0);
             this.btnOptimized.ImageSize = new System.Drawing.Size(25, 25);
             this.btnOptimized.IndicateFocus = true;
-            this.btnOptimized.Location = new System.Drawing.Point(331, 21);
+            this.btnOptimized.Location = new System.Drawing.Point(331, 33);
             this.btnOptimized.Name = "btnOptimized";
             this.btnOptimized.Size = new System.Drawing.Size(134, 40);
             this.btnOptimized.TabIndex = 40;
@@ -403,12 +405,38 @@
             this.chOptimizedRecords.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.chOptimizedRecords.CheckedChanged += new System.EventHandler(this.chOptimizedRecords_CheckedChanged);
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(607, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 18);
+            this.label1.TabIndex = 43;
+            this.label1.Text = "Lead Prep";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(733, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 18);
+            this.label2.TabIndex = 44;
+            this.label2.Text = "Machines";
+            // 
             // UrgentManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.ClientSize = new System.Drawing.Size(1075, 472);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.chOptimizedRecords);
             this.Controls.Add(this.chAllUrgents);
             this.Controls.Add(this.lblLoading);
@@ -450,5 +478,7 @@
         private Guna.UI2.WinForms.Guna2Button btnOptimized;
         private Guna.UI2.WinForms.Guna2CheckBox chAllUrgents;
         private Guna.UI2.WinForms.Guna2CheckBox chOptimizedRecords;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

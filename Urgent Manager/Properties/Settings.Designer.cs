@@ -106,5 +106,41 @@ namespace Urgent_Manager.Properties {
                 this["userPass"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Aptiv")]
+        public string DBOwner {
+            get {
+                return ((string)(this["DBOwner"]));
+            }
+            set {
+                this["DBOwner"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Abdo47645301995?")]
+        public string DBPass {
+            get {
+                return ((string)(this["DBPass"]));
+            }
+            set {
+                this["DBPass"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Komax\\TopWin\\WPCS-Feedback\\Job.sdc.arc")]
+        public string WpcsDirectory {
+            get {
+                return ((string)(this["WpcsDirectory"]));
+            }
+            set {
+                this["WpcsDirectory"] = value;
+            }
+        }
     }
 }
