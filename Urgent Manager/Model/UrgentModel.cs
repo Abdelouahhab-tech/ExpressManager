@@ -33,6 +33,7 @@ namespace Urgent_Manager.Model
         private string userFinished = "";
         private string finishedDate = "";
         private string time = "";
+        private string ftime = "";
         private int isOptimized = 0;
 
         public enum Shifts
@@ -383,6 +384,19 @@ namespace Urgent_Manager.Model
             set
             {
                 isOptimized = value;
+            }
+        }
+
+        public string Ftime
+        {
+            get
+            {
+                return ftime;
+            }
+
+            set
+            {
+                ftime = value;
             }
         }
     }

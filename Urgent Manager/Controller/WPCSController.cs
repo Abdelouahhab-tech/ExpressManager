@@ -37,7 +37,7 @@ namespace Urgent_Manager.Controller
                 {
                     shift = "Nuit";
                 }
-                bool isUpdated = urgentController.UpdateUrgent(UrgentModel.Status.Finished.ToString(), DateTime.Now.ToShortDateString(), urgentController.getUnico(updateStatus()),shift);
+                bool isUpdated = urgentController.UpdateUrgent(UrgentModel.Status.Finished.ToString(), DateTime.Now.ToShortDateString(), urgentController.getUnico(updateStatus()),shift,DateTime.Now.ToShortTimeString());
                 return isUpdated ? true : false;
             }
             catch (Exception ex)

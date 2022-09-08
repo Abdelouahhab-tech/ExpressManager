@@ -23,8 +23,15 @@ namespace Urgent_Manager.View.DashBoard
 
         private void Bobine_Load(object sender, EventArgs e)
         {
-            gtxtCableName.Focus();
-            LoadData();
+            try
+            {
+                gtxtCableName.Focus();
+                LoadData();
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         // Load Records From Database
@@ -40,57 +47,65 @@ namespace Urgent_Manager.View.DashBoard
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(gtxtCableName.Text.Trim() != "" && gtxtPvc.Text.Trim() != "" && gtxtColor.Text.Trim() != "" && gtxtSection.Text.Trim() != "")
+            try
             {
-                if (!cableController.IsExist(gtxtCableName.Text, "Cable", "Cable"))
+                if (gtxtCableName.Text.Trim() != "" && gtxtPvc.Text.Trim() != "" && gtxtColor.Text.Trim() != "" && gtxtSection.Text.Trim() != "")
                 {
-                    CableModel cable = new CableModel();
-                    cable.Cable = gtxtCableName.Text;
-                    cable.Pvc = gtxtPvc.Text;
-                    cable.Color = gtxtColor.Text;
-                    cable.Section = gtxtSection.Text;
-                    cable.Guide = gtxtGReference.Text != "" ? gtxtGReference.Text : "";
-                    cable.UserID = Login.username;
+                    if (!cableController.IsExist(gtxtCableName.Text, "Cable", "Cable"))
+                    {
+                        CableModel cable = new CableModel();
+                        cable.Cable = gtxtCableName.Text;
+                        cable.Pvc = gtxtPvc.Text;
+                        cable.Color = gtxtColor.Text;
+                        cable.Section = gtxtSection.Text;
+                        cable.Guide = gtxtGReference.Text != "" ? gtxtGReference.Text : "";
+                        cable.UserID = Login.username;
 
-                    cableController.InsertCable(cable);
-                    LoadData();
-                    init();
+                        cableController.InsertCable(cable);
+                        LoadData();
+                        init();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sorry This Cable Aleardy Exist Try To Add An Other One !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        lblCable.ForeColor = Color.Red;
+                        gtxtCableName.Focus();
+                        gtxtCableName.SelectAll();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Sorry This Cable Aleardy Exist Try To Add An Other One !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    lblCable.ForeColor = Color.Red;
-                    gtxtCableName.Focus();
-                    gtxtCableName.SelectAll();
+                    if (gtxtCableName.Text.Trim() == "")
+                    {
+                        lblCable.ForeColor = Color.Red;
+                        gtxtCableName.Focus();
+                        gtxtCableName.SelectAll();
+                        gtxtCableName.FocusedState.BorderColor = Color.White;
+
+                    }
+                    else if (gtxtPvc.Text.Trim() == "")
+                    {
+                        lblPvc.ForeColor = Color.Red;
+                        gtxtPvc.Focus();
+                        gtxtPvc.FocusedState.BorderColor = Color.White;
+                    }
+                    else if (gtxtColor.Text.Trim() == "")
+                    {
+                        lblColor.ForeColor = Color.Red;
+                        gtxtColor.Focus();
+                        gtxtColor.FocusedState.BorderColor = Color.White;
+                    }
+                    else if (gtxtSection.Text.Trim() == "")
+                    {
+                        lblSection.ForeColor = Color.Red;
+                        gtxtSection.Focus();
+                        gtxtSection.FocusedState.BorderColor = Color.White;
+                    }
                 }
             }
-            else
+            catch (Exception)
             {
-                if(gtxtCableName.Text.Trim() == "")
-                {
-                    lblCable.ForeColor = Color.Red;
-                    gtxtCableName.Focus();
-                    gtxtCableName.SelectAll();
-                    gtxtCableName.FocusedState.BorderColor = Color.White;
 
-                }else if(gtxtPvc.Text.Trim() == "")
-                {
-                    lblPvc.ForeColor = Color.Red;
-                    gtxtPvc.Focus();
-                    gtxtPvc.FocusedState.BorderColor = Color.White;
-                }
-                else if(gtxtColor.Text.Trim() == "")
-                {
-                    lblColor.ForeColor = Color.Red;
-                    gtxtColor.Focus();
-                    gtxtColor.FocusedState.BorderColor = Color.White;
-                }
-                else if(gtxtSection.Text.Trim() == "")
-                {
-                    lblSection.ForeColor = Color.Red;
-                    gtxtSection.Focus();
-                    gtxtSection.FocusedState.BorderColor = Color.White;
-                }
             }
         }
 
@@ -132,75 +147,89 @@ namespace Urgent_Manager.View.DashBoard
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if(gtxtCableName.Text.Trim() != "")
+            try
             {
-
-                if (cableController.IsExist(gtxtCableName.Text, "Cable", "Cable"))
+                if (gtxtCableName.Text.Trim() != "")
                 {
 
-                    if (gtxtPvc.Text.Trim() != "" && gtxtColor.Text.Trim() != "" && gtxtSection.Text.Trim() != "")
+                    if (cableController.IsExist(gtxtCableName.Text, "Cable", "Cable"))
                     {
-                        CableModel cable = new CableModel();
-                        cable.Cable = gtxtCableName.Text;
-                        cable.Pvc = gtxtPvc.Text;
-                        cable.Color = gtxtColor.Text;
-                        cable.Guide = gtxtGReference.Text != "" ? gtxtGReference.Text : "";
-                        cable.Section = gtxtSection.Text;
-                        cable.UserID = Login.username;
 
-                        cableController.UpdateCable(cable);
-                        LoadData();
-                        init();
+                        if (gtxtPvc.Text.Trim() != "" && gtxtColor.Text.Trim() != "" && gtxtSection.Text.Trim() != "")
+                        {
+                            CableModel cable = new CableModel();
+                            cable.Cable = gtxtCableName.Text;
+                            cable.Pvc = gtxtPvc.Text;
+                            cable.Color = gtxtColor.Text;
+                            cable.Guide = gtxtGReference.Text != "" ? gtxtGReference.Text : "";
+                            cable.Section = gtxtSection.Text;
+                            cable.UserID = Login.username;
+
+                            cableController.UpdateCable(cable);
+                            LoadData();
+                            init();
+                        }
+                        else
+                        {
+                            if (gtxtPvc.Text.Trim() == "")
+                            {
+                                lblPvc.ForeColor = Color.Red;
+                                gtxtPvc.Focus();
+                                gtxtPvc.FocusedState.BorderColor = Color.White;
+                            }
+                            else if (gtxtColor.Text.Trim() == "")
+                            {
+                                lblColor.ForeColor = Color.Red;
+                                gtxtColor.Focus();
+                                gtxtColor.FocusedState.BorderColor = Color.White;
+                            }
+                            else if (gtxtSection.Text.Trim() == "")
+                            {
+                                lblSection.ForeColor = Color.Red;
+                                gtxtSection.Focus();
+                                gtxtSection.FocusedState.BorderColor = Color.White;
+                            }
+                        }
                     }
                     else
                     {
-                        if (gtxtPvc.Text.Trim() == "")
-                        {
-                            lblPvc.ForeColor = Color.Red;
-                            gtxtPvc.Focus();
-                            gtxtPvc.FocusedState.BorderColor = Color.White;
-                        }
-                        else if (gtxtColor.Text.Trim() == "")
-                        {
-                            lblColor.ForeColor = Color.Red;
-                            gtxtColor.Focus();
-                            gtxtColor.FocusedState.BorderColor = Color.White;
-                        }
-                        else if (gtxtSection.Text.Trim() == "")
-                        {
-                            lblSection.ForeColor = Color.Red;
-                            gtxtSection.Focus();
-                            gtxtSection.FocusedState.BorderColor = Color.White;
-                        }
+                        MessageBox.Show("Sorry This Cable Doesn't Exist ! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        lblCable.ForeColor = Color.Red;
+                        gtxtCableName.Focus();
+                        gtxtCableName.SelectAll();
+                        gtxtCableName.FocusedState.BorderColor = Color.White;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Sorry This Cable Doesn't Exist ! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     lblCable.ForeColor = Color.Red;
                     gtxtCableName.Focus();
-                    gtxtCableName.SelectAll();
                     gtxtCableName.FocusedState.BorderColor = Color.White;
                 }
             }
-            else
+            catch (Exception)
             {
-                lblCable.ForeColor = Color.Red;
-                gtxtCableName.Focus();
-                gtxtCableName.FocusedState.BorderColor = Color.White;
+
             }
         }
 
         private void guna2DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0)
+            try
             {
-                string cableName = guna2DataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-                if (cableName != "")
+                if (e.RowIndex >= 0)
                 {
-                    getSingleRecord(cableName);
-                    gtxtCableName.Text = cableName;
+                    string cableName = guna2DataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    if (cableName != "")
+                    {
+                        getSingleRecord(cableName);
+                        gtxtCableName.Text = cableName;
+                    }
                 }
+            }
+            catch (Exception)
+            {
+
             }
         }
 
@@ -225,47 +254,59 @@ namespace Urgent_Manager.View.DashBoard
 
         private void gtxtCableName_KeyUp(object sender, KeyEventArgs e)
         {
-            if(gtxtCableName.Text.Trim() != "")
+            try
             {
-                getSingleRecord(gtxtCableName.Text);
+                if (gtxtCableName.Text.Trim() != "")
+                {
+                    getSingleRecord(gtxtCableName.Text);
+                }
+                else
+                {
+                    LoadData();
+                    init();
+                }
             }
-            else
+            catch (Exception)
             {
-                LoadData();
-                init();
+
             }
-
-
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (gtxtCableName.Text.Trim() != "")
+            try
             {
-                if (cableController.IsExist(gtxtCableName.Text, "Cable", "Cable"))
+                if (gtxtCableName.Text.Trim() != "")
                 {
-                    DialogResult result = MessageBox.Show("Are You Sure You Want To Delete This Cable ? You Will Lost All The Data That Is Related With This Cable", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-                    if (result == DialogResult.Yes)
+                    if (cableController.IsExist(gtxtCableName.Text, "Cable", "Cable"))
                     {
-                        cableController.Delete(gtxtCableName.Text, "Cable", "Cable");
-                        LoadData();
-                        init();
+                        DialogResult result = MessageBox.Show("Are You Sure You Want To Delete This Cable ? You Will Lost All The Data That Is Related With This Cable", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                        if (result == DialogResult.Yes)
+                        {
+                            cableController.Delete(gtxtCableName.Text, "Cable", "Cable");
+                            LoadData();
+                            init();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("This Cable Doesn't Exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        lblCable.ForeColor = Color.Red;
+                        gtxtCableName.Focus();
+                        gtxtCableName.SelectAll();
+                        gtxtCableName.FocusedState.BorderColor = Color.White;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("This Cable Doesn't Exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     lblCable.ForeColor = Color.Red;
                     gtxtCableName.Focus();
-                    gtxtCableName.SelectAll();
                     gtxtCableName.FocusedState.BorderColor = Color.White;
                 }
             }
-            else
+            catch (Exception)
             {
-                lblCable.ForeColor = Color.Red;
-                gtxtCableName.Focus();
-                gtxtCableName.FocusedState.BorderColor = Color.White;
+
             }
         }
 

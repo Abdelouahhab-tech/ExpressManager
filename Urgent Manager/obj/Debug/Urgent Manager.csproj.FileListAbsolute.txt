@@ -45,3 +45,4 @@ C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Ur
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.csproj.GenerateResource.Cache
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.exe
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.pdb
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.csprojResolveAssemblyReference.cache

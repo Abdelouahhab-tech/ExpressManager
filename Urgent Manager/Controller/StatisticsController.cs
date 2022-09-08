@@ -19,7 +19,7 @@ namespace Urgent_Manager.Controller
             try
             {
                 DbHelper.connection.Open();
-                string QUERY = "SELECT M.ParentZone,count(U.UrgentUnico) AS 'Number' FROM Machine M,Urgent U, Wire W WHERE W.MC=M.Machine AND W.Unico=U.UrgentUnico AND U.UrgentStatus=@status AND M.ParentZone=@area GROUP BY M.ParentZone";
+                string QUERY = "SELECT M.ParentZone,count(U.UrgentUnico) AS 'Number' FROM Machine M,Urgent U, Wire W WHERE W.MC=M.Machine AND W.Unico=U.UrgentUnico AND U.UrgentStatus=@status AND M.ParentZone=@area AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished OR UserFinished = '') GROUP BY M.ParentZone";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@area", area);
                 cmd.Parameters.AddWithValue("@status", status);
@@ -51,7 +51,7 @@ namespace Urgent_Manager.Controller
             try
             {
                 DbHelper.connection.Open();
-                string QUERY = "SELECT M.ParentZone,count(U.UrgentUnico) AS 'Number' FROM Machine M,Urgent U, Wire W WHERE W.MC=M.Machine AND W.Unico=U.UrgentUnico AND U.UrgentStatus=@status AND M.ParentZone=@area AND U.FinishedDate=@date  AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished) GROUP BY M.ParentZone";
+                string QUERY = "SELECT M.ParentZone,count(U.UrgentUnico) AS 'Number' FROM Machine M,Urgent U, Wire W WHERE W.MC=M.Machine AND W.Unico=U.UrgentUnico AND U.UrgentStatus=@status AND M.ParentZone=@area AND U.FinishedDate=@date AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished OR UserFinished = '') GROUP BY M.ParentZone";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@area", area);
                 cmd.Parameters.AddWithValue("@status", status);
@@ -118,7 +118,7 @@ namespace Urgent_Manager.Controller
                 foreach(string hour in hours)
                 {
                     DbHelper.connection.Open();
-                    string QUERY = isFinished ? "SELECT count(*) as total FROM Urgent WHERE UrgentStatus=@status AND FinishedDate=@date AND DATEPART(HOUR,HUrgent) = @hour AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished)" : "SELECT count(*) as total FROM Urgent WHERE DATEPART(HOUR,HUrgent) = @hour AND UrgentStatus = @status AND DateUrgent=@date";
+                    string QUERY = isFinished ? "SELECT count(*) as total FROM Urgent WHERE UrgentStatus=@status AND FinishedDate=@date AND DATEPART(HOUR,HFinished) = @hour AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished)" : "SELECT count(*) as total FROM Urgent WHERE DATEPART(HOUR,HUrgent) = @hour AND DateUrgent=@date AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished OR UserFinished = '')";
                     SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                     cmd.Parameters.AddWithValue("@status", status);
                     cmd.Parameters.AddWithValue("@date", date);
@@ -154,7 +154,7 @@ namespace Urgent_Manager.Controller
                 foreach (string hour in hours)
                 {
                     DbHelper.connection.Open();
-                    string QUERY = isFinished ? "SELECT count(*) as total FROM Urgent U,Wire W WHERE U.UrgentUnico=W.Unico AND U.UrgentStatus=@status AND U.FinishedDate=@date AND DATEPART(HOUR,U.HUrgent) = @hour AND W.MC=@MC AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished)" : "SELECT count(*) as total FROM Urgent U,Wire W WHERE U.UrgentUnico=W.Unico AND U.UrgentStatus=@status AND DATEPART(HOUR,U.HUrgent) = @hour AND W.MC=@MC AND U.DateUrgent=@date";
+                    string QUERY = isFinished ? "SELECT count(*) as total FROM Urgent U,Wire W WHERE U.UrgentUnico=W.Unico AND U.UrgentStatus=@status AND U.FinishedDate=@date AND DATEPART(HOUR,U.HUrgent) = @hour AND W.MC=@MC AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished)" : "SELECT count(*) as total FROM Urgent U,Wire W WHERE U.UrgentUnico=W.Unico AND DATEPART(HOUR,U.HUrgent) = @hour AND W.MC=@MC AND U.DateUrgent=@date AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished OR UserFinished = '')";
                     SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                     cmd.Parameters.AddWithValue("@status", status);
                     cmd.Parameters.AddWithValue("@date", date);
@@ -191,7 +191,7 @@ namespace Urgent_Manager.Controller
                 foreach (string hour in hours)
                 {
                     DbHelper.connection.Open();
-                    string QUERY = isFinished ? "SELECT count(*) as total FROM Urgent U,Wire W,Machine M WHERE U.UrgentUnico=W.Unico AND M.Machine=W.MC AND M.ParentZone=@area AND U.UrgentStatus=@status AND U.FinishedDate=@date AND DATEPART(HOUR,U.HUrgent) = @hour  AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished)" : "SELECT count(*) as total FROM Urgent U,Wire W,Machine M WHERE U.UrgentUnico=W.Unico AND M.Machine=W.MC AND M.ParentZone=@area AND U.UrgentStatus=@status AND DATEPART(HOUR,U.HUrgent) = @hour AND U.DateUrgent=@date";
+                    string QUERY = isFinished ? "SELECT count(*) as total FROM Urgent U,Wire W,Machine M WHERE U.UrgentUnico=W.Unico AND M.Machine=W.MC AND M.ParentZone=@area AND U.UrgentStatus=@status AND U.FinishedDate=@date AND DATEPART(HOUR,U.HFinished) = @hour  AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished)" : "SELECT count(*) as total FROM Urgent U,Wire W,Machine M WHERE U.UrgentUnico=W.Unico AND M.Machine=W.MC AND M.ParentZone=@area AND DATEPART(HOUR,U.HUrgent) = @hour AND U.DateUrgent=@date AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished OR UserFinished = '')";
                     SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                     cmd.Parameters.AddWithValue("@status", status);
                     cmd.Parameters.AddWithValue("@date", date);
@@ -234,7 +234,7 @@ namespace Urgent_Manager.Controller
                 }
                 else
                 {
-                    QUERY = withDate ? "SELECT COUNT(*) as number from Urgent U,Wire W WHERE U.UrgentUnico=W.Unico AND U.UrgentStatus =@status AND W.LeadPrep=@LeadPrep AND FinishedDate=@date AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished)" : "SELECT COUNT(*) as number from Urgent U,Wire W WHERE U.UrgentUnico=W.Unico AND U.UrgentStatus =@status AND W.LeadPrep=@LeadPrep";
+                    QUERY = withDate ? "SELECT COUNT(*) as number from Urgent U,Wire W WHERE U.UrgentUnico=W.Unico AND U.UrgentStatus =@status AND W.LeadPrep=@LeadPrep AND FinishedDate=@date AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished)" : "SELECT COUNT(*) as number from Urgent U,Wire W WHERE U.UrgentUnico=W.Unico AND U.UrgentStatus =@status AND W.LeadPrep=@LeadPrep AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished OR UserFinished = '')";
                 }
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@status", status);

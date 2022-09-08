@@ -24,177 +24,249 @@ namespace Urgent_Manager.View.DashBoard
 
         private async void WireData_Load(object sender, EventArgs e)
         {
-            gtxtSearch.Focus();
-            wireController.FillCombobox("Machine", "Machine", cmbMachine);
-            wireController.FillCombobox("Machine", "Machine", cmbPlanBMc);
-            lblLoading.Visible = true;
-            await Task.Run(new Action(fetch));
-            guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-            guna2DataGridView1.ScrollBars = ScrollBars.Both;
-            foreach(DataGridViewColumn col in guna2DataGridView1.Columns)
+            try
             {
-                if (col.HeaderText == "Location" || col.HeaderText == "Entry Agent" || col.HeaderText == "Unico" || col.HeaderText == "Lead Code")
-                    col.Width = 180;
-                else
-                    col.Width = 100;
+                gtxtSearch.Focus();
+                wireController.FillCombobox("Machine", "Machine", cmbMachine);
+                wireController.FillCombobox("Machine", "Machine", cmbPlanBMc);
+                lblLoading.Visible = true;
+                await Task.Run(new Action(fetch));
+                guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+                guna2DataGridView1.ScrollBars = ScrollBars.Both;
+                foreach (DataGridViewColumn col in guna2DataGridView1.Columns)
+                {
+                    if (col.HeaderText == "Location" || col.HeaderText == "Entry Agent" || col.HeaderText == "Unico" || col.HeaderText == "Lead Code")
+                        col.Width = 180;
+                    else
+                        col.Width = 100;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private async void gtxtSearch_KeyUp(object sender, KeyEventArgs e)
         {
-            if(gtxtSearch.Text == "")
+            try
             {
+                if (gtxtSearch.Text == "")
+                {
                     lblLoading.Visible = true;
                     await Task.Run(new Action(fetchRecordsWithNewItems));
+                }
+                if (gtxtSearch.Text.Trim() != "")
+                {
+                    wireController.fetchRecords(guna2DataGridView1, list, gtxtSearch.Text);
+                }
             }
-            if (gtxtSearch.Text.Trim() != "")
+            catch (Exception)
             {
-                wireController.fetchRecords(guna2DataGridView1, list,gtxtSearch.Text);
-            }
-        }
 
-        private void gtxtSearch_KeyDown(object sender, KeyEventArgs e)
-        {
-           
+            }
         }
 
         ArrayList list = new ArrayList();
 
         private async void guna2CheckBox13_CheckedChanged_1(object sender, EventArgs e)
         {
-            if (chGroup.Checked)
+            try
             {
-                list.Add("Groupe");
-                if (list.Count > 0)
+                if (chGroup.Checked)
                 {
+                    list.Add("Groupe");
+                    if (list.Count > 0)
+                    {
+                        lblLoading.Visible = true;
+                        await Task.Run(new Action(fetchRecordsWithNewItems));
+                    }
+                }
+                else
+                {
+                    list.Remove("Groupe");
                     lblLoading.Visible = true;
                     await Task.Run(new Action(fetchRecordsWithNewItems));
                 }
             }
-            else
+            catch (Exception)
             {
-                list.Remove("Groupe");
-                lblLoading.Visible = true;
-                await Task.Run(new Action(fetchRecordsWithNewItems));
+
             }
         }
 
         private async void chProtection_CheckedChanged(object sender, EventArgs e)
         {
-            if (chProtection.Checked)
+            try
             {
-                list.Add("ProtectionL");
-                list.Add("ProtectionR");
-
-                if (list.Count > 0)
+                if (chProtection.Checked)
                 {
+                    list.Add("ProtectionL");
+                    list.Add("ProtectionR");
+
+                    if (list.Count > 0)
+                    {
+                        lblLoading.Visible = true;
+                        await Task.Run(new Action(fetchRecordsWithNewItems));
+                    }
+                }
+                else
+                {
+                    list.Remove("ProtectionR");
+                    list.Remove("ProtectionL");
                     lblLoading.Visible = true;
                     await Task.Run(new Action(fetchRecordsWithNewItems));
                 }
             }
-            else
+            catch (Exception)
             {
-                list.Remove("ProtectionR");
-                list.Remove("ProtectionL");
-                lblLoading.Visible = true;
-                await Task.Run(new Action(fetchRecordsWithNewItems));
+
             }
         }
 
         private async void chLeadPrep_CheckedChanged(object sender, EventArgs e)
         {
-            if (chLeadPrep.Checked)
+            try
             {
-                list.Add("LeadPrep");
-                lblLoading.Visible = true;
-                await Task.Run(new Action(fetchRecordsWithNewItems));
+                if (chLeadPrep.Checked)
+                {
+                    list.Add("LeadPrep");
+                    lblLoading.Visible = true;
+                    await Task.Run(new Action(fetchRecordsWithNewItems));
+                }
+                else
+                {
+                    list.Remove("LeadPrep");
+                    lblLoading.Visible = true;
+                    await Task.Run(new Action(fetchRecordsWithNewItems));
+                }
             }
-            else
+            catch (Exception)
             {
-                list.Remove("LeadPrep");
-                lblLoading.Visible = true;
-                await Task.Run(new Action(fetchRecordsWithNewItems));
+
             }
         }
 
         private async void cmbMachine_SelectedIndexChanged(object sender, EventArgs e)
         {
             panelCmbMachine.BackColor = Color.FromArgb(255, 128, 255, 255);
-            if (cmbMachine.Text.Trim() != "")
+            try
             {
-                lblLoading.Visible = true;
-                await Task.Run(new Action(fetchRecordsPerMac));
+                if (cmbMachine.Text.Trim() != "")
+                {
+                    lblLoading.Visible = true;
+                    await Task.Run(new Action(fetchRecordsPerMac));
+                }
+            }
+            catch (Exception)
+            {
+
             }
         }
 
         // Fetch Recods Asyncrounously
         private void fetch()
         {
-            guna2DataGridView1.Invoke((MethodInvoker)delegate
+            try
             {
-                wireController.fetchRecords(guna2DataGridView1);
-                lblLoading.Visible = false;
-            });
+                guna2DataGridView1.Invoke((MethodInvoker)delegate
+                {
+                    wireController.fetchRecords(guna2DataGridView1);
+                    lblLoading.Visible = false;
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         // Fetch Recods Syncrounously depend on machine
 
         private void fetchRecordsPerMac()
         {
-            guna2DataGridView1.Invoke((MethodInvoker)delegate
+            try
             {
-                if (chGroupe.Checked)
+                guna2DataGridView1.Invoke((MethodInvoker)delegate
                 {
-                    wireController.fetchRecordsPerMachine(guna2DataGridView1, list, "Groupe", cmbMachine.Text);
-                    lblLoading.Visible = false;
-                }
-                else
-                {
-                    wireController.fetchRecordsPerMachine(guna2DataGridView1, list, "MC", cmbMachine.Text);
-                    lblLoading.Visible = false;
-                }
+                    if (chGroupe.Checked)
+                    {
+                        wireController.fetchRecordsPerMachine(guna2DataGridView1, list, "Groupe", cmbMachine.Text);
+                        lblLoading.Visible = false;
+                    }
+                    else
+                    {
+                        wireController.fetchRecordsPerMachine(guna2DataGridView1, list, "MC", cmbMachine.Text);
+                        lblLoading.Visible = false;
+                    }
 
-            });
+                });
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         // Fetch Recods Syncrounously deprnd on machine and new added Items
 
         private void fetchRecordsWithNewItems()
         {
-            guna2DataGridView1.Invoke((MethodInvoker)delegate
+            try
             {
-                wireController.fetchRecords(guna2DataGridView1, list);
-                lblLoading.Visible = false;
-            });
+                guna2DataGridView1.Invoke((MethodInvoker)delegate
+                {
+                    wireController.fetchRecords(guna2DataGridView1, list);
+                    lblLoading.Visible = false;
+                });
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void chGroupe_CheckedChanged(object sender, EventArgs e)
         {
-            if (chGroupe.Checked)
+            try
             {
-                chMachine.Checked = false;
-                cmbMachine.Items.Clear();
-                cmbPlanBMc.Items.Clear();
-                wireController.FillCombobox("Groupe", "GroupRef", cmbMachine);
-                wireController.FillCombobox("Groupe", "GroupRef", cmbPlanBMc);
-                lblNew.Text = "New Group";
-                lblOld.Text = "Old Group";
+                if (chGroupe.Checked)
+                {
+                    chMachine.Checked = false;
+                    cmbMachine.Items.Clear();
+                    cmbPlanBMc.Items.Clear();
+                    wireController.FillCombobox("Groupe", "GroupRef", cmbMachine);
+                    wireController.FillCombobox("Groupe", "GroupRef", cmbPlanBMc);
+                    lblNew.Text = "New Group";
+                    lblOld.Text = "Old Group";
+
+                }
+            }
+            catch (Exception)
+            {
 
             }
         }
 
         private void chMachine_CheckedChanged(object sender, EventArgs e)
         {
-            if (chMachine.Checked)
+            try
+            {
+                if (chMachine.Checked)
+                {
+
+                    chGroupe.Checked = false;
+                    cmbMachine.Items.Clear();
+                    cmbPlanBMc.Items.Clear();
+                    wireController.FillCombobox("Machine", "Machine", cmbMachine);
+                    wireController.FillCombobox("Machine", "Machine", cmbPlanBMc);
+                    lblNew.Text = "New Machine";
+                    lblOld.Text = "Old Machine";
+                }
+            }
+            catch (Exception)
             {
 
-                chGroupe.Checked = false;
-                cmbMachine.Items.Clear();
-                cmbPlanBMc.Items.Clear();
-                wireController.FillCombobox("Machine", "Machine", cmbMachine);
-                wireController.FillCombobox("Machine", "Machine", cmbPlanBMc);
-                lblNew.Text = "New Machine";
-                lblOld.Text = "Old Machine";
             }
         }
 
@@ -247,7 +319,14 @@ namespace Urgent_Manager.View.DashBoard
         private async void icExport_Click(object sender, EventArgs e)
         {
             lblLoading.Visible = true;
-            await Task.Run(new Action(generateExcel));
+            try
+            {
+                await Task.Run(new Action(generateExcel));
+            }
+            catch (Exception)
+            {
+                lblLoading.Visible = false;
+            }
 
         }
 

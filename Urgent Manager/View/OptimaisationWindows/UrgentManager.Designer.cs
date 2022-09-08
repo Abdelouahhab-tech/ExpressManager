@@ -100,7 +100,7 @@
             this.guna2DataGridView1.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             this.guna2DataGridView1.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
             this.guna2DataGridView1.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
-            this.guna2DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.guna2DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.guna2DataGridView1.Size = new System.Drawing.Size(1028, 344);
             this.guna2DataGridView1.TabIndex = 3;
             this.guna2DataGridView1.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.GreenSea;
@@ -146,7 +146,7 @@
             this.cmbMac.BackColor = System.Drawing.Color.Transparent;
             this.cmbMac.BorderColor = System.Drawing.Color.White;
             this.cmbMac.BorderRadius = 15;
-            this.cmbMac.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.cmbMac.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbMac.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmbMac.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMac.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
@@ -156,7 +156,7 @@
             this.cmbMac.ForeColor = System.Drawing.Color.White;
             this.cmbMac.IntegralHeight = false;
             this.cmbMac.ItemHeight = 30;
-            this.cmbMac.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.cmbMac.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.cmbMac.ItemsAppearance.SelectedForeColor = System.Drawing.Color.White;
             this.cmbMac.Location = new System.Drawing.Point(720, 35);
             this.cmbMac.Name = "cmbMac";
@@ -313,7 +313,7 @@
             this.cmbLeadPrep.BackColor = System.Drawing.Color.Transparent;
             this.cmbLeadPrep.BorderColor = System.Drawing.Color.White;
             this.cmbLeadPrep.BorderRadius = 15;
-            this.cmbLeadPrep.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.cmbLeadPrep.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbLeadPrep.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmbLeadPrep.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLeadPrep.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
@@ -321,13 +321,14 @@
             this.cmbLeadPrep.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cmbLeadPrep.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cmbLeadPrep.ForeColor = System.Drawing.Color.White;
+            this.cmbLeadPrep.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.cmbLeadPrep.IntegralHeight = false;
             this.cmbLeadPrep.ItemHeight = 30;
             this.cmbLeadPrep.Items.AddRange(new object[] {
             "LP",
             "Cutting",
             "Twist"});
-            this.cmbLeadPrep.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.cmbLeadPrep.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.cmbLeadPrep.ItemsAppearance.SelectedForeColor = System.Drawing.Color.White;
             this.cmbLeadPrep.Location = new System.Drawing.Point(594, 35);
             this.cmbLeadPrep.Name = "cmbLeadPrep";

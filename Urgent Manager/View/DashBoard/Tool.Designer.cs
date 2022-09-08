@@ -170,8 +170,10 @@
             this.cmbTerminal.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cmbTerminal.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cmbTerminal.ForeColor = System.Drawing.Color.White;
+            this.cmbTerminal.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.cmbTerminal.IntegralHeight = false;
             this.cmbTerminal.ItemHeight = 35;
+            this.cmbTerminal.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.cmbTerminal.Location = new System.Drawing.Point(288, 176);
             this.cmbTerminal.Name = "cmbTerminal";
             this.cmbTerminal.Size = new System.Drawing.Size(401, 41);

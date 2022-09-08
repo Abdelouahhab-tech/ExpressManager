@@ -14,7 +14,6 @@ namespace Urgent_Manager.View
 {
     public partial class Alimentation : Form
     {
-        private bool isMaximized = false;
         UrgentController urgentController = new UrgentController();
         private int count = 0;
         public Alimentation()
@@ -24,11 +23,18 @@ namespace Urgent_Manager.View
 
         private void Alimentation_Load(object sender, EventArgs e)
         {
-            lblDate.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            timer1.Start();
-            gtxtScanne.Focus();
-            timer1.Start();
-            urgentController.DeleteUrgent();
+            try
+            {
+                lblDate.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                timer1.Start();
+                gtxtScanne.Focus();
+                timer1.Start();
+                urgentController.DeleteUrgent();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)

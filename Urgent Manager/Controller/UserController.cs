@@ -21,7 +21,7 @@ namespace Urgent_Manager.Controller
 
                     DbHelper.connection.Open();
 
-                    string QUERY = "INSERT INTO dbo_User VALUES(@userID,@Pass,@FullName,@role,@zone,@isUpdated,@EntryAgent,@dbOwner)";
+                    string QUERY = "INSERT INTO dbo_User VALUES(@userID,@Pass,@FullName,@role,@isUpdated,@EntryAgent,@dbOwner)";
 
                     SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                     cmd.Parameters.AddWithValue("@userID", user.UserName);
@@ -29,7 +29,6 @@ namespace Urgent_Manager.Controller
                     cmd.Parameters.AddWithValue("@Pass", encryptedPass);
                     cmd.Parameters.AddWithValue("@FullName", user.Fullname);
                     cmd.Parameters.AddWithValue("@role", user.Role);
-                    cmd.Parameters.AddWithValue("@zone", user.Zone);
                     cmd.Parameters.AddWithValue("@isUpdated", user.IsUpdated);
                     cmd.Parameters.AddWithValue("@EntryAgent", user.Entry);
                 cmd.Parameters.AddWithValue("@dbOwner", user.DbOwner);
@@ -85,12 +84,11 @@ namespace Urgent_Manager.Controller
 
                 DbHelper.connection.Open();
 
-                string QUERY = "UPDATE dbo_User SET Pass=@Pass,FullName=@FullName,zone=@zone,role=@role,isUpdated=@isUpdated,EntryAgent=@EntryAgent WHERE userID = @id AND DbRole <> 1";
+                string QUERY = "UPDATE dbo_User SET Pass=@Pass,FullName=@FullName,role=@role,isUpdated=@isUpdated,EntryAgent=@EntryAgent WHERE userID = @id AND DbRole <> 1";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 string encryptedPass = Eramake.eCryptography.Encrypt(user.Password);
                 cmd.Parameters.AddWithValue("@Pass", encryptedPass);
                 cmd.Parameters.AddWithValue("@FullName", user.Fullname);
-                cmd.Parameters.AddWithValue("@zone", user.Zone);
                 cmd.Parameters.AddWithValue("@role", user.Role);
                 cmd.Parameters.AddWithValue("@isUpdated", user.IsUpdated);
                 cmd.Parameters.AddWithValue("@EntryAgent", user.Entry);
@@ -168,10 +166,9 @@ namespace Urgent_Manager.Controller
                         user.Password = reader[1].ToString();
                         user.Fullname = reader[2].ToString();
                         user.Role = reader[3].ToString();
-                        user.Zone = reader[4].ToString();
-                        user.IsUpdated = Convert.ToInt32(reader[5]);
-                        user.Entry = reader[6].ToString();
-                        user.DbOwner = Convert.ToInt32(reader[7]);
+                        user.IsUpdated = Convert.ToInt32(reader[4]);
+                        user.Entry = reader[5].ToString();
+                        user.DbOwner = Convert.ToInt32(reader[6]);
                         list.Add(user);
                     }
 
@@ -191,10 +188,9 @@ namespace Urgent_Manager.Controller
                             user.Password = r[1].ToString();
                             user.Fullname = r[2].ToString();
                             user.Role = r[3].ToString();
-                            user.Zone = r[4].ToString();
-                            user.IsUpdated = Convert.ToInt32(r[5]);
-                            user.Entry = r[6].ToString();
-                            user.DbOwner = Convert.ToInt32(r[7]);
+                            user.IsUpdated = Convert.ToInt32(r[4]);
+                            user.Entry = r[5].ToString();
+                            user.DbOwner = Convert.ToInt32(r[6]);
                             list.Add(user);
                         }
                     }
@@ -239,9 +235,8 @@ namespace Urgent_Manager.Controller
                         user.Password = Eramake.eCryptography.Decrypt(reader[1].ToString());
                         user.Fullname = reader[2].ToString();
                         user.Role = reader[3].ToString();
-                        user.Zone = reader[4].ToString();
-                        user.IsUpdated = Convert.ToInt32(reader[5]);
-                        user.DbOwner = Convert.ToInt32(reader[7]);
+                        user.IsUpdated = Convert.ToInt32(reader[4]);
+                        user.DbOwner = Convert.ToInt32(reader[6]);
                     }
 
                     DbHelper.connection.Close();
@@ -282,9 +277,8 @@ namespace Urgent_Manager.Controller
                         user.Password = Eramake.eCryptography.Decrypt(reader[1].ToString());
                         user.Fullname = reader[2].ToString();
                         user.Role = reader[3].ToString();
-                        user.Zone = reader[4].ToString();
-                        user.IsUpdated = Convert.ToInt32(reader[5]);
-                        user.DbOwner = Convert.ToInt32(reader[7]);
+                        user.IsUpdated = Convert.ToInt32(reader[4]);
+                        user.DbOwner = Convert.ToInt32(reader[6]);
                     }
 
                     DbHelper.connection.Close();

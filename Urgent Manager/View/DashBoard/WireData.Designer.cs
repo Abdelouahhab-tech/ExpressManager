@@ -321,7 +321,6 @@
             this.gtxtSearch.Size = new System.Drawing.Size(163, 36);
             this.gtxtSearch.TabIndex = 0;
             this.gtxtSearch.TextOffset = new System.Drawing.Point(10, 0);
-            this.gtxtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtSearch_KeyDown);
             this.gtxtSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gtxtSearch_KeyUp);
             // 
             // panelCmbPlanBMachine

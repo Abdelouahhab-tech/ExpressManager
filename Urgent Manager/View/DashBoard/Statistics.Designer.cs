@@ -57,9 +57,9 @@
             this.lblLoading = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbShifts = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.gradientPanel1 = new Urgent_Manager.CustomViews.GradientPanel();
             this.lblTotalFinishedHead = new System.Windows.Forms.Label();
             this.lblTotalFinished = new System.Windows.Forms.Label();
+            this.gradientPanel1 = new Urgent_Manager.CustomViews.GradientPanel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -195,7 +195,7 @@
             this.cmbMachine.BackColor = System.Drawing.Color.Transparent;
             this.cmbMachine.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
             this.cmbMachine.BorderRadius = 15;
-            this.cmbMachine.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cmbMachine.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbMachine.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmbMachine.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMachine.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
@@ -203,8 +203,10 @@
             this.cmbMachine.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cmbMachine.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cmbMachine.ForeColor = System.Drawing.Color.White;
+            this.cmbMachine.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.cmbMachine.IntegralHeight = false;
             this.cmbMachine.ItemHeight = 30;
+            this.cmbMachine.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.cmbMachine.Location = new System.Drawing.Point(415, 328);
             this.cmbMachine.Name = "cmbMachine";
             this.cmbMachine.Size = new System.Drawing.Size(115, 36);
@@ -217,7 +219,7 @@
             this.cmbArea.BackColor = System.Drawing.Color.Transparent;
             this.cmbArea.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
             this.cmbArea.BorderRadius = 15;
-            this.cmbArea.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cmbArea.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbArea.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmbArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbArea.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
@@ -225,8 +227,10 @@
             this.cmbArea.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cmbArea.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cmbArea.ForeColor = System.Drawing.Color.White;
+            this.cmbArea.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.cmbArea.IntegralHeight = false;
             this.cmbArea.ItemHeight = 30;
+            this.cmbArea.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.cmbArea.Location = new System.Drawing.Point(594, 328);
             this.cmbArea.Name = "cmbArea";
             this.cmbArea.Size = new System.Drawing.Size(115, 36);
@@ -413,7 +417,7 @@
             this.cmbShifts.BackColor = System.Drawing.Color.Transparent;
             this.cmbShifts.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
             this.cmbShifts.BorderRadius = 15;
-            this.cmbShifts.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cmbShifts.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbShifts.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmbShifts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbShifts.Enabled = false;
@@ -435,15 +439,6 @@
             this.cmbShifts.TabIndex = 17;
             this.cmbShifts.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.cmbShifts.SelectedIndexChanged += new System.EventHandler(this.cmbShifts_SelectedIndexChanged);
-            // 
-            // gradientPanel1
-            // 
-            this.gradientPanel1.BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
-            this.gradientPanel1.Location = new System.Drawing.Point(0, 50);
-            this.gradientPanel1.Name = "gradientPanel1";
-            this.gradientPanel1.Size = new System.Drawing.Size(1200, 2);
-            this.gradientPanel1.TabIndex = 3;
-            this.gradientPanel1.TopColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
             // 
             // lblTotalFinishedHead
             // 
@@ -468,6 +463,15 @@
             this.lblTotalFinished.TabIndex = 20;
             this.lblTotalFinished.Text = "0";
             this.lblTotalFinished.Visible = false;
+            // 
+            // gradientPanel1
+            // 
+            this.gradientPanel1.BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
+            this.gradientPanel1.Location = new System.Drawing.Point(0, 50);
+            this.gradientPanel1.Name = "gradientPanel1";
+            this.gradientPanel1.Size = new System.Drawing.Size(1200, 2);
+            this.gradientPanel1.TabIndex = 3;
+            this.gradientPanel1.TopColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
             // 
             // Statistics
             // 

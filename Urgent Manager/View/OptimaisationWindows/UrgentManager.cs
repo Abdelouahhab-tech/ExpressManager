@@ -37,48 +37,57 @@ namespace Urgent_Manager.View.OptimaisationWindows
 
         private void UrgentManager_Load(object sender, EventArgs e)
         {
-            urgentController.FillCombobox("Machine", "Machine", cmbMac);
-            if (chAllUrgents.Checked)
+            try
             {
-                urgentController.UrgentManagerExpress(guna2DataGridView1, false);
-            }else if (chOptimizedRecords.Checked)
-            {
-                urgentController.UrgentManagerExpress(guna2DataGridView1, true);
-            }
-            guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-            foreach(DataGridViewColumn column in guna2DataGridView1.Columns)
-            {
-                if (column.HeaderText == "Unico" || column.HeaderText == "Lead Code" || column.HeaderText == "Urgent Date" || column.HeaderText == "Alimentation" || column.HeaderText == "Location")
-                    column.Width = 150;
-                else
-                    column.Width = 100;
-            }
-            guna2DataGridView1.ScrollBars = ScrollBars.Both;
-            gtxtSearch.Focus();
-            if(Login.role != "")
-            {
-                if (Login.role != "Administrator")
+                urgentController.FillCombobox("Machine", "Machine", cmbMac);
+                if (chAllUrgents.Checked)
                 {
-                    icExport.Location = new Point(534, 38);
-                    icPrint.Location = new Point(483, 38);
-                    btnRefresh.Location = new Point(432,36);
-                    lblLoading.Location = new Point(336, 46);
-                    btnUrgentDelete.Visible = false;
-                    btnOptimized.Visible = false;
-                    chAllUrgents.Visible = false;
-                    chOptimizedRecords.Visible = false;
+                    urgentController.UrgentManagerExpress(guna2DataGridView1, false);
                 }
-            }
+                else if (chOptimizedRecords.Checked)
+                {
+                    urgentController.UrgentManagerExpress(guna2DataGridView1, true);
+                }
+                guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+                foreach (DataGridViewColumn column in guna2DataGridView1.Columns)
+                {
+                    if (column.HeaderText == "Unico" || column.HeaderText == "Lead Code" || column.HeaderText == "Urgent Date" || column.HeaderText == "Alimentation" || column.HeaderText == "Location")
+                        column.Width = 150;
+                    else
+                        column.Width = 100;
+                }
+                guna2DataGridView1.ScrollBars = ScrollBars.Both;
+                gtxtSearch.Focus();
+                if (Login.role != "")
+                {
+                    if (Login.role != "Administrator")
+                    {
+                        icExport.Location = new Point(534, 38);
+                        icPrint.Location = new Point(483, 38);
+                        btnRefresh.Location = new Point(432, 36);
+                        lblLoading.Location = new Point(336, 46);
+                        btnUrgentDelete.Visible = false;
+                        btnOptimized.Visible = false;
+                        chAllUrgents.Visible = false;
+                        chOptimizedRecords.Visible = false;
+                    }
+                }
 
-            if(guna2DataGridView1.Rows.Count > 0)
-            {
-                lblMessage.Visible = false;
-                guna2DataGridView1.Visible = true;
+                if (guna2DataGridView1.Rows.Count > 0)
+                {
+                    lblMessage.Visible = false;
+                    guna2DataGridView1.Visible = true;
+                }
+                else
+                {
+                    lblMessage.Visible = true;
+                    guna2DataGridView1.Visible = false;
+                }
+
             }
-            else
+            catch (Exception)
             {
-                lblMessage.Visible = true;
-                guna2DataGridView1.Visible = false;
+
             }
         }
 
@@ -233,34 +242,40 @@ namespace Urgent_Manager.View.OptimaisationWindows
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            isLeadPrep = false;
-            cmbMac.SelectedIndex = -1;
-            if (chAllUrgents.Checked)
+            try
             {
-                urgentController.UrgentManagerExpress(guna2DataGridView1, false);
-            }
-            else if (chOptimizedRecords.Checked)
-            {
-                urgentController.UrgentManagerExpress(guna2DataGridView1, true);
-            }
-            guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-            foreach (DataGridViewColumn column in guna2DataGridView1.Columns)
-            {
-                if (column.HeaderText == "Unico" || column.HeaderText == "Lead Code" || column.HeaderText == "Urgent Date" || column.HeaderText == "Alimentation" || column.HeaderText == "Location")
-                    column.Width = 150;
+                isLeadPrep = false;
+                cmbMac.SelectedIndex = -1;
+                if (chAllUrgents.Checked)
+                {
+                    urgentController.UrgentManagerExpress(guna2DataGridView1, false);
+                }
+                else if (chOptimizedRecords.Checked)
+                {
+                    urgentController.UrgentManagerExpress(guna2DataGridView1, true);
+                }
+                guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+                foreach (DataGridViewColumn column in guna2DataGridView1.Columns)
+                {
+                    if (column.HeaderText == "Unico" || column.HeaderText == "Lead Code" || column.HeaderText == "Urgent Date" || column.HeaderText == "Alimentation" || column.HeaderText == "Location")
+                        column.Width = 150;
+                    else
+                        column.Width = 100;
+                }
+
+                if (guna2DataGridView1.Rows.Count > 0)
+                {
+                    lblMessage.Visible = false;
+                    guna2DataGridView1.Visible = true;
+                }
                 else
-                    column.Width = 100;
+                {
+                    lblMessage.Visible = true;
+                    guna2DataGridView1.Visible = false;
+                }
             }
-            
-            if(guna2DataGridView1.Rows.Count > 0)
+            catch (Exception)
             {
-                lblMessage.Visible = false;
-                guna2DataGridView1.Visible = true;
-            }
-            else
-            {
-                lblMessage.Visible = true;
-                guna2DataGridView1.Visible = false;
             }
         }
 
@@ -453,63 +468,77 @@ namespace Urgent_Manager.View.OptimaisationWindows
 
         private void chAllUrgents_CheckedChanged(object sender, EventArgs e)
         {
-            if (chAllUrgents.Checked)
+            try
             {
-                chOptimizedRecords.Checked = false;
-                urgentController.UrgentManagerExpress(guna2DataGridView1, false);
-                guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-                foreach (DataGridViewColumn column in guna2DataGridView1.Columns)
+                if (chAllUrgents.Checked)
                 {
-                    if (column.HeaderText == "Unico" || column.HeaderText == "Lead Code" || column.HeaderText == "Urgent Date" || column.HeaderText == "Alimentation" || column.HeaderText == "Location")
-                        column.Width = 150;
-                    else
-                        column.Width = 100;
+                    chOptimizedRecords.Checked = false;
+                    urgentController.UrgentManagerExpress(guna2DataGridView1, false);
+                    guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+                    foreach (DataGridViewColumn column in guna2DataGridView1.Columns)
+                    {
+                        if (column.HeaderText == "Unico" || column.HeaderText == "Lead Code" || column.HeaderText == "Urgent Date" || column.HeaderText == "Alimentation" || column.HeaderText == "Location")
+                            column.Width = 150;
+                        else
+                            column.Width = 100;
+                    }
+                    guna2DataGridView1.ScrollBars = ScrollBars.Both;
                 }
-                guna2DataGridView1.ScrollBars = ScrollBars.Both;
-            }
-            else
-                chOptimizedRecords.Checked = true;
+                else
+                    chOptimizedRecords.Checked = true;
 
-            if (guna2DataGridView1.Rows.Count > 0)
-            {
-                lblMessage.Visible = false;
-                guna2DataGridView1.Visible = true;
+                if (guna2DataGridView1.Rows.Count > 0)
+                {
+                    lblMessage.Visible = false;
+                    guna2DataGridView1.Visible = true;
+                }
+                else
+                {
+                    lblMessage.Visible = true;
+                    guna2DataGridView1.Visible = false;
+                }
             }
-            else
+            catch (Exception)
             {
-                lblMessage.Visible = true;
-                guna2DataGridView1.Visible = false;
+                
             }
         }
 
         private void chOptimizedRecords_CheckedChanged(object sender, EventArgs e)
         {
-            if (chOptimizedRecords.Checked)
+            try
             {
-                chAllUrgents.Checked = false;
-                urgentController.UrgentManagerExpress(guna2DataGridView1, true);
-                guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-                foreach (DataGridViewColumn column in guna2DataGridView1.Columns)
+                if (chOptimizedRecords.Checked)
                 {
-                    if (column.HeaderText == "Unico" || column.HeaderText == "Lead Code" || column.HeaderText == "Urgent Date" || column.HeaderText == "Alimentation" || column.HeaderText == "Location")
-                        column.Width = 150;
-                    else
-                        column.Width = 100;
+                    chAllUrgents.Checked = false;
+                    urgentController.UrgentManagerExpress(guna2DataGridView1, true);
+                    guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+                    foreach (DataGridViewColumn column in guna2DataGridView1.Columns)
+                    {
+                        if (column.HeaderText == "Unico" || column.HeaderText == "Lead Code" || column.HeaderText == "Urgent Date" || column.HeaderText == "Alimentation" || column.HeaderText == "Location")
+                            column.Width = 150;
+                        else
+                            column.Width = 100;
+                    }
+                    guna2DataGridView1.ScrollBars = ScrollBars.Both;
                 }
-                guna2DataGridView1.ScrollBars = ScrollBars.Both;
-            }
-            else
-                chAllUrgents.Checked = true;
+                else
+                    chAllUrgents.Checked = true;
 
-            if (guna2DataGridView1.Rows.Count > 0)
-            {
-                lblMessage.Visible = false;
-                guna2DataGridView1.Visible = true;
+                if (guna2DataGridView1.Rows.Count > 0)
+                {
+                    lblMessage.Visible = false;
+                    guna2DataGridView1.Visible = true;
+                }
+                else
+                {
+                    lblMessage.Visible = true;
+                    guna2DataGridView1.Visible = false;
+                }
             }
-            else
+            catch (Exception)
             {
-                lblMessage.Visible = true;
-                guna2DataGridView1.Visible = false;
+
             }
         }
     }

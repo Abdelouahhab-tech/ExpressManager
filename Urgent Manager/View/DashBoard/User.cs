@@ -47,7 +47,6 @@ namespace Urgent_Manager.View.DashBoard
                 user.Password = gtxtPass.Text;
                 user.Fullname = gtxtFullName.Text != "" ? gtxtFullName.Text : "";
                 user.Role = cmbRole.Text;
-                user.Zone = cmbArea.Text != "" && cmbArea.Text != "None" ? cmbArea.Text : "";
                 user.Entry = Login.username != "" ? Login.username : "";
                 user.IsUpdated = chUpdate.Checked ? 1 : 0;
                 user.DbOwner = 0;
@@ -63,6 +62,7 @@ namespace Urgent_Manager.View.DashBoard
                     gtxtUsername.FocusedState.BorderColor = Color.White;
                 }
                 LoadData();
+                init();
                 
             }
             else
@@ -129,7 +129,6 @@ namespace Urgent_Manager.View.DashBoard
                         user.Password = gtxtPass.Text;
                         user.Role = cmbRole.Text;
                         user.Fullname = gtxtFullName.Text != "" ? gtxtFullName.Text : "";
-                        user.Zone = cmbArea.Text != "" && cmbArea.Text != "None" ? cmbArea.Text : "";
                         user.Entry = Login.username != "" ? Login.username : "";
                         user.IsUpdated = chUpdate.Checked ? 1 : 0;
 
@@ -223,7 +222,6 @@ namespace Urgent_Manager.View.DashBoard
             gtxtPass.Text = "";
             gtxtFullName.Text = "";
             cmbRole.SelectedIndex = -1;
-            cmbArea.SelectedIndex = -1;
             chUpdate.Checked = false;
             gtxtUsername.Focus();
         }
@@ -252,7 +250,7 @@ namespace Urgent_Manager.View.DashBoard
             foreach (var user in list)
             {
                 string status = user.IsUpdated == 0 ? "No" : "Yes";
-                guna2DataGridView1.Rows.Add(user.UserName, user.Password, user.Fullname, user.Role, user.Zone, status, user.Entry);
+                guna2DataGridView1.Rows.Add(user.UserName, user.Password, user.Fullname, user.Role, status, user.Entry);
             }   
         }
 
@@ -288,10 +286,9 @@ namespace Urgent_Manager.View.DashBoard
                 gtxtPass.Text = user.Password;
                 gtxtFullName.Text = user.Fullname != "" ? user.Fullname : "";
                 cmbRole.Text = user.Role;
-                cmbArea.Text = user.Zone != "" ? user.Zone : "";
                 chUpdate.Checked = user.IsUpdated == 0 ? false : true;
                 guna2DataGridView1.Rows.Clear();
-                guna2DataGridView1.Rows.Add(user.UserName, Eramake.eCryptography.Encrypt(user.Password),user.Fullname,user.Role,user.Zone,user.IsUpdated == 0 ? "No" : "Yes",user.Entry);
+                guna2DataGridView1.Rows.Add(user.UserName, Eramake.eCryptography.Encrypt(user.Password),user.Fullname,user.Role,user.IsUpdated == 0 ? "No" : "Yes",user.Entry);
             }
             else
             {

@@ -135,8 +135,10 @@
             this.cmbZone.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cmbZone.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cmbZone.ForeColor = System.Drawing.Color.White;
+            this.cmbZone.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.cmbZone.IntegralHeight = false;
             this.cmbZone.ItemHeight = 35;
+            this.cmbZone.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.cmbZone.Location = new System.Drawing.Point(292, 167);
             this.cmbZone.Name = "cmbZone";
             this.cmbZone.Size = new System.Drawing.Size(401, 41);

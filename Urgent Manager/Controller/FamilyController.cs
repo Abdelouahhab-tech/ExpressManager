@@ -51,7 +51,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT F.FAM,U.FullName from Family F, dbo_User U";
+                string QUERY = "SELECT F.FAM,U.FullName from Family F, dbo_User U where F.UserID = U.userID";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 SqlDataReader reader = cmd.ExecuteReader();
 

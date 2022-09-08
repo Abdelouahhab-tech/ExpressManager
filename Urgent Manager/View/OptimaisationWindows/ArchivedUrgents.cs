@@ -44,7 +44,7 @@ namespace Urgent_Manager.View.OptimaisationWindows
                     foreach (string l in str)
                     {
                         if (l.Trim() != "")
-                            i += urgentController.UpdateUrgent("Finished",Login.username, DateTime.Now.ToShortDateString(), l.Trim(),shift) == true ? 1 : 0;
+                            i += urgentController.UpdateUrgent("Finished",Login.username, DateTime.Now.ToShortDateString(), l.Trim(),shift,DateTime.Now.ToShortTimeString()) == true ? 1 : 0;
                     }
 
                     if (i > 0)

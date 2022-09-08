@@ -22,8 +22,15 @@ namespace Urgent_Manager.View.DashBoard
 
         private void Area_Load(object sender, EventArgs e)
         {
-            gtxtAreaName.Focus();
-            LoadData();
+            try
+            {
+                gtxtAreaName.Focus();
+                LoadData();
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         // Load Records From Database
@@ -39,40 +46,47 @@ namespace Urgent_Manager.View.DashBoard
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(gtxtAreaName.Text.Trim() != "" && cmbParentArea.Text.Trim() != "")
+            try
             {
-                if (!areaController.IsExist(gtxtAreaName.Text, "Area", "ZoneName"))
+                if (gtxtAreaName.Text.Trim() != "" && cmbParentArea.Text.Trim() != "")
                 {
-                    AreaModel area = new AreaModel();
-                    area.AreaName = gtxtAreaName.Text;
-                    area.ParentArea = cmbParentArea.Text;
-                    area.UserID = Login.username;
-                    areaController.InsertArea(area);
-                    init();
+                    if (!areaController.IsExist(gtxtAreaName.Text, "Area", "ZoneName"))
+                    {
+                        AreaModel area = new AreaModel();
+                        area.AreaName = gtxtAreaName.Text;
+                        area.ParentArea = cmbParentArea.Text;
+                        area.UserID = Login.username;
+                        areaController.InsertArea(area);
+                        init();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This Area Is Already Exist !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        gtxtAreaName.Focus();
+                        gtxtAreaName.SelectAll();
+                        lblAreaName.ForeColor = Color.Red;
+                        gtxtAreaName.FocusedState.BorderColor = Color.White;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("This Area Is Already Exist !", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    gtxtAreaName.Focus();
-                    gtxtAreaName.SelectAll();
-                    lblAreaName.ForeColor = Color.Red;
-                    gtxtAreaName.FocusedState.BorderColor = Color.White;
+                    if (gtxtAreaName.Text.Trim() == "")
+                    {
+                        lblAreaName.ForeColor = Color.Red;
+                        gtxtAreaName.Focus();
+                        gtxtAreaName.FocusedState.BorderColor = Color.White;
+                    }
+                    else if (cmbParentArea.Text.Trim() == "")
+                    {
+                        lblParentArea.ForeColor = Color.Red;
+                        cmbParentArea.Focus();
+                        cmbParentArea.FocusedState.BorderColor = Color.White;
+                    }
                 }
             }
-            else
+            catch (Exception)
             {
-                if(gtxtAreaName.Text.Trim() == "")
-                {
-                    lblAreaName.ForeColor = Color.Red;
-                    gtxtAreaName.Focus();
-                    gtxtAreaName.FocusedState.BorderColor = Color.White;
-                }
-                else if(cmbParentArea.Text.Trim() == "")
-                {
-                    lblParentArea.ForeColor = Color.Red;
-                    cmbParentArea.Focus();
-                    cmbParentArea.FocusedState.BorderColor = Color.White;
-                }
+
             }
         }
         private void init()
@@ -91,70 +105,84 @@ namespace Urgent_Manager.View.DashBoard
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if(gtxtAreaName.Text.Trim() != "")
+            try
             {
-                if (areaController.IsExist(gtxtAreaName.Text, "Area", "ZoneName"))
+                if (gtxtAreaName.Text.Trim() != "")
                 {
-                    if (cmbParentArea.Text.Trim() != "")
+                    if (areaController.IsExist(gtxtAreaName.Text, "Area", "ZoneName"))
                     {
-                        AreaModel area = new AreaModel();
-                        area.AreaName = gtxtAreaName.Text;
-                        area.ParentArea = cmbParentArea.Text;
-                        area.UserID = Login.username;
-                        areaController.UpdateArea(area, gtxtAreaName.Text);
-                        init();
+                        if (cmbParentArea.Text.Trim() != "")
+                        {
+                            AreaModel area = new AreaModel();
+                            area.AreaName = gtxtAreaName.Text;
+                            area.ParentArea = cmbParentArea.Text;
+                            area.UserID = Login.username;
+                            areaController.UpdateArea(area, gtxtAreaName.Text);
+                            init();
+                        }
+                        else
+                        {
+                            lblParentArea.ForeColor = Color.Red;
+                            cmbParentArea.Focus();
+                            cmbParentArea.FocusedState.BorderColor = Color.White;
+                        }
                     }
                     else
                     {
-                        lblParentArea.ForeColor = Color.Red;
-                        cmbParentArea.Focus();
-                        cmbParentArea.FocusedState.BorderColor = Color.White;
+                        MessageBox.Show("This Area Doesn't Exist !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        lblAreaName.ForeColor = Color.Red;
+                        gtxtAreaName.Focus();
+                        gtxtAreaName.SelectAll();
+                        gtxtAreaName.FocusedState.BorderColor = Color.White;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("This Area Doesn't Exist !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     lblAreaName.ForeColor = Color.Red;
                     gtxtAreaName.Focus();
-                    gtxtAreaName.SelectAll();
                     gtxtAreaName.FocusedState.BorderColor = Color.White;
                 }
             }
-            else
+            catch (Exception)
             {
-                lblAreaName.ForeColor = Color.Red;
-                gtxtAreaName.Focus();
-                gtxtAreaName.FocusedState.BorderColor = Color.White;
+
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if(gtxtAreaName.Text.Trim() != "")
+            try
             {
-                if (areaController.IsExist(gtxtAreaName.Text, "Area", "ZoneName"))
+                if (gtxtAreaName.Text.Trim() != "")
                 {
-                    DialogResult result = MessageBox.Show("Are You Sure You Want To Delete This Area ? You Will Lost All The Data That Is Related With This Area", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2);
-                    if(result == DialogResult.Yes)
+                    if (areaController.IsExist(gtxtAreaName.Text, "Area", "ZoneName"))
                     {
-                        areaController.Delete(gtxtAreaName.Text, "Area", "ZoneName");
-                        init();
+                        DialogResult result = MessageBox.Show("Are You Sure You Want To Delete This Area ? You Will Lost All The Data That Is Related With This Area", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                        if (result == DialogResult.Yes)
+                        {
+                            areaController.Delete(gtxtAreaName.Text, "Area", "ZoneName");
+                            init();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("This Area Doesn't Exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        lblAreaName.ForeColor = Color.Red;
+                        gtxtAreaName.Focus();
+                        gtxtAreaName.SelectAll();
+                        gtxtAreaName.FocusedState.BorderColor = Color.White;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("This Area Doesn't Exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     lblAreaName.ForeColor = Color.Red;
                     gtxtAreaName.Focus();
-                    gtxtAreaName.SelectAll();
                     gtxtAreaName.FocusedState.BorderColor = Color.White;
                 }
             }
-            else
+            catch (Exception)
             {
-                lblAreaName.ForeColor = Color.Red;
-                gtxtAreaName.Focus();
-                gtxtAreaName.FocusedState.BorderColor = Color.White;
+
             }
         }
 
@@ -177,12 +205,22 @@ namespace Urgent_Manager.View.DashBoard
 
         private void guna2DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0)
+            try
             {
-                string areaName = guna2DataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                if (e.RowIndex >= 0)
+                {
+                    string areaName = guna2DataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
 
-                if (areaName != "")
-                    getSingleRecord(areaName);
+                    if (areaName != "")
+                    {
+                        getSingleRecord(areaName);
+                        gtxtAreaName.Text = areaName;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
             }
         }
 
@@ -206,10 +244,17 @@ namespace Urgent_Manager.View.DashBoard
 
         private void gtxtAreaName_KeyUp_2(object sender, KeyEventArgs e)
         {
-            if (gtxtAreaName.Text.Trim() != "")
-                getSingleRecord(gtxtAreaName.Text);
-            else
-                LoadData();
+            try
+            {
+                if (gtxtAreaName.Text.Trim() != "")
+                    getSingleRecord(gtxtAreaName.Text);
+                else
+                    LoadData();
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void gtxtAreaName_Leave_1(object sender, EventArgs e)

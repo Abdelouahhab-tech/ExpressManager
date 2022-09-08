@@ -24,95 +24,124 @@ namespace Urgent_Manager.View.OptimaisationWindows
 
         private void ArchiveManager_Load(object sender, EventArgs e)
         {
-            gdateTimeUrgent.Value = DateTime.Now;
-            isPerDate = false;
-            urgentController.FillCombobox("Machine", "Machine", cmbPlanBMc);
-            urgentController.UrgentManagerFinished(guna2DataGridView1,gdateTimeUrgent.Value.ToShortDateString());
-            urgentController.DeleteUrgent();
-            if(guna2DataGridView1.Rows.Count <= 0)
+            try
             {
-                lblMessage.Visible = true;
-                guna2DataGridView1.Visible = false;
+                gdateTimeUrgent.Value = DateTime.Now;
+                gtxtUnico.Focus();
+                isPerDate = false;
+                urgentController.FillCombobox("Machine", "Machine", cmbPlanBMc);
+                urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString());
+                urgentController.DeleteUrgent();
+                if (guna2DataGridView1.Rows.Count <= 0)
+                {
+                    lblMessage.Visible = true;
+                    guna2DataGridView1.Visible = false;
+                }
+            }
+            catch (Exception)
+            {
+
             }
         }
 
         private void gdateTimeUrgent_ValueChanged(object sender, EventArgs e)
         {
-            if (gSwitchFilter.Checked)
+            try
             {
-                urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString(),cmbPlanBMc.Text);
-                isPerDate = true;
+                if (gSwitchFilter.Checked)
+                {
+                    urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString(), cmbPlanBMc.Text);
+                    isPerDate = true;
+                }
+                else
+                {
+                    urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString());
+                    isPerDate = true;
+                }
+                if (guna2DataGridView1.Rows.Count > 0)
+                {
+                    lblMessage.Visible = false;
+                    guna2DataGridView1.Visible = true;
+                }
+                else
+                {
+                    lblMessage.Visible = true;
+                    guna2DataGridView1.Visible = false;
+                }
             }
-            else
+            catch (Exception)
             {
-                urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString());
-                isPerDate = true;
-            }
-            if(guna2DataGridView1.Rows.Count > 0)
-            {
-                lblMessage.Visible = false;
-                guna2DataGridView1.Visible = true;
-            }
-            else
-            {
-                lblMessage.Visible = true;
-                guna2DataGridView1.Visible = false;
+
             }
         }
 
         private void cmbPlanBMc_SelectedIndexChanged(object sender, EventArgs e)
         {
-            panelCmbPlanBMachine.BackColor = Color.FromArgb(255, 128, 255, 255);
-            if (cmbPlanBMc.Text.Trim() != "")
+            try
             {
-                if (gSwitchFilter.Checked)
-                    urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString(), cmbPlanBMc.Text);
+                panelCmbPlanBMachine.BackColor = Color.FromArgb(255, 128, 255, 255);
+                if (cmbPlanBMc.Text.Trim() != "")
+                {
+                    if (gSwitchFilter.Checked)
+                        urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString(), cmbPlanBMc.Text);
+                    else
+                        urgentController.UrgentManagerFinishedPerMachine(guna2DataGridView1, cmbPlanBMc.Text);
+                }
+                if (guna2DataGridView1.Rows.Count > 0)
+                {
+                    lblMessage.Visible = false;
+                    guna2DataGridView1.Visible = true;
+                }
                 else
-                    urgentController.UrgentManagerFinishedPerMachine(guna2DataGridView1, cmbPlanBMc.Text);
+                {
+                    lblMessage.Visible = true;
+                    guna2DataGridView1.Visible = false;
+                }
             }
-            if(guna2DataGridView1.Rows.Count > 0)
+            catch (Exception)
             {
-                lblMessage.Visible = false;
-                guna2DataGridView1.Visible = true;
-            }
-            else
-            {
-                lblMessage.Visible = true;
-                guna2DataGridView1.Visible = false;
+
             }
         }
 
         private void gSwitchFilter_CheckedChanged(object sender, EventArgs e)
         {
-            if (gSwitchFilter.Checked)
+            try
             {
-                if(cmbPlanBMc.Text.Trim() != "")
+                if (gSwitchFilter.Checked)
                 {
-                    urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString(), cmbPlanBMc.Text);
+                    if (cmbPlanBMc.Text.Trim() != "")
+                    {
+                        urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString(), cmbPlanBMc.Text);
+                    }
+                    else
+                    {
+                        cmbPlanBMc.Focus();
+                        panelCmbPlanBMachine.BackColor = Color.Red;
+                    }
+                    chPrintAll.Checked = false;
+
                 }
                 else
                 {
-                    cmbPlanBMc.Focus();
-                    panelCmbPlanBMachine.BackColor = Color.Red;
+                    urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString());
+                    cmbPlanBMc.SelectedIndex = -1;
                 }
-                chPrintAll.Checked = false;
 
+                if (guna2DataGridView1.Rows.Count > 0)
+                {
+                    lblMessage.Visible = false;
+                    guna2DataGridView1.Visible = true;
+                }
+                else
+                {
+                    lblMessage.Visible = true;
+                    guna2DataGridView1.Visible = false;
+                }
             }
-            else
+            catch (Exception)
             {
-                urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString());
-                cmbPlanBMc.SelectedIndex = -1;
-            }
 
-            if(guna2DataGridView1.Rows.Count > 0)
-            {
-                lblMessage.Visible = false;
-                guna2DataGridView1.Visible = true;
-            }
-            else
-            {
-                lblMessage.Visible = true;
-                guna2DataGridView1.Visible = false;
             }
         }
 
@@ -350,6 +379,28 @@ namespace Urgent_Manager.View.OptimaisationWindows
             try
             {
                 urgentController.UrgentManagerFinished(guna2DataGridView1);
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                gdateTimeUrgent.Value = DateTime.Now;
+                gtxtUnico.Text = "";
+                gtxtUnico.Focus();
+                isPerDate = false;
+                urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString());
+                urgentController.DeleteUrgent();
+                if (guna2DataGridView1.Rows.Count <= 0)
+                {
+                    lblMessage.Visible = true;
+                    guna2DataGridView1.Visible = false;
+                }
             }
             catch (Exception)
             {
