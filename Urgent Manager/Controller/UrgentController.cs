@@ -86,7 +86,7 @@ namespace Urgent_Manager.Controller
 
         // Update Urgent From Operator
 
-        public bool UpdateUrgent(string status,string finishedDate,string unico,string shift,string HFinished)
+        public bool UpdateUrgent(string status,string finishedDate,string unico,string shift,string HFinished,int Qty)
         {
             try
             {
@@ -101,8 +101,19 @@ namespace Urgent_Manager.Controller
                 cmd.Parameters.AddWithValue("@unico", unico);
 
                 int result = cmd.ExecuteNonQuery();
+                if(result >= 1)
+                {
+                    DbHelper.connection.Close();
+                    DbHelper.connection.Open();
+                    SqlCommand command = new SqlCommand("UPDATE Urgent SET Qty += @qty WHERE UrgentUnico=@unico", DbHelper.connection);
+                    command.Parameters.AddWithValue("@qty", Qty);
+                    command.Parameters.AddWithValue("@unico", unico);
+                    command.ExecuteNonQuery();
+                    DbHelper.connection.Close();
+                    return true;
+                }
                 DbHelper.connection.Close();
-                return result > 0 ? true : false;
+                return false;
             }
             catch (Exception ex)
             {
@@ -140,7 +151,7 @@ namespace Urgent_Manager.Controller
             {
 
                 DbHelper.connection.Open();
-                string QUERY = "DELETE FROM Urgent WHERE DATEDIFF(DD, CONVERT(date,DateUrgent,103) , GETDATE()) >= 6 AND UrgentStatus = 'Finished'";
+                string QUERY = "DELETE FROM Urgent WHERE DATEDIFF(DD, CONVERT(date,FinishedDate,103) , GETDATE()) >= 6 AND UrgentStatus = 'Finished'";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
 
                 int result = cmd.ExecuteNonQuery();
@@ -171,7 +182,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT W.Family,W.Unico,W.LeadCode,M.Machine,W.Adress as 'Location',W.Cable,W.WireLength as 'Length',W.MarL,W.SealL,W.TerL,W.MarR,W.SealR,W.TerR,W.LeadPrep as 'Lead Prep',U.UrgentStatus as 'Status',U.DateUrgent as 'Urgent Date' FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND U.UrgentStatus = 'Express' ORDER BY U.DateUrgent DESC,U.Shift,W.Groupe";
+                string QUERY = "SELECT W.Family,W.Unico,W.LeadCode,M.Machine,W.Adress as 'Location',W.Cable,W.WireLength as 'Length',W.MarL,W.SealL,W.TerL,W.MarR,W.SealR,W.TerR,W.LeadPrep as 'Lead Prep',U.UrgentStatus as 'Status',U.DateUrgent as 'Urgent Date' FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND U.UrgentStatus = 'Express' ORDER BY U.DateUrgent,U.Shift,DATEPART(HOUR,U.HUrgent),W.Groupe";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 DataTable dt = new DataTable();
                 SqlDataAdapter data = new SqlDataAdapter(cmd);
@@ -189,46 +200,25 @@ namespace Urgent_Manager.Controller
 
         // Fetch All The Data From Urgent Table Depend On The Machine
 
-        public List<UrgentModel> fetchAllExpressRecords(string machine)
+        public void fetchAllExpressRecords(string machine,Guna2DataGridView data)
         {
-            List<UrgentModel> list = new List<UrgentModel>();
             try
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT W.Family,W.Unico,W.LeadCode as 'Lead Code',C.Color,W.WireLength as 'Length',W.Groupe,W.LeadPrep as 'Lead Prep',U.UrgentStatus as 'Status' FROM Wire W,Cable C,Urgent U WHERE W.Cable=C.Cable AND U.UrgentUnico = W.Unico AND U.UrgentStatus = 'Express' AND W.MC=@machine ORDER BY U.DateUrgent DESC,U.Shift,W.Groupe";
+                string QUERY = "SELECT W.Family,W.Unico,W.LeadCode as 'Lead Code',C.Cable,C.Color,W.WireLength as 'Length',W.MarL,W.MarR,W.Groupe,W.LeadPrep as 'Lead Prep',U.UrgentStatus as 'Status' FROM Wire W,Cable C,Urgent U WHERE W.Cable=C.Cable AND U.UrgentUnico = W.Unico AND U.UrgentStatus = 'Express' AND W.MC=@machine ORDER BY U.DateUrgent,U.Shift,DATEPART(HOUR,U.HUrgent),W.Groupe";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@machine", machine);
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        UrgentModel urgent = new UrgentModel();
-                        urgent.Family = reader[0].ToString();
-                        urgent.UrgentUnico = reader[1].ToString();
-                        urgent.LeadCode = reader[2].ToString();
-                        urgent.Color = reader[3].ToString();
-                        urgent.Length = reader[4].ToString();
-                        urgent.Group = reader[5].ToString();
-                        urgent.LeadPrep = reader[6].ToString();
-
-                        list.Add(urgent);
-                    }
-
-                    DbHelper.connection.Close();
-                    return list;
-                }
-
-
+                DataTable dt = new DataTable();
+                SqlDataAdapter reader = new SqlDataAdapter(cmd);
+                reader.Fill(dt);
+                data.DataSource = dt.DefaultView;
                 DbHelper.connection.Close();
-                return list;
+
             }
             catch (Exception ex)
             {
                 DbHelper.connection.Close();
-                return list;
             }
         }
 
@@ -241,13 +231,13 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT W.Family,W.Unico,W.LeadCode as 'Lead Code',C.Color,W.WireLength as 'Length',W.Groupe,W.LeadPrep as 'Lead Prep',U.UrgentStatus as 'Status' FROM Wire W,Cable C,Urgent U WHERE W.Cable=C.Cable AND U.UrgentUnico = W.Unico AND U.UrgentStatus = 'Express' AND W.LeadPrep=@leadprep ORDER BY U.DateUrgent DESC,U.Shift,W.Groupe";
+                string QUERY = "SELECT W.Unico,W.LeadCode as 'Lead Code',C.Color,W.WireLength as 'Length',W.Groupe,W.MC,W.LeadPrep as 'Lead Prep',U.UrgentStatus as 'Status',U.DateUrgent as 'Urgent Date',U.Shift as 'Urgent Shift' FROM Wire W,Cable C,Urgent U WHERE W.Cable=C.Cable AND U.UrgentUnico = W.Unico AND U.UrgentStatus = 'Express' AND W.LeadPrep=@leadprep ORDER BY U.DateUrgent,U.Shift,DATEPART(HOUR,U.HUrgent),W.Groupe";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@leadprep", leadprep);
                 DataTable dt = new DataTable();
                 SqlDataAdapter data = new SqlDataAdapter(cmd);
                 data.Fill(dt);
-                g.DataSource = dt.DefaultView;
+                g.DataSource = dt;
 
                 DbHelper.connection.Close();
             }
@@ -267,7 +257,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT W.Family,W.Unico,W.LeadCode as 'Lead Code',C.Color,W.WireLength as 'Length',W.Groupe,W.LeadPrep as 'Lead Prep',U.UrgentStatus as 'Status' FROM Wire W,Cable C,Urgent U WHERE W.Cable=C.Cable AND U.UrgentUnico = W.Unico AND U.UrgentStatus = 'Express' ORDER BY U.DateUrgent DESC,U.Shift,W.Groupe";
+                string QUERY = "SELECT W.Family,W.Unico,W.LeadCode as 'Lead Code',C.Color,W.WireLength as 'Length',W.Groupe,W.LeadPrep as 'Lead Prep',U.UrgentStatus as 'Status' FROM Wire W,Cable C,Urgent U WHERE W.Cable=C.Cable AND U.UrgentUnico = W.Unico AND U.UrgentStatus = 'Express' ORDER BY U.DateUrgent,U.Shift,DATEPART(HOUR,U.HUrgent),W.Groupe";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -313,7 +303,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT U.UrgentUnico as 'Unico',W.LeadCode as 'Lead Code',M.Machine,W.Adress as 'Location',W.Cable,W.MarL,W.MarR,W.SealL,W.SealR,W.TerL,W.TerR,W.ToolL,W.ToolR,U.UrgentStatus as 'Status' FROM Wire W,Urgent U,Machine M WHERE U.UrgentUnico = W.Unico AND M.Machine=W.MC AND U.UrgentStatus ='Express' AND W.MC= @machine AND U.UrgentUnico=@unico";
+                string QUERY = "SELECT U.UrgentUnico as 'Unico',W.LeadCode as 'Lead Code',M.Machine,W.Adress as 'Location',W.Cable,W.MarL,W.MarR,W.SealL,W.SealR,W.TerL,W.TerR,W.ToolL,W.ToolR,U.UrgentStatus as 'Status',U.DateUrgent,U.HUrgent FROM Wire W,Urgent U,Machine M WHERE U.UrgentUnico = W.Unico AND M.Machine=W.MC AND U.UrgentStatus ='Express' AND W.MC= @machine AND U.UrgentUnico=@unico";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@machine", machine);
                 cmd.Parameters.AddWithValue("@unico", unico);
@@ -336,6 +326,8 @@ namespace Urgent_Manager.Controller
                         urgent.TerR = reader[10].ToString();
                         urgent.ToolL = reader[11].ToString();
                         urgent.ToolR = reader[12].ToString();
+                        urgent.DateUrgent = reader[14].ToString();
+                        urgent.Time = reader[15].ToString();
                     }
 
                     DbHelper.connection.Close();
@@ -540,7 +532,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = isOptimised ? "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,W.Adress as 'Location',W.Cable,W.WireLength as 'Length',W.MarL,W.SealL,W.TerL,W.MarR,W.SealR,W.TerR,W.LeadPrep as 'Lead Prep',U.UrgentStatus as 'Status',U.Shift,U.DateUrgent as 'Urgent Date',U.HUrgent as 'Urgent Time',U.Alimentation FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND U.UrgentStatus = 'Express' AND isOptimized=0 ORDER BY M.Machine" : "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,W.Adress as 'Location',W.Cable,W.WireLength as 'Length',W.MarL,W.SealL,W.TerL,W.MarR,W.SealR,W.TerR,W.LeadPrep as 'Lead Prep',U.UrgentStatus as 'Status',U.Shift,U.DateUrgent as 'Urgent Date',U.HUrgent as 'Urgent Time',U.Alimentation FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND U.UrgentStatus = 'Express' ORDER BY M.Machine";
+                string QUERY = isOptimised ? "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,W.Adress as 'Location',W.Cable,W.WireLength as 'Length',W.MarL,W.SealL,W.TerL,W.MarR,W.SealR,W.TerR,W.LeadPrep as 'Lead Prep',U.UrgentStatus as 'Status',U.Shift,U.DateUrgent as 'Urgent Date',U.HUrgent as 'Urgent Time',U.Qty,U.Alimentation FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND U.UrgentStatus = 'Express' AND isOptimized=0 ORDER BY M.Machine" : "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,W.Adress as 'Location',W.Cable,W.WireLength as 'Length',W.MarL,W.SealL,W.TerL,W.MarR,W.SealR,W.TerR,W.LeadPrep as 'Lead Prep',U.UrgentStatus as 'Status',U.Shift,U.DateUrgent as 'Urgent Date',U.HUrgent as 'Urgent Time',U.Qty,U.Alimentation FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND U.UrgentStatus = 'Express' ORDER BY M.Machine";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 DataTable dt = new DataTable();
                 SqlDataAdapter data = new SqlDataAdapter(cmd);
@@ -563,7 +555,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = allValues ? "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,W.Adress as 'Location',W.Cable,W.WireLength as 'Length',W.MarL,W.SealL,W.TerL,W.MarR,W.SealR,W.TerR,W.LeadPrep as 'Lead Prep',U.Shift,U.UrgentStatus as 'Status',U.DateUrgent as 'Urgent Date',U.HUrgent as 'Urgent Time',U.Alimentation FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND W.MC=@machine AND U.UrgentStatus = 'Express' ORDER BY Groupe" : "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,W.Adress as 'Location',W.Cable,W.WireLength as 'Length',W.MarL,W.SealL,W.TerL,W.MarR,W.SealR,W.TerR,W.LeadPrep as 'Lead Prep',U.UrgentStatus as 'Status' FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND W.MC=@machine AND U.UrgentStatus = 'Express' ORDER BY Groupe";
+                string QUERY = allValues ? "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,W.Adress as 'Location',W.Cable,W.WireLength as 'Length',W.MarL,W.SealL,W.TerL,W.MarR,W.SealR,W.TerR,W.LeadPrep as 'Lead Prep',U.Shift,U.UrgentStatus as 'Status',U.DateUrgent as 'Urgent Date',U.HUrgent as 'Urgent Time',U.Qty,U.Alimentation FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND W.MC=@machine AND U.UrgentStatus = 'Express' ORDER BY Groupe" : "SELECT W.Unico,W.LeadCode as 'Lead Code',W.Adress as 'Location',W.Cable,W.WireLength as 'Length',W.Groupe,W.LeadPrep as 'Lead Prep',U.UrgentStatus as 'Status',U.DateUrgent as 'Urgent Date',U.Shift as 'Urgent Shift' FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND W.MC=@machine AND U.UrgentStatus = 'Express' ORDER BY Groupe";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@machine", machine);
                 DataTable dt = new DataTable();
@@ -588,7 +580,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = allValues ? "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,W.Adress as 'Location',W.Cable,W.WireLength as 'Length',W.MarL,W.SealL,W.TerL,W.MarR,W.SealR,W.TerR,W.LeadPrep as 'Lead Prep',U.Shift,U.UrgentStatus as 'Status',U.DateUrgent as 'Urgent Date',U.HUrgent as 'Urgent Time',U.Alimentation FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND U.UrgentUnico=@unico AND M.Machine=W.MC AND U.UrgentStatus = 'Express' ORDER BY Groupe" : "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,W.Adress as 'Location',W.Cable,W.WireLength as 'Length',W.MarL,W.SealL,W.TerL,W.MarR,W.SealR,W.TerR,W.LeadPrep as 'Lead Prep',U.UrgentStatus as 'Status' FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND U.UrgentUnico=@unico AND M.Machine=W.MC AND U.UrgentStatus = 'Express' ORDER BY Groupe";
+                string QUERY = allValues ? "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,W.Adress as 'Location',W.Cable,W.WireLength as 'Length',W.MarL,W.SealL,W.TerL,W.MarR,W.SealR,W.TerR,W.LeadPrep as 'Lead Prep',U.Shift,U.UrgentStatus as 'Status',U.DateUrgent as 'Urgent Date',U.HUrgent as 'Urgent Time',U.Qty,U.Alimentation FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND U.UrgentUnico=@unico AND M.Machine=W.MC AND U.UrgentStatus = 'Express' ORDER BY Groupe" : "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,W.Adress as 'Location',W.Cable,W.WireLength as 'Length',W.MarL,W.SealL,W.TerL,W.MarR,W.SealR,W.TerR,W.LeadPrep as 'Lead Prep',U.UrgentStatus as 'Status' FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND U.UrgentUnico=@unico AND M.Machine=W.MC AND U.UrgentStatus = 'Express' ORDER BY Groupe";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@unico", unico);
                 DataTable dt = new DataTable();
@@ -644,7 +636,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,U.Shift,U.UrgentStatus as 'Status',U.DateUrgent as 'Urgent Date',U.HUrgent as 'Urgent Time',U.FinishedDate as 'Finished Date',U.FinishedShift as 'Finished Shift',U.HFinished as 'Finished Time',U.UserFinished as 'User Finished' FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND U.UrgentStatus = 'Finished' ORDER BY U.UrgentUnico";
+                string QUERY = "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,U.Shift,U.UrgentStatus as 'Status',U.Qty,U.DateUrgent as 'Urgent Date',U.HUrgent as 'Urgent Time',U.FinishedDate as 'Finished Date',U.FinishedShift as 'Finished Shift',U.HFinished as 'Finished Time',U.UserFinished as 'User Finished' FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND U.UrgentStatus = 'Finished' ORDER BY U.UrgentUnico";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 DataTable dt = new DataTable();
                 SqlDataAdapter data = new SqlDataAdapter(cmd);
@@ -667,7 +659,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,U.Shift,U.UrgentStatus as 'Status',U.DateUrgent as 'Urgent Date',U.HUrgent as 'Urgent Time',U.FinishedDate as 'Finished Date',U.FinishedShift as 'Finished Shift',U.HFinished as 'Finished Time',U.UserFinished as 'User Finished' FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND U.UrgentStatus = 'Finished' AND U.FinishedDate=@date ORDER BY U.UrgentUnico";
+                string QUERY = "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,U.Shift,U.UrgentStatus as 'Status',U.Qty,U.DateUrgent as 'Urgent Date',U.HUrgent as 'Urgent Time',U.FinishedDate as 'Finished Date',U.FinishedShift as 'Finished Shift',U.HFinished as 'Finished Time',U.UserFinished as 'User Finished' FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND U.UrgentStatus = 'Finished' AND U.FinishedDate=@date ORDER BY U.UrgentUnico";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@date", date);
                 DataTable dt = new DataTable();
@@ -691,7 +683,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,U.Shift,U.UrgentStatus as 'Status',U.DateUrgent as 'Urgent Date',U.HUrgent as 'Urgent Time',U.FinishedDate as 'Finished Date',U.FinishedShift as 'Finished Shift',U.HFinished as 'Finished Time',U.UserFinished as 'User Finished' FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND U.UrgentStatus = 'Finished' AND U.UrgentUnico=@unico ORDER BY U.UrgentUnico";
+                string QUERY = "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,U.Shift,U.UrgentStatus as 'Status',U.Qty,U.DateUrgent as 'Urgent Date',U.HUrgent as 'Urgent Time',U.FinishedDate as 'Finished Date',U.FinishedShift as 'Finished Shift',U.HFinished as 'Finished Time',U.UserFinished as 'User Finished' FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND U.UrgentStatus = 'Finished' AND U.UrgentUnico=@unico ORDER BY U.UrgentUnico";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@unico", unico);
                 DataTable dt = new DataTable();
@@ -715,7 +707,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,U.Shift,U.UrgentStatus as 'Status',U.DateUrgent as 'Urgent Date',U.HUrgent as 'Urgent Time',U.FinishedDate as 'Finished Date',U.FinishedShift as 'Finished Shift',U.HFinished as 'Finished Time',U.UserFinished as 'User Finished' FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND U.UrgentStatus = 'Finished' AND U.FinishedDate=@date AND W.MC=@machine ORDER BY U.UrgentUnico";
+                string QUERY = "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,U.Shift,U.UrgentStatus as 'Status',U.Qty,U.DateUrgent as 'Urgent Date',U.HUrgent as 'Urgent Time',U.FinishedDate as 'Finished Date',U.FinishedShift as 'Finished Shift',U.HFinished as 'Finished Time',U.UserFinished as 'User Finished' FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND U.UrgentStatus = 'Finished' AND U.FinishedDate=@date AND W.MC=@machine ORDER BY U.UrgentUnico";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@date", date);
                 cmd.Parameters.AddWithValue("@machine", machine);
@@ -740,7 +732,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,U.Shift,U.UrgentStatus as 'Status',U.DateUrgent as 'Urgent Date',U.HUrgent as 'Urgent Time',U.FinishedDate as 'Finished Date',U.FinishedShift as 'Finished Shift',U.HFinished as 'Finished Time',U.UserFinished as 'User Finished' FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND U.UrgentStatus = 'Finished' AND W.MC=@machine ORDER BY U.UrgentUnico";
+                string QUERY = "SELECT W.Unico,W.LeadCode as 'Lead Code',M.Machine,U.Shift,U.UrgentStatus as 'Status',U.Qty,U.DateUrgent as 'Urgent Date',U.HUrgent as 'Urgent Time',U.FinishedDate as 'Finished Date',U.FinishedShift as 'Finished Shift',U.HFinished as 'Finished Time',U.UserFinished as 'User Finished' FROM Wire W,Machine M,Urgent U WHERE W.Unico=U.UrgentUnico AND M.Machine=W.MC AND U.UrgentStatus = 'Finished' AND W.MC=@machine ORDER BY U.UrgentUnico";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@machine", machine);
                 DataTable dt = new DataTable();
@@ -754,6 +746,41 @@ namespace Urgent_Manager.Controller
             {
                 MessageBox.Show("Sorry It Was An Error While Processing Your Request\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DbHelper.connection.Close();
+            }
+        }
+
+        // Check If The Urgent Already Exist And The Wire Is Not In Draft
+
+        public bool IsExist(string value)
+        {
+            try
+            {
+
+                DbHelper.connection.Open();
+
+                string QUERY = "SELECT Unico FROM Wire WHERE Unico=@value AND WireStatus=@status";
+                SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                cmd.Parameters.AddWithValue("@value", value);
+                cmd.Parameters.AddWithValue("@status", 1);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    DbHelper.connection.Close();
+                    return true;
+                }
+                else
+                {
+                    DbHelper.connection.Close();
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("It Was An Error While Processing Your Request ! \n\n" + ex.Message, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DbHelper.connection.Close();
+                return false;
             }
         }
     }

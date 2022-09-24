@@ -21,7 +21,7 @@ namespace Urgent_Manager.Controller
 
                 string QUERY = "INSERT INTO Area VALUES(@area,@parentArea,@userid)";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
-                cmd.Parameters.AddWithValue("@area", area.AreaName);
+                cmd.Parameters.AddWithValue("@area", area.AreaName.ToUpper());
                 cmd.Parameters.AddWithValue("@parentArea", area.ParentArea);
                 cmd.Parameters.AddWithValue("@userid", area.UserID);
 
@@ -88,7 +88,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT * FROM Area ORDER BY ZoneName";
+                string QUERY = "SELECT A.ZoneName,A.ParentZone,U.FullName FROM Area A,dbo_User U WHERE A.UserID=U.userID ORDER BY ZoneName";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -126,7 +126,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT * FROM Area WHERE ZoneName=@areaName";
+                string QUERY = "SELECT A.ZoneName,A.ParentZone,U.FullName FROM Area A,dbo_User U WHERE A.UserID=U.userID AND A.ZoneName=@areaName";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@areaName", areaName);
                 SqlDataReader reader = cmd.ExecuteReader();

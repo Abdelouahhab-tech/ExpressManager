@@ -19,9 +19,9 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "INSERT INTO Machine VALUES(@Machine,@parentZone,@userID)";
+                string QUERY = "INSERT INTO Machine (Machine,ParentZone,UserID) VALUES (@Machine,@parentZone,@userID)";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
-                cmd.Parameters.AddWithValue("@Machine", Machine.Machine);
+                cmd.Parameters.AddWithValue("@Machine", Machine.Machine.ToUpper());
                 cmd.Parameters.AddWithValue("@parentZone", Machine.ParentZone);
                 cmd.Parameters.AddWithValue("@userID", Machine.UserID);
 
@@ -90,7 +90,7 @@ namespace Urgent_Manager.Controller
                         MachineModel machine = new MachineModel();
                         machine.Machine = reader[0].ToString();
                         machine.ParentZone = reader[1].ToString();
-                        machine.UserID = reader[3].ToString();
+                        machine.UserID = reader[4].ToString();
                         list.Add(machine);
                     }
 
@@ -131,7 +131,7 @@ namespace Urgent_Manager.Controller
                     {
                         machine.Machine = reader[0].ToString();
                         machine.ParentZone = reader[1].ToString();
-                        machine.UserID = reader[3].ToString();
+                        machine.UserID = reader[4].ToString();
                     }
 
                     DbHelper.connection.Close();
@@ -171,7 +171,7 @@ namespace Urgent_Manager.Controller
                         MachineModel machine = new MachineModel();
                         machine.Machine = reader[0].ToString();
                         machine.ParentZone = reader[1].ToString();
-                        machine.UserID = reader[3].ToString();
+                        machine.UserID = reader[4].ToString();
                         list.Add(machine);
                     }
 
@@ -191,5 +191,53 @@ namespace Urgent_Manager.Controller
             }
         }
 
+        // Update IsConnect Per Machine
+
+        public void UpdateIsConnect(string mc,int value)
+        {
+            try
+            {
+                DbHelper.connection.Open();
+
+                string QUERY = "UPDATE Machine SET isConnect = @value WHERE Machine =@mc";
+                SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                cmd.Parameters.AddWithValue("@value", value);
+                cmd.Parameters.AddWithValue("@mc", mc);
+                cmd.ExecuteNonQuery();
+
+                DbHelper.connection.Close();
+            }
+            catch (Exception)
+            {
+                DbHelper.connection.Close();
+            }
+        }
+
+        // Check if isConnect
+
+        public bool isConnect(string mc)
+        {
+            try
+            {
+                DbHelper.connection.Open();
+                string QUERY = "SELECT * FROM Machine WHERE isConnect = 1 AND Machine = @mc";
+                SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                cmd.Parameters.AddWithValue("@mc", mc);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    DbHelper.connection.Close();
+                    return true;
+                }
+
+                DbHelper.connection.Close();
+                return false;
+            }
+            catch (Exception)
+            {
+                DbHelper.connection.Close();
+                return false;
+            }
+        }
     }
 }

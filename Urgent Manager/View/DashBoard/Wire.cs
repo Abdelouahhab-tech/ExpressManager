@@ -11,6 +11,9 @@ using Urgent_Manager.Controller;
 using Guna.UI2.WinForms;
 using Urgent_Manager.Model;
 using System.Text.RegularExpressions;
+using System.IO;
+using ExcelDataReader;
+using System.Data.SqlClient;
 
 namespace Urgent_Manager.View.DashBoard
 {
@@ -56,7 +59,7 @@ namespace Urgent_Manager.View.DashBoard
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Regex regex = new Regex("[1-9]");
+            Regex regex = new Regex(@"^\d+$");
             try
             {
                 if (gtxtUnico.Text.Trim() != "" && gtxtLeadCode.Text.Trim() != "" 
@@ -70,23 +73,23 @@ namespace Urgent_Manager.View.DashBoard
                         WireModel wire = new WireModel();
                         wire.Family = gtxtFamily.Text;
                         wire.Unico = gtxtUnico.Text;
-                        wire.LeadCode = gtxtLeadCode.Text;
+                        wire.LeadCode = gtxtLeadCode.Text.ToUpper();
                         wire.Length = gtxtLength.Text;
-                        wire.Cable = gtxtCable.Text;
-                        wire.MarkL = gtxtMarkerG.Text;
+                        wire.Cable = gtxtCable.Text.ToUpper();
+                        wire.MarkL = gtxtMarkerG.Text.ToUpper();
                         wire.SealL = gtxtSealG.Text;
                         wire.TerL = gtxtTerminalG.Text;
-                        wire.ToolL = gtxtToolG.Text;
-                        wire.ProtectionL = gtxtProtectionG.Text;
-                        wire.MarkR = gtxtMarkerD.Text;
+                        wire.ToolL = gtxtToolG.Text.ToUpper();
+                        wire.ProtectionL = gtxtProtectionG.Text.ToUpper();
+                        wire.MarkR = gtxtMarkerD.Text.ToUpper();
                         wire.SealR = gtxtSealD.Text;
                         wire.TerR = gtxtTerminalD.Text;
-                        wire.ToolR = gtxtToolD.Text;
-                        wire.ProtectionR = gtxtProtectionD.Text;
+                        wire.ToolR = gtxtToolD.Text.ToUpper();
+                        wire.ProtectionR = gtxtProtectionD.Text.ToUpper();
                         wire.GroupRef = gtxtGroup.Text;
                         wire.LeadPrep = cmbLeadPrep.Text;
                         wire.Adress = gtxtAdress.Text;
-                        wire.Mc = gtxtMachine.Text;
+                        wire.Mc = gtxtMachine.Text.ToUpper();
                         wire.UserID = Login.username;
 
                         wireController.InsertWire(wire);
@@ -126,7 +129,7 @@ namespace Urgent_Manager.View.DashBoard
                         gtxtLength.FocusedState.BorderColor = Color.White;
 
                     }
-                    else if (!regex.IsMatch(gtxtLength.Text))
+                    else if (!regex.IsMatch(gtxtLength.Text.Trim()))
                     {
 
                         lblLength.ForeColor = Color.Red;
@@ -245,8 +248,7 @@ namespace Urgent_Manager.View.DashBoard
 
         private void gtxtLength_Leave(object sender, EventArgs e)
         {
-            lblLength.ForeColor = Color.White;
-            gtxtLength.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+           
         }
 
         private void cmbCable_SelectedIndexChanged(object sender, EventArgs e)
@@ -275,9 +277,9 @@ namespace Urgent_Manager.View.DashBoard
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            Regex regex = new Regex("[1-9]");
-            
-            if(gtxtUnico.Text.Trim() != "")
+            Regex regex = new Regex(@"^\d+$");
+
+            if (gtxtUnico.Text.Trim() != "")
             {
                 try
                 {
@@ -288,23 +290,23 @@ namespace Urgent_Manager.View.DashBoard
                             WireModel wire = new WireModel();
                             wire.Family = gtxtFamily.Text;
                             wire.Unico = gtxtUnico.Text;
-                            wire.LeadCode = gtxtLeadCode.Text;
+                            wire.LeadCode = gtxtLeadCode.Text.ToUpper();
                             wire.Length = gtxtLength.Text;
-                            wire.Cable = gtxtCable.Text;
-                            wire.MarkL = gtxtMarkerG.Text;
+                            wire.Cable = gtxtCable.Text.ToUpper();
+                            wire.MarkL = gtxtMarkerG.Text.ToUpper();
                             wire.SealL = gtxtSealG.Text;
                             wire.TerL = gtxtTerminalG.Text;
-                            wire.ToolL = gtxtToolG.Text;
-                            wire.ProtectionL = gtxtProtectionG.Text;
-                            wire.MarkR = gtxtMarkerD.Text;
+                            wire.ToolL = gtxtToolG.Text.ToUpper();
+                            wire.ProtectionL = gtxtProtectionG.Text.ToUpper();
+                            wire.MarkR = gtxtMarkerD.Text.ToUpper();
                             wire.SealR = gtxtSealD.Text;
                             wire.TerR = gtxtTerminalD.Text;
-                            wire.ToolR = gtxtToolD.Text;
-                            wire.ProtectionR = gtxtProtectionD.Text;
+                            wire.ToolR = gtxtToolD.Text.ToUpper();
+                            wire.ProtectionR = gtxtProtectionD.Text.ToUpper();
                             wire.GroupRef = gtxtGroup.Text;
                             wire.LeadPrep = cmbLeadPrep.Text;
                             wire.Adress = gtxtAdress.Text;
-                            wire.Mc = gtxtMachine.Text;
+                            wire.Mc = gtxtMachine.Text.ToUpper();
                             wire.UserID = Login.username;
 
                             wireController.UpdateWire(wire);
@@ -687,7 +689,6 @@ namespace Urgent_Manager.View.DashBoard
                 }
             }
         }
-
         private void gtxtFamily_KeyDown(object sender, KeyEventArgs e)
         {
             lblFamily.ForeColor = Color.White;
@@ -730,6 +731,178 @@ namespace Urgent_Manager.View.DashBoard
         {
             lblMc.ForeColor = Color.White;
             gtxtMachine.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        // Save Data In DataBase
+
+        public void SaveData(DataTable dt)
+        {
+            try
+            {
+                int count = 0;
+                if(dt.Rows.Count > 0)
+                {
+                    if(dt.Columns.Count == 19)
+                    {
+                        if (wireController.IsExist(dt.Rows[0][0].ToString(), "Family", "FAM"))
+                        {
+                            lblLoading.Visible = true;
+                            for (int i = 0; i < dt.Rows.Count; i++)
+                            {
+                                if (!wireController.IsExist(dt.Rows[i][1].ToString(), "Wire", "Unico"))
+                                {
+                                    DbHelper.connection.Open();
+                                    string QUERY = "INSERT INTO Wire VALUES (@Family,@Unico,@LeadCode,@Cable,@Length,@MarkL,@SealL,@TerL,@ToolL,@ProtectionL,@MarkR,@SealR,@TerR,@ToolR,@ProtectionR,@GroupRef,@MC,@Adress,@LeadPrep,@UserID)";
+                                    SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                                    cmd.Parameters.AddWithValue("@Family", dt.Rows[0][0].ToString());
+                                    cmd.Parameters.AddWithValue("@Unico", dt.Rows[i][1].ToString());
+                                    cmd.Parameters.AddWithValue("@LeadCode", dt.Rows[i][2].ToString());
+                                    cmd.Parameters.AddWithValue("@Cable", dt.Rows[i][3].ToString());
+                                    cmd.Parameters.AddWithValue("@Length", dt.Rows[i][4].ToString());
+                                    cmd.Parameters.AddWithValue("@MarkL", dt.Rows[i][8].ToString());
+                                    cmd.Parameters.AddWithValue("@SealL", dt.Rows[i][7].ToString());
+                                    cmd.Parameters.AddWithValue("@TerL", dt.Rows[i][5].ToString());
+                                    cmd.Parameters.AddWithValue("@ToolL", dt.Rows[i][6].ToString());
+                                    cmd.Parameters.AddWithValue("@ProtectionL", dt.Rows[i][16].ToString());
+                                    cmd.Parameters.AddWithValue("@MarkR", dt.Rows[i][12].ToString());
+                                    cmd.Parameters.AddWithValue("@SealR", dt.Rows[i][11].ToString());
+                                    cmd.Parameters.AddWithValue("@TerR", dt.Rows[i][9].ToString());
+                                    cmd.Parameters.AddWithValue("@ToolR", dt.Rows[i][10].ToString());
+                                    cmd.Parameters.AddWithValue("@ProtectionR", dt.Rows[i][17].ToString());
+                                    cmd.Parameters.AddWithValue("@GroupRef", dt.Rows[i][18].ToString());
+                                    cmd.Parameters.AddWithValue("@MC", dt.Rows[i][13].ToString());
+                                    cmd.Parameters.AddWithValue("@Adress", dt.Rows[i][14].ToString());
+                                    cmd.Parameters.AddWithValue("@LeadPrep", dt.Rows[i][15].ToString());
+                                    cmd.Parameters.AddWithValue("@UserID", Login.username);
+
+                                    count += cmd.ExecuteNonQuery();
+                                    DbHelper.connection.Close();
+                                }
+                            }
+                            
+                            if(count > 0)
+                            {
+                                lblLoading.Visible = false;
+                                MessageBox.Show($"Your Request Is Done {count} Records Added Successfuly", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                lblFileName.Text = "Drag The File Here";
+                            }
+                            else
+                            {
+                                MessageBox.Show("Sorry It Seems Like All The Records Already Exist", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                lblLoading.Visible = false;
+                                lblFileName.Text = "Drag The File Here";
+                            }
+                        }
+                        else
+                        {
+                            DbHelper.connection.Open();
+                            SqlCommand command = new SqlCommand("INSERT INTO Family VALUES(@fam,@user)", DbHelper.connection);
+                            command.Parameters.AddWithValue("@fam", dt.Rows[0][0].ToString());
+                            command.Parameters.AddWithValue("@user", Login.username);
+                            int res = command.ExecuteNonQuery();
+                            DbHelper.connection.Close();
+                            if (res > 0)
+                            {
+                                lblLoading.Visible = true;
+                                for (int i = 0; i < dt.Rows.Count; i++)
+                                {
+                                    if (!wireController.IsExist(dt.Rows[i][1].ToString(), "Wire", "Unico"))
+                                    {
+                                        DbHelper.connection.Open();
+                                        string QUERY = "INSERT INTO Wire VALUES (@Family,@Unico,@LeadCode,@Cable,@Length,@MarkL,@SealL,@TerL,@ToolL,@ProtectionL,@MarkR,@SealR,@TerR,@ToolR,@ProtectionR,@GroupRef,@MC,@Adress,@LeadPrep,@UserID)";
+                                        SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                                        cmd.Parameters.AddWithValue("@Family", dt.Rows[0][0].ToString());
+                                        cmd.Parameters.AddWithValue("@Unico", dt.Rows[i][1].ToString());
+                                        cmd.Parameters.AddWithValue("@LeadCode", dt.Rows[i][2].ToString());
+                                        cmd.Parameters.AddWithValue("@Cable", dt.Rows[i][3].ToString());
+                                        cmd.Parameters.AddWithValue("@Length", dt.Rows[i][4].ToString());
+                                        cmd.Parameters.AddWithValue("@MarkL", dt.Rows[i][8].ToString());
+                                        cmd.Parameters.AddWithValue("@SealL", dt.Rows[i][7].ToString());
+                                        cmd.Parameters.AddWithValue("@TerL", dt.Rows[i][5].ToString());
+                                        cmd.Parameters.AddWithValue("@ToolL", dt.Rows[i][6].ToString());
+                                        cmd.Parameters.AddWithValue("@ProtectionL", dt.Rows[i][16].ToString());
+                                        cmd.Parameters.AddWithValue("@MarkR", dt.Rows[i][12].ToString());
+                                        cmd.Parameters.AddWithValue("@SealR", dt.Rows[i][11].ToString());
+                                        cmd.Parameters.AddWithValue("@TerR", dt.Rows[i][9].ToString());
+                                        cmd.Parameters.AddWithValue("@ToolR", dt.Rows[i][10].ToString());
+                                        cmd.Parameters.AddWithValue("@ProtectionR", dt.Rows[i][17].ToString());
+                                        cmd.Parameters.AddWithValue("@GroupRef", dt.Rows[i][18].ToString());
+                                        cmd.Parameters.AddWithValue("@MC", dt.Rows[i][13].ToString());
+                                        cmd.Parameters.AddWithValue("@Adress", dt.Rows[i][14].ToString());
+                                        cmd.Parameters.AddWithValue("@LeadPrep", dt.Rows[i][15].ToString());
+                                        cmd.Parameters.AddWithValue("@UserID", Login.username);
+
+                                        count += cmd.ExecuteNonQuery();
+                                        DbHelper.connection.Close();
+                                    }
+                                }
+                                if (count > 0)
+                                {
+                                    lblLoading.Visible = false;
+                                    MessageBox.Show($"Your Request Is Done {count} Records Added Successfuly", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    lblFileName.Text = "Drag The File Here";
+                                }
+                                else
+                                {
+                                    lblLoading.Visible = false;
+                                    MessageBox.Show("Sorry It Seems Like All The Records Already Exist", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    lblFileName.Text = "Drag The File Here";
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("It Was An Error While Adding Your Family Try Latter");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sorry Your Data Didnt Match The Data Fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Sorry Your Data Is Empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("It Was An Error While Pricessing Your Request\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DbHelper.connection.Close();
+            }
+        }
+
+        private void gPUpload_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.All;
+        }
+
+        private void gPUpload_DragDrop(object sender, DragEventArgs e)
+        {
+            try
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string extension = Path.GetExtension(files[0]);
+                if(extension.ToLower() == ".xlsx" || extension.ToLower() == ".xls")
+                {
+                    lblFileName.Text = files[0];
+                    FileStream stream = File.Open(files[0], FileMode.Open, FileAccess.Read);
+                    IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream);
+
+                    DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration
+                    {
+                        ConfigureDataTable = (_) => new ExcelDataTableConfiguration() { UseHeaderRow = true }
+                    });
+                    DataTableCollection db = result.Tables;
+                    DataTable dt = db[0];
+                    SaveData(dt);
+                    stream.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

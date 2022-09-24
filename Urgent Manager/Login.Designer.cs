@@ -307,7 +307,6 @@
             this.cmbRoles.Items.AddRange(new object[] {
             "Administrator",
             "Alimentation",
-            "Operator",
             "Entry Agent",
             "Shift Leader"});
             this.cmbRoles.Location = new System.Drawing.Point(28, 210);

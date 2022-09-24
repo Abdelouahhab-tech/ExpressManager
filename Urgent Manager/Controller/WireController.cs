@@ -22,7 +22,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "INSERT INTO Wire VALUES(@Family,@Unico,@LeadCode,@Cable,@Length,@MarkL,@SealL,@TerL,@ToolL,@ProtectionL,@MarkR,@SealR,@TerR,@ToolR,@ProtectionR,@GroupRef,@MC,@Adress,@LeadPrep,@UserID)";
+                string QUERY = "INSERT INTO Wire VALUES (@Family,@Unico,@LeadCode,@Cable,@Length,@MarkL,@SealL,@TerL,@ToolL,@ProtectionL,@MarkR,@SealR,@TerR,@ToolR,@ProtectionR,@GroupRef,@MC,@Adress,@LeadPrep,@UserID,@status)";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@Family", wire.Family);
                 cmd.Parameters.AddWithValue("@Unico", wire.Unico);
@@ -44,6 +44,7 @@ namespace Urgent_Manager.Controller
                 cmd.Parameters.AddWithValue("@Adress", wire.Adress);
                 cmd.Parameters.AddWithValue("@LeadPrep", wire.LeadPrep);
                 cmd.Parameters.AddWithValue("@UserID", wire.UserID);
+                cmd.Parameters.AddWithValue("@status", 1);
 
                 int result = cmd.ExecuteNonQuery();
                 if (result == 1)
@@ -113,7 +114,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT W.Family,W.Unico,W.LeadCode,C.Cable,C.Section,C.Color,C.Pvc,C.Guide,W.WireLength,W.TerL,W.ToolL,W.SealL,W.TerR,W.ToolR,W.SealR,W.MC,W.Adress,U.FullName as 'Entry Agent' FROM Wire W,Cable C,dbo_User U WHERE W.Cable = C.Cable AND U.userID = W.UserID ORDER BY W.Groupe ";
+                string QUERY = "SELECT ROW_NUMBER() OVER (ORDER BY W.Groupe) as 'Row Count', W.Family,W.Unico,W.LeadCode,C.Cable,C.Section,C.Color,C.Pvc,C.Guide,W.WireLength,W.TerL,W.ToolL,W.SealL,W.MarL,W.TerR,W.ToolR,W.SealR,W.MarR,W.MC,W.Adress,W.WireStatus,U.FullName as 'Entry Agent' FROM Wire W,Cable C,dbo_User U WHERE W.Cable = C.Cable AND U.userID = W.UserID";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 DataTable dt = new DataTable();
                 SqlDataAdapter data = new SqlDataAdapter(cmd);
@@ -140,7 +141,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = columns != "" ? "SELECT W.Family,W.Unico,W.LeadCode,C.Cable,C.Section,C.Color,C.Pvc,C.Guide,W.WireLength," + columns+"W.TerL,W.ToolL,W.SealL,W.TerR,W.ToolR,W.SealR,W.MC,W.Adress,U.FullName as 'Entry Agent' FROM Wire W,Cable C,dbo_User U WHERE W.Cable = C.Cable AND U.userID = W.UserID ORDER BY W.Groupe" : "SELECT W.Family,W.Unico,W.LeadCode,C.Cable,C.Color,C.Pvc,C.Guide,W.WireLength,W.TerL,W.ToolL,W.SealL,W.TerR,W.ToolR,W.SealR,W.MC,W.Adress,U.FullName as 'Entry Agent' FROM Wire W,Cable C,dbo_User U WHERE W.Cable = C.Cable AND U.userID = W.UserID ORDER BY W.Groupe ";
+                string QUERY = columns != "" ? "SELECT ROW_NUMBER() OVER (ORDER BY W.Groupe) as 'Row Count', W.Family,W.Unico,W.LeadCode,C.Cable,C.Section,C.Color,C.Pvc,C.Guide,W.WireLength,W.TerL,W.ToolL,W.SealL,W.MarL,W.TerR,W.ToolR,W.SealR,W.MarR,W.MC,W.Adress,W.WireStatus," + columns + "U.FullName as 'Entry Agent' FROM Wire W,Cable C,dbo_User U WHERE W.Cable = C.Cable AND U.userID = W.UserID" : "SELECT ROW_NUMBER() OVER (ORDER BY W.Groupe) as 'Row Count', W.Family,W.Unico,W.LeadCode,C.Cable,C.Section,C.Color,C.Pvc,C.Guide,W.WireLength,W.TerL,W.ToolL,W.SealL,W.MarL,W.TerR,W.ToolR,W.SealR,W.MarR,W.MC,W.Adress,W.WireStatus,U.FullName as 'Entry Agent' FROM Wire W,Cable C,dbo_User U WHERE W.Cable = C.Cable AND U.userID = W.UserID";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 DataTable dt = new DataTable();
                 SqlDataAdapter data = new SqlDataAdapter(cmd);
@@ -168,9 +169,38 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT W.Family,W.Unico,W.LeadCode,C.Cable,C.Section,C.Color,C.Pvc,C.Guide,W.WireLength," + columns+"W.TerL,W.ToolL,W.SealL,W.TerR,W.ToolR,W.SealR,W.MC,W.Adress,U.FullName as 'Entry Agent' FROM Wire W,Cable C,dbo_User U WHERE W.Cable = C.Cable AND U.userID = W.UserID AND W.Unico = @unico";
+                string QUERY = "SELECT ROW_NUMBER() OVER (ORDER BY W.Groupe) as 'Row Count', W.Family,W.Unico,W.LeadCode,C.Cable,C.Section,C.Color,C.Pvc,C.Guide,W.WireLength,W.TerL,W.ToolL,W.SealL,W.MarL,W.TerR,W.ToolR,W.SealR,W.MarR,W.MC,W.Adress,W.WireStatus," + columns + "U.FullName as 'Entry Agent' FROM Wire W,Cable C,dbo_User U WHERE W.Cable = C.Cable AND U.userID = W.UserID AND W.Unico = @unico";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@unico", unico);
+                DataTable dt = new DataTable();
+                SqlDataAdapter data = new SqlDataAdapter(cmd);
+                data.Fill(dt);
+                dg.DataSource = dt.DefaultView;
+                DbHelper.connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error Accured While Processing Your Request \n\n" + ex.Message, "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DbHelper.connection.Close();
+            }
+        }
+
+        // Fetch Records Per Family
+        public void fetchRecordsPerFamily(Guna2DataGridView dg, ArrayList list, string Family)
+        {
+
+            string columns = "";
+            foreach (string item in list)
+            {
+                columns += "W." + item + ",";
+            }
+            try
+            {
+                DbHelper.connection.Open();
+
+                string QUERY = "SELECT ROW_NUMBER() OVER (ORDER BY W.Groupe) as 'Row Count', W.Family,W.Unico,W.LeadCode,C.Cable,C.Section,C.Color,C.Pvc,C.Guide,W.WireLength,W.TerL,W.ToolL,W.SealL,W.MarL,W.TerR,W.ToolR,W.SealR,W.MarR,W.MC,W.Adress,W.WireStatus," + columns + "U.FullName as 'Entry Agent' FROM Wire W,Cable C,dbo_User U WHERE W.Cable = C.Cable AND U.userID = W.UserID AND W.Family = @family";
+                SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                cmd.Parameters.AddWithValue("@family", Family);
                 DataTable dt = new DataTable();
                 SqlDataAdapter data = new SqlDataAdapter(cmd);
                 data.Fill(dt);
@@ -197,7 +227,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT W.Family,W.Unico,W.LeadCode,C.Cable,C.Section,C.Color,C.Pvc,C.Guide,W.WireLength," + columns + "W.TerL,W.ToolL,W.SealL,W.TerR,W.ToolR,W.SealR,W.MC,W.Adress,U.FullName as 'Entry Agent' FROM Wire W,Cable C,dbo_User U WHERE W.Cable = C.Cable AND U.userID = W.UserID AND W."+column+" = @value ORDER BY Groupe";
+                string QUERY = "SELECT ROW_NUMBER() OVER (ORDER BY W.Groupe) as 'Row Count', W.Family,W.Unico,W.LeadCode,C.Cable,C.Section,C.Color,C.Pvc,C.Guide,W.WireLength,W.TerL,W.ToolL,W.SealL,W.MarL,W.TerR,W.ToolR,W.SealR,W.MarR,W.MC,W.Adress,W.WireStatus," + columns + "U.FullName as 'Entry Agent' FROM Wire W,Cable C,dbo_User U WHERE W.Cable = C.Cable AND U.userID = W.UserID AND W." + column+" = @value";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@value", value);
                 DataTable dt = new DataTable();
@@ -222,7 +252,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT W.Unico,W.LeadCode,W.WireLength,C.Cable,W.LeadPrep,W.Adress,W.TerL,W.TerR,W.SealL,W.SealR,W.MarL,W.MarR,W.ProtectionL,W.ProtectionR,W.ToolL,W.ToolR,W.Family,W.Groupe,W.MC FROM Wire W,Cable C WHERE W.Cable = C.Cable AND W.Unico = @unico";
+                string QUERY = "SELECT W.Unico,W.LeadCode,W.WireLength,C.Cable,W.LeadPrep,W.Adress,W.TerL,W.TerR,W.SealL,W.SealR,W.MarL,W.MarR,W.ProtectionL,W.ProtectionR,W.ToolL,W.ToolR,W.Family,W.Groupe,W.MC,C.Color FROM Wire W,Cable C WHERE W.Cable = C.Cable AND W.Unico = @unico";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@unico",unico);
 
@@ -251,6 +281,7 @@ namespace Urgent_Manager.Controller
                         wire.Family = r[16].ToString();
                         wire.GroupRef = r[17].ToString();
                         wire.Mc = r[18].ToString();
+                        wire.Color = r[19].ToString();
                     }
 
                     DbHelper.connection.Close();
@@ -268,47 +299,49 @@ namespace Urgent_Manager.Controller
             }
         }
 
-        // Fetch Records Per Machine For Operator User
-
-        public List<WireModel> fetchNormalRecords(string machine)
+        public void fetchSingleRecord(string unico , Guna2DataGridView data)
         {
-
-            List<WireModel> list = new List<WireModel>();
             try
             {
                 DbHelper.connection.Open();
-                string QUERY = "SELECT W.Family,W.Unico,W.LeadCode,C.Color,W.WireLength,W.Groupe,W.LeadPrep FROM Wire W,Cable C WHERE W.Cable = C.Cable AND W.MC=@machine ORDER BY W.Groupe";
+
+                string QUERY = "SELECT W.Family,W.Unico,W.LeadCode as 'Lead Code',C.Cable,C.Color,W.WireLength as 'Length',W.MarL,W.MarR,W.Groupe,W.LeadPrep as 'Lead Prep' FROM Wire W,Cable C WHERE W.Cable = C.Cable AND W.Unico = @unico AND W.WireStatus=1";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
-                cmd.Parameters.AddWithValue("@machine", machine);
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        WireModel wire = new WireModel();
-                        wire.Family = reader[0].ToString();
-                        wire.Unico = reader[1].ToString();
-                        wire.LeadCode = reader[2].ToString();
-                        wire.Color = reader[3].ToString();
-                        wire.Length = reader[4].ToString();
-                        wire.GroupRef = reader[5].ToString();
-                        wire.LeadPrep = reader[6].ToString();
-                      
-                        list.Add(wire);
-                    }
-
-                    DbHelper.connection.Close();
-                    return list;
-                }
-
+                cmd.Parameters.AddWithValue("@unico", unico);
+                DataTable dt = new DataTable();
+                SqlDataAdapter r = new SqlDataAdapter(cmd);
+                r.Fill(dt);
+                data.DataSource = dt.DefaultView;
                 DbHelper.connection.Close();
-                return list;
             }
             catch (Exception)
             {
                 DbHelper.connection.Close();
-                return list;
+            }
+        }
+
+        // Fetch Records Per Machine For Operator User
+
+        public void fetchNormalRecords(string machine,Guna2DataGridView data)
+        {
+            try
+            {
+                DbHelper.connection.Open();
+                string QUERY = "SELECT W.Family,W.Unico,W.LeadCode as 'Lead Code',C.Cable,C.Color,W.WireLength as 'Length',W.MarL,W.MarR,W.Groupe,W.LeadPrep as 'Lead Prep' FROM Wire W,Cable C WHERE W.Cable = C.Cable AND W.MC=@machine AND W.WireStatus =@wireStatus ORDER BY W.Groupe";
+                SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                cmd.Parameters.AddWithValue("@machine", machine);
+                cmd.Parameters.AddWithValue("@wireStatus", 1);
+                DataTable dt = new DataTable();
+                SqlDataAdapter reader = new SqlDataAdapter(cmd);
+                reader.Fill(dt);
+                data.DataSource = dt.DefaultView;
+
+                DbHelper.connection.Close();
+
+            }
+            catch (Exception)
+            {
+                DbHelper.connection.Close();
             }
         }
 
@@ -327,6 +360,7 @@ namespace Urgent_Manager.Controller
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@machine", machine);
                 cmd.Parameters.AddWithValue("@unico", unico);
+                cmd.Parameters.AddWithValue("@wireStatus", 1);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -430,5 +464,35 @@ namespace Urgent_Manager.Controller
             }
         }
 
+        // Get Machine Name
+
+        public string Machine(string unico)
+        {
+            string MC = "";
+            try
+            {
+                DbHelper.connection.Open();
+                string QUERY = "SELECT MC FROM Wire WHERE Unico=@unico";
+                SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                cmd.Parameters.AddWithValue("@unico", unico);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        MC = reader[0].ToString();
+                    }
+                }
+
+                DbHelper.connection.Close();
+                return MC;
+
+            }
+            catch (Exception)
+            {
+                DbHelper.connection.Close();
+                return MC;
+            }
+        }
     }
 }

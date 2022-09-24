@@ -18,6 +18,8 @@ namespace Urgent_Manager.View.OptimaisationWindows
     {
 
         UrgentController urgentController = new UrgentController();
+        WPCSController wpcs = new WPCSController();
+
         bool isLeadPrep = false;
         public UrgentManager()
         {
@@ -102,24 +104,28 @@ namespace Urgent_Manager.View.OptimaisationWindows
                     {
                         lblMessage.Visible = false;
                         guna2DataGridView1.Visible = true;
-
-                        DGVPrinter printer = new DGVPrinter();
-                        printer.Title = "Express Wires";
-                        printer.SubTitle = $"{cmbLeadPrep.Text} Area";
-                        printer.TitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
-                        printer.PageNumbers = true;
-                        printer.PageNumberInHeader = false;
-                        printer.PorportionalColumns = true;
-                        printer.HeaderCellAlignment = StringAlignment.Near;
-                        printer.Footer = "Printed By " + Login.FullName + " | " + DateTime.Now.ToShortDateString();
-                        printer.FooterColor = Color.LightGray;
-                        printer.SubTitleSpacing = 15;
-                        printer.FooterSpacing = 15;
-                        printer.SubTitleColor = Color.Gray;
-                        printer.printDocument.DefaultPageSettings.Landscape = true;
-                        printer.showDialogue = true;
-                        guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                        printer.PrintDataGridView(guna2DataGridView1);
+                        DialogResult res = MessageBox.Show("Are You Sure You Want To Print This LeadPrep Urgents ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                        if(res == DialogResult.Yes)
+                        {
+                            DGVPrinter printer = new DGVPrinter();
+                            printer.Title = "Express Wires";
+                            printer.SubTitle = $"{cmbLeadPrep.Text} Area";
+                            printer.TitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
+                            printer.PageNumbers = true;
+                            printer.PageNumberInHeader = false;
+                            printer.PorportionalColumns = true;
+                            printer.HeaderCellAlignment = StringAlignment.Near;
+                            printer.Footer = "Printed By " + Login.FullName + " | " + DateTime.Now.ToShortDateString();
+                            printer.FooterColor = Color.LightGray;
+                            printer.SubTitleSpacing = 15;
+                            printer.FooterSpacing = 15;
+                            printer.SubTitleColor = Color.Gray;
+                            printer.printDocument.DefaultPageSettings.Landscape = true;
+                            guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                            guna2DataGridView1.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.LightGrid;
+                            printer.PrintNoDisplay(guna2DataGridView1);
+                            guna2DataGridView1.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.GreenSea;
+                        }
                     }
                     else
                     {
@@ -135,26 +141,40 @@ namespace Urgent_Manager.View.OptimaisationWindows
                         {
                             lblMessage.Visible = false;
                             guna2DataGridView1.Visible = true;
+                            DialogResult res = MessageBox.Show("Are You Sure You Want To Print This Machine Urgents ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                            if(res == DialogResult.Yes)
+                            {
+                                DGVPrinter printer = new DGVPrinter();
+                                printer.Title = "Express Wires";
+                                printer.SubTitle = cmbMac.Text;
+                                printer.TitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
+                                printer.PageNumbers = true;
+                                printer.PageNumberInHeader = false;
+                                printer.PorportionalColumns = true;
+                                printer.HeaderCellAlignment = StringAlignment.Near;
+                                printer.Footer = "Printed By " + Login.FullName + " | " + DateTime.Now.ToShortDateString();
+                                printer.FooterColor = Color.LightGray;
+                                printer.SubTitleSpacing = 15;
+                                printer.FooterSpacing = 15;
+                                printer.SubTitleColor = Color.Gray;
+                                printer.printDocument.DefaultPageSettings.Landscape = true;
+                                guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                                guna2DataGridView1.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.LightGrid;
 
-                            DGVPrinter printer = new DGVPrinter();
-                            printer.Title = "Express Wires";
-                            printer.SubTitle = cmbMac.Text;
-                            printer.TitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
-                            printer.PageNumbers = true;
-                            printer.PageNumberInHeader = false;
-                            printer.PorportionalColumns = true;
-                            printer.HeaderCellAlignment = StringAlignment.Near;
-                            printer.Footer = "Printed By " + Login.FullName + " | " + DateTime.Now.ToShortDateString();
-                            printer.FooterColor = Color.LightGray;
-                            printer.SubTitleSpacing = 15;
-                            printer.FooterSpacing = 15;
-                            printer.SubTitleColor = Color.Gray;
-                            printer.printDocument.DefaultPageSettings.Landscape = true;
-                            printer.showDialogue = true;
-                            guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                            urgentController.UrgentManagerExpress(guna2DataGridView1, cmbMac.Text, false);
-                            printer.PrintDataGridView(guna2DataGridView1);
-                            urgentController.UrgentManagerExpress(guna2DataGridView1,false);
+                                urgentController.UrgentManagerExpress(guna2DataGridView1, cmbMac.Text, false);
+                                foreach (DataGridViewColumn c in guna2DataGridView1.Columns)
+                                {
+                                    if (c.HeaderText == "Location")
+                                        c.Width = 140;
+                                    else if (c.HeaderText == "Unico" || c.HeaderText == "Lead Code" || c.HeaderText == "Express Date" || c.HeaderText == "Cable")
+                                        c.Width = 80;
+                                    else if (c.HeaderText == "MarL" || c.HeaderText == "MarR")
+                                        c.Width = 40;
+                                }
+                                printer.PrintNoDisplay(guna2DataGridView1);
+                                guna2DataGridView1.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.GreenSea;
+                                urgentController.UrgentManagerExpress(guna2DataGridView1, false);
+                            }
                             cmbMac.SelectedIndex = -1;
                             if (chAllUrgents.Checked)
                             {
@@ -182,28 +202,43 @@ namespace Urgent_Manager.View.OptimaisationWindows
                     else
                     {
                         ArrayList machines = urgentController.machines("Express");
+                        machines.Sort();
                         int i = 0;
-                        foreach (string machine in machines)
+                        DialogResult res = MessageBox.Show("Are You Sure You Want To Print All Machines Urgents ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2);
+                        if(res == DialogResult.Yes)
                         {
-                            DGVPrinter printer = new DGVPrinter();
-                            printer.Title = "Express Wires";
-                            printer.SubTitle = machine;
-                            printer.TitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
-                            printer.PageNumbers = true;
-                            printer.PageNumberInHeader = false;
-                            printer.PorportionalColumns = true;
-                            printer.HeaderCellAlignment = StringAlignment.Near;
-                            printer.Footer = "Printed By " + Login.FullName + " | " + DateTime.Now.ToShortDateString();
-                            printer.FooterColor = Color.LightGray;
-                            printer.SubTitleSpacing = 15;
-                            printer.FooterSpacing = 15;
-                            printer.SubTitleColor = Color.Gray;
-                            printer.printDocument.DefaultPageSettings.Landscape = true;
-                            printer.showDialogue = i == 0 ? true : false;
-                            guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                            urgentController.UrgentManagerExpress(guna2DataGridView1, machine, false);
-                            printer.PrintDataGridView(guna2DataGridView1);
-                            i++;
+                            foreach (string machine in machines)
+                            {
+                                DGVPrinter printer = new DGVPrinter();
+                                printer.Title = "Express Wires";
+                                printer.SubTitle = machine;
+                                printer.TitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
+                                printer.PageNumbers = true;
+                                printer.PageNumberInHeader = false;
+                                printer.PorportionalColumns = true;
+                                printer.HeaderCellAlignment = StringAlignment.Near;
+                                printer.Footer = "Printed By " + Login.FullName + " | " + DateTime.Now.ToShortDateString();
+                                printer.FooterColor = Color.LightGray;
+                                printer.SubTitleSpacing = 15;
+                                printer.FooterSpacing = 15;
+                                printer.SubTitleColor = Color.Gray;
+                                printer.printDocument.DefaultPageSettings.Landscape = true;
+                                guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                                guna2DataGridView1.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.LightGrid;
+                                urgentController.UrgentManagerExpress(guna2DataGridView1, machine, false);
+                                foreach (DataGridViewColumn c in guna2DataGridView1.Columns)
+                                {
+                                    if (c.HeaderText == "Location")
+                                        c.Width = 140;
+                                    else if (c.HeaderText == "Unico" || c.HeaderText == "Lead Code" || c.HeaderText == "Express Date" || c.HeaderText == "Cable")
+                                        c.Width = 80;
+                                    else if (c.HeaderText == "MarL" || c.HeaderText == "MarR")
+                                        c.Width = 40;
+                                }
+                                printer.PrintNoDisplay(guna2DataGridView1);
+                                i++;
+                            }
+                            guna2DataGridView1.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.GreenSea;
                         }
                         if (chAllUrgents.Checked)
                         {
@@ -244,8 +279,9 @@ namespace Urgent_Manager.View.OptimaisationWindows
         {
             try
             {
-                isLeadPrep = false;
                 cmbMac.SelectedIndex = -1;
+                isLeadPrep = false;
+                gtxtSearch.Text = "";
                 if (chAllUrgents.Checked)
                 {
                     urgentController.UrgentManagerExpress(guna2DataGridView1, false);
@@ -320,7 +356,15 @@ namespace Urgent_Manager.View.OptimaisationWindows
                 {
 
                     urgentController.singleUrgentExpress(guna2DataGridView1, gtxtSearch.Text, true);
-                   
+                    guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+                    foreach (DataGridViewColumn column in guna2DataGridView1.Columns)
+                    {
+                        if (column.HeaderText == "Unico" || column.HeaderText == "Lead Code" || column.HeaderText == "Urgent Date" || column.HeaderText == "Alimentation" || column.HeaderText == "Location")
+                            column.Width = 150;
+                        else
+                            column.Width = 100;
+                    }
+
                 }
                 else
                 {
@@ -382,6 +426,7 @@ namespace Urgent_Manager.View.OptimaisationWindows
             {
                 guna2DataGridView1.Invoke((MethodInvoker)delegate
                 {
+                    guna2DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                     guna2DataGridView1.SelectAll();
                     DataObject copyData = guna2DataGridView1.GetClipboardContent();
                     if (copyData != null) Clipboard.SetDataObject(copyData);
@@ -396,6 +441,7 @@ namespace Urgent_Manager.View.OptimaisationWindows
                     xlr.Select();
                     xlWSheet.PasteSpecial(xlr, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
                     init();
+                    guna2DataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
                     lblLoading.Visible = false;
                 });
             }
@@ -409,11 +455,14 @@ namespace Urgent_Manager.View.OptimaisationWindows
 
         private void init()
         {
-            foreach(DataGridViewRow row in guna2DataGridView1.Rows)
+            foreach (DataGridViewRow row in guna2DataGridView1.Rows)
             {
-                row.Selected = false;
+                foreach(DataGridViewCell c in row.Cells)
+                {
+                    c.Selected = false;
+                }
             }
-            guna2DataGridView1.Rows[0].Selected = true;
+            guna2DataGridView1.Rows[0].Cells[0].Selected = true;
         }
 
         private void cmbLeadPrep_SelectedIndexChanged(object sender, EventArgs e)
@@ -436,8 +485,6 @@ namespace Urgent_Manager.View.OptimaisationWindows
             }
             catch (Exception)
             {
-
-                throw;
             }
         }
 
@@ -511,6 +558,7 @@ namespace Urgent_Manager.View.OptimaisationWindows
                 if (chOptimizedRecords.Checked)
                 {
                     chAllUrgents.Checked = false;
+                    gtxtSearch.Text = "";
                     urgentController.UrgentManagerExpress(guna2DataGridView1, true);
                     guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
                     foreach (DataGridViewColumn column in guna2DataGridView1.Columns)
@@ -540,6 +588,36 @@ namespace Urgent_Manager.View.OptimaisationWindows
             {
 
             }
+        }
+
+        private void icExport_MouseEnter(object sender, EventArgs e)
+        {
+            icExport.IconColor = Color.FromArgb(255, 234, 79, 12);
+        }
+
+        private void icExport_MouseLeave(object sender, EventArgs e)
+        {
+            icExport.IconColor = Color.White;
+        }
+
+        private void icPrint_MouseEnter(object sender, EventArgs e)
+        {
+            icPrint.IconColor = Color.FromArgb(255, 234, 79, 12);
+        }
+
+        private void icPrint_MouseLeave(object sender, EventArgs e)
+        {
+            icPrint.IconColor = Color.White;
+        }
+
+        private void btnRefresh_MouseEnter(object sender, EventArgs e)
+        {
+            btnRefresh.Image = Properties.Resources.refreshRed;
+        }
+
+        private void btnRefresh_MouseLeave(object sender, EventArgs e)
+        {
+            btnRefresh.Image = Properties.Resources.refresh;
         }
     }
 }

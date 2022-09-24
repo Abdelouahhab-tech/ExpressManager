@@ -19,6 +19,7 @@ namespace Urgent_Manager.View.DashBoard
     {
         StatisticsController statisticsController = new StatisticsController();
         UrgentController urgentController = new UrgentController();
+        System.Windows.Forms.DataVisualization.Charting.Series finished = new System.Windows.Forms.DataVisualization.Charting.Series();
         string status = "All";
         public Statistics()
         {
@@ -28,15 +29,13 @@ namespace Urgent_Manager.View.DashBoard
         private void Statistics_Load(object sender, EventArgs e)
         {
             timer1.Start();
-            cmbShifts.Text = getShift();
             DefaultLegend customLegend = new DefaultLegend();
             customLegend.Foreground = System.Windows.Media.Brushes.White;
             cartesianChart1.DefaultLegend = customLegend;
             totalUrgentCount();
             urgentController.FillCombobox("Machine", "Machine", cmbMachine);
             urgentController.FillCombobox("Area", "ZoneName", cmbArea);
-            guna2DateTimePicker1.Value = DateTime.Now;
-            cmbStatus.SelectedIndex = 0;
+            cmbShifts.Text = getShift();
             chart();
             string[] hours = getShift() == "Matin" ? new string[] { "6", "7", "8", "9", "10", "11", "12", "13" } : getShift() == "Soir" ? new string[] { "14", "15", "16", "17", "18", "19", "20", "21" } : new string[] { "22", "23", "00", "1", "2", "3", "4", "5" };
             ChartValues<int> CurrentUrgent;
@@ -54,11 +53,11 @@ namespace Urgent_Manager.View.DashBoard
             }
             HourlyChart(CurrentUrgent, FinishedUrgents);
             shiftHours();
-            btnRefresh.PerformClick();
         }
 
         private Guna2Panel card(string Name, int values, Color bk)
         {
+
             Guna2Panel p = new Guna2Panel();
             p.Size = new Size(220, 100);
             p.Margin = new Padding(5);
@@ -76,13 +75,17 @@ namespace Urgent_Manager.View.DashBoard
             value.ForeColor = Color.White;
             value.Width = 220;
             value.Font = new Font("Arial", 10);
-            value.Text = "Total Urgents : " + values;
+            value.Text = bk == Color.FromArgb(255, 52, 206, 13) || bk == Color.FromArgb(255, 0,152,120) ? "Total Finished : " + values : "Total Express : "+values;
             value.BackColor = Color.Transparent;
             value.TextAlign = ContentAlignment.MiddleCenter;
             value.Location = new Point(0, 60);
 
             p.Controls.Add(title);
             p.Controls.Add(value);
+            if (values > 0)
+                p.Visible = true;
+            else
+                p.Visible = false;
 
             return p;
         }
@@ -160,7 +163,15 @@ namespace Urgent_Manager.View.DashBoard
         private void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
             int CuttingAreaTotal = 0;
-            totalUrgentCount();
+            if (chTotal.Checked)
+            {
+                chart1.Series.RemoveAt(1);
+                totalUrgent();
+            }
+            else
+            {
+                totalUrgentCount();
+            }
             if (cmbStatus.Text == "Finished")
             {
                 chart();
@@ -179,7 +190,7 @@ namespace Urgent_Manager.View.DashBoard
                 {
                     Guna2Panel p2 = card("Cutting Total", CuttingAreaTotal, Color.FromArgb(255, 0, 152, 120));
                     flowLayoutPanel1.Controls.Add(p2);
-                    Guna2Panel p1 = card("Line Total", statisticsController.leadPrepTotal("Cutting","Finished",true,date), Color.FromArgb(255, 0, 152, 120));
+                    Guna2Panel p1 = card("Production Line Total", statisticsController.leadPrepTotal("Cutting","Finished",true,date), Color.FromArgb(255, 0, 152, 120));
                     flowLayoutPanel1.Controls.Add(p1);
                     Guna2Panel p3 = card("Twist Total", statisticsController.leadPrepTotal("Twist", "Finished", true, date), Color.FromArgb(255, 0, 152, 120));
                     flowLayoutPanel1.Controls.Add(p3);
@@ -214,7 +225,7 @@ namespace Urgent_Manager.View.DashBoard
 
                 Guna2Panel p2 = card("Cutting Total", CuttingAreaTotal, Color.FromArgb(255, 255, 6, 6));
                 flowLayoutPanel1.Controls.Add(p2);
-                Guna2Panel p1 = card("Production Line Total", statisticsController.leadPrepTotal("Cutting", "Finished", false, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 255, 6, 6));
+                Guna2Panel p1 = card("Production Line Total", statisticsController.leadPrepTotal("Cutting", "Express", false, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 255, 6, 6));
                 flowLayoutPanel1.Controls.Add(p1);
                 Guna2Panel p3 = card("Twist Total", statisticsController.leadPrepTotal("Twist", "Express", false, DateTime.Now.ToShortDateString()), Color.FromArgb(255, 255, 6, 6));
                 flowLayoutPanel1.Controls.Add(p3);
@@ -274,7 +285,15 @@ namespace Urgent_Manager.View.DashBoard
         private void livePreview_Tick_1(object sender, EventArgs e)
         {
             int CuttingAreaTotal = 0;
-            totalUrgentCount();
+            if (chTotal.Checked)
+            {
+                chart1.Series.RemoveAt(1);
+                totalUrgent();
+            }
+            else
+            {
+                totalUrgentCount();
+            }
             shiftHours();
             chart();
             if (cmbStatus.Text == "Finished")
@@ -396,7 +415,15 @@ namespace Urgent_Manager.View.DashBoard
         {
             try
             {
-                totalUrgentCount();
+                if (chTotal.Checked)
+                {
+                    chart1.Series.RemoveAt(1);
+                    totalUrgent();
+                }
+                else
+                {
+                    totalUrgentCount();
+                }
                 int CuttingTotal = 0;
                 cmbStatus.SelectedIndex = 1;
                 chartWithDate(guna2DateTimePicker1.Value.ToShortDateString());
@@ -489,7 +516,16 @@ namespace Urgent_Manager.View.DashBoard
         private void btnRefresh_Click_1(object sender, EventArgs e)
         {
             shiftHours();
-            totalUrgentCount();
+            guna2DateTimePicker1.Value = DateTime.Now;
+            if (chTotal.Checked)
+            {
+                chart1.Series.RemoveAt(1);
+                totalUrgent();
+            }
+            else
+            {
+                totalUrgentCount();
+            }
             cmbShifts.Text = getShift();
             int CuttingAreaTotal = 0;
             cmbMachine.SelectedIndex = -1;
@@ -608,9 +644,11 @@ namespace Urgent_Manager.View.DashBoard
                 panel2.Visible = true;
                 cmbMachine.Enabled = false;
                 cmbArea.Enabled = false;
-                cmbShifts.Enabled = true;
+                cmbShifts.Visible = true;
+                lblShifts.Visible = true;
                 lblTotalFinishedHead.Visible = true;
                 lblTotalFinished.Visible = true;
+                chTotal.Visible = true;
             }
             else
             {
@@ -619,9 +657,11 @@ namespace Urgent_Manager.View.DashBoard
                 panel2.Visible = false;
                 cmbMachine.Enabled = true;
                 cmbArea.Enabled = true;
-                cmbShifts.Enabled = false;
+                cmbShifts.Visible = false;
+                lblShifts.Visible = false;
                 lblTotalFinishedHead.Visible = false;
                 lblTotalFinished.Visible = false;
+                chTotal.Visible = false;
             }
         }
 
@@ -645,9 +685,7 @@ namespace Urgent_Manager.View.DashBoard
                 if(cmbStatus.Text == "Express")
                 {
                     chart1.Series["Express"].LegendText = "Express";
-                    Color[] c = new Color[1];
-                    c[0] = Color.Red;
-                    chart1.PaletteCustomColors = c;
+                    chart1.Series["Express"].Color = Color.Red;
                     ArrayList list = urgentController.machines("Express");
 
                     foreach (string machine in list)
@@ -685,9 +723,6 @@ namespace Urgent_Manager.View.DashBoard
                 else
                 {
                     chart1.Series["Express"].LegendText = "Finished";
-                    Color[] c = new Color[1];
-                    c[0] = Color.FromArgb(255, 0, 152, 120);
-                    chart1.PaletteCustomColors = c;
                     chart1.Series["Express"].Color = Color.FromArgb(255,0,152,120);
                     if (cmbShifts.Text != "")
                     {
@@ -753,10 +788,76 @@ namespace Urgent_Manager.View.DashBoard
                 }
                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show("It Was An Error While Handling Your Request Try Latter!\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-                throw;
+        private void totalUrgent()
+        {
+            try
+            {
+                chart1.Series["Express"].Points.Clear();
+                chart1.Series.Add("Finished");
+                chart1.Series["Finished"].LegendText = "Finished";
+                chart1.Series["Express"].Color = Color.Red;
+                chart1.Series["Finished"].Color = Color.FromArgb(255, 0, 152, 120);
+                chart1.BackColor = Color.FromArgb(255, 34, 34, 34);
+                chart1.ChartAreas[0].AxisX.LineColor = Color.White;
+                chart1.ChartAreas[0].AxisY.LineColor = Color.White;
+                chart1.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.White;
+                chart1.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.White;
+                chart1.ChartAreas[0].BackColor = Color.FromArgb(255, 34, 34, 34);
+                chart1.ChartAreas[0].AxisX.LabelStyle.ForeColor = Color.White;
+                chart1.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.White;
+                chart1.ChartAreas[0].AxisX.Interval = 1;
+                chart1.ChartAreas[0].AxisX.IsLabelAutoFit = true;
+
+                for(int i = 1;i < cmbShifts.Items.Count;i++)
+                {
+                    int totalUrgents = statisticsController.Total(guna2DateTimePicker1.Value.ToShortDateString(), cmbShifts.Items[i].ToString(), false);
+                    int totalFinished = statisticsController.Total(guna2DateTimePicker1.Value.ToShortDateString(), cmbShifts.Items[i].ToString(), true);
+                    if(totalUrgents > 0)
+                    {
+                        chart1.Series["Express"].Points.AddXY(cmbShifts.Items[i].ToString(), totalUrgents);
+                        chart1.Series["Express"].IsValueShownAsLabel = true;
+                        chart1.Series["Express"].LabelBackColor = Color.White;
+                        chart1.Series["Express"].LabelForeColor = Color.FromArgb(255, 34, 34, 34);
+                        chart1.ChartAreas[0].AxisX.Title = "Shifts";
+                        chart1.ChartAreas[0].AxisY.Title = "Total";
+                        chart1.ChartAreas[0].AxisX.TitleForeColor = Color.White;
+                        chart1.ChartAreas[0].AxisY.TitleForeColor = Color.White;
+                    }
+
+                    if(totalFinished > 0)
+                    {
+                        chart1.Series["Finished"].Points.AddXY(cmbShifts.Items[i].ToString(), totalFinished);
+                        chart1.Series["Finished"].IsValueShownAsLabel = true;
+                        chart1.Series["Finished"].LabelBackColor = Color.White;
+                        chart1.Series["Finished"].LabelForeColor = Color.FromArgb(255, 34, 34, 34);
+                        chart1.ChartAreas[0].AxisX.Title = "Shifts";
+                        chart1.ChartAreas[0].AxisY.Title = "Total";
+                        chart1.ChartAreas[0].AxisX.TitleForeColor = Color.White;
+                        chart1.ChartAreas[0].AxisY.TitleForeColor = Color.White;
+                    }
+
+                }
+                if(chart1.Series["Express"].Points.Count == 0 && chart1.Series["Finished"].Points.Count == 0)
+                {
+                    lblMessage.Visible = true;
+                    chart1.Visible = false;
+                }
+                else
+                {
+                    lblMessage.Visible = false;
+                    chart1.Visible = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("It Was An Error While Handling Your Request Try Latter!\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -767,6 +868,8 @@ namespace Urgent_Manager.View.DashBoard
             lblLoading.Location = new Point(228, 180);
             if(count == 3)
             {
+                guna2DateTimePicker1.Value = DateTime.Now;
+                cmbStatus.SelectedIndex = 0;
                 flowLayoutPanel1.Visible = true;
                 timer1.Stop();
                 timer1.Enabled = false;
@@ -779,7 +882,30 @@ namespace Urgent_Manager.View.DashBoard
 
         private void cmbShifts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            totalUrgentCount();
+            if (chTotal.Checked)
+            {
+                chart1.Series.RemoveAt(1);
+                totalUrgent();
+            }
+            else
+            {
+                totalUrgentCount();
+            }
+        }
+
+        private void chTotal_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chTotal.Checked)
+            {
+                lblMessage.Visible = false;
+                chart1.Visible = true;
+                totalUrgent();
+            }
+            else
+            {
+                chart1.Series.RemoveAt(1);
+                totalUrgentCount();
+            }
         }
     }
 }

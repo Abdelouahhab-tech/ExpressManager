@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Directories));
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
@@ -50,6 +51,10 @@
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.gtxtNewPathName = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblNewPathName = new System.Windows.Forms.Label();
+            this.lblMachines = new System.Windows.Forms.Label();
+            this.cmbMachine = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.chIsConnect = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.btnConnect = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,7 +77,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.label1.Location = new System.Drawing.Point(668, 68);
+            this.label1.Location = new System.Drawing.Point(437, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(15, 18);
             this.label1.TabIndex = 50;
@@ -115,7 +120,7 @@
             this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.guna2DataGridView1.EnableHeadersVisualStyles = false;
             this.guna2DataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.guna2DataGridView1.Location = new System.Drawing.Point(33, 269);
+            this.guna2DataGridView1.Location = new System.Drawing.Point(35, 271);
             this.guna2DataGridView1.Name = "guna2DataGridView1";
             this.guna2DataGridView1.ReadOnly = true;
             this.guna2DataGridView1.RowHeadersVisible = false;
@@ -180,9 +185,9 @@
             this.btnUpdate.Image = global::Urgent_Manager.Properties.Resources.update;
             this.btnUpdate.ImageOffset = new System.Drawing.Point(-3, 0);
             this.btnUpdate.IndicateFocus = true;
-            this.btnUpdate.Location = new System.Drawing.Point(441, 209);
+            this.btnUpdate.Location = new System.Drawing.Point(183, 207);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(124, 41);
+            this.btnUpdate.Size = new System.Drawing.Size(139, 41);
             this.btnUpdate.TabIndex = 3;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -203,13 +208,13 @@
             this.gtxtOldPathName.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtOldPathName.ForeColor = System.Drawing.Color.White;
             this.gtxtOldPathName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtOldPathName.Location = new System.Drawing.Point(302, 90);
+            this.gtxtOldPathName.Location = new System.Drawing.Point(164, 87);
             this.gtxtOldPathName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtOldPathName.Name = "gtxtOldPathName";
             this.gtxtOldPathName.PasswordChar = '\0';
             this.gtxtOldPathName.PlaceholderText = "Path";
             this.gtxtOldPathName.SelectedText = "";
-            this.gtxtOldPathName.Size = new System.Drawing.Size(401, 41);
+            this.gtxtOldPathName.Size = new System.Drawing.Size(308, 41);
             this.gtxtOldPathName.TabIndex = 0;
             this.gtxtOldPathName.TextOffset = new System.Drawing.Point(20, 0);
             this.gtxtOldPathName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtPathName_KeyDown);
@@ -221,7 +226,7 @@
             this.lblOldPathName.AutoSize = true;
             this.lblOldPathName.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOldPathName.ForeColor = System.Drawing.Color.White;
-            this.lblOldPathName.Location = new System.Drawing.Point(174, 102);
+            this.lblOldPathName.Location = new System.Drawing.Point(32, 99);
             this.lblOldPathName.Name = "lblOldPathName";
             this.lblOldPathName.Size = new System.Drawing.Size(121, 18);
             this.lblOldPathName.TabIndex = 49;
@@ -301,9 +306,9 @@
             this.guna2Button1.Image = global::Urgent_Manager.Properties.Resources.check;
             this.guna2Button1.ImageOffset = new System.Drawing.Point(-3, 0);
             this.guna2Button1.IndicateFocus = true;
-            this.guna2Button1.Location = new System.Drawing.Point(304, 209);
+            this.guna2Button1.Location = new System.Drawing.Point(35, 207);
             this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(124, 41);
+            this.guna2Button1.Size = new System.Drawing.Size(139, 41);
             this.guna2Button1.TabIndex = 2;
             this.guna2Button1.Text = "Save";
             this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
@@ -324,9 +329,9 @@
             this.guna2Button2.Image = global::Urgent_Manager.Properties.Resources.delete;
             this.guna2Button2.ImageOffset = new System.Drawing.Point(-3, 0);
             this.guna2Button2.IndicateFocus = true;
-            this.guna2Button2.Location = new System.Drawing.Point(578, 209);
+            this.guna2Button2.Location = new System.Drawing.Point(331, 207);
             this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(124, 41);
+            this.guna2Button2.Size = new System.Drawing.Size(139, 41);
             this.guna2Button2.TabIndex = 4;
             this.guna2Button2.Text = "Delete";
             this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
@@ -347,13 +352,13 @@
             this.gtxtNewPathName.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtNewPathName.ForeColor = System.Drawing.Color.White;
             this.gtxtNewPathName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtNewPathName.Location = new System.Drawing.Point(302, 155);
+            this.gtxtNewPathName.Location = new System.Drawing.Point(164, 152);
             this.gtxtNewPathName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtNewPathName.Name = "gtxtNewPathName";
             this.gtxtNewPathName.PasswordChar = '\0';
             this.gtxtNewPathName.PlaceholderText = "Path";
             this.gtxtNewPathName.SelectedText = "";
-            this.gtxtNewPathName.Size = new System.Drawing.Size(401, 41);
+            this.gtxtNewPathName.Size = new System.Drawing.Size(308, 41);
             this.gtxtNewPathName.TabIndex = 1;
             this.gtxtNewPathName.TextOffset = new System.Drawing.Point(20, 0);
             this.gtxtNewPathName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtNewPathName_KeyDown);
@@ -365,18 +370,101 @@
             this.lblNewPathName.AutoSize = true;
             this.lblNewPathName.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNewPathName.ForeColor = System.Drawing.Color.White;
-            this.lblNewPathName.Location = new System.Drawing.Point(174, 167);
+            this.lblNewPathName.Location = new System.Drawing.Point(32, 164);
             this.lblNewPathName.Name = "lblNewPathName";
             this.lblNewPathName.Size = new System.Drawing.Size(127, 18);
             this.lblNewPathName.TabIndex = 59;
             this.lblNewPathName.Text = "New Path Name :";
+            // 
+            // lblMachines
+            // 
+            this.lblMachines.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblMachines.AutoSize = true;
+            this.lblMachines.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMachines.ForeColor = System.Drawing.Color.White;
+            this.lblMachines.Location = new System.Drawing.Point(483, 99);
+            this.lblMachines.Name = "lblMachines";
+            this.lblMachines.Size = new System.Drawing.Size(84, 18);
+            this.lblMachines.TabIndex = 61;
+            this.lblMachines.Text = "Machines :";
+            // 
+            // cmbMachine
+            // 
+            this.cmbMachine.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cmbMachine.BackColor = System.Drawing.Color.Transparent;
+            this.cmbMachine.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.cmbMachine.BorderRadius = 20;
+            this.cmbMachine.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbMachine.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbMachine.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMachine.FillColor = System.Drawing.Color.Black;
+            this.cmbMachine.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbMachine.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbMachine.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbMachine.ForeColor = System.Drawing.Color.White;
+            this.cmbMachine.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.cmbMachine.IntegralHeight = false;
+            this.cmbMachine.ItemHeight = 35;
+            this.cmbMachine.ItemsAppearance.SelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.cmbMachine.Location = new System.Drawing.Point(578, 87);
+            this.cmbMachine.Name = "cmbMachine";
+            this.cmbMachine.Size = new System.Drawing.Size(199, 41);
+            this.cmbMachine.TabIndex = 60;
+            this.cmbMachine.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // chIsConnect
+            // 
+            this.chIsConnect.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.chIsConnect.CheckedState.BorderRadius = 2;
+            this.chIsConnect.CheckedState.BorderThickness = 0;
+            this.chIsConnect.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chIsConnect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chIsConnect.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chIsConnect.ForeColor = System.Drawing.Color.White;
+            this.chIsConnect.Location = new System.Drawing.Point(486, 158);
+            this.chIsConnect.Name = "chIsConnect";
+            this.chIsConnect.Size = new System.Drawing.Size(130, 24);
+            this.chIsConnect.TabIndex = 62;
+            this.chIsConnect.Text = "Is Connect";
+            this.chIsConnect.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chIsConnect.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chIsConnect.UncheckedState.BorderRadius = 2;
+            this.chIsConnect.UncheckedState.BorderThickness = 0;
+            this.chIsConnect.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            // 
+            // btnConnect
+            // 
+            this.btnConnect.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnConnect.BorderRadius = 20;
+            this.btnConnect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConnect.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnConnect.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnConnect.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnConnect.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnConnect.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.btnConnect.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnConnect.ForeColor = System.Drawing.Color.White;
+            this.btnConnect.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
+            this.btnConnect.Image = global::Urgent_Manager.Properties.Resources.update;
+            this.btnConnect.ImageOffset = new System.Drawing.Point(-3, 0);
+            this.btnConnect.IndicateFocus = true;
+            this.btnConnect.Location = new System.Drawing.Point(486, 207);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(291, 41);
+            this.btnConnect.TabIndex = 63;
+            this.btnConnect.Text = "Update MC Connection";
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // Directories
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(842, 521);
+            this.ClientSize = new System.Drawing.Size(842, 581);
+            this.Controls.Add(this.btnConnect);
+            this.Controls.Add(this.chIsConnect);
+            this.Controls.Add(this.lblMachines);
+            this.Controls.Add(this.cmbMachine);
             this.Controls.Add(this.gtxtNewPathName);
             this.Controls.Add(this.lblNewPathName);
             this.Controls.Add(this.guna2Button2);
@@ -392,6 +480,7 @@
             this.Controls.Add(this.gtxtOldPathName);
             this.Controls.Add(this.lblOldPathName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Directories";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Directories";
@@ -422,5 +511,9 @@
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private Guna.UI2.WinForms.Guna2TextBox gtxtNewPathName;
         private System.Windows.Forms.Label lblNewPathName;
+        private System.Windows.Forms.Label lblMachines;
+        private Guna.UI2.WinForms.Guna2ComboBox cmbMachine;
+        private Guna.UI2.WinForms.Guna2CheckBox chIsConnect;
+        private Guna.UI2.WinForms.Guna2Button btnConnect;
     }
 }

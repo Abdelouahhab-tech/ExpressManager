@@ -16,6 +16,7 @@ namespace Urgent_Manager
     {
 
         WPCSController wpcsController = new WPCSController();
+        MachineController machine = new MachineController();
         public ServerData()
         {
             InitializeComponent();
@@ -55,7 +56,23 @@ namespace Urgent_Manager
         {
             try
             {
-                if(cmbDirectories.Text.Trim() != "" && gtxtServerName.Text.Trim() == "" && gtxtDbName.Text.Trim() == "" && gtxtUser.Text.Trim() == "" && gtxtPass.Text.Trim() == "")
+                if (chIsConnectPerMC.Checked)
+                {
+                    if (WPCSController.isConnect())
+                    {
+                        if (machine.IsExist(Environment.MachineName, "Machine", "Machine"))
+                        {
+                            machine.UpdateIsConnect(Environment.MachineName, 1);
+                            MessageBox.Show("Data Updated Successfuly", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Sorry You Are Not Authorized", "Denied", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+
+                if (cmbDirectories.Text.Trim() != "" && gtxtServerName.Text.Trim() == "" && gtxtDbName.Text.Trim() == "" && gtxtUser.Text.Trim() == "" && gtxtPass.Text.Trim() == "")
                 {
                     Properties.Settings.Default.WpcsDirectory = cmbDirectories.Text;
                     Properties.Settings.Default.Save();
@@ -68,7 +85,7 @@ namespace Urgent_Manager
                     Properties.Settings.Default.DatabaseName = gtxtDbName.Text;
                     Properties.Settings.Default.userName = gtxtUser.Text;
                     Properties.Settings.Default.password = gtxtPass.Text;
-                    Properties.Settings.Default.WpcsDirectory = cmbDirectories.Text.Trim() != "" ? cmbDirectories.Text : @"D:\Komax\TopWin\WPCS-Feedback\Job.sdc.arc";
+                    Properties.Settings.Default.WpcsDirectory = cmbDirectories.Text;
                     Properties.Settings.Default.Save();
                     Properties.Settings.Default.Reload();
 

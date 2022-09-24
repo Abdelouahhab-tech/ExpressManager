@@ -32,7 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.gradientPanel1 = new Urgent_Manager.CustomViews.GradientPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
@@ -44,20 +43,12 @@
             this.btnSave = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.label1 = new System.Windows.Forms.Label();
+            this.chStatus = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.btnUpdateStatus = new Guna.UI2.WinForms.Guna2Button();
+            this.gradientPanel1 = new Urgent_Manager.CustomViews.GradientPanel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // gradientPanel1
-            // 
-            this.gradientPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gradientPanel1.BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
-            this.gradientPanel1.Location = new System.Drawing.Point(0, 40);
-            this.gradientPanel1.Name = "gradientPanel1";
-            this.gradientPanel1.Size = new System.Drawing.Size(858, 2);
-            this.gradientPanel1.TabIndex = 16;
-            this.gradientPanel1.TopColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
             // 
             // panel1
             // 
@@ -118,7 +109,7 @@
             this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.guna2DataGridView1.EnableHeadersVisualStyles = false;
             this.guna2DataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.guna2DataGridView1.Location = new System.Drawing.Point(33, 220);
+            this.guna2DataGridView1.Location = new System.Drawing.Point(33, 250);
             this.guna2DataGridView1.Name = "guna2DataGridView1";
             this.guna2DataGridView1.ReadOnly = true;
             this.guna2DataGridView1.RowHeadersVisible = false;
@@ -130,7 +121,7 @@
             this.guna2DataGridView1.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
             this.guna2DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.guna2DataGridView1.Size = new System.Drawing.Size(777, 196);
-            this.guna2DataGridView1.TabIndex = 4;
+            this.guna2DataGridView1.TabIndex = 5;
             this.guna2DataGridView1.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.GreenSea;
             this.guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(226)))), ((int)(((byte)(218)))));
             this.guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -183,7 +174,7 @@
             this.gtxtFamilyName.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtFamilyName.ForeColor = System.Drawing.Color.White;
             this.gtxtFamilyName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtFamilyName.Location = new System.Drawing.Point(286, 106);
+            this.gtxtFamilyName.Location = new System.Drawing.Point(286, 81);
             this.gtxtFamilyName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtFamilyName.Name = "gtxtFamilyName";
             this.gtxtFamilyName.PasswordChar = '\0';
@@ -202,7 +193,7 @@
             this.lblFamilyName.AutoSize = true;
             this.lblFamilyName.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFamilyName.ForeColor = System.Drawing.Color.White;
-            this.lblFamilyName.Location = new System.Drawing.Point(158, 118);
+            this.lblFamilyName.Location = new System.Drawing.Point(158, 93);
             this.lblFamilyName.Name = "lblFamilyName";
             this.lblFamilyName.Size = new System.Drawing.Size(108, 18);
             this.lblFamilyName.TabIndex = 28;
@@ -223,7 +214,7 @@
             this.btnDelete.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
             this.btnDelete.Image = global::Urgent_Manager.Properties.Resources.delete;
             this.btnDelete.IndicateFocus = true;
-            this.btnDelete.Location = new System.Drawing.Point(404, 163);
+            this.btnDelete.Location = new System.Drawing.Point(404, 191);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(108, 41);
             this.btnDelete.TabIndex = 3;
@@ -246,7 +237,7 @@
             this.btnSave.Image = global::Urgent_Manager.Properties.Resources.diskette;
             this.btnSave.ImageOffset = new System.Drawing.Point(-3, 0);
             this.btnSave.IndicateFocus = true;
-            this.btnSave.Location = new System.Drawing.Point(288, 163);
+            this.btnSave.Location = new System.Drawing.Point(286, 191);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(108, 41);
             this.btnSave.TabIndex = 1;
@@ -264,11 +255,66 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.label1.Location = new System.Drawing.Point(652, 84);
+            this.label1.Location = new System.Drawing.Point(652, 59);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(15, 18);
             this.label1.TabIndex = 43;
             this.label1.Text = "*";
+            // 
+            // chStatus
+            // 
+            this.chStatus.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.chStatus.AutoSize = true;
+            this.chStatus.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chStatus.CheckedState.BorderRadius = 2;
+            this.chStatus.CheckedState.BorderThickness = 0;
+            this.chStatus.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.chStatus.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chStatus.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chStatus.ForeColor = System.Drawing.Color.White;
+            this.chStatus.Location = new System.Drawing.Point(286, 142);
+            this.chStatus.Name = "chStatus";
+            this.chStatus.Size = new System.Drawing.Size(120, 22);
+            this.chStatus.TabIndex = 45;
+            this.chStatus.Text = "Family Status";
+            this.chStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chStatus.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chStatus.UncheckedState.BorderRadius = 2;
+            this.chStatus.UncheckedState.BorderThickness = 0;
+            this.chStatus.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            // 
+            // btnUpdateStatus
+            // 
+            this.btnUpdateStatus.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnUpdateStatus.BorderRadius = 20;
+            this.btnUpdateStatus.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpdateStatus.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnUpdateStatus.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnUpdateStatus.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnUpdateStatus.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnUpdateStatus.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.btnUpdateStatus.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnUpdateStatus.ForeColor = System.Drawing.Color.White;
+            this.btnUpdateStatus.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
+            this.btnUpdateStatus.Image = global::Urgent_Manager.Properties.Resources.update;
+            this.btnUpdateStatus.IndicateFocus = true;
+            this.btnUpdateStatus.Location = new System.Drawing.Point(528, 191);
+            this.btnUpdateStatus.Name = "btnUpdateStatus";
+            this.btnUpdateStatus.Size = new System.Drawing.Size(108, 41);
+            this.btnUpdateStatus.TabIndex = 4;
+            this.btnUpdateStatus.Text = "Update";
+            this.btnUpdateStatus.Click += new System.EventHandler(this.btnUpdateStatus_Click);
+            // 
+            // gradientPanel1
+            // 
+            this.gradientPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gradientPanel1.BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
+            this.gradientPanel1.Location = new System.Drawing.Point(0, 40);
+            this.gradientPanel1.Name = "gradientPanel1";
+            this.gradientPanel1.Size = new System.Drawing.Size(858, 2);
+            this.gradientPanel1.TabIndex = 16;
+            this.gradientPanel1.TopColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
             // 
             // FamilyView
             // 
@@ -276,6 +322,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.ClientSize = new System.Drawing.Size(842, 521);
+            this.Controls.Add(this.btnUpdateStatus);
+            this.Controls.Add(this.chStatus);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.guna2DataGridView1);
             this.Controls.Add(this.btnDelete);
@@ -309,5 +357,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn User;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
         private System.Windows.Forms.Label label1;
+        private Guna.UI2.WinForms.Guna2CheckBox chStatus;
+        private Guna.UI2.WinForms.Guna2Button btnUpdateStatus;
     }
 }

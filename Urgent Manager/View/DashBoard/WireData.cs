@@ -22,24 +22,18 @@ namespace Urgent_Manager.View.DashBoard
             InitializeComponent();
         }
 
-        private async void WireData_Load(object sender, EventArgs e)
+        private void WireData_Load(object sender, EventArgs e)
         {
             try
             {
-                gtxtSearch.Focus();
-                wireController.FillCombobox("Machine", "Machine", cmbMachine);
-                wireController.FillCombobox("Machine", "Machine", cmbPlanBMc);
-                lblLoading.Visible = true;
-                await Task.Run(new Action(fetch));
+                lblLoadingMsg.Visible = true;
+                AutoComplete.AutoComplete auto = new AutoComplete.AutoComplete();
+                auto.autoComplete(cmbMachines, DbHelper.connection, "SELECT Machine FROM Machine");
+                auto.autoComplete(cmbGroupe, DbHelper.connection, "SELECT GroupRef FROM Groupe");
                 guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
                 guna2DataGridView1.ScrollBars = ScrollBars.Both;
-                foreach (DataGridViewColumn col in guna2DataGridView1.Columns)
-                {
-                    if (col.HeaderText == "Location" || col.HeaderText == "Entry Agent" || col.HeaderText == "Unico" || col.HeaderText == "Lead Code")
-                        col.Width = 180;
-                    else
-                        col.Width = 100;
-                }
+                gtxtSearch.Focus();
+                timer1.Start();
             }
             catch (Exception ex)
             {
@@ -58,7 +52,14 @@ namespace Urgent_Manager.View.DashBoard
                 }
                 if (gtxtSearch.Text.Trim() != "")
                 {
-                    wireController.fetchRecords(guna2DataGridView1, list, gtxtSearch.Text);
+                    if (gtxtSearch.Text.Contains("-"))
+                    {
+                       wireController.fetchRecords(guna2DataGridView1, list, gtxtSearch.Text);
+                    }
+                    else
+                    {
+                        wireController.fetchRecordsPerFamily(guna2DataGridView1, list, gtxtSearch.Text);
+                    }
                 }
             }
             catch (Exception)
@@ -73,6 +74,7 @@ namespace Urgent_Manager.View.DashBoard
         {
             try
             {
+                gtxtSearch.Text = "";
                 if (chGroup.Checked)
                 {
                     list.Add("Groupe");
@@ -99,6 +101,7 @@ namespace Urgent_Manager.View.DashBoard
         {
             try
             {
+                gtxtSearch.Text = "";
                 if (chProtection.Checked)
                 {
                     list.Add("ProtectionL");
@@ -128,6 +131,7 @@ namespace Urgent_Manager.View.DashBoard
         {
             try
             {
+                gtxtSearch.Text = "";
                 if (chLeadPrep.Checked)
                 {
                     list.Add("LeadPrep");
@@ -147,23 +151,6 @@ namespace Urgent_Manager.View.DashBoard
             }
         }
 
-        private async void cmbMachine_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            panelCmbMachine.BackColor = Color.FromArgb(255, 128, 255, 255);
-            try
-            {
-                if (cmbMachine.Text.Trim() != "")
-                {
-                    lblLoading.Visible = true;
-                    await Task.Run(new Action(fetchRecordsPerMac));
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
         // Fetch Recods Asyncrounously
         private void fetch()
         {
@@ -171,7 +158,7 @@ namespace Urgent_Manager.View.DashBoard
             {
                 guna2DataGridView1.Invoke((MethodInvoker)delegate
                 {
-                    wireController.fetchRecords(guna2DataGridView1);
+                    wireController.fetchRecords(guna2DataGridView1,list);
                     lblLoading.Visible = false;
                 });
             }
@@ -189,16 +176,29 @@ namespace Urgent_Manager.View.DashBoard
             {
                 guna2DataGridView1.Invoke((MethodInvoker)delegate
                 {
-                    if (chGroupe.Checked)
-                    {
-                        wireController.fetchRecordsPerMachine(guna2DataGridView1, list, "Groupe", cmbMachine.Text);
+                   
+                        wireController.fetchRecordsPerMachine(guna2DataGridView1, list, "MC", cmbMachines.Text);
                         lblLoading.Visible = false;
-                    }
-                    else
-                    {
-                        wireController.fetchRecordsPerMachine(guna2DataGridView1, list, "MC", cmbMachine.Text);
-                        lblLoading.Visible = false;
-                    }
+
+                });
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        // Fetch Reords Per Groupe
+
+        private void fetchRecordsPeGroupe()
+        {
+            try
+            {
+                guna2DataGridView1.Invoke((MethodInvoker)delegate
+                {
+
+                    wireController.fetchRecordsPerMachine(guna2DataGridView1, list, "Groupe", cmbGroupe.Text);
+                    lblLoading.Visible = false;
 
                 });
             }
@@ -224,96 +224,6 @@ namespace Urgent_Manager.View.DashBoard
             {
 
             }
-        }
-
-        private void chGroupe_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (chGroupe.Checked)
-                {
-                    chMachine.Checked = false;
-                    cmbMachine.Items.Clear();
-                    cmbPlanBMc.Items.Clear();
-                    wireController.FillCombobox("Groupe", "GroupRef", cmbMachine);
-                    wireController.FillCombobox("Groupe", "GroupRef", cmbPlanBMc);
-                    lblNew.Text = "New Group";
-                    lblOld.Text = "Old Group";
-
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
-        private void chMachine_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (chMachine.Checked)
-                {
-
-                    chGroupe.Checked = false;
-                    cmbMachine.Items.Clear();
-                    cmbPlanBMc.Items.Clear();
-                    wireController.FillCombobox("Machine", "Machine", cmbMachine);
-                    wireController.FillCombobox("Machine", "Machine", cmbPlanBMc);
-                    lblNew.Text = "New Machine";
-                    lblOld.Text = "Old Machine";
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
-        private void icUpdate_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (cmbMachine.Text.Trim() != "" && cmbPlanBMc.Text.Trim() != "")
-                {
-                    if (chGroupe.Checked)
-                    {
-                        wireController.UpdateWirePerGroupMC("Groupe", cmbMachine.Text, cmbPlanBMc.Text);
-                        cmbMachine.Text = cmbPlanBMc.Text;
-                        fetchRecordsPerMac();
-                        cmbMachine.SelectedIndex = -1;
-                        cmbPlanBMc.SelectedIndex = -1;
-                    }
-                    else
-                    {
-                        wireController.UpdateWirePerGroupMC("MC", cmbMachine.Text, cmbPlanBMc.Text);
-                        cmbMachine.Text = cmbPlanBMc.Text;
-                        fetchRecordsPerMac();
-                        cmbMachine.SelectedIndex = -1;
-                        cmbPlanBMc.SelectedIndex = -1;
-                    }
-                }
-                else
-                {
-                    if(cmbMachine.Text == "")
-                    {
-                        cmbMachine.Focus();
-                        panelCmbMachine.BackColor = Color.Red;
-                    }else if(cmbPlanBMc.Text == "")
-                    {
-                        cmbPlanBMc.Focus();
-                        panelCmbPlanBMachine.BackColor = Color.Red;
-                    }
-                }
-               }
-            catch (Exception ex)
-            {
-            }
-}
-
-        private void cmbPlanBMc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            panelCmbPlanBMachine.BackColor = Color.FromArgb(255, 128, 255, 255);
         }
 
         private async void icExport_Click(object sender, EventArgs e)
@@ -370,6 +280,82 @@ namespace Urgent_Manager.View.DashBoard
                 row.Selected = false;
             }
             guna2DataGridView1.Rows[0].Selected = true;
+        }
+
+        private void icExport_MouseEnter(object sender, EventArgs e)
+        {
+            icExport.IconColor = Color.FromArgb(255, 234, 79, 12);
+        }
+
+        private void icExport_MouseLeave(object sender, EventArgs e)
+        {
+            icExport.IconColor = Color.White;
+        }
+
+        private async void timer1_Tick(object sender, EventArgs e)
+        {
+            await Task.Run(new Action(fetch));
+            lblLoadingMsg.Visible = false;
+            foreach (DataGridViewColumn col in guna2DataGridView1.Columns)
+            {
+                if (col.HeaderText == "Location" || col.HeaderText == "Entry Agent" || col.HeaderText == "Unico" || col.HeaderText == "Lead Code")
+                    col.Width = 180;
+                else
+                    col.Width = 100;
+            }
+            timer1.Stop();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            cmbGroupe.Text = "";
+            cmbMachines.Text = "";
+            fetch();
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            UpdateMCORGroupe update = new UpdateMCORGroupe();
+            update.ShowDialog();
+        }
+
+        private async void cmbMachines_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(cmbMachines.Text.Trim() != "")
+            {
+                if (wireController.IsExist(cmbMachines.Text, "Machine", "Machine"))
+                {
+                    lblLoading.Visible = true;
+                    await Task.Run(new Action(fetchRecordsPerMac));
+                }
+            }
+            else
+            {
+                lblLoading.Visible = true;
+                await Task.Run(new Action(fetch));
+            }
+        }
+
+        private async void cmbGroupe_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (cmbGroupe.Text.Trim() != "")
+            {
+                if (wireController.IsExist(cmbGroupe.Text, "Groupe", "GroupRef"))
+                {
+                    lblLoading.Visible = true;
+                    await Task.Run(new Action(fetchRecordsPeGroupe));
+                }
+            }
+            else
+            {
+                lblLoading.Visible = true;
+                await Task.Run(new Action(fetch));
+            }
+        }
+
+        private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

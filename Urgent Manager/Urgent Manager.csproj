@@ -37,6 +37,12 @@
       <HintPath>..\packages\Eramake.eCryptography.1.1.6\lib\net45\eCryptography.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ExcelDataReader">
+      <HintPath>..\..\..\Mes Dossiers\MyProjects\C#Projects\ExportExcelData\packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet">
+      <HintPath>..\..\..\Mes Dossiers\MyProjects\C#Projects\ExportExcelData\packages\ExcelDataReader.DataSet.3.6.0\lib\net35\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
     <Reference Include="FontAwesome.Sharp">
       <HintPath>..\..\..\..\..\Desktop\Urgent Manager Project\FontAwesome.Sharp.dll</HintPath>
     </Reference>
@@ -205,6 +211,12 @@
     <Compile Include="View\DashBoard\Protection.Designer.cs">
       <DependentUpon>Protection.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\DashBoard\Prototype.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DashBoard\Prototype.Designer.cs">
+      <DependentUpon>Prototype.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\DashBoard\Seal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -228,6 +240,12 @@
     </Compile>
     <Compile Include="View\DashBoard\Tool.Designer.cs">
       <DependentUpon>Tool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DashBoard\UpdateMCORGroupe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DashBoard\UpdateMCORGroupe.Designer.cs">
+      <DependentUpon>UpdateMCORGroupe.cs</DependentUpon>
     </Compile>
     <Compile Include="View\DashBoard\User.cs">
       <SubType>Form</SubType>
@@ -320,6 +338,9 @@
     <EmbeddedResource Include="View\DashBoard\Protection.resx">
       <DependentUpon>Protection.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\DashBoard\Prototype.resx">
+      <DependentUpon>Prototype.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\DashBoard\Seal.resx">
       <DependentUpon>Seal.cs</DependentUpon>
     </EmbeddedResource>
@@ -331,6 +352,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\DashBoard\Tool.resx">
       <DependentUpon>Tool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DashBoard\UpdateMCORGroupe.resx">
+      <DependentUpon>UpdateMCORGroupe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DashBoard\User.resx">
       <DependentUpon>User.cs</DependentUpon>
@@ -488,6 +512,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\database.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refreshRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WhiteDimensions.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

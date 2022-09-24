@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -146,6 +147,49 @@ namespace Urgent_Manager.View.DashBoard
         {
             lblFamilyName.ForeColor = Color.White;
             gtxtFamilyName.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void btnUpdateStatus_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(gtxtFamilyName.Text.Trim() != "" && familyController.IsExist(gtxtFamilyName.Text.Trim(), "Family", "FAM"))
+                {
+                    DbHelper.connection.Open();
+                    string QUERY = "UPDATE Wire SET WireStatus=@status WHERE Family=@family";
+                    SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                    cmd.Parameters.AddWithValue("@status", chStatus.Checked ? 1 : 0);
+                    cmd.Parameters.AddWithValue("@family", gtxtFamilyName.Text);
+                    cmd.ExecuteNonQuery();
+                    DbHelper.connection.Close();
+                    MessageBox.Show("Your Data Updated Successfuly", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    gtxtFamilyName.Text = "";
+                    gtxtFamilyName.Focus();
+                }
+                else
+                {
+                    if(gtxtFamilyName.Text == "")
+                    {
+
+                        lblFamilyName.ForeColor = Color.Red;
+                        gtxtFamilyName.Focus();
+                        gtxtFamilyName.FocusedState.BorderColor = Color.White;
+
+                    }
+                    else if(familyController.IsExist(gtxtFamilyName.Text.Trim(), "Family", "FAM"))
+                    {
+                        MessageBox.Show("This Family Doesn't Exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        lblFamilyName.ForeColor = Color.Red;
+                        gtxtFamilyName.Focus();
+                        gtxtFamilyName.SelectAll();
+                        gtxtFamilyName.FocusedState.BorderColor = Color.White;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }

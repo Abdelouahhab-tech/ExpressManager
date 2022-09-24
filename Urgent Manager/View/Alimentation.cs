@@ -15,6 +15,7 @@ namespace Urgent_Manager.View
     public partial class Alimentation : Form
     {
         UrgentController urgentController = new UrgentController();
+        AutoComplete.AutoComplete auto = new AutoComplete.AutoComplete();
         private int count = 0;
         public Alimentation()
         {
@@ -25,6 +26,7 @@ namespace Urgent_Manager.View
         {
             try
             {
+                auto.autoComplete(gtxtScanne, DbHelper.connection, "SELECT Unico FROM Wire WHERE WireStatus=1");
                 lblDate.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 timer1.Start();
                 gtxtScanne.Focus();
@@ -65,7 +67,7 @@ namespace Urgent_Manager.View
             {
                 if(gtxtScanne.Text.Trim() != "")
                 {
-                    if (urgentController.IsExist(gtxtScanne.Text,"Wire","Unico"))
+                    if (urgentController.IsExist(gtxtScanne.Text))
                     {
                         if (!urgentController.isAlreadyExist(gtxtScanne.Text))
                         {
@@ -112,7 +114,7 @@ namespace Urgent_Manager.View
                     }
                     else
                     {
-                        MessageBox.Show($"Sorry This Urgent Is Not Exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show($"Sorry This Urgent Is Not Exist Or It Was Stopped", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         gtxtScanne.FocusedState.BorderColor = Color.Red;
                         gtxtScanne.Focus();
                         gtxtScanne.SelectAll();

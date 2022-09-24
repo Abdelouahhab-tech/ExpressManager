@@ -55,10 +55,11 @@
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblLoading = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblShifts = new System.Windows.Forms.Label();
             this.cmbShifts = new Guna.UI2.WinForms.Guna2ComboBox();
             this.lblTotalFinishedHead = new System.Windows.Forms.Label();
             this.lblTotalFinished = new System.Windows.Forms.Label();
+            this.chTotal = new Guna.UI2.WinForms.Guna2CheckBox();
             this.gradientPanel1 = new Urgent_Manager.CustomViews.GradientPanel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -401,16 +402,17 @@
             this.lblLoading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblLoading.Visible = false;
             // 
-            // label6
+            // lblShifts
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(713, 337);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 18);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "Shifts :";
+            this.lblShifts.AutoSize = true;
+            this.lblShifts.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShifts.ForeColor = System.Drawing.Color.White;
+            this.lblShifts.Location = new System.Drawing.Point(713, 337);
+            this.lblShifts.Name = "lblShifts";
+            this.lblShifts.Size = new System.Drawing.Size(61, 18);
+            this.lblShifts.TabIndex = 18;
+            this.lblShifts.Text = "Shifts :";
+            this.lblShifts.Visible = false;
             // 
             // cmbShifts
             // 
@@ -420,7 +422,6 @@
             this.cmbShifts.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbShifts.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cmbShifts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbShifts.Enabled = false;
             this.cmbShifts.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.cmbShifts.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cmbShifts.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
@@ -438,6 +439,7 @@
             this.cmbShifts.Size = new System.Drawing.Size(115, 36);
             this.cmbShifts.TabIndex = 17;
             this.cmbShifts.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.cmbShifts.Visible = false;
             this.cmbShifts.SelectedIndexChanged += new System.EventHandler(this.cmbShifts_SelectedIndexChanged);
             // 
             // lblTotalFinishedHead
@@ -464,6 +466,28 @@
             this.lblTotalFinished.Text = "0";
             this.lblTotalFinished.Visible = false;
             // 
+            // chTotal
+            // 
+            this.chTotal.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.chTotal.CheckedState.BorderRadius = 2;
+            this.chTotal.CheckedState.BorderThickness = 0;
+            this.chTotal.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chTotal.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chTotal.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chTotal.ForeColor = System.Drawing.Color.White;
+            this.chTotal.Location = new System.Drawing.Point(27, 364);
+            this.chTotal.Name = "chTotal";
+            this.chTotal.Size = new System.Drawing.Size(130, 24);
+            this.chTotal.TabIndex = 21;
+            this.chTotal.Text = "Total Shift";
+            this.chTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chTotal.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chTotal.UncheckedState.BorderRadius = 2;
+            this.chTotal.UncheckedState.BorderThickness = 0;
+            this.chTotal.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chTotal.Visible = false;
+            this.chTotal.CheckedChanged += new System.EventHandler(this.chTotal_CheckedChanged);
+            // 
             // gradientPanel1
             // 
             this.gradientPanel1.BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
@@ -479,9 +503,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.ClientSize = new System.Drawing.Size(1167, 650);
+            this.Controls.Add(this.chTotal);
             this.Controls.Add(this.lblTotalFinished);
             this.Controls.Add(this.lblTotalFinishedHead);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblShifts);
             this.Controls.Add(this.cmbShifts);
             this.Controls.Add(this.lblLoading);
             this.Controls.Add(this.panel2);
@@ -539,10 +564,11 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblLoading;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblShifts;
         private Guna.UI2.WinForms.Guna2ComboBox cmbShifts;
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.Label lblTotalFinishedHead;
         private System.Windows.Forms.Label lblTotalFinished;
+        private Guna.UI2.WinForms.Guna2CheckBox chTotal;
     }
 }

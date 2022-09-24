@@ -276,7 +276,7 @@
             this.panelControls.Controls.Add(this.btnFamille);
             this.panelControls.Controls.Add(this.btnArea);
             this.panelControls.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panelControls.Location = new System.Drawing.Point(0, 108);
+            this.panelControls.Location = new System.Drawing.Point(0, 106);
             this.panelControls.Name = "panelControls";
             this.panelControls.Size = new System.Drawing.Size(204, 300);
             this.panelControls.TabIndex = 3;
@@ -609,6 +609,7 @@
             // 
             // icUrgent
             // 
+            this.icUrgent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.icUrgent.Cursor = System.Windows.Forms.Cursors.Hand;
             this.icUrgent.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.icUrgent.FlatAppearance.BorderSize = 0;
@@ -627,7 +628,7 @@
             this.icUrgent.Size = new System.Drawing.Size(204, 38);
             this.icUrgent.TabIndex = 0;
             this.icUrgent.Text = "    Data Management\r\n";
-            this.icUrgent.UseVisualStyleBackColor = true;
+            this.icUrgent.UseVisualStyleBackColor = false;
             this.icUrgent.Click += new System.EventHandler(this.icUrgent_Click);
             // 
             // guna2Elipse1

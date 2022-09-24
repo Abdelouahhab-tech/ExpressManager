@@ -21,10 +21,10 @@ namespace Urgent_Manager.Controller
 
                 string QUERY = "INSERT INTO Cable VALUES(@cableRef,@section,@pvc,@color,@guide,@userID)";
                 SqlCommand cmd = new SqlCommand(QUERY,DbHelper.connection);
-                cmd.Parameters.AddWithValue("@cableRef",cable.Cable);
+                cmd.Parameters.AddWithValue("@cableRef",cable.Cable.ToUpper());
                 cmd.Parameters.AddWithValue("@section", cable.Section);
                 cmd.Parameters.AddWithValue("@pvc", cable.Pvc);
-                cmd.Parameters.AddWithValue("@color", cable.Color);
+                cmd.Parameters.AddWithValue("@color", cable.Color.ToUpper());
                 cmd.Parameters.AddWithValue("@guide", cable.Guide);
                 cmd.Parameters.AddWithValue("@userID", cable.UserID);
 

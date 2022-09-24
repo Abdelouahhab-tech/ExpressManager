@@ -29,27 +29,27 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.cmbMac = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.btnUrgentDelete = new Guna.UI2.WinForms.Guna2Button();
-            this.icExport = new FontAwesome.Sharp.IconButton();
-            this.gtxtSearch = new Guna.UI2.WinForms.Guna2TextBox();
-            this.icPrint = new FontAwesome.Sharp.IconButton();
-            this.btnRefresh = new Guna.UI2.WinForms.Guna2Button();
             this.lblLoading = new System.Windows.Forms.Label();
             this.lblMessage = new System.Windows.Forms.Label();
             this.cmbLeadPrep = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.btnOptimized = new Guna.UI2.WinForms.Guna2Button();
             this.chAllUrgents = new Guna.UI2.WinForms.Guna2CheckBox();
             this.chOptimizedRecords = new Guna.UI2.WinForms.Guna2CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnRefresh = new Guna.UI2.WinForms.Guna2Button();
+            this.icPrint = new FontAwesome.Sharp.IconButton();
+            this.icExport = new FontAwesome.Sharp.IconButton();
+            this.btnOptimized = new Guna.UI2.WinForms.Guna2Button();
+            this.btnUrgentDelete = new Guna.UI2.WinForms.Guna2Button();
+            this.gtxtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,8 +58,8 @@
             this.guna2DataGridView1.AllowUserToAddRows = false;
             this.guna2DataGridView1.AllowUserToDeleteRows = false;
             this.guna2DataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(226)))), ((int)(((byte)(218)))));
-            this.guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(226)))), ((int)(((byte)(218)))));
+            this.guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.guna2DataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.guna2DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -67,33 +67,33 @@
             this.guna2DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.guna2DataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.guna2DataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.guna2DataGridView1.ColumnHeadersHeight = 35;
             this.guna2DataGridView1.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(235)))), ((int)(((byte)(230)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(191)))), ((int)(((byte)(173)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(235)))), ((int)(((byte)(230)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(191)))), ((int)(((byte)(173)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.guna2DataGridView1.EnableHeadersVisualStyles = false;
-            this.guna2DataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.guna2DataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(224)))), ((int)(((byte)(216)))));
             this.guna2DataGridView1.Location = new System.Drawing.Point(23, 119);
             this.guna2DataGridView1.Name = "guna2DataGridView1";
             this.guna2DataGridView1.ReadOnly = true;
             this.guna2DataGridView1.RowHeadersVisible = false;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2DataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2DataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.guna2DataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.guna2DataGridView1.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.guna2DataGridView1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -110,7 +110,7 @@
             this.guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
             this.guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
             this.guna2DataGridView1.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.guna2DataGridView1.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.guna2DataGridView1.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(224)))), ((int)(((byte)(216)))));
             this.guna2DataGridView1.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
             this.guna2DataGridView1.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.guna2DataGridView1.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -164,121 +164,6 @@
             this.cmbMac.TabIndex = 1;
             this.cmbMac.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.cmbMac.SelectedIndexChanged += new System.EventHandler(this.cmbMac_SelectedIndexChanged);
-            // 
-            // btnUrgentDelete
-            // 
-            this.btnUrgentDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUrgentDelete.BorderRadius = 20;
-            this.btnUrgentDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUrgentDelete.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnUrgentDelete.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnUrgentDelete.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnUrgentDelete.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnUrgentDelete.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.btnUrgentDelete.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.btnUrgentDelete.ForeColor = System.Drawing.Color.White;
-            this.btnUrgentDelete.Image = global::Urgent_Manager.Properties.Resources.check;
-            this.btnUrgentDelete.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnUrgentDelete.IndicateFocus = true;
-            this.btnUrgentDelete.Location = new System.Drawing.Point(471, 33);
-            this.btnUrgentDelete.Name = "btnUrgentDelete";
-            this.btnUrgentDelete.Size = new System.Drawing.Size(117, 40);
-            this.btnUrgentDelete.TabIndex = 2;
-            this.btnUrgentDelete.Text = "Finished";
-            this.btnUrgentDelete.Click += new System.EventHandler(this.btnUrgentDelete_Click);
-            // 
-            // icExport
-            // 
-            this.icExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.icExport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.icExport.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.icExport.FlatAppearance.BorderSize = 0;
-            this.icExport.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.icExport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.icExport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.icExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.icExport.ForeColor = System.Drawing.Color.White;
-            this.icExport.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
-            this.icExport.IconColor = System.Drawing.Color.White;
-            this.icExport.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.icExport.IconSize = 40;
-            this.icExport.Location = new System.Drawing.Point(280, 38);
-            this.icExport.Name = "icExport";
-            this.icExport.Size = new System.Drawing.Size(45, 38);
-            this.icExport.TabIndex = 3;
-            this.icExport.UseVisualStyleBackColor = true;
-            this.icExport.Click += new System.EventHandler(this.icExport_Click);
-            // 
-            // gtxtSearch
-            // 
-            this.gtxtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.gtxtSearch.BorderRadius = 15;
-            this.gtxtSearch.BorderThickness = 0;
-            this.gtxtSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.gtxtSearch.DefaultText = "";
-            this.gtxtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.gtxtSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.gtxtSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.gtxtSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.gtxtSearch.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.gtxtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.gtxtSearch.ForeColor = System.Drawing.Color.White;
-            this.gtxtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtSearch.IconLeft = global::Urgent_Manager.Properties.Resources.search;
-            this.gtxtSearch.Location = new System.Drawing.Point(840, 33);
-            this.gtxtSearch.Name = "gtxtSearch";
-            this.gtxtSearch.PasswordChar = '\0';
-            this.gtxtSearch.PlaceholderForeColor = System.Drawing.Color.White;
-            this.gtxtSearch.PlaceholderText = "Search";
-            this.gtxtSearch.SelectedText = "";
-            this.gtxtSearch.Size = new System.Drawing.Size(206, 36);
-            this.gtxtSearch.TabIndex = 0;
-            this.gtxtSearch.TextOffset = new System.Drawing.Point(10, 0);
-            this.gtxtSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gtxtSearch_KeyUp);
-            // 
-            // icPrint
-            // 
-            this.icPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.icPrint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.icPrint.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.icPrint.FlatAppearance.BorderSize = 0;
-            this.icPrint.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.icPrint.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.icPrint.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.icPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.icPrint.ForeColor = System.Drawing.Color.White;
-            this.icPrint.IconChar = FontAwesome.Sharp.IconChar.Print;
-            this.icPrint.IconColor = System.Drawing.Color.White;
-            this.icPrint.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.icPrint.IconSize = 40;
-            this.icPrint.Location = new System.Drawing.Point(229, 38);
-            this.icPrint.Name = "icPrint";
-            this.icPrint.Size = new System.Drawing.Size(45, 38);
-            this.icPrint.TabIndex = 7;
-            this.icPrint.UseVisualStyleBackColor = true;
-            this.icPrint.Click += new System.EventHandler(this.icPrint_Click);
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRefresh.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnRefresh.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnRefresh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnRefresh.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnRefresh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.btnRefresh.Image = global::Urgent_Manager.Properties.Resources.refresh;
-            this.btnRefresh.ImageSize = new System.Drawing.Size(35, 35);
-            this.btnRefresh.Location = new System.Drawing.Point(178, 36);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.btnRefresh.Size = new System.Drawing.Size(45, 38);
-            this.btnRefresh.TabIndex = 8;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // lblLoading
             // 
@@ -336,29 +221,6 @@
             this.cmbLeadPrep.TabIndex = 39;
             this.cmbLeadPrep.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.cmbLeadPrep.SelectedIndexChanged += new System.EventHandler(this.cmbLeadPrep_SelectedIndexChanged);
-            // 
-            // btnOptimized
-            // 
-            this.btnOptimized.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOptimized.BorderRadius = 20;
-            this.btnOptimized.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOptimized.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnOptimized.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnOptimized.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnOptimized.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnOptimized.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.btnOptimized.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.btnOptimized.ForeColor = System.Drawing.Color.White;
-            this.btnOptimized.Image = global::Urgent_Manager.Properties.Resources.charge;
-            this.btnOptimized.ImageOffset = new System.Drawing.Point(2, 0);
-            this.btnOptimized.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnOptimized.IndicateFocus = true;
-            this.btnOptimized.Location = new System.Drawing.Point(331, 33);
-            this.btnOptimized.Name = "btnOptimized";
-            this.btnOptimized.Size = new System.Drawing.Size(134, 40);
-            this.btnOptimized.TabIndex = 40;
-            this.btnOptimized.Text = "Optimized";
-            this.btnOptimized.Click += new System.EventHandler(this.btnOptimized_Click);
             // 
             // chAllUrgents
             // 
@@ -429,6 +291,150 @@
             this.label2.Size = new System.Drawing.Size(80, 18);
             this.label2.TabIndex = 44;
             this.label2.Text = "Machines";
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRefresh.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnRefresh.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnRefresh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnRefresh.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnRefresh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnRefresh.ForeColor = System.Drawing.Color.White;
+            this.btnRefresh.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.btnRefresh.Image = global::Urgent_Manager.Properties.Resources.refresh;
+            this.btnRefresh.ImageSize = new System.Drawing.Size(35, 35);
+            this.btnRefresh.Location = new System.Drawing.Point(178, 36);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.btnRefresh.Size = new System.Drawing.Size(45, 38);
+            this.btnRefresh.TabIndex = 8;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            this.btnRefresh.MouseEnter += new System.EventHandler(this.btnRefresh_MouseEnter);
+            this.btnRefresh.MouseLeave += new System.EventHandler(this.btnRefresh_MouseLeave);
+            // 
+            // icPrint
+            // 
+            this.icPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.icPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.icPrint.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.icPrint.FlatAppearance.BorderSize = 0;
+            this.icPrint.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.icPrint.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.icPrint.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.icPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icPrint.ForeColor = System.Drawing.Color.White;
+            this.icPrint.IconChar = FontAwesome.Sharp.IconChar.Print;
+            this.icPrint.IconColor = System.Drawing.Color.White;
+            this.icPrint.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.icPrint.IconSize = 40;
+            this.icPrint.Location = new System.Drawing.Point(229, 38);
+            this.icPrint.Name = "icPrint";
+            this.icPrint.Size = new System.Drawing.Size(45, 38);
+            this.icPrint.TabIndex = 7;
+            this.icPrint.UseVisualStyleBackColor = true;
+            this.icPrint.Click += new System.EventHandler(this.icPrint_Click);
+            this.icPrint.MouseEnter += new System.EventHandler(this.icPrint_MouseEnter);
+            this.icPrint.MouseLeave += new System.EventHandler(this.icPrint_MouseLeave);
+            // 
+            // icExport
+            // 
+            this.icExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.icExport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.icExport.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.icExport.FlatAppearance.BorderSize = 0;
+            this.icExport.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.icExport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.icExport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.icExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.icExport.ForeColor = System.Drawing.Color.White;
+            this.icExport.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
+            this.icExport.IconColor = System.Drawing.Color.White;
+            this.icExport.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.icExport.IconSize = 40;
+            this.icExport.Location = new System.Drawing.Point(280, 38);
+            this.icExport.Name = "icExport";
+            this.icExport.Size = new System.Drawing.Size(45, 38);
+            this.icExport.TabIndex = 3;
+            this.icExport.UseVisualStyleBackColor = true;
+            this.icExport.Click += new System.EventHandler(this.icExport_Click);
+            this.icExport.MouseEnter += new System.EventHandler(this.icExport_MouseEnter);
+            this.icExport.MouseLeave += new System.EventHandler(this.icExport_MouseLeave);
+            // 
+            // btnOptimized
+            // 
+            this.btnOptimized.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOptimized.BorderRadius = 20;
+            this.btnOptimized.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOptimized.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnOptimized.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnOptimized.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnOptimized.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnOptimized.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.btnOptimized.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.btnOptimized.ForeColor = System.Drawing.Color.White;
+            this.btnOptimized.Image = global::Urgent_Manager.Properties.Resources.charge;
+            this.btnOptimized.ImageOffset = new System.Drawing.Point(2, 0);
+            this.btnOptimized.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnOptimized.IndicateFocus = true;
+            this.btnOptimized.Location = new System.Drawing.Point(331, 33);
+            this.btnOptimized.Name = "btnOptimized";
+            this.btnOptimized.Size = new System.Drawing.Size(134, 40);
+            this.btnOptimized.TabIndex = 40;
+            this.btnOptimized.Text = "Optimized";
+            this.btnOptimized.Click += new System.EventHandler(this.btnOptimized_Click);
+            // 
+            // btnUrgentDelete
+            // 
+            this.btnUrgentDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUrgentDelete.BorderRadius = 20;
+            this.btnUrgentDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUrgentDelete.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnUrgentDelete.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnUrgentDelete.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnUrgentDelete.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnUrgentDelete.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.btnUrgentDelete.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.btnUrgentDelete.ForeColor = System.Drawing.Color.White;
+            this.btnUrgentDelete.Image = global::Urgent_Manager.Properties.Resources.check;
+            this.btnUrgentDelete.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnUrgentDelete.IndicateFocus = true;
+            this.btnUrgentDelete.Location = new System.Drawing.Point(471, 33);
+            this.btnUrgentDelete.Name = "btnUrgentDelete";
+            this.btnUrgentDelete.Size = new System.Drawing.Size(117, 40);
+            this.btnUrgentDelete.TabIndex = 2;
+            this.btnUrgentDelete.Text = "Finished";
+            this.btnUrgentDelete.Click += new System.EventHandler(this.btnUrgentDelete_Click);
+            // 
+            // gtxtSearch
+            // 
+            this.gtxtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.gtxtSearch.BorderRadius = 15;
+            this.gtxtSearch.BorderThickness = 0;
+            this.gtxtSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtSearch.DefaultText = "";
+            this.gtxtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtSearch.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gtxtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.gtxtSearch.ForeColor = System.Drawing.Color.White;
+            this.gtxtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.gtxtSearch.IconLeft = global::Urgent_Manager.Properties.Resources.search;
+            this.gtxtSearch.Location = new System.Drawing.Point(840, 33);
+            this.gtxtSearch.Name = "gtxtSearch";
+            this.gtxtSearch.PasswordChar = '\0';
+            this.gtxtSearch.PlaceholderForeColor = System.Drawing.Color.White;
+            this.gtxtSearch.PlaceholderText = "Search";
+            this.gtxtSearch.SelectedText = "";
+            this.gtxtSearch.Size = new System.Drawing.Size(206, 36);
+            this.gtxtSearch.TabIndex = 0;
+            this.gtxtSearch.TextOffset = new System.Drawing.Point(10, 0);
+            this.gtxtSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gtxtSearch_KeyUp);
             // 
             // UrgentManager
             // 

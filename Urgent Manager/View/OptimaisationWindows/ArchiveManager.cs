@@ -30,7 +30,7 @@ namespace Urgent_Manager.View.OptimaisationWindows
                 gtxtUnico.Focus();
                 isPerDate = false;
                 urgentController.FillCombobox("Machine", "Machine", cmbPlanBMc);
-                urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString());
+                urgentController.UrgentManagerFinished(guna2DataGridView1, DateTime.Now.ToShortDateString());
                 urgentController.DeleteUrgent();
                 if (guna2DataGridView1.Rows.Count <= 0)
                 {
@@ -48,6 +48,7 @@ namespace Urgent_Manager.View.OptimaisationWindows
         {
             try
             {
+                urgentController.DeleteUrgent();
                 if (gSwitchFilter.Checked)
                 {
                     urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString(), cmbPlanBMc.Text);
@@ -119,7 +120,6 @@ namespace Urgent_Manager.View.OptimaisationWindows
                         cmbPlanBMc.Focus();
                         panelCmbPlanBMachine.BackColor = Color.Red;
                     }
-                    chPrintAll.Checked = false;
 
                 }
                 else
@@ -145,130 +145,6 @@ namespace Urgent_Manager.View.OptimaisationWindows
             }
         }
 
-        private void icPrint_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                    if (chPrintAll.Checked)
-                    {
-                        lblMessage.Visible = false;
-                        guna2DataGridView1.Visible = true;
-                        ArrayList machines = urgentController.machines("Finished");
-                        int i = 0;
-                        foreach (string machine in machines)
-                        {
-                            DGVPrinter printer = new DGVPrinter();
-                            printer.Title = "Finished Wires";
-                            printer.SubTitle = machine;
-                            printer.TitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
-                            printer.PageNumbers = true;
-                            printer.PageNumberInHeader = false;
-                            printer.PorportionalColumns = true;
-                            printer.HeaderCellAlignment = StringAlignment.Near;
-                            printer.Footer = "Printed By " + Login.FullName + " | " + DateTime.Now.ToShortDateString();
-                            printer.FooterColor = Color.LightGray;
-                            printer.SubTitleSpacing = 15;
-                            printer.FooterSpacing = 15;
-                            printer.SubTitleColor = Color.Gray;
-                            printer.printDocument.DefaultPageSettings.Landscape = true;
-                            printer.showDialogue = i == 0 ? true : false;
-                            guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                            urgentController.UrgentManagerFinishedPerMachine(guna2DataGridView1, machine);
-                            printer.PrintDataGridView(guna2DataGridView1);
-                            i++;
-                        }
-                        urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString());
-                    }
-                    else
-                    {
-                        if(guna2DataGridView1.Rows.Count > 0)
-                        {
-                            lblMessage.Visible = false;
-                            guna2DataGridView1.Visible = true;
-
-                            if (gSwitchFilter.Checked)
-                            {
-                                if (cmbPlanBMc.Text.Trim() != "")
-                                {
-                                    DGVPrinter printer = new DGVPrinter();
-                                    printer.Title = "Finished Wires";
-                                    printer.SubTitle = cmbPlanBMc.Text + " | " + gdateTimeUrgent.Value.ToShortDateString();
-                                    printer.TitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
-                                    printer.PageNumbers = true;
-                                    printer.PageNumberInHeader = false;
-                                    printer.PorportionalColumns = true;
-                                    printer.HeaderCellAlignment = StringAlignment.Near;
-                                    printer.Footer = "Printed By " + Login.FullName + " | " + DateTime.Now.ToShortDateString();
-                                    printer.FooterColor = Color.LightGray;
-                                    printer.SubTitleSpacing = 15;
-                                    printer.FooterSpacing = 15;
-                                    printer.SubTitleColor = Color.Gray;
-                                    printer.printDocument.DefaultPageSettings.Landscape = true;
-                                    printer.showDialogue = true;
-                                    guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                                    printer.PrintDataGridView(guna2DataGridView1);
-                                    cmbPlanBMc.SelectedIndex = -1;
-                                }
-                            }
-                            else
-                            {
-                                if (cmbPlanBMc.Text.Trim() != "")
-                                {
-                                    DGVPrinter printer = new DGVPrinter();
-                                    printer.Title = "Finished Wires";
-                                    printer.SubTitle = cmbPlanBMc.Text;
-                                    printer.TitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
-                                    printer.PageNumbers = true;
-                                    printer.PageNumberInHeader = false;
-                                    printer.PorportionalColumns = true;
-                                    printer.HeaderCellAlignment = StringAlignment.Near;
-                                    printer.Footer = "Printed By " + Login.FullName + " | " + DateTime.Now.ToShortDateString();
-                                    printer.FooterColor = Color.LightGray;
-                                    printer.SubTitleSpacing = 15;
-                                    printer.FooterSpacing = 15;
-                                    printer.SubTitleColor = Color.Gray;
-                                    printer.printDocument.DefaultPageSettings.Landscape = true;
-                                    printer.showDialogue = true;
-                                    guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                                    printer.PrintDataGridView(guna2DataGridView1);
-                                    cmbPlanBMc.SelectedIndex = -1;
-                                }
-                                else
-                                {
-                                    DGVPrinter printer = new DGVPrinter();
-                                    printer.Title = "Finished Wires";
-                                    printer.SubTitle = isPerDate ? gdateTimeUrgent.Value.ToShortDateString() : "";
-                                    printer.TitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
-                                    printer.PageNumbers = true;
-                                    printer.PageNumberInHeader = false;
-                                    printer.PorportionalColumns = true;
-                                    printer.HeaderCellAlignment = StringAlignment.Near;
-                                    printer.Footer = "Printed By " + Login.FullName + " | " + DateTime.Now.ToShortDateString();
-                                    printer.FooterColor = Color.LightGray;
-                                    printer.SubTitleSpacing = 15;
-                                    printer.FooterSpacing = 15;
-                                    printer.SubTitleColor = Color.Gray;
-                                    printer.printDocument.DefaultPageSettings.Landscape = true;
-                                    printer.showDialogue = true;
-                                    guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                                    printer.PrintDataGridView(guna2DataGridView1);
-                                    isPerDate = false;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            lblMessage.Visible = true;
-                            guna2DataGridView1.Visible = false;
-                        }
-                    }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("It Was An Error Try Again!\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         // Generate Excel File
 
         private void generateExcel()
@@ -277,6 +153,7 @@ namespace Urgent_Manager.View.OptimaisationWindows
             {
                 guna2DataGridView1.Invoke((MethodInvoker)delegate
                 {
+                    guna2DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                     guna2DataGridView1.SelectAll();
                     DataObject copyData = guna2DataGridView1.GetClipboardContent();
                     if (copyData != null) Clipboard.SetDataObject(copyData);
@@ -291,6 +168,7 @@ namespace Urgent_Manager.View.OptimaisationWindows
                     xlr.Select();
                     xlWSheet.PasteSpecial(xlr, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
                     init();
+                    guna2DataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
                     lblLoading.Visible = false;
                 });
             }
@@ -306,9 +184,12 @@ namespace Urgent_Manager.View.OptimaisationWindows
         {
             foreach (DataGridViewRow row in guna2DataGridView1.Rows)
             {
-                row.Selected = false;
+                foreach (DataGridViewCell c in row.Cells)
+                {
+                    c.Selected = false;
+                }
             }
-            guna2DataGridView1.Rows[0].Selected = true;
+            guna2DataGridView1.Rows[0].Cells[0].Selected = true;
         }
 
         private async void icExport_Click(object sender, EventArgs e)
@@ -336,12 +217,6 @@ namespace Urgent_Manager.View.OptimaisationWindows
 
         private void chPrintAll_CheckedChanged(object sender, EventArgs e)
         {
-            if (chPrintAll.Checked)
-            {
-                gSwitchFilter.Checked = false;
-                panelCmbPlanBMachine.BackColor = Color.FromArgb(255, 128, 255, 255);
-                cmbPlanBMc.SelectedIndex = -1;
-            }
         }
 
         private void gtxtUnico_KeyUp(object sender, KeyEventArgs e)
@@ -354,7 +229,7 @@ namespace Urgent_Manager.View.OptimaisationWindows
                 }
                 else
                 {
-                    urgentController.UrgentManagerFinished(guna2DataGridView1);
+                    urgentController.UrgentManagerFinished(guna2DataGridView1,gdateTimeUrgent.Value.ToShortDateString());
                 }
 
                 if (guna2DataGridView1.Rows.Count > 0)
@@ -378,28 +253,13 @@ namespace Urgent_Manager.View.OptimaisationWindows
         {
             try
             {
-                urgentController.UrgentManagerFinished(guna2DataGridView1);
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                gdateTimeUrgent.Value = DateTime.Now;
-                gtxtUnico.Text = "";
-                gtxtUnico.Focus();
-                isPerDate = false;
-                urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString());
-                urgentController.DeleteUrgent();
-                if (guna2DataGridView1.Rows.Count <= 0)
+                if(gtxtUnico.Text.Trim() != "")
                 {
-                    lblMessage.Visible = true;
-                    guna2DataGridView1.Visible = false;
+                    urgentController.UrgentManagerFinishedPerUnico(guna2DataGridView1,gtxtUnico.Text);
+                }
+                else
+                {
+                    urgentController.UrgentManagerFinished(guna2DataGridView1, gdateTimeUrgent.Value.ToShortDateString());
                 }
             }
             catch (Exception)
@@ -407,5 +267,16 @@ namespace Urgent_Manager.View.OptimaisationWindows
 
             }
         }
+
+        private void icExport_MouseEnter(object sender, EventArgs e)
+        {
+            icExport.IconColor = Color.FromArgb(255, 234, 79, 12);
+        }
+
+        private void icExport_MouseLeave(object sender, EventArgs e)
+        {
+            icExport.IconColor = Color.White;
+        }
+
     }
 }

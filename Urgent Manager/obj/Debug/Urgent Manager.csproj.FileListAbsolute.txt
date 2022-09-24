@@ -45,4 +45,12 @@ C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Ur
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.csproj.GenerateResource.Cache
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.exe
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.pdb
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\ExcelDataReader.DataSet.dll
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\ExcelDataReader.dll
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\ExcelDataReader.pdb
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\ExcelDataReader.xml
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\ExcelDataReader.DataSet.pdb
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\ExcelDataReader.DataSet.xml
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Prototype.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.UpdateMCORGroupe.resources
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.csprojResolveAssemblyReference.cache

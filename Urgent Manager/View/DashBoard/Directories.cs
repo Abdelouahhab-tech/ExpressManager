@@ -15,6 +15,7 @@ namespace Urgent_Manager.View.DashBoard
     public partial class Directories : Form
     {
         WPCSController wpcsController = new WPCSController();
+        MachineController machineController = new MachineController();
         public Directories()
         {
             InitializeComponent();
@@ -80,6 +81,7 @@ namespace Urgent_Manager.View.DashBoard
 
         private void Directories_Load(object sender, EventArgs e)
         {
+            machineController.FillCombobox("Machine", "Machine", cmbMachine);
             LoadData();
         }
 
@@ -186,6 +188,26 @@ namespace Urgent_Manager.View.DashBoard
         {
             lblNewPathName.ForeColor = Color.White;
             gtxtNewPathName.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void btnConnect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(cmbMachine.Text.Trim() != "" && chIsConnect.Checked)
+                {
+                    machineController.UpdateIsConnect(cmbMachine.Text, 1);
+                    MessageBox.Show("Your Data Updated Successfuly", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }else if(cmbMachine.Text.Trim() != "" && !chIsConnect.Checked)
+                {
+                    machineController.UpdateIsConnect(cmbMachine.Text, 0);
+                    MessageBox.Show("Your Data Updated Successfuly", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

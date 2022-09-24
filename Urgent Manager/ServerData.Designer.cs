@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerData));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.chIsConnectPerMC = new Guna.UI2.WinForms.Guna2CheckBox();
             this.cmbDirectories = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -69,12 +70,13 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(522, 517);
+            this.tabControl1.Size = new System.Drawing.Size(522, 565);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.tabPage1.Controls.Add(this.chIsConnectPerMC);
             this.tabPage1.Controls.Add(this.cmbDirectories);
             this.tabPage1.Controls.Add(this.guna2ControlBox1);
             this.tabPage1.Controls.Add(this.label1);
@@ -88,9 +90,29 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(514, 491);
+            this.tabPage1.Size = new System.Drawing.Size(514, 539);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Server Data";
+            // 
+            // chIsConnectPerMC
+            // 
+            this.chIsConnectPerMC.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.chIsConnectPerMC.CheckedState.BorderRadius = 2;
+            this.chIsConnectPerMC.CheckedState.BorderThickness = 0;
+            this.chIsConnectPerMC.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chIsConnectPerMC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chIsConnectPerMC.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chIsConnectPerMC.ForeColor = System.Drawing.Color.White;
+            this.chIsConnectPerMC.Location = new System.Drawing.Point(37, 418);
+            this.chIsConnectPerMC.Name = "chIsConnectPerMC";
+            this.chIsConnectPerMC.Size = new System.Drawing.Size(130, 24);
+            this.chIsConnectPerMC.TabIndex = 13;
+            this.chIsConnectPerMC.Text = "Is Connect";
+            this.chIsConnectPerMC.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chIsConnectPerMC.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chIsConnectPerMC.UncheckedState.BorderRadius = 2;
+            this.chIsConnectPerMC.UncheckedState.BorderThickness = 0;
+            this.chIsConnectPerMC.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             // 
             // cmbDirectories
             // 
@@ -156,7 +178,7 @@
             this.btnSave.ImageOffset = new System.Drawing.Point(-10, 0);
             this.btnSave.ImageSize = new System.Drawing.Size(30, 30);
             this.btnSave.IndicateFocus = true;
-            this.btnSave.Location = new System.Drawing.Point(37, 415);
+            this.btnSave.Location = new System.Drawing.Point(37, 459);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(416, 41);
             this.btnSave.TabIndex = 5;
@@ -316,7 +338,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(514, 491);
+            this.tabPage2.Size = new System.Drawing.Size(514, 539);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "User Data";
             // 
@@ -569,7 +591,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(522, 517);
+            this.ClientSize = new System.Drawing.Size(522, 565);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -614,5 +636,6 @@
         private FontAwesome.Sharp.IconPictureBox icEyeConnect;
         private Guna.UI2.WinForms.Guna2TextBox gtxtPassAuth;
         private Guna.UI2.WinForms.Guna2ComboBox cmbDirectories;
+        private Guna.UI2.WinForms.Guna2CheckBox chIsConnectPerMC;
     }
 }

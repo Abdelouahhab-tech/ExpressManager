@@ -154,7 +154,7 @@ namespace Urgent_Manager.Controller
                 foreach (string hour in hours)
                 {
                     DbHelper.connection.Open();
-                    string QUERY = isFinished ? "SELECT count(*) as total FROM Urgent U,Wire W WHERE U.UrgentUnico=W.Unico AND U.UrgentStatus=@status AND U.FinishedDate=@date AND DATEPART(HOUR,U.HUrgent) = @hour AND W.MC=@MC AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished)" : "SELECT count(*) as total FROM Urgent U,Wire W WHERE U.UrgentUnico=W.Unico AND DATEPART(HOUR,U.HUrgent) = @hour AND W.MC=@MC AND U.DateUrgent=@date AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished OR UserFinished = '')";
+                    string QUERY = isFinished ? "SELECT count(*) as total FROM Urgent U,Wire W WHERE U.UrgentUnico=W.Unico AND U.UrgentStatus=@status AND U.FinishedDate=@date AND DATEPART(HOUR,U.HFinished) = @hour AND W.MC=@MC AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished)" : "SELECT count(*) as total FROM Urgent U,Wire W WHERE U.UrgentUnico=W.Unico AND DATEPART(HOUR,U.HUrgent) = @hour AND W.MC=@MC AND U.DateUrgent=@date AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished OR UserFinished = '')";
                     SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                     cmd.Parameters.AddWithValue("@status", status);
                     cmd.Parameters.AddWithValue("@date", date);
@@ -216,6 +216,38 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Close();
                 return values;
+            }
+        }
+
+        // Get Total Urgent And Total Finished Order From Urgent Table
+
+        public int Total(string date,string shift,bool isFinished)
+        {
+            int total = 0;
+            try
+            {
+                DbHelper.connection.Open();
+                string QUERY = isFinished ? "SELECT COUNT(*) AS UrgentTotal FROM Urgent WHERE UrgentStatus='Finished' AND FinishedDate =@date AND FinishedShift=@shift AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished Or UserFinished = '')" : "SELECT COUNT(*) AS UrgentTotal FROM Urgent WHERE DateUrgent = @date AND Shift=@shift AND EXISTS(SELECT * FROM Machine WHERE Machine = UserFinished Or UserFinished = '')";
+                SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                cmd.Parameters.AddWithValue("@date", date);
+                cmd.Parameters.AddWithValue("@shift", shift);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        total = Convert.ToInt32(reader[0]);
+                    }
+                    DbHelper.connection.Close();
+                    return total;
+                }
+                DbHelper.connection.Close();
+                return total;
+            }
+            catch (Exception)
+            {
+                DbHelper.connection.Close();
+                return total;
             }
         }
 

@@ -21,7 +21,7 @@ namespace Urgent_Manager.Controller
 
                 string QUERY = "INSERT INTO Tool VALUES(@ToolID,@TerID,@userID)";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
-                cmd.Parameters.AddWithValue("@ToolID", Tool.ToolID);
+                cmd.Parameters.AddWithValue("@ToolID", Tool.ToolID.ToUpper());
                 cmd.Parameters.AddWithValue("@TerID", Tool.TerID);
                 cmd.Parameters.AddWithValue("@userID", Tool.UserID);
 

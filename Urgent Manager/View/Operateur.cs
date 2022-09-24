@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Urgent_Manager.Controller;
 using Urgent_Manager.Model;
+using Urgent_Manager.View.DashBoard;
 using ZXing;
 
 namespace Urgent_Manager.View
@@ -18,20 +19,9 @@ namespace Urgent_Manager.View
         UrgentController urgentController = new UrgentController();
         WireController wireController = new WireController();
         WPCSController wpcsController = new WPCSController();
+        int selectedRow = 0;
         string mc = Environment.MachineName;
-        Panel p = new Panel();
-        Label bobineHeader = new Label();
-        Label bobineText = new Label();
-        Label bobineData = new Label();
-        Label sectionText = new Label();
-        Label sectionData = new Label();
-        Panel line = new Panel();
-        Label colorText = new Label();
-        Label colorData = new Label();
-        Label McText = new Label();
-        Label McData = new Label();
-        Label Date = new Label();
-        PictureBox imgBarcode = new PictureBox();
+        string bobine = "";
         public Operateur()
         {
             InitializeComponent();
@@ -51,29 +41,26 @@ namespace Urgent_Manager.View
                     Close();
                     return;
                 }
-                p.Visible = true;
                 updateUrgentStatus();
                 urgentController.DeleteUrgent();
                 wireController.FillCombobox("Machine", "Machine", cmbPlanBMc);
+                AutoComplete.AutoComplete auto = new AutoComplete.AutoComplete();
+                auto.autoComplete(gtxtUnico, DbHelper.connection, "SELECT Unico FROM Wire WHERE WireStatus=1");
                 cmbPlanBMc.Text = mc;
                 Wpcs.Start();
                 timer2.Start();
                 fetchData(mc);
                 if (guna2DataGridView1.Rows.Count > 0)
                 {
+                    foreach (DataGridViewColumn c in guna2DataGridView1.Columns)
+                    {
+                        c.SortMode = DataGridViewColumnSortMode.NotSortable;
+                    }
                     string unico = guna2DataGridView1.Rows[0].Cells[1].Value.ToString();
                     if (unico != "")
                     {
                         fetchExpressSingleRecord(mc, unico);
                     }
-                    panelWire.Visible = true;
-                    lblMessage.Visible = false;
-                }
-                else
-                {
-                    panelWire.Visible = false;
-                    lblMessage.Visible = true;
-                    lblMessage.Location = new Point(398, 156);
                 }
 
             }
@@ -106,6 +93,7 @@ namespace Urgent_Manager.View
                     else
                     {
                         fetchExpressSingleRecord(mc, guna2DataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
+                        selectedRow = e.RowIndex;
                     }
                 }
             }
@@ -120,16 +108,6 @@ namespace Urgent_Manager.View
             Application.Exit();
         }
 
-        private void lblBobine_MouseEnter(object sender, EventArgs e)
-        {
-            lblBobine.ForeColor = System.Drawing.Color.FromArgb(255, 234, 79, 12);
-        }
-
-        private void lblBobine_MouseLeave(object sender, EventArgs e)
-        {
-            lblBobine.ForeColor = System.Drawing.Color.White;
-        }
-
 
         // Fetch All The Express Data From Urgent Table
 
@@ -137,12 +115,15 @@ namespace Urgent_Manager.View
         {
             try
             {
-                List<UrgentModel> list = urgentController.fetchAllExpressRecords(machine);
-                guna2DataGridView1.Rows.Clear();
+                urgentController.fetchAllExpressRecords(machine,guna2DataGridView1);
 
-                foreach(UrgentModel urgent in list)
+                if (guna2DataGridView1.Rows.Count > 0)
                 {
-                    guna2DataGridView1.Rows.Add(urgent.Family, urgent.UrgentUnico, urgent.LeadCode, urgent.Color, urgent.Length, urgent.Group, urgent.LeadPrep);
+                    guna2DataGridView1.Rows[selectedRow].Selected = true;
+                }
+                else
+                {
+                    selectedRow = 0;
                 }
 
             }
@@ -164,55 +145,10 @@ namespace Urgent_Manager.View
                 // Header Data
                 lblUnico.Text = urgent.UrgentUnico;
                 lblLeadCode.Text = urgent.LeadCode;
+                lblUrgentDate.Text = urgent.DateUrgent + "  " + urgent.Time;
                 lblMachine.Text = machine;
                 lblAdress.Text = urgent.Adress;
                 lblUrgents.Text = urgentController.actualUrgents(machine).ToString();
-
-                // Cable
-                lblBobine.Text = urgent.Cable;
-                // Marker Left
-                lblMarkerL.Text = urgent.MarL;
-                lblMarkerL.Visible = urgent.MarL != "" ? true : false;
-                // Marker Right
-                lblMarkerR.Text = urgent.MarR;
-                lblMarkerR.Visible = urgent.MarR != "" ? true : false;
-                // Seal Left
-                lblSealL.Text = urgent.SealL;
-                lblSealL.Visible = urgent.SealL != "" ? true : false;
-                lblSealLHeader.Visible = urgent.SealL != "" ? true : false;
-                picTerminalSealL.Visible = urgent.SealL != "" && urgent.TerL != "" ? true : false;
-                // Seal Right
-                lblSealR.Text = urgent.SealR;
-                lblSealR.Visible = urgent.SealR != "" ? true : false;
-                lblSealRHeader.Visible = urgent.SealR != "" ? true : false;
-                picTerminalSealR.Visible = urgent.SealR != "" && urgent.TerR != "" ? true : false;
-                // Terminal Left
-                lblTerminalL.Text = urgent.TerL;
-                lblTerminalL.Visible = urgent.TerL != "" ? true : false;
-                lblTerLHeader.Visible = urgent.TerL != "" && urgent.ToolL != "" ? true : false;
-                picTerminalL.Visible = urgent.TerL != "" && urgent.SealL == "" && urgent.ToolL != "" ? true : false;
-                // Terminal Right
-                lblTerminalR.Text = urgent.TerR;
-                lblTerminalR.Visible = urgent.TerR != "" ? true : false;
-                lblTerRHeader.Visible = urgent.TerR != "" && urgent.ToolR != "" ? true : false;
-                picTerminalR.Visible = urgent.TerR != "" && urgent.SealR == "" && urgent.ToolR != "" ? true : false;
-                // Tool Left
-                lblToolL.Text = urgent.ToolL;
-                lblToolL.Visible = urgent.ToolL != "" ? true : false;
-                lblToolLHeader.Visible = urgent.ToolL != "" ? true : false;
-                // Tool Right
-                lblToolR.Text = urgent.ToolR;
-                lblToolR.Visible = urgent.ToolR != "" ? true : false;
-                lblToolRHeader.Visible = urgent.ToolR != "" ? true : false;
-
-                foreach (DataGridViewRow row in guna2DataGridView1.Rows)
-                {
-                    row.DefaultCellStyle.BackColor = System.Drawing.Color.White;
-                    row.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Red;
-                    row.DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
-                    row.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
-                }
-
             }
             catch (Exception ex)
             {
@@ -227,11 +163,15 @@ namespace Urgent_Manager.View
             {
                 if (chNormalWire.Checked)
                 {
+                    initBackColor(true);
+                    foreach(DataGridViewColumn c in guna2DataGridView1.Columns)
+                    {
+                        c.SortMode = DataGridViewColumnSortMode.Automatic;
+                    }
                     gtxtUnico.Visible = true;
                     gtxtUnico.Focus();
                     panelBorderBottom.Visible = true;
-                    panelWire.Visible = true;
-                    lblMessage.Visible = false;
+                    lblUrgentDate.Text = "Loading...";
                     // Fill DataGridView With Normal Wires
 
                     fetchNormalRecords(mc);
@@ -239,33 +179,32 @@ namespace Urgent_Manager.View
                     {
                         fetchNormalSingleRecord(mc, guna2DataGridView1.Rows[0].Cells[1].Value.ToString());
                     }
-                    else
-                    {
-                        panelWire.Visible = false;
-                        lblMessage.Visible = true;
-                    }
                 }
                 else
                 {
+                    initBackColor(false);
+                    foreach (DataGridViewColumn c in guna2DataGridView1.Columns)
+                    {
+                        c.SortMode = DataGridViewColumnSortMode.NotSortable;
+                    }
                     gtxtUnico.Visible = false;
                     panelBorderBottom.Visible = false;
+                    gtxtUnico.Text = "";
 
 
                     // Fill DataGridView With Express Wires
                     fetchData(mc);
                     if (guna2DataGridView1.Rows.Count > 0)
                     {
-                        fetchExpressSingleRecord(mc, guna2DataGridView1.Rows[0].Cells[1].Value.ToString());
-                        panelWire.Visible = true;
+                        fetchExpressSingleRecord(mc, guna2DataGridView1.Rows[selectedRow].Cells[1].Value.ToString());
                     }
                     else
                     {
-                        panelWire.Visible = false;
-                        lblMessage.Visible = true;
                         lblUnico.Text = "Loading...";
                         lblLeadCode.Text = "Loading...";
                         lblAdress.Text = "Loading...";
                         lblUrgents.Text = "Loading...";
+                        lblUrgentDate.Text = "Loading...";
                         lblMachine.Text = mc;
                     }
                 }
@@ -282,12 +221,7 @@ namespace Urgent_Manager.View
         {
             try
             {
-                List<WireModel> list = wireController.fetchNormalRecords(machine);
-                guna2DataGridView1.Rows.Clear();
-                foreach(WireModel wire in list)
-                {
-                    guna2DataGridView1.Rows.Add(wire.Family,wire.Unico,wire.LeadCode,wire.Color,wire.Length,wire.GroupRef,wire.LeadPrep);
-                }
+                wireController.fetchNormalRecords(machine,guna2DataGridView1);
             }
             catch (Exception ex)
             {
@@ -310,53 +244,6 @@ namespace Urgent_Manager.View
                 lblMachine.Text = machine;
                 lblAdress.Text = wire.Adress;
                 lblUrgents.Text = urgentController.actualUrgents(machine).ToString();
-
-
-                // Cable
-                lblBobine.Text = wire.Cable;
-                // Marker Left
-                lblMarkerL.Text = wire.MarkL;
-                lblMarkerL.Visible = wire.MarkL != "" ? true : false;
-                // Marker Right
-                lblMarkerR.Text = wire.MarkR;
-                lblMarkerR.Visible = wire.MarkR != "" ? true : false;
-                // Seal Left
-                lblSealL.Text = wire.SealL;
-                lblSealL.Visible = wire.SealL != "" ? true : false;
-                lblSealLHeader.Visible = wire.SealL != "" ? true : false;
-                picTerminalSealL.Visible = wire.SealL != "" && wire.TerL != "" ? true : false;
-                // Seal Right
-                lblSealR.Text = wire.SealR;
-                lblSealR.Visible = wire.SealR != "" ? true : false;
-                lblSealRHeader.Visible = wire.SealR != "" ? true : false;
-                picTerminalSealR.Visible = wire.SealR != "" && wire.TerR != "" ? true : false;
-                // Terminal Left
-                lblTerminalL.Text = wire.TerL;
-                lblTerminalL.Visible = wire.TerL != "" ? true : false;
-                lblTerLHeader.Visible = wire.TerL != "" && wire.ToolL != "" ? true : false;
-                picTerminalL.Visible = wire.TerL != "" && wire.SealL == "" && wire.ToolL != "" ? true : false;
-                // Terminal Right
-                lblTerminalR.Text = wire.TerR;
-                lblTerminalR.Visible = wire.TerR != "" ? true : false;
-                lblTerRHeader.Visible = wire.TerR != "" && wire.ToolR != "" ? true : false;
-                picTerminalR.Visible = wire.TerR != "" && wire.SealR == "" && wire.ToolR != "" ? true : false;
-                // Tool Left
-                lblToolL.Text = wire.ToolL;
-                lblToolL.Visible = wire.ToolL != "" ? true : false;
-                lblToolLHeader.Visible = wire.ToolL != "" ? true : false;
-                // Tool Right
-                lblToolR.Text = wire.ToolR;
-                lblToolR.Visible = wire.ToolR != "" ? true : false;
-                lblToolRHeader.Visible = wire.ToolR != "" ? true : false;
-
-                foreach (DataGridViewRow row in guna2DataGridView1.Rows)
-                {
-                    row.DefaultCellStyle.BackColor = System.Drawing.Color.White;
-                    row.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(255, 94, 148, 255);
-                    row.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-                    row.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
-                }
-
             }
             catch (Exception ex)
             {
@@ -368,24 +255,31 @@ namespace Urgent_Manager.View
         {
             try
             {
-                DataGridViewRow row = new DataGridViewRow();
                 if (gtxtUnico.Text.Trim() != "")
                 {
-                    foreach (DataGridViewRow r in guna2DataGridView1.Rows)
+                    wireController.fetchSingleRecord(gtxtUnico.Text,guna2DataGridView1);
+
+                    if (guna2DataGridView1.Rows.Count > 0)
                     {
-                        if (r.Cells[1].Value.ToString() == gtxtUnico.Text)
-                        {
-                            row = r;
-                            guna2DataGridView1.Rows.Clear();
-                            guna2DataGridView1.Rows.Add(r);
-                            fetchNormalSingleRecord(mc, row.Cells[1].Value.ToString());
-                            break;
-                        }
+                        fetchNormalSingleRecord(wireController.Machine(guna2DataGridView1.Rows[0].Cells[1].Value.ToString()), guna2DataGridView1.Rows[0].Cells[1].Value.ToString());
                     }
-                }else if(gtxtUnico.Text == "")
+                    else
+                    {
+                        lblUnico.Text = "Loading...";
+                        lblLeadCode.Text = "Loading...";
+                        lblAdress.Text = "Loading...";
+                        lblUrgents.Text = "Loading...";
+                        lblUrgentDate.Text = "Loading...";
+                        lblMachine.Text = mc;
+                    }
+                }
+                else if(gtxtUnico.Text == "")
                 {
                     fetchNormalRecords(mc);
-                    fetchNormalSingleRecord(mc, guna2DataGridView1.Rows[0].Cells[1].Value.ToString());
+                    if(guna2DataGridView1.Rows.Count > 1)
+                    {
+                        fetchNormalSingleRecord(mc, guna2DataGridView1.Rows[0].Cells[1].Value.ToString());
+                    }
                 }
             }
             catch (Exception ex)
@@ -394,121 +288,31 @@ namespace Urgent_Manager.View
             }
         }
 
-        private void lblBobine_MouseEnter_1(object sender, EventArgs e)
-        {
-            lblBobine.ForeColor = System.Drawing.Color.FromArgb(255, 234, 79, 12);
-        }
-
-        private void lblBobine_MouseLeave_1(object sender, EventArgs e)
-        {
-            lblBobine.ForeColor = System.Drawing.Color.White;
-        }
-
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             try
             {
-                CableModel cable = wireController.fetchCable(lblBobine.Text);
-                p.Width = e.PageBounds.Width;
-                p.Height = e.PageBounds.Height;
-                p.BackColor = System.Drawing.Color.White;
-                Font f = new Font("Tahoma", 9, FontStyle.Bold);
-                Font fNormal = new Font("Tahoma", 8);
-                bobineHeader.Font = new Font("Tahoma", 9, FontStyle.Bold);
-                bobineHeader.Text = "Commande Bobine";
-                bobineHeader.Location = new Point(0, 5);
-                bobineHeader.AutoSize = false;
-                bobineHeader.Width = p.Width - 40;
-                bobineHeader.TextAlign = ContentAlignment.MiddleCenter;
+                CableModel cable = wireController.fetchCable(bobine.ToUpper());
 
-                line.Width = p.Width - 60;
-                line.Height = 2;
-                line.BackColor = System.Drawing.Color.Black;
-                line.Location = new Point(10, f.Height + 15);
-
-                bobineText.Font = f;
-                bobineText.Text = "Bobine";
-                bobineText.Location = new Point(5, f.Height + 30);
-                bobineText.AutoSize = false;
-                bobineText.Width = p.Width / 2 - 20;
-
-                bobineData.Font = fNormal;
-                bobineData.Text = lblBobine.Text;
-                bobineData.Location = new Point(bobineText.Width, f.Height + 30);
-                bobineData.AutoSize = false;
-                bobineData.Width = p.Width / 2;
-
-                sectionText.Font = f;
-                sectionText.Text = "Section";
-                sectionText.Location = new Point(5, f.Height + 60);
-                sectionText.AutoSize = false;
-                sectionText.Width = p.Width / 2 - 20;
-
-                sectionData.Font = fNormal;
-                sectionData.Text = cable.Section;
-                sectionData.Location = new Point(sectionText.Width, f.Height + 60);
-                sectionData.AutoSize = false;
-                sectionData.Width = p.Width / 2;
-
-                colorText.Font = f;
-                colorText.Text = "Color";
-                colorText.Location = new Point(5, f.Height + 90);
-                colorText.AutoSize = false;
-                colorText.Width = p.Width / 2 - 20;
-
-                colorData.Font = fNormal;
-                colorData.Text = cable.Color;
-                colorData.Location = new Point(colorText.Width, f.Height + 90);
-                colorData.AutoSize = false;
-                colorData.Width = p.Width / 2;
-
-                McText.Font = f;
-                McText.Text = "MC";
-                McText.Location = new Point(6, f.Height + 120);
-                McText.AutoSize = false;
-                McText.Width = p.Width / 2 - 20;
-
-                McData.Font = fNormal;
-                McData.Text = mc;
-                McData.Location = new Point(McText.Width, f.Height + 120);
-                McData.AutoSize = false;
-                McData.Width = p.Width / 2;
-
+                Font f = new Font("Arial", 9, FontStyle.Bold);
+                e.Graphics.DrawString("Commande Bobine", f, Brushes.Black, new Point(20,10));
+                e.Graphics.DrawLine(Pens.Black, new Point(5, f.Height + 20), new Point(e.PageBounds.Width - 14, f.Height + 20));
+                e.Graphics.DrawString("Bobine", f, Brushes.Black, new Point(5, f.Height + 40));
+                Rectangle rect = new Rectangle(70, f.Height + 40, e.PageBounds.Width - 70, f.Height + 30);
+                e.Graphics.DrawString(bobine.ToUpper(), f, Brushes.Black, rect);
+                e.Graphics.DrawString("Section", f, Brushes.Black, new Point(5, f.Height + 80));
+                e.Graphics.DrawString(cable.Section.ToUpper(), f, Brushes.Black, new Point(70, f.Height + 80));
+                e.Graphics.DrawString("Color", f, Brushes.Black, new Point(5, f.Height + 120));
+                e.Graphics.DrawString(cable.Color.ToUpper(), f, Brushes.Black, new Point(70, f.Height + 120));
+                e.Graphics.DrawString("MC", f, Brushes.Black, new Point(5, f.Height + 160));
+                e.Graphics.DrawString(Environment.MachineName.ToUpper(), f, Brushes.Black, new Point(70, f.Height + 160));
                 BarcodeWriter br = new BarcodeWriter() { Format = BarcodeFormat.CODE_128 };
-                br.Options.Height = 30;
+                br.Options.Height = 25;
+                br.Options.Margin = 0;
                 br.Options.PureBarcode = true;
-                Image img = br.Write("1P" + lblBobine.Text);
-                imgBarcode.Width = e.PageBounds.Width;
-                imgBarcode.Location = new Point(-2, 170);
-                imgBarcode.Image = img;
-                imgBarcode.SizeMode = PictureBoxSizeMode.AutoSize;
-
-                Date.Font = f;
-                Date.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-                Date.Location = new Point(0, imgBarcode.Height + 180);
-                Date.AutoSize = false;
-                Date.Width = p.Width - 40;
-                Date.TextAlign = ContentAlignment.MiddleCenter;
-
-                // Add Controlls
-                p.Controls.Add(bobineHeader);
-                p.Controls.Add(line);
-                p.Controls.Add(bobineText);
-                p.Controls.Add(bobineData);
-                p.Controls.Add(sectionText);
-                p.Controls.Add(sectionData);
-                p.Controls.Add(colorText);
-                p.Controls.Add(colorData);
-                p.Controls.Add(McText);
-                p.Controls.Add(McData);
-                p.Controls.Add(imgBarcode);
-                p.Controls.Add(Date);
-
-                Bitmap btm = new Bitmap(p.Width, p.Height);
-                p.DrawToBitmap(btm, new Rectangle(0, 0, p.Width, p.Height));
-
-                Rectangle rect = e.PageBounds;
-                e.Graphics.DrawImage(btm, new PointF(0, 0));
+                Image img = br.Write("1P" + bobine.ToUpper());
+                e.Graphics.DrawImage(img, new Point(2, f.Height + 190));
+                e.Graphics.DrawString(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), f, Brushes.Black, new Point(20, img.Height + 210));
             }
             catch (Exception ex)
             {
@@ -529,10 +333,12 @@ namespace Urgent_Manager.View
                 {
                     if (!chNormalWire.Checked)
                     {
+                        selectedRow -= 1;
+                        selectedRow = selectedRow <= 0 ? 0 : selectedRow;
                         fetchData(mc);
                         if (guna2DataGridView1.Rows.Count > 0)
                         {
-                            fetchExpressSingleRecord(mc, guna2DataGridView1.Rows[0].Cells[1].Value.ToString());
+                            fetchExpressSingleRecord(mc, guna2DataGridView1.Rows[selectedRow].Cells[1].Value.ToString());
                         }
                         else
                         {
@@ -541,9 +347,7 @@ namespace Urgent_Manager.View
                             lblAdress.Text = "Loading...";
                             lblMachine.Text = "Loading...";
                             lblUrgents.Text = "Loading...";
-                            panelWire.Visible = false;
-                            lblMessage.Visible = true;
-                            lblMessage.Location = new Point(398, 156);
+                            lblUrgentDate.Text = "Loading...";
                         }
                     }
                 }
@@ -572,15 +376,12 @@ namespace Urgent_Manager.View
                         lblAdress.Text = "Loading...";
                         lblMachine.Text = "Loading...";
                         lblUrgents.Text = "Loading...";
-                        panelWire.Visible = false;
-                        lblMessage.Visible = true;
-                        lblMessage.Location = new Point(398, 156);
+                        lblUrgentDate.Text = "Loading...";
                     }
                     else
                     {
-                        fetchExpressSingleRecord(mc, guna2DataGridView1.Rows[0].Cells[1].Value.ToString());
-                        panelWire.Visible = true;
-                        lblMessage.Visible = false;
+                        guna2DataGridView1.Rows[selectedRow].Selected = true;
+                        fetchExpressSingleRecord(mc, guna2DataGridView1.Rows[selectedRow].Cells[1].Value.ToString());
                     }
                 }
             }
@@ -603,6 +404,7 @@ namespace Urgent_Manager.View
                 {
                     cmbPlanBMc.Visible = false;
                     cmbPlanBMc.SelectedIndex = -1;
+                    selectedRow = 0;
                     pnlCmbPlanBMachine.Visible = false;
                     mc = Environment.MachineName;
                     if (chNormalWire.Checked)
@@ -615,19 +417,14 @@ namespace Urgent_Manager.View
                             {
                                 fetchNormalSingleRecord(mc, unico);
                             }
-                            panelWire.Visible = true;
-                            lblMessage.Visible = false;
                         }
                         else
                         {
-                            panelWire.Visible = false;
-                            lblMessage.Visible = true;
                             lblUnico.Text = "Loading...";
                             lblLeadCode.Text = "Loading...";
                             lblAdress.Text = "Loading...";
                             lblMachine.Text = "Loading...";
                             lblUrgents.Text = "Loading...";
-                            lblMessage.Location = new Point(398, 156);
 
                         }
                     }
@@ -641,19 +438,15 @@ namespace Urgent_Manager.View
                             {
                                 fetchExpressSingleRecord(mc, unico);
                             }
-                            panelWire.Visible = true;
-                            lblMessage.Visible = false;
                         }
                         else
                         {
-                            panelWire.Visible = false;
-                            lblMessage.Visible = true;
                             lblUnico.Text = "Loading...";
                             lblLeadCode.Text = "Loading...";
                             lblAdress.Text = "Loading...";
                             lblMachine.Text = "Loading...";
                             lblUrgents.Text = "Loading...";
-                            lblMessage.Location = new Point(398, 156);
+                            lblUrgentDate.Text = "Loading...";
                         }
                     }
 
@@ -672,6 +465,7 @@ namespace Urgent_Manager.View
                 if (cmbPlanBMc.Text.Trim() != "")
                 {
                     mc = cmbPlanBMc.Text;
+                    selectedRow = 0;
                     if (chNormalWire.Checked)
                     {
                         fetchNormalRecords(mc);
@@ -682,19 +476,15 @@ namespace Urgent_Manager.View
                             {
                                 fetchNormalSingleRecord(mc, unico);
                             }
-                            panelWire.Visible = true;
-                            lblMessage.Visible = false;
                         }
                         else
                         {
-                            panelWire.Visible = false;
-                            lblMessage.Visible = true;
                             lblUnico.Text = "Loading...";
                             lblLeadCode.Text = "Loading...";
                             lblAdress.Text = "Loading...";
                             lblMachine.Text = "Loading...";
                             lblUrgents.Text = "Loading...";
-                            lblMessage.Location = new Point(398, 156);
+                            lblUrgentDate.Text = "Loading...";
                         }
                     }
                     else
@@ -702,24 +492,24 @@ namespace Urgent_Manager.View
                         fetchData(mc);
                         if (guna2DataGridView1.Rows.Count > 0)
                         {
+                            foreach (DataGridViewColumn c in guna2DataGridView1.Columns)
+                            {
+                                c.SortMode = DataGridViewColumnSortMode.NotSortable;
+                            }
                             string unico = guna2DataGridView1.Rows[0].Cells[1].Value.ToString();
                             if (unico != "")
                             {
                                 fetchExpressSingleRecord(mc, unico);
                             }
-                            panelWire.Visible = true;
-                            lblMessage.Visible = false;
                         }
                         else
                         {
-                            panelWire.Visible = false;
-                            lblMessage.Visible = true;
                             lblUnico.Text = "Loading...";
                             lblLeadCode.Text = "Loading...";
                             lblAdress.Text = "Loading...";
                             lblMachine.Text = "Loading...";
                             lblUrgents.Text = "Loading...";
-                            lblMessage.Location = new Point(398, 156);
+                            lblUrgentDate.Text = "Loading...";
                         }
                     }
                 }
@@ -730,9 +520,72 @@ namespace Urgent_Manager.View
             }
         }
 
-        private void lblBobine_DoubleClick(object sender, EventArgs e)
+        private void gbtnPrototype_Click(object sender, EventArgs e)
         {
-                printDocument1.Print();
+            Prototype proto = new Prototype();
+            proto.ShowDialog();
+        }
+
+        private void gbtnPrototype_MouseEnter(object sender, EventArgs e)
+        {
+            gbtnPrototype.Image = Properties.Resources.WhiteDimensions;
+        }
+
+        private void gbtnPrototype_MouseLeave(object sender, EventArgs e)
+        {
+            gbtnPrototype.Image = Properties.Resources.dimensions;
+        }
+
+        private void guna2DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    bobine = guna2DataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    if(bobine != "")
+                         printDocument1.Print();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2DataGridView1_AllowUserToOrderColumnsChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("Ordered");
+        }
+
+        // Initialize Datagrid View Back Color
+        public void initBackColor(bool ischecked)
+        {
+            try
+            {
+                if (ischecked)
+                {
+                    guna2DataGridView1.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 94, 148, 255);
+                    guna2DataGridView1.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.White;
+                    guna2DataGridView1.RowTemplate.DefaultCellStyle.BackColor = Color.White;
+                    guna2DataGridView1.RowTemplate.DefaultCellStyle.ForeColor = Color.Black;
+                }
+                else
+                {
+                    guna2DataGridView1.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.Red;
+                    guna2DataGridView1.RowTemplate.DefaultCellStyle.SelectionForeColor = Color.White;
+                    guna2DataGridView1.RowTemplate.DefaultCellStyle.BackColor = Color.White;
+                    guna2DataGridView1.RowTemplate.DefaultCellStyle.ForeColor = Color.Red;
+                }
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

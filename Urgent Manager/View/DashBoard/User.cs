@@ -233,7 +233,6 @@ namespace Urgent_Manager.View.DashBoard
             if (Login.DbRole == 1)
             {
                 icServerConnection.Visible = true;
-                icDirectories.Visible = true;
             }
             
         }
@@ -273,6 +272,9 @@ namespace Urgent_Manager.View.DashBoard
             {
                 init();
                 LoadData();
+            }else if(gtxtUsername.Text.Trim() != "")
+            {
+                getSingleRecord(gtxtUsername.Text);
             }
         }
 
@@ -288,12 +290,13 @@ namespace Urgent_Manager.View.DashBoard
                 cmbRole.Text = user.Role;
                 chUpdate.Checked = user.IsUpdated == 0 ? false : true;
                 guna2DataGridView1.Rows.Clear();
-                guna2DataGridView1.Rows.Add(user.UserName, Eramake.eCryptography.Encrypt(user.Password),user.Fullname,user.Role,user.IsUpdated == 0 ? "No" : "Yes",user.Entry);
-            }
-            else
-            {
-                MessageBox.Show("This User Doesn't Exist !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                init();
+                if (user.UserName != "")
+                    guna2DataGridView1.Rows.Add(user.UserName, Eramake.eCryptography.Encrypt(user.Password), user.Fullname, user.Role, user.IsUpdated == 0 ? "No" : "Yes", user.Entry);
+                else
+                {
+                    init();
+                    LoadData();
+                }
             }
         }
 

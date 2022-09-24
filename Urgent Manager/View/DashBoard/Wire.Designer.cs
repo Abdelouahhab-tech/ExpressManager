@@ -78,8 +78,15 @@
             this.gtxtGroup = new Guna.UI2.WinForms.Guna2TextBox();
             this.gtxtMachine = new Guna.UI2.WinForms.Guna2TextBox();
             this.cmbLeadPrep = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.gPUpload = new Guna.UI2.WinForms.Guna2Panel();
+            this.gPicUpload = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.lblFileName = new System.Windows.Forms.Label();
+            this.lblLoading = new System.Windows.Forms.Label();
             this.gradientPanel1 = new Urgent_Manager.CustomViews.GradientPanel();
             this.panel1.SuspendLayout();
+            this.gPUpload.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gPicUpload)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -119,7 +126,7 @@
             this.gtxtUnico.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtUnico.ForeColor = System.Drawing.Color.White;
             this.gtxtUnico.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtUnico.Location = new System.Drawing.Point(250, 104);
+            this.gtxtUnico.Location = new System.Drawing.Point(250, 80);
             this.gtxtUnico.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtUnico.Name = "gtxtUnico";
             this.gtxtUnico.PasswordChar = '\0';
@@ -138,7 +145,7 @@
             this.lblUnico.AutoSize = true;
             this.lblUnico.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUnico.ForeColor = System.Drawing.Color.White;
-            this.lblUnico.Location = new System.Drawing.Point(128, 116);
+            this.lblUnico.Location = new System.Drawing.Point(128, 92);
             this.lblUnico.Name = "lblUnico";
             this.lblUnico.Size = new System.Drawing.Size(61, 18);
             this.lblUnico.TabIndex = 22;
@@ -160,7 +167,7 @@
             this.gtxtLeadCode.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtLeadCode.ForeColor = System.Drawing.Color.White;
             this.gtxtLeadCode.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtLeadCode.Location = new System.Drawing.Point(566, 104);
+            this.gtxtLeadCode.Location = new System.Drawing.Point(566, 80);
             this.gtxtLeadCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtLeadCode.Name = "gtxtLeadCode";
             this.gtxtLeadCode.PasswordChar = '\0';
@@ -178,7 +185,7 @@
             this.lblLeadCode.AutoSize = true;
             this.lblLeadCode.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLeadCode.ForeColor = System.Drawing.Color.White;
-            this.lblLeadCode.Location = new System.Drawing.Point(458, 116);
+            this.lblLeadCode.Location = new System.Drawing.Point(458, 92);
             this.lblLeadCode.Name = "lblLeadCode";
             this.lblLeadCode.Size = new System.Drawing.Size(97, 18);
             this.lblLeadCode.TabIndex = 24;
@@ -200,7 +207,7 @@
             this.gtxtLength.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtLength.ForeColor = System.Drawing.Color.White;
             this.gtxtLength.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtLength.Location = new System.Drawing.Point(869, 104);
+            this.gtxtLength.Location = new System.Drawing.Point(869, 80);
             this.gtxtLength.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtLength.Name = "gtxtLength";
             this.gtxtLength.PasswordChar = '\0';
@@ -218,7 +225,7 @@
             this.lblLength.AutoSize = true;
             this.lblLength.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLength.ForeColor = System.Drawing.Color.White;
-            this.lblLength.Location = new System.Drawing.Point(765, 116);
+            this.lblLength.Location = new System.Drawing.Point(765, 92);
             this.lblLength.Name = "lblLength";
             this.lblLength.Size = new System.Drawing.Size(70, 18);
             this.lblLength.TabIndex = 26;
@@ -240,7 +247,7 @@
             this.gtxtAdress.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtAdress.ForeColor = System.Drawing.Color.White;
             this.gtxtAdress.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtAdress.Location = new System.Drawing.Point(869, 168);
+            this.gtxtAdress.Location = new System.Drawing.Point(869, 144);
             this.gtxtAdress.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtAdress.Name = "gtxtAdress";
             this.gtxtAdress.PasswordChar = '\0';
@@ -256,7 +263,7 @@
             this.lblAdress.AutoSize = true;
             this.lblAdress.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAdress.ForeColor = System.Drawing.Color.White;
-            this.lblAdress.Location = new System.Drawing.Point(761, 180);
+            this.lblAdress.Location = new System.Drawing.Point(761, 156);
             this.lblAdress.Name = "lblAdress";
             this.lblAdress.Size = new System.Drawing.Size(78, 18);
             this.lblAdress.TabIndex = 32;
@@ -268,7 +275,7 @@
             this.lblLeadPrep.AutoSize = true;
             this.lblLeadPrep.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLeadPrep.ForeColor = System.Drawing.Color.White;
-            this.lblLeadPrep.Location = new System.Drawing.Point(460, 180);
+            this.lblLeadPrep.Location = new System.Drawing.Point(460, 156);
             this.lblLeadPrep.Name = "lblLeadPrep";
             this.lblLeadPrep.Size = new System.Drawing.Size(93, 18);
             this.lblLeadPrep.TabIndex = 30;
@@ -280,7 +287,7 @@
             this.lblTerG.AutoSize = true;
             this.lblTerG.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTerG.ForeColor = System.Drawing.Color.White;
-            this.lblTerG.Location = new System.Drawing.Point(128, 242);
+            this.lblTerG.Location = new System.Drawing.Point(128, 218);
             this.lblTerG.Name = "lblTerG";
             this.lblTerG.Size = new System.Drawing.Size(97, 18);
             this.lblTerG.TabIndex = 34;
@@ -292,7 +299,7 @@
             this.lblTerD.AutoSize = true;
             this.lblTerD.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTerD.ForeColor = System.Drawing.Color.White;
-            this.lblTerD.Location = new System.Drawing.Point(458, 242);
+            this.lblTerD.Location = new System.Drawing.Point(458, 218);
             this.lblTerD.Name = "lblTerD";
             this.lblTerD.Size = new System.Drawing.Size(96, 18);
             this.lblTerD.TabIndex = 36;
@@ -304,7 +311,7 @@
             this.lblSealG.AutoSize = true;
             this.lblSealG.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSealG.ForeColor = System.Drawing.Color.White;
-            this.lblSealG.Location = new System.Drawing.Point(767, 242);
+            this.lblSealG.Location = new System.Drawing.Point(767, 218);
             this.lblSealG.Name = "lblSealG";
             this.lblSealG.Size = new System.Drawing.Size(67, 18);
             this.lblSealG.TabIndex = 38;
@@ -316,7 +323,7 @@
             this.lblMarkerD.AutoSize = true;
             this.lblMarkerD.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMarkerD.ForeColor = System.Drawing.Color.White;
-            this.lblMarkerD.Location = new System.Drawing.Point(767, 304);
+            this.lblMarkerD.Location = new System.Drawing.Point(767, 280);
             this.lblMarkerD.Name = "lblMarkerD";
             this.lblMarkerD.Size = new System.Drawing.Size(85, 18);
             this.lblMarkerD.TabIndex = 44;
@@ -328,7 +335,7 @@
             this.lblMarkG.AutoSize = true;
             this.lblMarkG.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMarkG.ForeColor = System.Drawing.Color.White;
-            this.lblMarkG.Location = new System.Drawing.Point(458, 304);
+            this.lblMarkG.Location = new System.Drawing.Point(458, 280);
             this.lblMarkG.Name = "lblMarkG";
             this.lblMarkG.Size = new System.Drawing.Size(86, 18);
             this.lblMarkG.TabIndex = 42;
@@ -340,7 +347,7 @@
             this.lblSealD.AutoSize = true;
             this.lblSealD.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSealD.ForeColor = System.Drawing.Color.White;
-            this.lblSealD.Location = new System.Drawing.Point(128, 304);
+            this.lblSealD.Location = new System.Drawing.Point(128, 280);
             this.lblSealD.Name = "lblSealD";
             this.lblSealD.Size = new System.Drawing.Size(66, 18);
             this.lblSealD.TabIndex = 40;
@@ -352,7 +359,7 @@
             this.lblToolG.AutoSize = true;
             this.lblToolG.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblToolG.ForeColor = System.Drawing.Color.White;
-            this.lblToolG.Location = new System.Drawing.Point(767, 365);
+            this.lblToolG.Location = new System.Drawing.Point(767, 341);
             this.lblToolG.Name = "lblToolG";
             this.lblToolG.Size = new System.Drawing.Size(67, 18);
             this.lblToolG.TabIndex = 50;
@@ -364,7 +371,7 @@
             this.lblProtectionD.AutoSize = true;
             this.lblProtectionD.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProtectionD.ForeColor = System.Drawing.Color.White;
-            this.lblProtectionD.Location = new System.Drawing.Point(458, 365);
+            this.lblProtectionD.Location = new System.Drawing.Point(458, 341);
             this.lblProtectionD.Name = "lblProtectionD";
             this.lblProtectionD.Size = new System.Drawing.Size(105, 18);
             this.lblProtectionD.TabIndex = 48;
@@ -376,7 +383,7 @@
             this.lblProtectionG.AutoSize = true;
             this.lblProtectionG.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProtectionG.ForeColor = System.Drawing.Color.White;
-            this.lblProtectionG.Location = new System.Drawing.Point(128, 365);
+            this.lblProtectionG.Location = new System.Drawing.Point(128, 341);
             this.lblProtectionG.Name = "lblProtectionG";
             this.lblProtectionG.Size = new System.Drawing.Size(110, 18);
             this.lblProtectionG.TabIndex = 46;
@@ -388,7 +395,7 @@
             this.lblGroup.AutoSize = true;
             this.lblGroup.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGroup.ForeColor = System.Drawing.Color.White;
-            this.lblGroup.Location = new System.Drawing.Point(767, 433);
+            this.lblGroup.Location = new System.Drawing.Point(767, 409);
             this.lblGroup.Name = "lblGroup";
             this.lblGroup.Size = new System.Drawing.Size(101, 18);
             this.lblGroup.TabIndex = 56;
@@ -400,7 +407,7 @@
             this.lblCable.AutoSize = true;
             this.lblCable.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCable.ForeColor = System.Drawing.Color.White;
-            this.lblCable.Location = new System.Drawing.Point(128, 180);
+            this.lblCable.Location = new System.Drawing.Point(128, 156);
             this.lblCable.Name = "lblCable";
             this.lblCable.Size = new System.Drawing.Size(61, 18);
             this.lblCable.TabIndex = 54;
@@ -412,7 +419,7 @@
             this.lblToolD.AutoSize = true;
             this.lblToolD.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblToolD.ForeColor = System.Drawing.Color.White;
-            this.lblToolD.Location = new System.Drawing.Point(128, 433);
+            this.lblToolD.Location = new System.Drawing.Point(128, 409);
             this.lblToolD.Name = "lblToolD";
             this.lblToolD.Size = new System.Drawing.Size(66, 18);
             this.lblToolD.TabIndex = 52;
@@ -424,7 +431,7 @@
             this.lblFamily.AutoSize = true;
             this.lblFamily.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFamily.ForeColor = System.Drawing.Color.White;
-            this.lblFamily.Location = new System.Drawing.Point(458, 433);
+            this.lblFamily.Location = new System.Drawing.Point(458, 409);
             this.lblFamily.Name = "lblFamily";
             this.lblFamily.Size = new System.Drawing.Size(100, 18);
             this.lblFamily.TabIndex = 62;
@@ -436,7 +443,7 @@
             this.lblMc.AutoSize = true;
             this.lblMc.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMc.ForeColor = System.Drawing.Color.White;
-            this.lblMc.Location = new System.Drawing.Point(128, 502);
+            this.lblMc.Location = new System.Drawing.Point(128, 478);
             this.lblMc.Name = "lblMc";
             this.lblMc.Size = new System.Drawing.Size(80, 18);
             this.lblMc.TabIndex = 60;
@@ -457,7 +464,7 @@
             this.btnUpdate.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
             this.btnUpdate.Image = global::Urgent_Manager.Properties.Resources.update;
             this.btnUpdate.IndicateFocus = true;
-            this.btnUpdate.Location = new System.Drawing.Point(413, 559);
+            this.btnUpdate.Location = new System.Drawing.Point(413, 536);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(157, 41);
             this.btnUpdate.TabIndex = 20;
@@ -480,7 +487,7 @@
             this.btnSave.Image = global::Urgent_Manager.Properties.Resources.diskette;
             this.btnSave.ImageOffset = new System.Drawing.Point(-3, 0);
             this.btnSave.IndicateFocus = true;
-            this.btnSave.Location = new System.Drawing.Point(250, 559);
+            this.btnSave.Location = new System.Drawing.Point(250, 536);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(157, 41);
             this.btnSave.TabIndex = 19;
@@ -502,7 +509,7 @@
             this.guna2Button1.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
             this.guna2Button1.Image = global::Urgent_Manager.Properties.Resources.delete;
             this.guna2Button1.IndicateFocus = true;
-            this.guna2Button1.Location = new System.Drawing.Point(576, 559);
+            this.guna2Button1.Location = new System.Drawing.Point(576, 536);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.Size = new System.Drawing.Size(157, 41);
             this.guna2Button1.TabIndex = 21;
@@ -515,7 +522,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.label1.Location = new System.Drawing.Point(410, 82);
+            this.label1.Location = new System.Drawing.Point(410, 58);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(15, 18);
             this.label1.TabIndex = 63;
@@ -527,7 +534,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.label3.Location = new System.Drawing.Point(718, 82);
+            this.label3.Location = new System.Drawing.Point(718, 58);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(15, 18);
             this.label3.TabIndex = 64;
@@ -539,7 +546,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.label4.Location = new System.Drawing.Point(1026, 82);
+            this.label4.Location = new System.Drawing.Point(1026, 58);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(15, 18);
             this.label4.TabIndex = 65;
@@ -551,7 +558,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.label5.Location = new System.Drawing.Point(410, 149);
+            this.label5.Location = new System.Drawing.Point(410, 125);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(15, 18);
             this.label5.TabIndex = 66;
@@ -563,7 +570,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.label6.Location = new System.Drawing.Point(718, 399);
+            this.label6.Location = new System.Drawing.Point(718, 375);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(15, 18);
             this.label6.TabIndex = 67;
@@ -575,7 +582,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.label7.Location = new System.Drawing.Point(1026, 397);
+            this.label7.Location = new System.Drawing.Point(1026, 373);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(15, 18);
             this.label7.TabIndex = 68;
@@ -587,7 +594,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.label8.Location = new System.Drawing.Point(410, 469);
+            this.label8.Location = new System.Drawing.Point(410, 445);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(15, 18);
             this.label8.TabIndex = 69;
@@ -609,7 +616,7 @@
             this.gtxtCable.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtCable.ForeColor = System.Drawing.Color.White;
             this.gtxtCable.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtCable.Location = new System.Drawing.Point(250, 169);
+            this.gtxtCable.Location = new System.Drawing.Point(250, 145);
             this.gtxtCable.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtCable.Name = "gtxtCable";
             this.gtxtCable.PasswordChar = '\0';
@@ -637,7 +644,7 @@
             this.gtxtTerminalG.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtTerminalG.ForeColor = System.Drawing.Color.White;
             this.gtxtTerminalG.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtTerminalG.Location = new System.Drawing.Point(250, 231);
+            this.gtxtTerminalG.Location = new System.Drawing.Point(250, 207);
             this.gtxtTerminalG.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtTerminalG.Name = "gtxtTerminalG";
             this.gtxtTerminalG.PasswordChar = '\0';
@@ -665,7 +672,7 @@
             this.gtxtTerminalD.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtTerminalD.ForeColor = System.Drawing.Color.White;
             this.gtxtTerminalD.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtTerminalD.Location = new System.Drawing.Point(566, 231);
+            this.gtxtTerminalD.Location = new System.Drawing.Point(566, 207);
             this.gtxtTerminalD.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtTerminalD.Name = "gtxtTerminalD";
             this.gtxtTerminalD.PasswordChar = '\0';
@@ -693,7 +700,7 @@
             this.gtxtSealG.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtSealG.ForeColor = System.Drawing.Color.White;
             this.gtxtSealG.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtSealG.Location = new System.Drawing.Point(869, 231);
+            this.gtxtSealG.Location = new System.Drawing.Point(869, 207);
             this.gtxtSealG.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtSealG.Name = "gtxtSealG";
             this.gtxtSealG.PasswordChar = '\0';
@@ -721,7 +728,7 @@
             this.gtxtSealD.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtSealD.ForeColor = System.Drawing.Color.White;
             this.gtxtSealD.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtSealD.Location = new System.Drawing.Point(250, 292);
+            this.gtxtSealD.Location = new System.Drawing.Point(250, 268);
             this.gtxtSealD.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtSealD.Name = "gtxtSealD";
             this.gtxtSealD.PasswordChar = '\0';
@@ -749,7 +756,7 @@
             this.gtxtMarkerG.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtMarkerG.ForeColor = System.Drawing.Color.White;
             this.gtxtMarkerG.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtMarkerG.Location = new System.Drawing.Point(566, 292);
+            this.gtxtMarkerG.Location = new System.Drawing.Point(566, 268);
             this.gtxtMarkerG.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtMarkerG.Name = "gtxtMarkerG";
             this.gtxtMarkerG.PasswordChar = '\0';
@@ -777,7 +784,7 @@
             this.gtxtMarkerD.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtMarkerD.ForeColor = System.Drawing.Color.White;
             this.gtxtMarkerD.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtMarkerD.Location = new System.Drawing.Point(869, 292);
+            this.gtxtMarkerD.Location = new System.Drawing.Point(869, 268);
             this.gtxtMarkerD.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtMarkerD.Name = "gtxtMarkerD";
             this.gtxtMarkerD.PasswordChar = '\0';
@@ -805,7 +812,7 @@
             this.gtxtProtectionG.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtProtectionG.ForeColor = System.Drawing.Color.White;
             this.gtxtProtectionG.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtProtectionG.Location = new System.Drawing.Point(250, 353);
+            this.gtxtProtectionG.Location = new System.Drawing.Point(250, 329);
             this.gtxtProtectionG.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtProtectionG.Name = "gtxtProtectionG";
             this.gtxtProtectionG.PasswordChar = '\0';
@@ -833,7 +840,7 @@
             this.gtxtProtectionD.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtProtectionD.ForeColor = System.Drawing.Color.White;
             this.gtxtProtectionD.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtProtectionD.Location = new System.Drawing.Point(566, 353);
+            this.gtxtProtectionD.Location = new System.Drawing.Point(566, 329);
             this.gtxtProtectionD.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtProtectionD.Name = "gtxtProtectionD";
             this.gtxtProtectionD.PasswordChar = '\0';
@@ -861,7 +868,7 @@
             this.gtxtToolG.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtToolG.ForeColor = System.Drawing.Color.White;
             this.gtxtToolG.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtToolG.Location = new System.Drawing.Point(869, 353);
+            this.gtxtToolG.Location = new System.Drawing.Point(869, 329);
             this.gtxtToolG.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtToolG.Name = "gtxtToolG";
             this.gtxtToolG.PasswordChar = '\0';
@@ -889,7 +896,7 @@
             this.gtxtToolD.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtToolD.ForeColor = System.Drawing.Color.White;
             this.gtxtToolD.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtToolD.Location = new System.Drawing.Point(250, 421);
+            this.gtxtToolD.Location = new System.Drawing.Point(250, 397);
             this.gtxtToolD.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtToolD.Name = "gtxtToolD";
             this.gtxtToolD.PasswordChar = '\0';
@@ -917,7 +924,7 @@
             this.gtxtFamily.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtFamily.ForeColor = System.Drawing.Color.White;
             this.gtxtFamily.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtFamily.Location = new System.Drawing.Point(566, 421);
+            this.gtxtFamily.Location = new System.Drawing.Point(566, 397);
             this.gtxtFamily.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtFamily.Name = "gtxtFamily";
             this.gtxtFamily.PasswordChar = '\0';
@@ -945,7 +952,7 @@
             this.gtxtGroup.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtGroup.ForeColor = System.Drawing.Color.White;
             this.gtxtGroup.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtGroup.Location = new System.Drawing.Point(869, 419);
+            this.gtxtGroup.Location = new System.Drawing.Point(869, 395);
             this.gtxtGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtGroup.Name = "gtxtGroup";
             this.gtxtGroup.PasswordChar = '\0';
@@ -973,7 +980,7 @@
             this.gtxtMachine.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtMachine.ForeColor = System.Drawing.Color.White;
             this.gtxtMachine.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtMachine.Location = new System.Drawing.Point(250, 491);
+            this.gtxtMachine.Location = new System.Drawing.Point(250, 467);
             this.gtxtMachine.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtMachine.Name = "gtxtMachine";
             this.gtxtMachine.PasswordChar = '\0';
@@ -1005,11 +1012,78 @@
             "LP",
             "Cutting",
             "Twist"});
-            this.cmbLeadPrep.Location = new System.Drawing.Point(566, 168);
+            this.cmbLeadPrep.Location = new System.Drawing.Point(566, 144);
             this.cmbLeadPrep.Name = "cmbLeadPrep";
             this.cmbLeadPrep.Size = new System.Drawing.Size(191, 41);
             this.cmbLeadPrep.TabIndex = 4;
             this.cmbLeadPrep.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label9.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(767, 444);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(293, 59);
+            this.label9.TabIndex = 73;
+            this.label9.Text = "Make Sure That The Column Headers Matches All The Data Fields And The Data Sheet " +
+    "Is In The First";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // gPUpload
+            // 
+            this.gPUpload.AllowDrop = true;
+            this.gPUpload.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gPUpload.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gPUpload.BorderRadius = 10;
+            this.gPUpload.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            this.gPUpload.BorderThickness = 2;
+            this.gPUpload.Controls.Add(this.gPicUpload);
+            this.gPUpload.Controls.Add(this.lblFileName);
+            this.gPUpload.Location = new System.Drawing.Point(770, 506);
+            this.gPUpload.Name = "gPUpload";
+            this.gPUpload.Size = new System.Drawing.Size(290, 132);
+            this.gPUpload.TabIndex = 72;
+            this.gPUpload.DragDrop += new System.Windows.Forms.DragEventHandler(this.gPUpload_DragDrop);
+            this.gPUpload.DragEnter += new System.Windows.Forms.DragEventHandler(this.gPUpload_DragEnter);
+            // 
+            // gPicUpload
+            // 
+            this.gPicUpload.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gPicUpload.Image = global::Urgent_Manager.Properties.Resources.upload;
+            this.gPicUpload.ImageRotate = 0F;
+            this.gPicUpload.Location = new System.Drawing.Point(56, 9);
+            this.gPicUpload.Name = "gPicUpload";
+            this.gPicUpload.Size = new System.Drawing.Size(174, 67);
+            this.gPicUpload.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.gPicUpload.TabIndex = 1;
+            this.gPicUpload.TabStop = false;
+            // 
+            // lblFileName
+            // 
+            this.lblFileName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblFileName.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFileName.ForeColor = System.Drawing.Color.White;
+            this.lblFileName.Location = new System.Drawing.Point(20, 76);
+            this.lblFileName.Name = "lblFileName";
+            this.lblFileName.Size = new System.Drawing.Size(249, 34);
+            this.lblFileName.TabIndex = 0;
+            this.lblFileName.Text = "Drag The File Here";
+            this.lblFileName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblLoading
+            // 
+            this.lblLoading.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblLoading.AutoSize = true;
+            this.lblLoading.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLoading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.lblLoading.Location = new System.Drawing.Point(766, 645);
+            this.lblLoading.Name = "lblLoading";
+            this.lblLoading.Size = new System.Drawing.Size(88, 19);
+            this.lblLoading.TabIndex = 74;
+            this.lblLoading.Text = "Loading...";
+            this.lblLoading.Visible = false;
             // 
             // gradientPanel1
             // 
@@ -1024,10 +1098,14 @@
             // 
             // Wire
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(1184, 666);
+            this.ClientSize = new System.Drawing.Size(1184, 673);
+            this.Controls.Add(this.lblLoading);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.gPUpload);
             this.Controls.Add(this.cmbLeadPrep);
             this.Controls.Add(this.gtxtMachine);
             this.Controls.Add(this.gtxtGroup);
@@ -1083,6 +1161,8 @@
             this.Text = "Wire";
             this.Load += new System.EventHandler(this.Wire_Load);
             this.panel1.ResumeLayout(false);
+            this.gPUpload.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gPicUpload)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1141,5 +1221,10 @@
         private Guna.UI2.WinForms.Guna2TextBox gtxtGroup;
         private Guna.UI2.WinForms.Guna2TextBox gtxtMachine;
         private Guna.UI2.WinForms.Guna2ComboBox cmbLeadPrep;
+        private System.Windows.Forms.Label label9;
+        private Guna.UI2.WinForms.Guna2Panel gPUpload;
+        private Guna.UI2.WinForms.Guna2PictureBox gPicUpload;
+        private System.Windows.Forms.Label lblFileName;
+        private System.Windows.Forms.Label lblLoading;
     }
 }
