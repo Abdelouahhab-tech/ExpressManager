@@ -669,6 +669,7 @@ namespace Urgent_Manager.View.DashBoard
         {
             try
             {
+                chart1.Width = 1108;
                 int totalCount = 0;
                 chart1.Series["Express"].Points.Clear();
                 chart1.BackColor = Color.FromArgb(255, 34, 34, 34);
@@ -681,8 +682,8 @@ namespace Urgent_Manager.View.DashBoard
                 chart1.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.White;
                 chart1.ChartAreas[0].AxisX.Interval = 1;
                 chart1.ChartAreas[0].AxisX.IsLabelAutoFit = true;
-                
-                if(cmbStatus.Text == "Express")
+
+                if (cmbStatus.Text == "Express")
                 {
                     chart1.Series["Express"].LegendText = "Express";
                     chart1.Series["Express"].Color = Color.Red;
@@ -714,7 +715,7 @@ namespace Urgent_Manager.View.DashBoard
                             chart1.ChartAreas[0].AxisX.TitleForeColor = Color.White;
                             chart1.ChartAreas[0].AxisY.TitleForeColor = Color.White;
                             if (list.Count > 20)
-                                chart1.Width += 10;
+                                chart1.Width += 20;
                         }
                     }
                     lblTotalFinished.Text = totalCount.ToString();
@@ -742,8 +743,9 @@ namespace Urgent_Manager.View.DashBoard
                                 chart1.ChartAreas[0].AxisY.Title = "Total Finished Urgents Per Mc";
                                 chart1.ChartAreas[0].AxisX.TitleForeColor = Color.White;
                                 chart1.ChartAreas[0].AxisY.TitleForeColor = Color.White;
+
                                 if (list.Count > 20)
-                                    chart1.Width += 10;
+                                    chart1.Width += 20;
                             }
                         }
                         lblTotalFinished.Text = totalCount.ToString();
@@ -767,8 +769,9 @@ namespace Urgent_Manager.View.DashBoard
                                 chart1.ChartAreas[0].AxisY.Title = "Total Finished Urgents Per Mc";
                                 chart1.ChartAreas[0].AxisX.TitleForeColor = Color.White;
                                 chart1.ChartAreas[0].AxisY.TitleForeColor = Color.White;
+
                                 if (list.Count > 20)
-                                    chart1.Width += 10;
+                                    chart1.Width += 20;
                             }
                         }
                         lblTotalFinished.Text = totalCount.ToString();
@@ -798,6 +801,7 @@ namespace Urgent_Manager.View.DashBoard
         {
             try
             {
+                chart1.Width = 1108;
                 chart1.Series["Express"].Points.Clear();
                 chart1.Series.Add("Finished");
                 chart1.Series["Finished"].LegendText = "Finished";
@@ -813,8 +817,7 @@ namespace Urgent_Manager.View.DashBoard
                 chart1.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.White;
                 chart1.ChartAreas[0].AxisX.Interval = 1;
                 chart1.ChartAreas[0].AxisX.IsLabelAutoFit = true;
-
-                for(int i = 1;i < cmbShifts.Items.Count;i++)
+                for (int i = 1;i < cmbShifts.Items.Count;i++)
                 {
                     int totalUrgents = statisticsController.Total(guna2DateTimePicker1.Value.ToShortDateString(), cmbShifts.Items[i].ToString(), false);
                     int totalFinished = statisticsController.Total(guna2DateTimePicker1.Value.ToShortDateString(), cmbShifts.Items[i].ToString(), true);
@@ -830,7 +833,7 @@ namespace Urgent_Manager.View.DashBoard
                         chart1.ChartAreas[0].AxisY.TitleForeColor = Color.White;
                     }
 
-                    if(totalFinished > 0)
+                    if (totalFinished > 0)
                     {
                         chart1.Series["Finished"].Points.AddXY(cmbShifts.Items[i].ToString(), totalFinished);
                         chart1.Series["Finished"].IsValueShownAsLabel = true;

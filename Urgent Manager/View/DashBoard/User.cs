@@ -1,9 +1,11 @@
-﻿using System;
+﻿using ExcelDataReader;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +20,7 @@ namespace Urgent_Manager.View.DashBoard
 
         UserController userController = new UserController();
         UserModel user = new UserModel();
-  
+        DataTable wireTest = new DataTable();
         public User()
         {
             InitializeComponent();
@@ -233,6 +235,7 @@ namespace Urgent_Manager.View.DashBoard
             if (Login.DbRole == 1)
             {
                 icServerConnection.Visible = true;
+                icUploadUrgents.Visible = true;
             }
             
         }
@@ -310,6 +313,119 @@ namespace Urgent_Manager.View.DashBoard
         {
             Directories directories = new Directories();
             directories.ShowDialog();
+        }
+
+        private async void icUploadUrgents_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog op = new OpenFileDialog();
+                op.Filter = "Excel File|*.xlsx";
+                if(op.ShowDialog() == DialogResult.OK)
+                {
+                    FileStream stream = File.Open(op.FileName, FileMode.Open, FileAccess.Read);
+                    IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream);
+
+                    DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration
+                    {
+                        ConfigureDataTable = (_) => new ExcelDataTableConfiguration() { UseHeaderRow = true }
+                    });
+                    DataTableCollection db = result.Tables;
+                    wireTest.Clear();
+                    wireTest = db[0];
+                    lblLoading.Visible = true;
+                    await Task.Run(new Action(UploadUrgents));
+                    lblLoading.Visible = false;
+                    stream.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void UploadUrgents()
+        {
+            try
+            {
+                int res = 0;
+                if(wireTest.Rows.Count > 0)
+                {
+                    if (wireTest.Columns.Count == 3)
+                    {
+                        for(int i = 0;i < wireTest.Rows.Count; i++)
+                        {
+                            if (userController.IsExist(wireTest.Rows[i][0].ToString().Trim(), "Wire", "Unico"))
+                            {
+                                DateTime date = Convert.ToDateTime(wireTest.Rows[i][1].ToString());
+                                string dateUrgent = date.ToString("dd/MM/yyyy");
+                                string time = date.ToString("HH:mm");
+                                int h = date.Hour;
+                                string shift = Shift(h);
+                                DbHelper.connection.Open();
+
+                                string QUERY = "INSERT INTO Urgent (UrgentUnico,DateUrgent,HUrgent,Shift,UrgentStatus,Alimentation,UserFinished,FinishedDate,isOptimized) VALUES(@Urgent,@Date,@time,@Shift,@Status,@Alimentation,@UserFinished,@FinishedDate,@isOptimized)";
+                                SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+
+                                cmd.Parameters.AddWithValue("@Urgent", wireTest.Rows[i][0].ToString());
+                                cmd.Parameters.AddWithValue("@Date", dateUrgent);
+                                cmd.Parameters.AddWithValue("@time", time);
+                                cmd.Parameters.AddWithValue("@Shift", shift);
+                                cmd.Parameters.AddWithValue("@Status", "Express");
+                                cmd.Parameters.AddWithValue("@Alimentation", Login.username);
+                                cmd.Parameters.AddWithValue("@UserFinished", "");
+                                cmd.Parameters.AddWithValue("@FinishedDate", "");
+                                cmd.Parameters.AddWithValue("@isOptimized", 0);
+
+                                res += cmd.ExecuteNonQuery();
+
+                                DbHelper.connection.Close();
+                            }
+                        }
+
+                        if(res > 0)
+                        {
+                            MessageBox.Show($"{res} Records Was Uploaded Successfuly", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                    {
+
+                        MessageBox.Show("Sorry The Data In Your File Didn't Mutch The Fields In Your Database", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                        MessageBox.Show("Sorry It Seems Like You Don't Have Any Records In Your File", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public string Shift(int h)
+        {
+            try
+            {
+                if(h >= 6 && h < 14)
+                {
+                    return "Matin";
+                }else if(h >= 14 && h < 22)
+                {
+                    return "Soir";
+                }
+                else
+                {
+                    return "Nuit";
+                }
+            }
+            catch (Exception)
+            {
+                return "";
+            }
         }
     }
 }

@@ -411,6 +411,7 @@
             this.cmbMachine.Size = new System.Drawing.Size(199, 41);
             this.cmbMachine.TabIndex = 60;
             this.cmbMachine.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.cmbMachine.SelectedIndexChanged += new System.EventHandler(this.cmbMachine_SelectedIndexChanged);
             // 
             // chIsConnect
             // 

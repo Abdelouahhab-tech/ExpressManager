@@ -1,9 +1,12 @@
-﻿using Guna.UI2.WinForms;
+﻿using ExcelDataReader;
+using Guna.UI2.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +19,7 @@ namespace Urgent_Manager.View.DashBoard
     public partial class Bobine : Form
     {
         CableController cableController = new CableController();
+        DataTable cableData = new DataTable();
         public Bobine()
         {
             InitializeComponent();
@@ -332,6 +336,117 @@ namespace Urgent_Manager.View.DashBoard
         {
             lblSection.ForeColor = Color.White;
             gtxtSection.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
+        }
+
+        private void gPUpload_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.All;
+        }
+
+        private async void gPUpload_DragDrop(object sender, DragEventArgs e)
+        {
+            try
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string extension = Path.GetExtension(files[0]);
+                if (extension.ToLower() == ".xlsx" || extension.ToLower() == ".xls")
+                {
+                    lblFileName.Text = files[0];
+                    FileStream stream = File.Open(files[0], FileMode.Open, FileAccess.Read);
+                    IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream);
+
+                    DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration
+                    {
+                        ConfigureDataTable = (_) => new ExcelDataTableConfiguration() { UseHeaderRow = true }
+                    });
+                    DataTableCollection db = result.Tables;
+                    cableData.Clear();
+                    cableData = db[0];
+                    gPFamilyLoad.Visible = true;
+                    await Task.Run(new Action(SaveData));
+                    gPFamilyLoad.Visible = false;
+                    lblFileName.Text = "Drag The Cable File Here";
+                    stream.Close();
+                    LoadData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error Accured While Processing Your Request!\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        // Save Data In DataBase
+
+        public void SaveData()
+        {
+            try
+            {
+                int count = 0;
+                if (cableData.Rows.Count > 0)
+                {
+                    if (cableData.Columns.Count == 5)
+                    {
+                        for (int i = 0; i < cableData.Rows.Count; i++)
+                        {
+                            if (!cableController.IsExist(cableData.Rows[i][0].ToString(), "Cable", "Cable"))
+                            {
+                                DbHelper.connection.Open();
+                                string QUERY = "INSERT INTO Cable VALUES (@cable,@section,@pvc,@color,@guide,@userId)";
+                                SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                                cmd.Parameters.AddWithValue("@cable",cableData.Rows[i][0].ToString());
+                                cmd.Parameters.AddWithValue("@section", cableData.Rows[i][1].ToString());
+                                cmd.Parameters.AddWithValue("@color", cableData.Rows[i][2].ToString());
+                                cmd.Parameters.AddWithValue("@pvc", cableData.Rows[i][3].ToString());
+                                cmd.Parameters.AddWithValue("@guide", cableData.Rows[i][4].ToString());
+                                cmd.Parameters.AddWithValue("@userId", Login.username);
+                                count += cmd.ExecuteNonQuery();
+                                DbHelper.connection.Close();
+                            }
+                            else
+                            {
+                                if (cableController.IsExist(cableData.Rows[i][0].ToString(), "Cable", "Cable"))
+                                {
+                                    DbHelper.connection.Open();
+                                    string QUERY = "UPDATE Cable SET Section=@section,Pvc=@pvc,Color=@color,Guide=@guide,UserID=@userid WHERE Cable=@cable";
+                                    SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                                    cmd.Parameters.AddWithValue("@cable", cableData.Rows[i][0].ToString());
+                                    cmd.Parameters.AddWithValue("@section", cableData.Rows[i][1].ToString());
+                                    cmd.Parameters.AddWithValue("@color", cableData.Rows[i][2].ToString());
+                                    cmd.Parameters.AddWithValue("@pvc", cableData.Rows[i][3].ToString());
+                                    cmd.Parameters.AddWithValue("@guide", cableData.Rows[i][4].ToString());
+                                    cmd.Parameters.AddWithValue("@userId", Login.username);
+                                    count += cmd.ExecuteNonQuery();
+                                    DbHelper.connection.Close();
+                                }
+                            }
+                        }
+
+                        if (count > 0)
+                        {
+                            MessageBox.Show($"Your Request Is Done {count} Records Performed Successfuly", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Sorry It Seems Like All The Records Already Exist", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sorry Your Data Didn't Match The Data Fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Sorry Your Data Is Empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("It Was An Error While Pricessing Your Request\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DbHelper.connection.Close();
+            }
         }
     }
 }

@@ -43,8 +43,14 @@
             this.btnSave = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.gradientPanel1 = new Urgent_Manager.CustomViews.GradientPanel();
+            this.gPFamilyLoad = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.gPUpload = new Guna.UI2.WinForms.Guna2Panel();
+            this.gPicUpload = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.lblFileName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
+            this.gPUpload.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gPicUpload)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2DataGridView1
@@ -84,7 +90,7 @@
             this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.guna2DataGridView1.EnableHeadersVisualStyles = false;
             this.guna2DataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-            this.guna2DataGridView1.Location = new System.Drawing.Point(22, 227);
+            this.guna2DataGridView1.Location = new System.Drawing.Point(22, 237);
             this.guna2DataGridView1.Name = "guna2DataGridView1";
             this.guna2DataGridView1.ReadOnly = true;
             this.guna2DataGridView1.RowHeadersVisible = false;
@@ -94,7 +100,7 @@
             this.guna2DataGridView1.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             this.guna2DataGridView1.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
             this.guna2DataGridView1.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
-            this.guna2DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.guna2DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.guna2DataGridView1.Size = new System.Drawing.Size(777, 196);
             this.guna2DataGridView1.TabIndex = 5;
             this.guna2DataGridView1.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.GreenSea;
@@ -149,13 +155,13 @@
             this.gtxtTerminalName.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtTerminalName.ForeColor = System.Drawing.Color.White;
             this.gtxtTerminalName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtTerminalName.Location = new System.Drawing.Point(293, 99);
+            this.gtxtTerminalName.Location = new System.Drawing.Point(206, 61);
             this.gtxtTerminalName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtTerminalName.Name = "gtxtTerminalName";
             this.gtxtTerminalName.PasswordChar = '\0';
             this.gtxtTerminalName.PlaceholderText = "Terminal";
             this.gtxtTerminalName.SelectedText = "";
-            this.gtxtTerminalName.Size = new System.Drawing.Size(401, 41);
+            this.gtxtTerminalName.Size = new System.Drawing.Size(261, 41);
             this.gtxtTerminalName.TabIndex = 0;
             this.gtxtTerminalName.TextOffset = new System.Drawing.Point(20, 0);
             this.gtxtTerminalName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtTerminalName_KeyDown);
@@ -168,7 +174,7 @@
             this.lblTerminal.AutoSize = true;
             this.lblTerminal.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTerminal.ForeColor = System.Drawing.Color.White;
-            this.lblTerminal.Location = new System.Drawing.Point(118, 110);
+            this.lblTerminal.Location = new System.Drawing.Point(31, 72);
             this.lblTerminal.Name = "lblTerminal";
             this.lblTerminal.Size = new System.Drawing.Size(160, 18);
             this.lblTerminal.TabIndex = 33;
@@ -211,7 +217,7 @@
             this.btnDelete.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
             this.btnDelete.Image = global::Urgent_Manager.Properties.Resources.delete;
             this.btnDelete.IndicateFocus = true;
-            this.btnDelete.Location = new System.Drawing.Point(416, 169);
+            this.btnDelete.Location = new System.Drawing.Point(329, 131);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(108, 41);
             this.btnDelete.TabIndex = 4;
@@ -234,7 +240,7 @@
             this.btnSave.Image = global::Urgent_Manager.Properties.Resources.diskette;
             this.btnSave.ImageOffset = new System.Drawing.Point(-3, 0);
             this.btnSave.IndicateFocus = true;
-            this.btnSave.Location = new System.Drawing.Point(291, 169);
+            this.btnSave.Location = new System.Drawing.Point(204, 131);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(108, 41);
             this.btnSave.TabIndex = 2;
@@ -257,12 +263,71 @@
             this.gradientPanel1.TabIndex = 36;
             this.gradientPanel1.TopColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
             // 
+            // gPFamilyLoad
+            // 
+            this.gPFamilyLoad.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gPFamilyLoad.BorderRadius = 5;
+            this.gPFamilyLoad.Location = new System.Drawing.Point(509, 199);
+            this.gPFamilyLoad.Name = "gPFamilyLoad";
+            this.gPFamilyLoad.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
+            this.gPFamilyLoad.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
+            this.gPFamilyLoad.Size = new System.Drawing.Size(290, 15);
+            this.gPFamilyLoad.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.gPFamilyLoad.TabIndex = 85;
+            this.gPFamilyLoad.Text = "guna2ProgressBar1";
+            this.gPFamilyLoad.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.gPFamilyLoad.Value = 40;
+            this.gPFamilyLoad.Visible = false;
+            // 
+            // gPUpload
+            // 
+            this.gPUpload.AllowDrop = true;
+            this.gPUpload.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gPUpload.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gPUpload.BorderRadius = 10;
+            this.gPUpload.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            this.gPUpload.BorderThickness = 2;
+            this.gPUpload.Controls.Add(this.gPicUpload);
+            this.gPUpload.Controls.Add(this.lblFileName);
+            this.gPUpload.Location = new System.Drawing.Point(509, 61);
+            this.gPUpload.Name = "gPUpload";
+            this.gPUpload.Size = new System.Drawing.Size(290, 132);
+            this.gPUpload.TabIndex = 84;
+            this.gPUpload.DragDrop += new System.Windows.Forms.DragEventHandler(this.gPUpload_DragDrop);
+            this.gPUpload.DragEnter += new System.Windows.Forms.DragEventHandler(this.gPUpload_DragEnter);
+            // 
+            // gPicUpload
+            // 
+            this.gPicUpload.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gPicUpload.Image = global::Urgent_Manager.Properties.Resources.upload;
+            this.gPicUpload.ImageRotate = 0F;
+            this.gPicUpload.Location = new System.Drawing.Point(56, 9);
+            this.gPicUpload.Name = "gPicUpload";
+            this.gPicUpload.Size = new System.Drawing.Size(174, 67);
+            this.gPicUpload.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.gPicUpload.TabIndex = 1;
+            this.gPicUpload.TabStop = false;
+            // 
+            // lblFileName
+            // 
+            this.lblFileName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblFileName.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFileName.ForeColor = System.Drawing.Color.White;
+            this.lblFileName.Location = new System.Drawing.Point(20, 76);
+            this.lblFileName.Name = "lblFileName";
+            this.lblFileName.Size = new System.Drawing.Size(249, 34);
+            this.lblFileName.TabIndex = 0;
+            this.lblFileName.Text = "Drag The Terminal File Here";
+            this.lblFileName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Terminal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.ClientSize = new System.Drawing.Size(842, 521);
+            this.Controls.Add(this.gPFamilyLoad);
+            this.Controls.Add(this.gPUpload);
             this.Controls.Add(this.gradientPanel1);
             this.Controls.Add(this.guna2DataGridView1);
             this.Controls.Add(this.btnDelete);
@@ -276,6 +341,8 @@
             this.Load += new System.EventHandler(this.Terminal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.gPUpload.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gPicUpload)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,5 +361,9 @@
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
         private System.Windows.Forms.DataGridViewTextBoxColumn MCName;
         private System.Windows.Forms.DataGridViewTextBoxColumn User;
+        private Guna.UI2.WinForms.Guna2ProgressBar gPFamilyLoad;
+        private Guna.UI2.WinForms.Guna2Panel gPUpload;
+        private Guna.UI2.WinForms.Guna2PictureBox gPicUpload;
+        private System.Windows.Forms.Label lblFileName;
     }
 }

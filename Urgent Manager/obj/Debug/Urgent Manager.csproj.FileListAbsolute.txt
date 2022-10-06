@@ -2,12 +2,18 @@ C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\Ur
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\Urgent Manager.exe
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\Urgent Manager.pdb
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\eCryptography.dll
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\ExcelDataReader.DataSet.dll
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\ExcelDataReader.dll
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\Guna.UI2.dll
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\LiveCharts.dll
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\LiveCharts.WinForms.dll
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\LiveCharts.Wpf.dll
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\zxing.dll
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\zxing.presentation.dll
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\ExcelDataReader.pdb
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\ExcelDataReader.xml
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\ExcelDataReader.DataSet.pdb
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\ExcelDataReader.DataSet.xml
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\LiveCharts.pdb
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\LiveCharts.xml
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\LiveCharts.WinForms.pdb
@@ -31,10 +37,12 @@ C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Ur
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Machine.resources
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Marker.resources
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Protection.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Prototype.resources
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Seal.resources
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Statistics.resources
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Terminal.resources
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Tool.resources
+C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.UpdateMCORGroupe.resources
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.User.resources
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Wire.resources
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.WireData.resources
@@ -45,12 +53,3 @@ C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Ur
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.csproj.GenerateResource.Cache
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.exe
 C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.pdb
-C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\ExcelDataReader.DataSet.dll
-C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\ExcelDataReader.dll
-C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\ExcelDataReader.pdb
-C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\ExcelDataReader.xml
-C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\ExcelDataReader.DataSet.pdb
-C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\bin\Debug\ExcelDataReader.DataSet.xml
-C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.Prototype.resources
-C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent_Manager.View.DashBoard.UpdateMCORGroupe.resources
-C:\Users\21267\Desktop\Urgent-Manager\Urgent-Manager\Urgent Manager\obj\Debug\Urgent Manager.csprojResolveAssemblyReference.cache

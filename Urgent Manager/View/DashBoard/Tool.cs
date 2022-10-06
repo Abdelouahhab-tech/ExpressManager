@@ -1,8 +1,11 @@
-﻿using System;
+﻿using ExcelDataReader;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +18,7 @@ namespace Urgent_Manager.View.DashBoard
     public partial class Tool : Form
     {
         ToolController toolController = new ToolController();
+        DataTable toolData = new DataTable();
         public Tool()
         {
             InitializeComponent();
@@ -226,6 +230,110 @@ namespace Urgent_Manager.View.DashBoard
                 lblToolName.ForeColor = Color.Red;
                 gtxtToolName.Focus();
                 gtxtToolName.FocusedState.BorderColor = Color.White;
+            }
+        }
+
+        // Save Data In DataBase
+
+        public void SaveData()
+        {
+            try
+            {
+                int count = 0;
+                if (toolData.Rows.Count > 0)
+                {
+                    if (toolData.Columns.Count == 2)
+                    {
+                        for (int i = 0; i < toolData.Rows.Count; i++)
+                        {
+                            if (!toolController.IsExist(toolData.Rows[i][0].ToString(), "Tool", "ToolID"))
+                            {
+                                DbHelper.connection.Open();
+                                string QUERY = "INSERT INTO Tool VALUES (@tool,@ter,@userId)";
+                                SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                                cmd.Parameters.AddWithValue("@tool", toolData.Rows[i][0].ToString());
+                                cmd.Parameters.AddWithValue("@ter", toolData.Rows[i][1].ToString());;
+                                cmd.Parameters.AddWithValue("@userId", Login.username);
+                                count += cmd.ExecuteNonQuery();
+                                DbHelper.connection.Close();
+                            }
+                            else
+                            {
+                                if (toolController.IsExist(toolData.Rows[i][0].ToString(), "Tool", "ToolID"))
+                                {
+                                    DbHelper.connection.Open();
+                                    string QUERY = "UPDATE Tool SET TerID=@ter,UserID=@userid WHERE ToolID=@tool";
+                                    SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                                    cmd.Parameters.AddWithValue("@tool", toolData.Rows[i][0].ToString());
+                                    cmd.Parameters.AddWithValue("@ter", toolData.Rows[i][1].ToString());
+                                    cmd.Parameters.AddWithValue("@userId", Login.username);
+                                    count += cmd.ExecuteNonQuery();
+                                    DbHelper.connection.Close();
+                                }
+                            }
+                        }
+
+                        if (count > 0)
+                        {
+                            MessageBox.Show($"Your Request Is Done {count} Records Performed Successfuly", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Sorry It Seems Like All The Records Already Exist", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sorry Your Data Didn't Match The Data Fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Sorry Your Data Is Empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("It Was An Error While Pricessing Your Request\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DbHelper.connection.Close();
+            }
+        }
+
+        private void gPUpload_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.All;
+        }
+
+        private async void gPUpload_DragDrop(object sender, DragEventArgs e)
+        {
+            try
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string extension = Path.GetExtension(files[0]);
+                if (extension.ToLower() == ".xlsx" || extension.ToLower() == ".xls")
+                {
+                    lblFileName.Text = files[0];
+                    FileStream stream = File.Open(files[0], FileMode.Open, FileAccess.Read);
+                    IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream);
+
+                    DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration
+                    {
+                        ConfigureDataTable = (_) => new ExcelDataTableConfiguration() { UseHeaderRow = true }
+                    });
+                    DataTableCollection db = result.Tables;
+                    toolData.Clear();
+                    toolData = db[0];
+                    gPFamilyLoad.Visible = true;
+                    await Task.Run(new Action(SaveData));
+                    gPFamilyLoad.Visible = false;
+                    lblFileName.Text = "Drag The Tool File Here";
+                    stream.Close();
+                    LoadData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error Accured While Processing Your Request!\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

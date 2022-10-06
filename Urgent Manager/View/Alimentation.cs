@@ -100,7 +100,7 @@ namespace Urgent_Manager.View
                             machine = urgentController.getMachine(gtxtScanne.Text);
                             MessageBox.Show($"Sorry This Urgent Is Already Planned In Machine {machine}", "Warning", MessageBoxButtons.OK,MessageBoxIcon.Warning);
 
-                            lblUnico.Text = gtxtScanne.Text == urgentController.getUnico(urgentController.getLeadCode(gtxtScanne.Text)) ? $"Unico : {gtxtScanne.Text}" : $"Similar Wire : {urgentController.getUnico(urgentController.getLeadCode(gtxtScanne.Text))}";
+                            lblUnico.Text = gtxtScanne.Text.ToUpper() == urgentController.getUnico(urgentController.getLeadCode(gtxtScanne.Text)).ToUpper() ? $"Unico : {gtxtScanne.Text}" : $"Similar Wire : {urgentController.getUnico(urgentController.getLeadCode(gtxtScanne.Text))}";
                             lblMachine.Text = $"Machine: {machine}";
                             lblUnico.Visible = true;
                             lblMachine.Visible = true;

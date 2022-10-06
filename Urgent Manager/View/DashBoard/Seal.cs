@@ -1,8 +1,11 @@
-﻿using System;
+﻿using ExcelDataReader;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +19,7 @@ namespace Urgent_Manager.View.DashBoard
     {
 
         SealController sealController = new SealController();
+        DataTable sealData = new DataTable();
         public Seal()
         {
             InitializeComponent();
@@ -227,6 +231,111 @@ namespace Urgent_Manager.View.DashBoard
         {
             lblSealColor.ForeColor = System.Drawing.Color.White;
             gtxtSealColor.FocusedState.BorderColor = System.Drawing.Color.FromArgb(255, 48, 148, 255);
+        }
+
+        private async void gPUpload_DragDrop(object sender, DragEventArgs e)
+        {
+            try
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string extension = Path.GetExtension(files[0]);
+                if (extension.ToLower() == ".xlsx" || extension.ToLower() == ".xls")
+                {
+                    lblFileName.Text = files[0];
+                    FileStream stream = File.Open(files[0], FileMode.Open, FileAccess.Read);
+                    IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream);
+
+                    DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration
+                    {
+                        ConfigureDataTable = (_) => new ExcelDataTableConfiguration() { UseHeaderRow = true }
+                    });
+                    DataTableCollection db = result.Tables;
+                    sealData.Clear();
+                    sealData = db[0];
+                    gPFamilyLoad.Visible = true;
+                    await Task.Run(new Action(SaveData));
+                    gPFamilyLoad.Visible = false;
+                    lblFileName.Text = "Drag The Seal File Here";
+                    stream.Close();
+                    LoadData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error Accured While Processing Your Request!\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void gPUpload_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.All;
+        }
+
+
+        // Save Data In DataBase
+
+        public void SaveData()
+        {
+            try
+            {
+                int count = 0;
+                if (sealData.Rows.Count > 0)
+                {
+                    if (sealData.Columns.Count == 2)
+                    {
+                        for (int i = 0; i < sealData.Rows.Count; i++)
+                        {
+                            if (!sealController.IsExist(sealData.Rows[i][0].ToString(), "Seal", "Seal"))
+                            {
+                                DbHelper.connection.Open();
+                                string QUERY = "INSERT INTO Seal VALUES (@seal,@color,@userId)";
+                                SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                                cmd.Parameters.AddWithValue("@seal", sealData.Rows[i][0].ToString());
+                                cmd.Parameters.AddWithValue("@color", sealData.Rows[i][1].ToString());
+                                cmd.Parameters.AddWithValue("@userId", Login.username);
+                                count += cmd.ExecuteNonQuery();
+                                DbHelper.connection.Close();
+                            }
+                            else
+                            {
+                                if (sealController.IsExist(sealData.Rows[i][0].ToString(), "Seal", "Seal"))
+                                {
+                                    DbHelper.connection.Open();
+                                    string QUERY = "UPDATE Seal SET Color=@color,UserID=@userId WHERE Seal=@seal";
+                                    SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                                    cmd.Parameters.AddWithValue("@seal", sealData.Rows[i][0].ToString());
+                                    cmd.Parameters.AddWithValue("@color", sealData.Rows[i][1].ToString());
+                                    cmd.Parameters.AddWithValue("@userId", Login.username);
+                                    count += cmd.ExecuteNonQuery();
+                                    DbHelper.connection.Close();
+                                }
+                            }
+                        }
+
+                        if (count > 0)
+                        {
+                            MessageBox.Show($"Your Request Is Done {count} Records Performed Successfuly", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Sorry It Seems Like All The Records Already Exist", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sorry Your Data Didn't Match The Data Fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Sorry Your Data Is Empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("It Was An Error While Pricessing Your Request\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DbHelper.connection.Close();
+            }
         }
     }
 }

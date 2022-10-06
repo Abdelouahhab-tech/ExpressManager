@@ -357,5 +357,26 @@ namespace Urgent_Manager.View.DashBoard
         {
 
         }
+
+        private void iconButton1_MouseEnter(object sender, EventArgs e)
+        {
+            iconButton1.IconColor = Color.FromArgb(255, 234, 79, 12);
+
+        }
+
+        private void iconButton1_MouseLeave(object sender, EventArgs e)
+        {
+            iconButton1.IconColor = Color.White;
+        }
+
+        private void btnRefresh_MouseEnter(object sender, EventArgs e)
+        {
+            btnRefresh.Image = Properties.Resources.refreshRed;
+        }
+
+        private void btnRefresh_MouseLeave(object sender, EventArgs e)
+        {
+            btnRefresh.Image = Properties.Resources.refresh;
+        }
     }
 }

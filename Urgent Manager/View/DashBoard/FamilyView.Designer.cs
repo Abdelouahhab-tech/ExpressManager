@@ -45,9 +45,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.chStatus = new Guna.UI2.WinForms.Guna2CheckBox();
             this.btnUpdateStatus = new Guna.UI2.WinForms.Guna2Button();
+            this.gPFamilyLoad = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.gPUpload = new Guna.UI2.WinForms.Guna2Panel();
+            this.gPicUpload = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.lblFileName = new System.Windows.Forms.Label();
             this.gradientPanel1 = new Urgent_Manager.CustomViews.GradientPanel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
+            this.gPUpload.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gPicUpload)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -56,7 +62,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(842, 40);
+            this.panel1.Size = new System.Drawing.Size(901, 40);
             this.panel1.TabIndex = 15;
             // 
             // label2
@@ -67,7 +73,7 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(842, 40);
+            this.label2.Size = new System.Drawing.Size(901, 40);
             this.label2.TabIndex = 2;
             this.label2.Text = " Family";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -119,8 +125,8 @@
             this.guna2DataGridView1.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             this.guna2DataGridView1.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
             this.guna2DataGridView1.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
-            this.guna2DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.guna2DataGridView1.Size = new System.Drawing.Size(777, 196);
+            this.guna2DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.guna2DataGridView1.Size = new System.Drawing.Size(836, 196);
             this.guna2DataGridView1.TabIndex = 5;
             this.guna2DataGridView1.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.GreenSea;
             this.guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(226)))), ((int)(((byte)(218)))));
@@ -174,7 +180,7 @@
             this.gtxtFamilyName.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gtxtFamilyName.ForeColor = System.Drawing.Color.White;
             this.gtxtFamilyName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.gtxtFamilyName.Location = new System.Drawing.Point(286, 81);
+            this.gtxtFamilyName.Location = new System.Drawing.Point(166, 71);
             this.gtxtFamilyName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtFamilyName.Name = "gtxtFamilyName";
             this.gtxtFamilyName.PasswordChar = '\0';
@@ -193,7 +199,7 @@
             this.lblFamilyName.AutoSize = true;
             this.lblFamilyName.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFamilyName.ForeColor = System.Drawing.Color.White;
-            this.lblFamilyName.Location = new System.Drawing.Point(158, 93);
+            this.lblFamilyName.Location = new System.Drawing.Point(38, 83);
             this.lblFamilyName.Name = "lblFamilyName";
             this.lblFamilyName.Size = new System.Drawing.Size(108, 18);
             this.lblFamilyName.TabIndex = 28;
@@ -214,7 +220,7 @@
             this.btnDelete.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
             this.btnDelete.Image = global::Urgent_Manager.Properties.Resources.delete;
             this.btnDelete.IndicateFocus = true;
-            this.btnDelete.Location = new System.Drawing.Point(404, 191);
+            this.btnDelete.Location = new System.Drawing.Point(284, 181);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(108, 41);
             this.btnDelete.TabIndex = 3;
@@ -237,7 +243,7 @@
             this.btnSave.Image = global::Urgent_Manager.Properties.Resources.diskette;
             this.btnSave.ImageOffset = new System.Drawing.Point(-3, 0);
             this.btnSave.IndicateFocus = true;
-            this.btnSave.Location = new System.Drawing.Point(286, 191);
+            this.btnSave.Location = new System.Drawing.Point(166, 181);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(108, 41);
             this.btnSave.TabIndex = 1;
@@ -255,7 +261,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.label1.Location = new System.Drawing.Point(652, 59);
+            this.label1.Location = new System.Drawing.Point(532, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(15, 18);
             this.label1.TabIndex = 43;
@@ -272,7 +278,7 @@
             this.chStatus.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chStatus.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chStatus.ForeColor = System.Drawing.Color.White;
-            this.chStatus.Location = new System.Drawing.Point(286, 142);
+            this.chStatus.Location = new System.Drawing.Point(166, 132);
             this.chStatus.Name = "chStatus";
             this.chStatus.Size = new System.Drawing.Size(120, 22);
             this.chStatus.TabIndex = 45;
@@ -298,12 +304,69 @@
             this.btnUpdateStatus.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
             this.btnUpdateStatus.Image = global::Urgent_Manager.Properties.Resources.update;
             this.btnUpdateStatus.IndicateFocus = true;
-            this.btnUpdateStatus.Location = new System.Drawing.Point(528, 191);
+            this.btnUpdateStatus.Location = new System.Drawing.Point(408, 181);
             this.btnUpdateStatus.Name = "btnUpdateStatus";
             this.btnUpdateStatus.Size = new System.Drawing.Size(108, 41);
             this.btnUpdateStatus.TabIndex = 4;
             this.btnUpdateStatus.Text = "Update";
             this.btnUpdateStatus.Click += new System.EventHandler(this.btnUpdateStatus_Click);
+            // 
+            // gPFamilyLoad
+            // 
+            this.gPFamilyLoad.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gPFamilyLoad.BorderRadius = 5;
+            this.gPFamilyLoad.Location = new System.Drawing.Point(579, 209);
+            this.gPFamilyLoad.Name = "gPFamilyLoad";
+            this.gPFamilyLoad.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
+            this.gPFamilyLoad.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
+            this.gPFamilyLoad.Size = new System.Drawing.Size(290, 15);
+            this.gPFamilyLoad.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.gPFamilyLoad.TabIndex = 85;
+            this.gPFamilyLoad.Text = "guna2ProgressBar1";
+            this.gPFamilyLoad.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.gPFamilyLoad.Value = 40;
+            this.gPFamilyLoad.Visible = false;
+            // 
+            // gPUpload
+            // 
+            this.gPUpload.AllowDrop = true;
+            this.gPUpload.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gPUpload.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gPUpload.BorderRadius = 10;
+            this.gPUpload.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            this.gPUpload.BorderThickness = 2;
+            this.gPUpload.Controls.Add(this.gPicUpload);
+            this.gPUpload.Controls.Add(this.lblFileName);
+            this.gPUpload.Location = new System.Drawing.Point(579, 71);
+            this.gPUpload.Name = "gPUpload";
+            this.gPUpload.Size = new System.Drawing.Size(290, 132);
+            this.gPUpload.TabIndex = 84;
+            this.gPUpload.DragDrop += new System.Windows.Forms.DragEventHandler(this.gPUpload_DragDrop);
+            this.gPUpload.DragEnter += new System.Windows.Forms.DragEventHandler(this.gPUpload_DragEnter);
+            // 
+            // gPicUpload
+            // 
+            this.gPicUpload.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gPicUpload.Image = global::Urgent_Manager.Properties.Resources.upload;
+            this.gPicUpload.ImageRotate = 0F;
+            this.gPicUpload.Location = new System.Drawing.Point(56, 9);
+            this.gPicUpload.Name = "gPicUpload";
+            this.gPicUpload.Size = new System.Drawing.Size(174, 67);
+            this.gPicUpload.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.gPicUpload.TabIndex = 1;
+            this.gPicUpload.TabStop = false;
+            // 
+            // lblFileName
+            // 
+            this.lblFileName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblFileName.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFileName.ForeColor = System.Drawing.Color.White;
+            this.lblFileName.Location = new System.Drawing.Point(20, 76);
+            this.lblFileName.Name = "lblFileName";
+            this.lblFileName.Size = new System.Drawing.Size(249, 34);
+            this.lblFileName.TabIndex = 0;
+            this.lblFileName.Text = "Drag The Family File Here";
+            this.lblFileName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // gradientPanel1
             // 
@@ -312,7 +375,7 @@
             this.gradientPanel1.BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
             this.gradientPanel1.Location = new System.Drawing.Point(0, 40);
             this.gradientPanel1.Name = "gradientPanel1";
-            this.gradientPanel1.Size = new System.Drawing.Size(858, 2);
+            this.gradientPanel1.Size = new System.Drawing.Size(917, 2);
             this.gradientPanel1.TabIndex = 16;
             this.gradientPanel1.TopColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
             // 
@@ -321,7 +384,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(842, 521);
+            this.ClientSize = new System.Drawing.Size(901, 521);
+            this.Controls.Add(this.gPFamilyLoad);
+            this.Controls.Add(this.gPUpload);
             this.Controls.Add(this.btnUpdateStatus);
             this.Controls.Add(this.chStatus);
             this.Controls.Add(this.label1);
@@ -338,6 +403,8 @@
             this.Load += new System.EventHandler(this.Family_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).EndInit();
+            this.gPUpload.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gPicUpload)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -359,5 +426,9 @@
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2CheckBox chStatus;
         private Guna.UI2.WinForms.Guna2Button btnUpdateStatus;
+        private Guna.UI2.WinForms.Guna2ProgressBar gPFamilyLoad;
+        private Guna.UI2.WinForms.Guna2Panel gPUpload;
+        private Guna.UI2.WinForms.Guna2PictureBox gPicUpload;
+        private System.Windows.Forms.Label lblFileName;
     }
 }

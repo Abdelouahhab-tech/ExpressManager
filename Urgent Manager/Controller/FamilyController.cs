@@ -68,12 +68,8 @@ namespace Urgent_Manager.Controller
                     DbHelper.connection.Close();
                     return list;
                 }
-                else
-                {
-                    MessageBox.Show("No Data To Show", "Infos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    DbHelper.connection.Close();
-                    return list;
-                }
+                DbHelper.connection.Close();
+                return list;
             }
             catch (Exception ex)
             {

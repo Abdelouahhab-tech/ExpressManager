@@ -78,15 +78,20 @@
             this.gtxtGroup = new Guna.UI2.WinForms.Guna2TextBox();
             this.gtxtMachine = new Guna.UI2.WinForms.Guna2TextBox();
             this.cmbLeadPrep = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.gPUpload = new Guna.UI2.WinForms.Guna2Panel();
-            this.gPicUpload = new Guna.UI2.WinForms.Guna2PictureBox();
             this.lblFileName = new System.Windows.Forms.Label();
-            this.lblLoading = new System.Windows.Forms.Label();
+            this.gPicUpload = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.gPUpload = new Guna.UI2.WinForms.Guna2Panel();
+            this.lblAllDataName = new System.Windows.Forms.Label();
+            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.gPFamilyLoad = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.gPAllDataLoad = new Guna.UI2.WinForms.Guna2ProgressBar();
             this.gradientPanel1 = new Urgent_Manager.CustomViews.GradientPanel();
             this.panel1.SuspendLayout();
-            this.gPUpload.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gPicUpload)).BeginInit();
+            this.gPUpload.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
+            this.guna2Panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -464,9 +469,9 @@
             this.btnUpdate.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
             this.btnUpdate.Image = global::Urgent_Manager.Properties.Resources.update;
             this.btnUpdate.IndicateFocus = true;
-            this.btnUpdate.Location = new System.Drawing.Point(413, 536);
+            this.btnUpdate.Location = new System.Drawing.Point(729, 467);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(157, 41);
+            this.btnUpdate.Size = new System.Drawing.Size(159, 41);
             this.btnUpdate.TabIndex = 20;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -487,9 +492,9 @@
             this.btnSave.Image = global::Urgent_Manager.Properties.Resources.diskette;
             this.btnSave.ImageOffset = new System.Drawing.Point(-3, 0);
             this.btnSave.IndicateFocus = true;
-            this.btnSave.Location = new System.Drawing.Point(250, 536);
+            this.btnSave.Location = new System.Drawing.Point(566, 467);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(157, 41);
+            this.btnSave.Size = new System.Drawing.Size(159, 41);
             this.btnSave.TabIndex = 19;
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -509,9 +514,9 @@
             this.guna2Button1.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
             this.guna2Button1.Image = global::Urgent_Manager.Properties.Resources.delete;
             this.guna2Button1.IndicateFocus = true;
-            this.guna2Button1.Location = new System.Drawing.Point(576, 536);
+            this.guna2Button1.Location = new System.Drawing.Point(892, 467);
             this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(157, 41);
+            this.guna2Button1.Size = new System.Drawing.Size(159, 41);
             this.guna2Button1.TabIndex = 21;
             this.guna2Button1.Text = "Delete";
             this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
@@ -1018,35 +1023,17 @@
             this.cmbLeadPrep.TabIndex = 4;
             this.cmbLeadPrep.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label9
+            // lblFileName
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label9.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(767, 444);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(293, 59);
-            this.label9.TabIndex = 73;
-            this.label9.Text = "Make Sure That The Column Headers Matches All The Data Fields And The Data Sheet " +
-    "Is In The First";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // gPUpload
-            // 
-            this.gPUpload.AllowDrop = true;
-            this.gPUpload.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.gPUpload.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.gPUpload.BorderRadius = 10;
-            this.gPUpload.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            this.gPUpload.BorderThickness = 2;
-            this.gPUpload.Controls.Add(this.gPicUpload);
-            this.gPUpload.Controls.Add(this.lblFileName);
-            this.gPUpload.Location = new System.Drawing.Point(770, 506);
-            this.gPUpload.Name = "gPUpload";
-            this.gPUpload.Size = new System.Drawing.Size(290, 132);
-            this.gPUpload.TabIndex = 72;
-            this.gPUpload.DragDrop += new System.Windows.Forms.DragEventHandler(this.gPUpload_DragDrop);
-            this.gPUpload.DragEnter += new System.Windows.Forms.DragEventHandler(this.gPUpload_DragEnter);
+            this.lblFileName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblFileName.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFileName.ForeColor = System.Drawing.Color.White;
+            this.lblFileName.Location = new System.Drawing.Point(20, 76);
+            this.lblFileName.Name = "lblFileName";
+            this.lblFileName.Size = new System.Drawing.Size(249, 34);
+            this.lblFileName.TabIndex = 0;
+            this.lblFileName.Text = "Drag The Family File Here";
+            this.lblFileName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // gPicUpload
             // 
@@ -1060,30 +1047,94 @@
             this.gPicUpload.TabIndex = 1;
             this.gPicUpload.TabStop = false;
             // 
-            // lblFileName
+            // gPUpload
             // 
-            this.lblFileName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblFileName.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFileName.ForeColor = System.Drawing.Color.White;
-            this.lblFileName.Location = new System.Drawing.Point(20, 76);
-            this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(249, 34);
-            this.lblFileName.TabIndex = 0;
-            this.lblFileName.Text = "Drag The File Here";
-            this.lblFileName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.gPUpload.AllowDrop = true;
+            this.gPUpload.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gPUpload.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gPUpload.BorderRadius = 10;
+            this.gPUpload.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            this.gPUpload.BorderThickness = 2;
+            this.gPUpload.Controls.Add(this.gPicUpload);
+            this.gPUpload.Controls.Add(this.lblFileName);
+            this.gPUpload.Location = new System.Drawing.Point(250, 520);
+            this.gPUpload.Name = "gPUpload";
+            this.gPUpload.Size = new System.Drawing.Size(290, 132);
+            this.gPUpload.TabIndex = 72;
+            this.gPUpload.DragDrop += new System.Windows.Forms.DragEventHandler(this.gPUpload_DragDrop);
+            this.gPUpload.DragEnter += new System.Windows.Forms.DragEventHandler(this.gPUpload_DragEnter);
             // 
-            // lblLoading
+            // lblAllDataName
             // 
-            this.lblLoading.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lblLoading.AutoSize = true;
-            this.lblLoading.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLoading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
-            this.lblLoading.Location = new System.Drawing.Point(766, 645);
-            this.lblLoading.Name = "lblLoading";
-            this.lblLoading.Size = new System.Drawing.Size(88, 19);
-            this.lblLoading.TabIndex = 74;
-            this.lblLoading.Text = "Loading...";
-            this.lblLoading.Visible = false;
+            this.lblAllDataName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblAllDataName.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAllDataName.ForeColor = System.Drawing.Color.White;
+            this.lblAllDataName.Location = new System.Drawing.Point(20, 76);
+            this.lblAllDataName.Name = "lblAllDataName";
+            this.lblAllDataName.Size = new System.Drawing.Size(249, 34);
+            this.lblAllDataName.TabIndex = 0;
+            this.lblAllDataName.Text = "Drag All Data File Here";
+            this.lblAllDataName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // guna2PictureBox1
+            // 
+            this.guna2PictureBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.guna2PictureBox1.Image = global::Urgent_Manager.Properties.Resources.upload;
+            this.guna2PictureBox1.ImageRotate = 0F;
+            this.guna2PictureBox1.Location = new System.Drawing.Point(56, 9);
+            this.guna2PictureBox1.Name = "guna2PictureBox1";
+            this.guna2PictureBox1.Size = new System.Drawing.Size(174, 67);
+            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.guna2PictureBox1.TabIndex = 1;
+            this.guna2PictureBox1.TabStop = false;
+            // 
+            // guna2Panel1
+            // 
+            this.guna2Panel1.AllowDrop = true;
+            this.guna2Panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.guna2Panel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.guna2Panel1.BorderRadius = 10;
+            this.guna2Panel1.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            this.guna2Panel1.BorderThickness = 2;
+            this.guna2Panel1.Controls.Add(this.guna2PictureBox1);
+            this.guna2Panel1.Controls.Add(this.lblAllDataName);
+            this.guna2Panel1.Location = new System.Drawing.Point(562, 520);
+            this.guna2Panel1.Name = "guna2Panel1";
+            this.guna2Panel1.Size = new System.Drawing.Size(290, 132);
+            this.guna2Panel1.TabIndex = 73;
+            this.guna2Panel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.guna2Panel1_DragDrop);
+            this.guna2Panel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.guna2Panel1_DragEnter);
+            // 
+            // gPFamilyLoad
+            // 
+            this.gPFamilyLoad.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gPFamilyLoad.BorderRadius = 5;
+            this.gPFamilyLoad.Location = new System.Drawing.Point(250, 658);
+            this.gPFamilyLoad.Name = "gPFamilyLoad";
+            this.gPFamilyLoad.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
+            this.gPFamilyLoad.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
+            this.gPFamilyLoad.Size = new System.Drawing.Size(290, 15);
+            this.gPFamilyLoad.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.gPFamilyLoad.TabIndex = 79;
+            this.gPFamilyLoad.Text = "guna2ProgressBar1";
+            this.gPFamilyLoad.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.gPFamilyLoad.Value = 40;
+            this.gPFamilyLoad.Visible = false;
+            // 
+            // gPAllDataLoad
+            // 
+            this.gPAllDataLoad.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gPAllDataLoad.BorderRadius = 5;
+            this.gPAllDataLoad.Location = new System.Drawing.Point(562, 658);
+            this.gPAllDataLoad.Name = "gPAllDataLoad";
+            this.gPAllDataLoad.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(152)))), ((int)(((byte)(120)))));
+            this.gPAllDataLoad.ProgressColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(152)))));
+            this.gPAllDataLoad.Size = new System.Drawing.Size(290, 15);
+            this.gPAllDataLoad.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.gPAllDataLoad.TabIndex = 80;
+            this.gPAllDataLoad.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.gPAllDataLoad.Value = 40;
+            this.gPAllDataLoad.Visible = false;
             // 
             // gradientPanel1
             // 
@@ -1102,9 +1153,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(1184, 673);
-            this.Controls.Add(this.lblLoading);
-            this.Controls.Add(this.label9);
+            this.ClientSize = new System.Drawing.Size(1184, 685);
+            this.Controls.Add(this.gPAllDataLoad);
+            this.Controls.Add(this.gPFamilyLoad);
+            this.Controls.Add(this.guna2Panel1);
             this.Controls.Add(this.gPUpload);
             this.Controls.Add(this.cmbLeadPrep);
             this.Controls.Add(this.gtxtMachine);
@@ -1161,8 +1213,10 @@
             this.Text = "Wire";
             this.Load += new System.EventHandler(this.Wire_Load);
             this.panel1.ResumeLayout(false);
-            this.gPUpload.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gPicUpload)).EndInit();
+            this.gPUpload.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
+            this.guna2Panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1221,10 +1275,13 @@
         private Guna.UI2.WinForms.Guna2TextBox gtxtGroup;
         private Guna.UI2.WinForms.Guna2TextBox gtxtMachine;
         private Guna.UI2.WinForms.Guna2ComboBox cmbLeadPrep;
-        private System.Windows.Forms.Label label9;
-        private Guna.UI2.WinForms.Guna2Panel gPUpload;
-        private Guna.UI2.WinForms.Guna2PictureBox gPicUpload;
         private System.Windows.Forms.Label lblFileName;
-        private System.Windows.Forms.Label lblLoading;
+        private Guna.UI2.WinForms.Guna2PictureBox gPicUpload;
+        private Guna.UI2.WinForms.Guna2Panel gPUpload;
+        private System.Windows.Forms.Label lblAllDataName;
+        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2ProgressBar gPFamilyLoad;
+        private Guna.UI2.WinForms.Guna2ProgressBar gPAllDataLoad;
     }
 }

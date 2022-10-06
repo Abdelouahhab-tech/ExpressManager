@@ -20,6 +20,7 @@ namespace Urgent_Manager.View.DashBoard
     public partial class Wire : Form
     {
         WireController wireController = new WireController();
+        DataTable wireTest = new DataTable();
         public Wire()
         {
             InitializeComponent();
@@ -733,104 +734,100 @@ namespace Urgent_Manager.View.DashBoard
             gtxtMachine.FocusedState.BorderColor = Color.FromArgb(255, 94, 148, 255);
         }
 
-        // Save Data In DataBase
 
-        public void SaveData(DataTable dt)
+
+        public void SaveData()
         {
             try
             {
                 int count = 0;
-                if(dt.Rows.Count > 0)
+                if (wireTest.Rows.Count > 0)
                 {
-                    if(dt.Columns.Count == 19)
+                    if (wireTest.Columns.Count == 19)
                     {
-                        if (wireController.IsExist(dt.Rows[0][0].ToString(), "Family", "FAM"))
+                        if (wireController.IsExist(wireTest.Rows[0][0].ToString(), "Family", "FAM"))
                         {
-                            lblLoading.Visible = true;
-                            for (int i = 0; i < dt.Rows.Count; i++)
+                            for (int i = 0; i < wireTest.Rows.Count; i++)
                             {
-                                if (!wireController.IsExist(dt.Rows[i][1].ToString(), "Wire", "Unico"))
+                                if (!wireController.IsExist(wireTest.Rows[i][1].ToString(), "Wire", "Unico"))
                                 {
                                     DbHelper.connection.Open();
-                                    string QUERY = "INSERT INTO Wire VALUES (@Family,@Unico,@LeadCode,@Cable,@Length,@MarkL,@SealL,@TerL,@ToolL,@ProtectionL,@MarkR,@SealR,@TerR,@ToolR,@ProtectionR,@GroupRef,@MC,@Adress,@LeadPrep,@UserID)";
+                                    string QUERY = "INSERT INTO Wire VALUES (@Family,@Unico,@LeadCode,@Cable,@Length,@MarkL,@SealL,@TerL,@ToolL,@ProtectionL,@MarkR,@SealR,@TerR,@ToolR,@ProtectionR,@GroupRef,@MC,@Adress,@LeadPrep,@UserID,@status)";
                                     SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
-                                    cmd.Parameters.AddWithValue("@Family", dt.Rows[0][0].ToString());
-                                    cmd.Parameters.AddWithValue("@Unico", dt.Rows[i][1].ToString());
-                                    cmd.Parameters.AddWithValue("@LeadCode", dt.Rows[i][2].ToString());
-                                    cmd.Parameters.AddWithValue("@Cable", dt.Rows[i][3].ToString());
-                                    cmd.Parameters.AddWithValue("@Length", dt.Rows[i][4].ToString());
-                                    cmd.Parameters.AddWithValue("@MarkL", dt.Rows[i][8].ToString());
-                                    cmd.Parameters.AddWithValue("@SealL", dt.Rows[i][7].ToString());
-                                    cmd.Parameters.AddWithValue("@TerL", dt.Rows[i][5].ToString());
-                                    cmd.Parameters.AddWithValue("@ToolL", dt.Rows[i][6].ToString());
-                                    cmd.Parameters.AddWithValue("@ProtectionL", dt.Rows[i][16].ToString());
-                                    cmd.Parameters.AddWithValue("@MarkR", dt.Rows[i][12].ToString());
-                                    cmd.Parameters.AddWithValue("@SealR", dt.Rows[i][11].ToString());
-                                    cmd.Parameters.AddWithValue("@TerR", dt.Rows[i][9].ToString());
-                                    cmd.Parameters.AddWithValue("@ToolR", dt.Rows[i][10].ToString());
-                                    cmd.Parameters.AddWithValue("@ProtectionR", dt.Rows[i][17].ToString());
-                                    cmd.Parameters.AddWithValue("@GroupRef", dt.Rows[i][18].ToString());
-                                    cmd.Parameters.AddWithValue("@MC", dt.Rows[i][13].ToString());
-                                    cmd.Parameters.AddWithValue("@Adress", dt.Rows[i][14].ToString());
-                                    cmd.Parameters.AddWithValue("@LeadPrep", dt.Rows[i][15].ToString());
+                                    cmd.Parameters.AddWithValue("@Family", wireTest.Rows[0][0].ToString());
+                                    cmd.Parameters.AddWithValue("@Unico", wireTest.Rows[i][1].ToString());
+                                    cmd.Parameters.AddWithValue("@LeadCode", wireTest.Rows[i][2].ToString());
+                                    cmd.Parameters.AddWithValue("@Cable", wireTest.Rows[i][3].ToString());
+                                    cmd.Parameters.AddWithValue("@Length", wireTest.Rows[i][4].ToString());
+                                    cmd.Parameters.AddWithValue("@MarkL", wireTest.Rows[i][8].ToString());
+                                    cmd.Parameters.AddWithValue("@SealL", wireTest.Rows[i][7].ToString());
+                                    cmd.Parameters.AddWithValue("@TerL", wireTest.Rows[i][5].ToString());
+                                    cmd.Parameters.AddWithValue("@ToolL", wireTest.Rows[i][6].ToString());
+                                    cmd.Parameters.AddWithValue("@ProtectionL", wireTest.Rows[i][16].ToString());
+                                    cmd.Parameters.AddWithValue("@MarkR", wireTest.Rows[i][12].ToString());
+                                    cmd.Parameters.AddWithValue("@SealR", wireTest.Rows[i][11].ToString());
+                                    cmd.Parameters.AddWithValue("@TerR", wireTest.Rows[i][9].ToString());
+                                    cmd.Parameters.AddWithValue("@ToolR", wireTest.Rows[i][10].ToString());
+                                    cmd.Parameters.AddWithValue("@ProtectionR", wireTest.Rows[i][17].ToString());
+                                    cmd.Parameters.AddWithValue("@GroupRef", wireTest.Rows[i][18].ToString());
+                                    cmd.Parameters.AddWithValue("@MC", wireTest.Rows[i][13].ToString());
+                                    cmd.Parameters.AddWithValue("@Adress", wireTest.Rows[i][14].ToString());
+                                    cmd.Parameters.AddWithValue("@LeadPrep", wireTest.Rows[i][15].ToString());
                                     cmd.Parameters.AddWithValue("@UserID", Login.username);
+                                    cmd.Parameters.AddWithValue("@status", 1);
 
                                     count += cmd.ExecuteNonQuery();
                                     DbHelper.connection.Close();
                                 }
                             }
-                            
-                            if(count > 0)
+
+                            if (count > 0)
                             {
-                                lblLoading.Visible = false;
-                                MessageBox.Show($"Your Request Is Done {count} Records Added Successfuly", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                lblFileName.Text = "Drag The File Here";
+                                MessageBox.Show($"Your Request Is Done {count} Records Performed Successfuly", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                             else
                             {
                                 MessageBox.Show("Sorry It Seems Like All The Records Already Exist", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                lblLoading.Visible = false;
-                                lblFileName.Text = "Drag The File Here";
                             }
                         }
                         else
                         {
                             DbHelper.connection.Open();
                             SqlCommand command = new SqlCommand("INSERT INTO Family VALUES(@fam,@user)", DbHelper.connection);
-                            command.Parameters.AddWithValue("@fam", dt.Rows[0][0].ToString());
+                            command.Parameters.AddWithValue("@fam", wireTest.Rows[0][0].ToString());
                             command.Parameters.AddWithValue("@user", Login.username);
                             int res = command.ExecuteNonQuery();
                             DbHelper.connection.Close();
                             if (res > 0)
                             {
-                                lblLoading.Visible = true;
-                                for (int i = 0; i < dt.Rows.Count; i++)
+                                for (int i = 0; i < wireTest.Rows.Count; i++)
                                 {
-                                    if (!wireController.IsExist(dt.Rows[i][1].ToString(), "Wire", "Unico"))
+                                    if (!wireController.IsExist(wireTest.Rows[i][1].ToString(), "Wire", "Unico"))
                                     {
                                         DbHelper.connection.Open();
-                                        string QUERY = "INSERT INTO Wire VALUES (@Family,@Unico,@LeadCode,@Cable,@Length,@MarkL,@SealL,@TerL,@ToolL,@ProtectionL,@MarkR,@SealR,@TerR,@ToolR,@ProtectionR,@GroupRef,@MC,@Adress,@LeadPrep,@UserID)";
+                                        string QUERY = "INSERT INTO Wire VALUES (@Family,@Unico,@LeadCode,@Cable,@Length,@MarkL,@SealL,@TerL,@ToolL,@ProtectionL,@MarkR,@SealR,@TerR,@ToolR,@ProtectionR,@GroupRef,@MC,@Adress,@LeadPrep,@UserID,@status)";
                                         SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
-                                        cmd.Parameters.AddWithValue("@Family", dt.Rows[0][0].ToString());
-                                        cmd.Parameters.AddWithValue("@Unico", dt.Rows[i][1].ToString());
-                                        cmd.Parameters.AddWithValue("@LeadCode", dt.Rows[i][2].ToString());
-                                        cmd.Parameters.AddWithValue("@Cable", dt.Rows[i][3].ToString());
-                                        cmd.Parameters.AddWithValue("@Length", dt.Rows[i][4].ToString());
-                                        cmd.Parameters.AddWithValue("@MarkL", dt.Rows[i][8].ToString());
-                                        cmd.Parameters.AddWithValue("@SealL", dt.Rows[i][7].ToString());
-                                        cmd.Parameters.AddWithValue("@TerL", dt.Rows[i][5].ToString());
-                                        cmd.Parameters.AddWithValue("@ToolL", dt.Rows[i][6].ToString());
-                                        cmd.Parameters.AddWithValue("@ProtectionL", dt.Rows[i][16].ToString());
-                                        cmd.Parameters.AddWithValue("@MarkR", dt.Rows[i][12].ToString());
-                                        cmd.Parameters.AddWithValue("@SealR", dt.Rows[i][11].ToString());
-                                        cmd.Parameters.AddWithValue("@TerR", dt.Rows[i][9].ToString());
-                                        cmd.Parameters.AddWithValue("@ToolR", dt.Rows[i][10].ToString());
-                                        cmd.Parameters.AddWithValue("@ProtectionR", dt.Rows[i][17].ToString());
-                                        cmd.Parameters.AddWithValue("@GroupRef", dt.Rows[i][18].ToString());
-                                        cmd.Parameters.AddWithValue("@MC", dt.Rows[i][13].ToString());
-                                        cmd.Parameters.AddWithValue("@Adress", dt.Rows[i][14].ToString());
-                                        cmd.Parameters.AddWithValue("@LeadPrep", dt.Rows[i][15].ToString());
+                                        cmd.Parameters.AddWithValue("@Family", wireTest.Rows[0][0].ToString());
+                                        cmd.Parameters.AddWithValue("@Unico", wireTest.Rows[i][1].ToString());
+                                        cmd.Parameters.AddWithValue("@LeadCode", wireTest.Rows[i][2].ToString());
+                                        cmd.Parameters.AddWithValue("@Cable", wireTest.Rows[i][3].ToString());
+                                        cmd.Parameters.AddWithValue("@Length", wireTest.Rows[i][4].ToString());
+                                        cmd.Parameters.AddWithValue("@MarkL", wireTest.Rows[i][8].ToString());
+                                        cmd.Parameters.AddWithValue("@SealL", wireTest.Rows[i][7].ToString());
+                                        cmd.Parameters.AddWithValue("@TerL", wireTest.Rows[i][5].ToString());
+                                        cmd.Parameters.AddWithValue("@ToolL", wireTest.Rows[i][6].ToString());
+                                        cmd.Parameters.AddWithValue("@ProtectionL", wireTest.Rows[i][16].ToString());
+                                        cmd.Parameters.AddWithValue("@MarkR", wireTest.Rows[i][12].ToString());
+                                        cmd.Parameters.AddWithValue("@SealR", wireTest.Rows[i][11].ToString());
+                                        cmd.Parameters.AddWithValue("@TerR", wireTest.Rows[i][9].ToString());
+                                        cmd.Parameters.AddWithValue("@ToolR", wireTest.Rows[i][10].ToString());
+                                        cmd.Parameters.AddWithValue("@ProtectionR", wireTest.Rows[i][17].ToString());
+                                        cmd.Parameters.AddWithValue("@GroupRef", wireTest.Rows[i][18].ToString());
+                                        cmd.Parameters.AddWithValue("@MC", wireTest.Rows[i][13].ToString());
+                                        cmd.Parameters.AddWithValue("@Adress", wireTest.Rows[i][14].ToString());
+                                        cmd.Parameters.AddWithValue("@LeadPrep", wireTest.Rows[i][15].ToString());
                                         cmd.Parameters.AddWithValue("@UserID", Login.username);
+                                        cmd.Parameters.AddWithValue("@status", 1);
 
                                         count += cmd.ExecuteNonQuery();
                                         DbHelper.connection.Close();
@@ -838,15 +835,11 @@ namespace Urgent_Manager.View.DashBoard
                                 }
                                 if (count > 0)
                                 {
-                                    lblLoading.Visible = false;
-                                    MessageBox.Show($"Your Request Is Done {count} Records Added Successfuly", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    lblFileName.Text = "Drag The File Here";
+                                    MessageBox.Show($"Your Request Is Done {count} Records Performed Successfuly", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 }
                                 else
                                 {
-                                    lblLoading.Visible = false;
                                     MessageBox.Show("Sorry It Seems Like All The Records Already Exist", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    lblFileName.Text = "Drag The File Here";
                                 }
                             }
                             else
@@ -877,7 +870,7 @@ namespace Urgent_Manager.View.DashBoard
             e.Effect = DragDropEffects.All;
         }
 
-        private void gPUpload_DragDrop(object sender, DragEventArgs e)
+        private async void gPUpload_DragDrop(object sender, DragEventArgs e)
         {
             try
             {
@@ -894,14 +887,149 @@ namespace Urgent_Manager.View.DashBoard
                         ConfigureDataTable = (_) => new ExcelDataTableConfiguration() { UseHeaderRow = true }
                     });
                     DataTableCollection db = result.Tables;
-                    DataTable dt = db[0];
-                    SaveData(dt);
+                    wireTest.Clear();
+                    wireTest = db[0];
+                    gPFamilyLoad.Visible = true;
+                    await Task.Run(new Action(SaveData));
+                    gPFamilyLoad.Visible = false;
+                    lblFileName.Text = "Drag The Family File Here";
                     stream.Close();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("An Error Accured While Processing Your Request!\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void guna2Panel1_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.All;
+        }
+
+        private async void guna2Panel1_DragDrop(object sender, DragEventArgs e)
+        {
+            try
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string extension = Path.GetExtension(files[0]);
+                if (extension.ToLower() == ".xlsx" || extension.ToLower() == ".xls")
+                {
+                    lblAllDataName.Text = files[0];
+                    FileStream stream = File.Open(files[0], FileMode.Open, FileAccess.Read);
+                    IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream);
+
+                    DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration
+                    {
+                        ConfigureDataTable = (_) => new ExcelDataTableConfiguration() { UseHeaderRow = true }
+                    });
+                    DataTableCollection db = result.Tables;
+                    wireTest.Clear();
+                    wireTest = db[0];
+                    gPAllDataLoad.Visible = true;
+                    await Task.Run(new Action(UpdateDataToServer));
+                    gPAllDataLoad.Visible = false;
+                    lblAllDataName.Text = "Drag All Data File Here";
+                    stream.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error Accured While Processing Your Request!\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void UpdateDataToServer()
+        {
+            try
+            {
+                    int result = 0;
+                    if (wireTest.Rows.Count > 0)
+                    {
+                        if (wireTest.Columns.Count == 19)
+                        {
+                            for (int i = 0; i < wireTest.Rows.Count; i++)
+                            {
+                                if (wireController.IsExist(wireTest.Rows[i][1].ToString(), "Wire", "Unico"))
+                                {
+                                    DbHelper.connection.Open();
+                                    string QUERY = "UPDATE Wire SET Family = @Family,LeadCode = @LeadCode,Cable=@Cable,WireLength=@Length,MarL=@MarkL,SealL=@SealL,TerL=@TerL,ToolL=@ToolL,ProtectionL=@ProtectionL,MarR=@MarkR,SealR=@SealR,TerR=@TerR,ToolR=@ToolR,ProtectionR=@ProtectionR,Groupe=@GroupRef,MC=@MC,Adress=@Adress,LeadPrep=@LeadPrep,UserID=@UserID WHERE Unico = @Unico";
+                                    SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                                    cmd.Parameters.AddWithValue("@Family", wireTest.Rows[i][0].ToString());
+                                    cmd.Parameters.AddWithValue("@Unico", wireTest.Rows[i][1].ToString());
+                                    cmd.Parameters.AddWithValue("@LeadCode", wireTest.Rows[i][2].ToString());
+                                    cmd.Parameters.AddWithValue("@Cable", wireTest.Rows[i][3].ToString());
+                                    cmd.Parameters.AddWithValue("@Length", wireTest.Rows[i][4].ToString());
+                                    cmd.Parameters.AddWithValue("@MarkL", wireTest.Rows[i][5].ToString());
+                                    cmd.Parameters.AddWithValue("@SealL", wireTest.Rows[i][6].ToString());
+                                    cmd.Parameters.AddWithValue("@TerL", wireTest.Rows[i][7].ToString());
+                                    cmd.Parameters.AddWithValue("@ToolL", wireTest.Rows[i][8].ToString());
+                                    cmd.Parameters.AddWithValue("@ProtectionL", wireTest.Rows[i][9].ToString());
+                                    cmd.Parameters.AddWithValue("@MarkR", wireTest.Rows[i][10].ToString());
+                                    cmd.Parameters.AddWithValue("@SealR", wireTest.Rows[i][11].ToString());
+                                    cmd.Parameters.AddWithValue("@TerR", wireTest.Rows[i][12].ToString());
+                                    cmd.Parameters.AddWithValue("@ToolR", wireTest.Rows[i][13].ToString());
+                                    cmd.Parameters.AddWithValue("@ProtectionR", wireTest.Rows[i][14].ToString());
+                                    cmd.Parameters.AddWithValue("@GroupRef", wireTest.Rows[i][15].ToString());
+                                    cmd.Parameters.AddWithValue("@MC", wireTest.Rows[i][16].ToString());
+                                    cmd.Parameters.AddWithValue("@Adress", wireTest.Rows[i][17].ToString());
+                                    cmd.Parameters.AddWithValue("@LeadPrep", wireTest.Rows[i][18].ToString());
+                                    cmd.Parameters.AddWithValue("@UserID", "Admin");
+                                    cmd.Parameters.AddWithValue("@status", 1);
+
+                                    result += cmd.ExecuteNonQuery();
+                                    DbHelper.connection.Close();
+                                }
+                                else
+                                {
+                                    if (!wireController.IsExist(wireTest.Rows[i][1].ToString(), "Wire", "Unico"))
+                                    {
+                                        DbHelper.connection.Open();
+                                        string QUERY = "INSERT INTO Wire VALUES (@Family,@Unico,@LeadCode,@Cable,@Length,@MarkL,@SealL,@TerL,@ToolL,@ProtectionL,@MarkR,@SealR,@TerR,@ToolR,@ProtectionR,@GroupRef,@MC,@Adress,@LeadPrep,@UserID,@status)";
+                                        SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                                        cmd.Parameters.AddWithValue("@Family", wireTest.Rows[i][0].ToString());
+                                        cmd.Parameters.AddWithValue("@Unico", wireTest.Rows[i][1].ToString());
+                                        cmd.Parameters.AddWithValue("@LeadCode", wireTest.Rows[i][2].ToString());
+                                        cmd.Parameters.AddWithValue("@Cable", wireTest.Rows[i][3].ToString());
+                                        cmd.Parameters.AddWithValue("@Length", wireTest.Rows[i][4].ToString());
+                                        cmd.Parameters.AddWithValue("@MarkL", wireTest.Rows[i][5].ToString());
+                                        cmd.Parameters.AddWithValue("@SealL", wireTest.Rows[i][6].ToString());
+                                        cmd.Parameters.AddWithValue("@TerL", wireTest.Rows[i][7].ToString());
+                                        cmd.Parameters.AddWithValue("@ToolL", wireTest.Rows[i][8].ToString());
+                                        cmd.Parameters.AddWithValue("@ProtectionL", wireTest.Rows[i][9].ToString());
+                                        cmd.Parameters.AddWithValue("@MarkR", wireTest.Rows[i][10].ToString());
+                                        cmd.Parameters.AddWithValue("@SealR", wireTest.Rows[i][11].ToString());
+                                        cmd.Parameters.AddWithValue("@TerR", wireTest.Rows[i][12].ToString());
+                                        cmd.Parameters.AddWithValue("@ToolR", wireTest.Rows[i][13].ToString());
+                                        cmd.Parameters.AddWithValue("@ProtectionR", wireTest.Rows[i][14].ToString());
+                                        cmd.Parameters.AddWithValue("@GroupRef", wireTest.Rows[i][15].ToString());
+                                        cmd.Parameters.AddWithValue("@MC", wireTest.Rows[i][16].ToString());
+                                        cmd.Parameters.AddWithValue("@Adress", wireTest.Rows[i][17].ToString());
+                                        cmd.Parameters.AddWithValue("@LeadPrep", wireTest.Rows[i][18].ToString());
+                                        cmd.Parameters.AddWithValue("@UserID", "Admin");
+                                        cmd.Parameters.AddWithValue("@status", 1);
+
+                                        result += cmd.ExecuteNonQuery();
+                                        DbHelper.connection.Close();
+                                    }
+                                }
+                            }
+                        MessageBox.Show($"Your Request Is Done {result} Records Performed Successfuly", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sorry Your Data Didn't Match The Data Fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Sorry Your Data Is Empty", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("It Was An Error While Processing Your Request\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DbHelper.connection.Close();
             }
         }
     }

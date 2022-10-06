@@ -241,21 +241,6 @@ namespace Urgent_Manager
             wpcsController.FillCombobox("Directories", "PathName", cmbDirectories);
         }
 
-        private void icEye_Click(object sender, EventArgs e)
-        {
-            if (gtxtPassAuth.UseSystemPasswordChar)
-            {
-                gtxtPassAuth.UseSystemPasswordChar = false;
-                gtxtPassAuth.PasswordChar = '\0';
-                icEyeConnect.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
-            }
-            else
-            {
-                gtxtPassAuth.UseSystemPasswordChar = true;
-                icEyeConnect.IconChar = FontAwesome.Sharp.IconChar.Eye;
-            }
-        }
-
         private void btxtConnect_Click(object sender, EventArgs e)
         {
             try
@@ -268,6 +253,8 @@ namespace Urgent_Manager
                         gtxtUserPass.Visible = true;
                         chIsConnect.Visible = true;
                         btnUpdate.Visible = true;
+                        gtxtPath.Visible = true;
+                        btnSaveData.Visible = true;
                     }
                     else
                     {
@@ -319,6 +306,43 @@ namespace Urgent_Manager
         private void cmbDirectories_SelectedIndexChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.WpcsDirectory = cmbDirectories.Text;
+        }
+
+        private void btnSaveData_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(gtxtPath.Text.Trim() != "")
+                {
+                    if (!wpcsController.IsExist(gtxtPath.Text, "Directories", "PathName"))
+                    {
+                        DbHelper.connection.Open();
+
+                        string QUERY = "INSERT INTO Directories VALUES (@path,@isConnect,'Admin')";
+                        SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
+                        cmd.Parameters.AddWithValue("@path", gtxtPath.Text);
+                        cmd.Parameters.AddWithValue("@isConnect", 1);
+                        int res = cmd.ExecuteNonQuery();
+                        if(res > 0)
+                        {
+                            Application.Exit();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Sorry An Error Acurred While Processing Your Request", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        DbHelper.connection.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please Fil The Required Field", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                DbHelper.connection.Close();
+            }
         }
     }
 }

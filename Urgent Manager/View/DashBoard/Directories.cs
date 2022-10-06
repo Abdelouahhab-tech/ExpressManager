@@ -204,10 +204,19 @@ namespace Urgent_Manager.View.DashBoard
                     machineController.UpdateIsConnect(cmbMachine.Text, 0);
                     MessageBox.Show("Your Data Updated Successfuly", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                if(cmbMachine.Text.Trim() == "")
+                {
+                    lblMachines.ForeColor = Color.Red;
+                }
             }
             catch (Exception)
             {
             }
+        }
+
+        private void cmbMachine_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblMachines.ForeColor = Color.White;
         }
     }
 }

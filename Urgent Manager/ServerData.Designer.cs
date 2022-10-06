@@ -44,7 +44,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnConnect = new Guna.UI2.WinForms.Guna2Button();
             this.gtxtUserAuth = new Guna.UI2.WinForms.Guna2TextBox();
-            this.icEyeConnect = new FontAwesome.Sharp.IconPictureBox();
             this.gtxtPassAuth = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -53,11 +52,12 @@
             this.gtxtUserConnect = new Guna.UI2.WinForms.Guna2TextBox();
             this.icEyeNewPass = new FontAwesome.Sharp.IconPictureBox();
             this.gtxtUserPass = new Guna.UI2.WinForms.Guna2TextBox();
+            this.gtxtPath = new Guna.UI2.WinForms.Guna2TextBox();
+            this.btnSaveData = new Guna.UI2.WinForms.Guna2Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.icEyes)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.icEyeConnect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.icEyeNewPass)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,7 +70,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(522, 565);
+            this.tabControl1.Size = new System.Drawing.Size(522, 624);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -90,7 +90,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(514, 539);
+            this.tabPage1.Size = new System.Drawing.Size(514, 598);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Server Data";
             // 
@@ -131,8 +131,8 @@
             this.cmbDirectories.IntegralHeight = false;
             this.cmbDirectories.ItemHeight = 35;
             this.cmbDirectories.Items.AddRange(new object[] {
-            "D:\\Komax\\TopWin\\WPCS-Feedback",
-            "D:\\Komax\\Data\\WPCS-Feedback"});
+            "D:\\Komax\\TopWin\\WPCS-Feedback\\Job.sdc.arc",
+            "D:\\Komax\\Data\\WPCS-Feedback\\Job.sdc.arc"});
             this.cmbDirectories.Location = new System.Drawing.Point(37, 356);
             this.cmbDirectories.Name = "cmbDirectories";
             this.cmbDirectories.Size = new System.Drawing.Size(416, 41);
@@ -324,9 +324,10 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.tabPage2.Controls.Add(this.btnSaveData);
+            this.tabPage2.Controls.Add(this.gtxtPath);
             this.tabPage2.Controls.Add(this.btnConnect);
             this.tabPage2.Controls.Add(this.gtxtUserAuth);
-            this.tabPage2.Controls.Add(this.icEyeConnect);
             this.tabPage2.Controls.Add(this.gtxtPassAuth);
             this.tabPage2.Controls.Add(this.guna2ControlBox2);
             this.tabPage2.Controls.Add(this.label2);
@@ -338,7 +339,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(514, 539);
+            this.tabPage2.Size = new System.Drawing.Size(514, 598);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "User Data";
             // 
@@ -357,7 +358,7 @@
             this.btnConnect.ImageOffset = new System.Drawing.Point(-10, 0);
             this.btnConnect.ImageSize = new System.Drawing.Size(30, 30);
             this.btnConnect.IndicateFocus = true;
-            this.btnConnect.Location = new System.Drawing.Point(39, 202);
+            this.btnConnect.Location = new System.Drawing.Point(39, 181);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(416, 41);
             this.btnConnect.TabIndex = 18;
@@ -382,7 +383,7 @@
             this.gtxtUserAuth.IconLeft = global::Urgent_Manager.Properties.Resources.user;
             this.gtxtUserAuth.IconLeftOffset = new System.Drawing.Point(20, 0);
             this.gtxtUserAuth.IconLeftSize = new System.Drawing.Size(25, 25);
-            this.gtxtUserAuth.Location = new System.Drawing.Point(39, 88);
+            this.gtxtUserAuth.Location = new System.Drawing.Point(39, 67);
             this.gtxtUserAuth.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtUserAuth.Name = "gtxtUserAuth";
             this.gtxtUserAuth.PasswordChar = '\0';
@@ -393,21 +394,6 @@
             this.gtxtUserAuth.TabIndex = 15;
             this.gtxtUserAuth.TextOffset = new System.Drawing.Point(20, 0);
             this.gtxtUserAuth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtUserAuth_KeyDown);
-            // 
-            // icEyeConnect
-            // 
-            this.icEyeConnect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.icEyeConnect.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.icEyeConnect.IconChar = FontAwesome.Sharp.IconChar.Eye;
-            this.icEyeConnect.IconColor = System.Drawing.Color.White;
-            this.icEyeConnect.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.icEyeConnect.IconSize = 35;
-            this.icEyeConnect.Location = new System.Drawing.Point(471, 149);
-            this.icEyeConnect.Name = "icEyeConnect";
-            this.icEyeConnect.Size = new System.Drawing.Size(32, 32);
-            this.icEyeConnect.TabIndex = 17;
-            this.icEyeConnect.TabStop = false;
-            this.icEyeConnect.Click += new System.EventHandler(this.icEye_Click);
             // 
             // gtxtPassAuth
             // 
@@ -427,7 +413,7 @@
             this.gtxtPassAuth.IconLeft = global::Urgent_Manager.Properties.Resources.locked_padlock_;
             this.gtxtPassAuth.IconLeftOffset = new System.Drawing.Point(20, 0);
             this.gtxtPassAuth.IconLeftSize = new System.Drawing.Size(25, 25);
-            this.gtxtPassAuth.Location = new System.Drawing.Point(39, 145);
+            this.gtxtPassAuth.Location = new System.Drawing.Point(39, 124);
             this.gtxtPassAuth.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtPassAuth.Name = "gtxtPassAuth";
             this.gtxtPassAuth.PasswordChar = '●';
@@ -472,7 +458,7 @@
             this.chIsConnect.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chIsConnect.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chIsConnect.ForeColor = System.Drawing.Color.White;
-            this.chIsConnect.Location = new System.Drawing.Point(39, 372);
+            this.chIsConnect.Location = new System.Drawing.Point(39, 351);
             this.chIsConnect.Name = "chIsConnect";
             this.chIsConnect.Size = new System.Drawing.Size(130, 24);
             this.chIsConnect.TabIndex = 2;
@@ -499,7 +485,7 @@
             this.btnUpdate.ImageOffset = new System.Drawing.Point(-10, 0);
             this.btnUpdate.ImageSize = new System.Drawing.Size(30, 30);
             this.btnUpdate.IndicateFocus = true;
-            this.btnUpdate.Location = new System.Drawing.Point(39, 406);
+            this.btnUpdate.Location = new System.Drawing.Point(39, 385);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(416, 41);
             this.btnUpdate.TabIndex = 3;
@@ -525,7 +511,7 @@
             this.gtxtUserConnect.IconLeft = global::Urgent_Manager.Properties.Resources.user;
             this.gtxtUserConnect.IconLeftOffset = new System.Drawing.Point(20, 0);
             this.gtxtUserConnect.IconLeftSize = new System.Drawing.Size(25, 25);
-            this.gtxtUserConnect.Location = new System.Drawing.Point(39, 259);
+            this.gtxtUserConnect.Location = new System.Drawing.Point(39, 238);
             this.gtxtUserConnect.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtUserConnect.Name = "gtxtUserConnect";
             this.gtxtUserConnect.PasswordChar = '\0';
@@ -546,7 +532,7 @@
             this.icEyeNewPass.IconColor = System.Drawing.Color.White;
             this.icEyeNewPass.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.icEyeNewPass.IconSize = 35;
-            this.icEyeNewPass.Location = new System.Drawing.Point(471, 320);
+            this.icEyeNewPass.Location = new System.Drawing.Point(471, 299);
             this.icEyeNewPass.Name = "icEyeNewPass";
             this.icEyeNewPass.Size = new System.Drawing.Size(32, 32);
             this.icEyeNewPass.TabIndex = 12;
@@ -572,7 +558,7 @@
             this.gtxtUserPass.IconLeft = global::Urgent_Manager.Properties.Resources.locked_padlock_;
             this.gtxtUserPass.IconLeftOffset = new System.Drawing.Point(20, 0);
             this.gtxtUserPass.IconLeftSize = new System.Drawing.Size(25, 25);
-            this.gtxtUserPass.Location = new System.Drawing.Point(39, 316);
+            this.gtxtUserPass.Location = new System.Drawing.Point(39, 295);
             this.gtxtUserPass.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gtxtUserPass.Name = "gtxtUserPass";
             this.gtxtUserPass.PasswordChar = '●';
@@ -586,12 +572,64 @@
             this.gtxtUserPass.Visible = false;
             this.gtxtUserPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gtxtUserPass_KeyDown);
             // 
+            // gtxtPath
+            // 
+            this.gtxtPath.BorderColor = System.Drawing.Color.White;
+            this.gtxtPath.BorderRadius = 20;
+            this.gtxtPath.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gtxtPath.DefaultText = "";
+            this.gtxtPath.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.gtxtPath.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.gtxtPath.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtPath.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.gtxtPath.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.gtxtPath.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtPath.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.gtxtPath.ForeColor = System.Drawing.Color.White;
+            this.gtxtPath.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.gtxtPath.IconLeftOffset = new System.Drawing.Point(20, 0);
+            this.gtxtPath.IconLeftSize = new System.Drawing.Size(25, 25);
+            this.gtxtPath.Location = new System.Drawing.Point(39, 451);
+            this.gtxtPath.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gtxtPath.Name = "gtxtPath";
+            this.gtxtPath.PasswordChar = '\0';
+            this.gtxtPath.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.gtxtPath.PlaceholderText = "Path Name";
+            this.gtxtPath.SelectedText = "";
+            this.gtxtPath.Size = new System.Drawing.Size(416, 41);
+            this.gtxtPath.TabIndex = 19;
+            this.gtxtPath.TextOffset = new System.Drawing.Point(20, 0);
+            this.gtxtPath.Visible = false;
+            // 
+            // btnSaveData
+            // 
+            this.btnSaveData.BorderRadius = 20;
+            this.btnSaveData.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSaveData.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSaveData.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSaveData.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSaveData.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSaveData.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(79)))), ((int)(((byte)(12)))));
+            this.btnSaveData.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
+            this.btnSaveData.ForeColor = System.Drawing.Color.White;
+            this.btnSaveData.Image = global::Urgent_Manager.Properties.Resources.check;
+            this.btnSaveData.ImageOffset = new System.Drawing.Point(-10, 0);
+            this.btnSaveData.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnSaveData.IndicateFocus = true;
+            this.btnSaveData.Location = new System.Drawing.Point(39, 508);
+            this.btnSaveData.Name = "btnSaveData";
+            this.btnSaveData.Size = new System.Drawing.Size(416, 41);
+            this.btnSaveData.TabIndex = 21;
+            this.btnSaveData.Text = "Save";
+            this.btnSaveData.Visible = false;
+            this.btnSaveData.Click += new System.EventHandler(this.btnSaveData_Click);
+            // 
             // ServerData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(522, 565);
+            this.ClientSize = new System.Drawing.Size(522, 624);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -605,7 +643,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.icEyes)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.icEyeConnect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.icEyeNewPass)).EndInit();
             this.ResumeLayout(false);
 
@@ -633,9 +670,10 @@
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox2;
         private Guna.UI2.WinForms.Guna2Button btnConnect;
         private Guna.UI2.WinForms.Guna2TextBox gtxtUserAuth;
-        private FontAwesome.Sharp.IconPictureBox icEyeConnect;
         private Guna.UI2.WinForms.Guna2TextBox gtxtPassAuth;
         private Guna.UI2.WinForms.Guna2ComboBox cmbDirectories;
         private Guna.UI2.WinForms.Guna2CheckBox chIsConnectPerMC;
+        private Guna.UI2.WinForms.Guna2Button btnSaveData;
+        private Guna.UI2.WinForms.Guna2TextBox gtxtPath;
     }
 }
