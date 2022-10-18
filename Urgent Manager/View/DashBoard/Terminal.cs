@@ -45,7 +45,7 @@ namespace Urgent_Manager.View.DashBoard
         {
             if (gtxtTerminalName.Text.Trim() != "")
             {
-                if (!terminalController.IsExist(gtxtTerminalName.Text, "Terminal", "TerminalID"))
+                if (!terminalController.IsExist(gtxtTerminalName.Text, TerminalController.TABLENAME, "TerminalID"))
                 {
                     TerminalModel Terminal = new TerminalModel();
                     Terminal.TerID = gtxtTerminalName.Text;
@@ -77,12 +77,12 @@ namespace Urgent_Manager.View.DashBoard
         {
             if(gtxtTerminalName.Text.Trim() != "")
             {
-                if (terminalController.IsExist(gtxtTerminalName.Text, "Terminal", "TerminalID"))
+                if (terminalController.IsExist(gtxtTerminalName.Text, TerminalController.TABLENAME, "TerminalID"))
                 {
                     DialogResult result = MessageBox.Show("Are You Sure You Want To Delete This Terminal ? You Will Lost All The Data That Is Related With This Terminal", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                     if (result == DialogResult.Yes)
                     {
-                        terminalController.Delete(gtxtTerminalName.Text, "Terminal", "TerminalID");
+                        terminalController.Delete(gtxtTerminalName.Text, TerminalController.TABLENAME, "TerminalID");
                         LoadData();
                         gtxtTerminalName.Text = "";
                         gtxtTerminalName.Focus();
@@ -120,7 +120,7 @@ namespace Urgent_Manager.View.DashBoard
 
         private void getSingleRecord(string Terminal)
         {
-            if (terminalController.IsExist(Terminal, "Terminal", "TerminalID"))
+            if (terminalController.IsExist(Terminal, TerminalController.TABLENAME, "TerminalID"))
             {
                 TerminalModel Ter = new TerminalModel();
                 Ter = terminalController.fetchSingleRecord(Terminal);
@@ -173,10 +173,10 @@ namespace Urgent_Manager.View.DashBoard
                     {
                         for (int i = 0; i < terData.Rows.Count; i++)
                         {
-                            if (!terminalController.IsExist(terData.Rows[i][0].ToString(), "Terminal", "TerminalID"))
+                            if (!terminalController.IsExist(terData.Rows[i][0].ToString(), TerminalController.TABLENAME, "TerminalID"))
                             {
                                 DbHelper.connection.Open();
-                                string QUERY = "INSERT INTO Terminal VALUES (@ter,@userId)";
+                                string QUERY = $"INSERT INTO {TerminalController.TABLENAME} VALUES (@ter,@userId)";
                                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                                 cmd.Parameters.AddWithValue("@ter", terData.Rows[i][0].ToString());
                                 cmd.Parameters.AddWithValue("@userId", Login.username);

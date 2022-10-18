@@ -227,7 +227,7 @@ namespace Urgent_Manager.View.DashBoard
                         }
                         else
                         {
-                            MessageBox.Show("Sorry It Seems Like All The Records Already Exist", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"{familyData.Rows.Count} Sorry It Seems Like All The Records Already Exist", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     else

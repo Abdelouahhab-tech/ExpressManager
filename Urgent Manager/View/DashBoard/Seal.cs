@@ -50,7 +50,7 @@ namespace Urgent_Manager.View.DashBoard
         {
             if (gtxtSealRef.Text.Trim() != "" && gtxtSealColor.Text.Trim() != "")
             {
-                if (!sealController.IsExist(gtxtSealRef.Text, "Seal", "Seal"))
+                if (!sealController.IsExist(gtxtSealRef.Text, SealController.TABLENAME, "Seal"))
                 {
                     SealModel seal = new SealModel();
                     seal.SealID = gtxtSealRef.Text;
@@ -93,7 +93,7 @@ namespace Urgent_Manager.View.DashBoard
             if (gtxtSealRef.Text.Trim() != "")
             {
 
-                if (sealController.IsExist(gtxtSealRef.Text, "Seal", "Seal"))
+                if (sealController.IsExist(gtxtSealRef.Text, SealController.TABLENAME, "Seal"))
                 {
                     if (gtxtSealColor.Text.Trim() != "")
                     {
@@ -136,12 +136,12 @@ namespace Urgent_Manager.View.DashBoard
         {
             if (gtxtSealRef.Text.Trim() != "")
             {
-                if (sealController.IsExist(gtxtSealRef.Text, "Seal", "Seal"))
+                if (sealController.IsExist(gtxtSealRef.Text, SealController.TABLENAME, "Seal"))
                 {
                     DialogResult result = MessageBox.Show("Are You Sure You Want To Delete This Seal ? You Will Lost All The Data That Is Related With This Seal", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                     if (result == DialogResult.Yes)
                     {
-                        sealController.Delete(gtxtSealRef.Text, "Seal", "Seal");
+                        sealController.Delete(gtxtSealRef.Text, SealController.TABLENAME, "Seal");
                         LoadData();
                         gtxtSealRef.Text = "";
                         gtxtSealRef.Focus();
@@ -170,7 +170,7 @@ namespace Urgent_Manager.View.DashBoard
 
         private void getSingleRecord(string sealRef)
         {
-            if (sealController.IsExist(sealRef, "Seal", "Seal"))
+            if (sealController.IsExist(sealRef, SealController.TABLENAME, "Seal"))
             {
                 SealModel seal = new SealModel();
                 seal = sealController.fetchSingleRecord(sealRef);
@@ -285,10 +285,10 @@ namespace Urgent_Manager.View.DashBoard
                     {
                         for (int i = 0; i < sealData.Rows.Count; i++)
                         {
-                            if (!sealController.IsExist(sealData.Rows[i][0].ToString(), "Seal", "Seal"))
+                            if (!sealController.IsExist(sealData.Rows[i][0].ToString(), SealController.TABLENAME, "Seal"))
                             {
                                 DbHelper.connection.Open();
-                                string QUERY = "INSERT INTO Seal VALUES (@seal,@color,@userId)";
+                                string QUERY = $"INSERT INTO {SealController.TABLENAME} VALUES (@seal,@color,@userId)";
                                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                                 cmd.Parameters.AddWithValue("@seal", sealData.Rows[i][0].ToString());
                                 cmd.Parameters.AddWithValue("@color", sealData.Rows[i][1].ToString());
@@ -298,10 +298,10 @@ namespace Urgent_Manager.View.DashBoard
                             }
                             else
                             {
-                                if (sealController.IsExist(sealData.Rows[i][0].ToString(), "Seal", "Seal"))
+                                if (sealController.IsExist(sealData.Rows[i][0].ToString(), SealController.TABLENAME, "Seal"))
                                 {
                                     DbHelper.connection.Open();
-                                    string QUERY = "UPDATE Seal SET Color=@color,UserID=@userId WHERE Seal=@seal";
+                                    string QUERY = $"UPDATE {SealController.TABLENAME} SET Color=@color,UserID=@userId WHERE Seal=@seal";
                                     SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                                     cmd.Parameters.AddWithValue("@seal", sealData.Rows[i][0].ToString());
                                     cmd.Parameters.AddWithValue("@color", sealData.Rows[i][1].ToString());

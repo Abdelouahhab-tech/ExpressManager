@@ -28,7 +28,7 @@ namespace Urgent_Manager.View.DashBoard
         {
             gtxtToolName.Focus();
             LoadData();
-            toolController.FillCombobox("Terminal","TerminalID",cmbTerminal);
+            toolController.FillCombobox(TerminalController.TABLENAME, "TerminalID",cmbTerminal);
         }
 
         // Load Records From Database

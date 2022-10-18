@@ -34,7 +34,7 @@ namespace Urgent_Manager.View.DashBoard
             cartesianChart1.DefaultLegend = customLegend;
             totalUrgentCount();
             urgentController.FillCombobox("Machine", "Machine", cmbMachine);
-            urgentController.FillCombobox("Area", "ZoneName", cmbArea);
+            urgentController.FillCombobox(AreaController.TABLENAME, "ZoneName", cmbArea);
             cmbShifts.Text = getShift();
             chart();
             string[] hours = getShift() == "Matin" ? new string[] { "6", "7", "8", "9", "10", "11", "12", "13" } : getShift() == "Soir" ? new string[] { "14", "15", "16", "17", "18", "19", "20", "21" } : new string[] { "22", "23", "00", "1", "2", "3", "4", "5" };

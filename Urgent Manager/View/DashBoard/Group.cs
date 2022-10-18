@@ -35,7 +35,7 @@ namespace Urgent_Manager.View.DashBoard
         {
             if (gtxtGroup.Text.Trim() != "")
             {
-                if (!groupController.IsExist(gtxtGroup.Text, "Groupe", "GroupRef"))
+                if (!groupController.IsExist(gtxtGroup.Text, GroupController.TABLENAME, "GroupRef"))
                 {
                     GroupModel group = new GroupModel();
                     group.Group = gtxtGroup.Text;
@@ -78,7 +78,7 @@ namespace Urgent_Manager.View.DashBoard
 
         private void getSingleRecord(string groupRef)
         {
-            if (groupController.IsExist(groupRef, "Groupe", "GroupRef"))
+            if (groupController.IsExist(groupRef, GroupController.TABLENAME, "GroupRef"))
             {
                 GroupModel group = new GroupModel();
                 group = groupController.fetchSingleRecord(groupRef);
@@ -94,12 +94,12 @@ namespace Urgent_Manager.View.DashBoard
         {
             if (gtxtGroup.Text.Trim() != "")
             {
-                if (groupController.IsExist(gtxtGroup.Text, "Groupe", "GroupRef"))
+                if (groupController.IsExist(gtxtGroup.Text, GroupController.TABLENAME, "GroupRef"))
                 {
                     DialogResult result = MessageBox.Show("Are You Sure You Want To Delete This Group ? You Will Lost All The Data That Is Related With This Group", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                     if (result == DialogResult.Yes)
                     {
-                        groupController.Delete(gtxtGroup.Text, "Groupe", "GroupRef");
+                        groupController.Delete(gtxtGroup.Text, GroupController.TABLENAME, "GroupRef");
                         gtxtGroup.Text = "";
                         gtxtGroup.Focus();
                         LoadData();
@@ -210,10 +210,10 @@ namespace Urgent_Manager.View.DashBoard
                     {
                         for (int i = 0; i < groupData.Rows.Count; i++)
                         {
-                            if (!groupController.IsExist(groupData.Rows[i][0].ToString(), "Groupe", "GroupRef"))
+                            if (!groupController.IsExist(groupData.Rows[i][0].ToString(), GroupController.TABLENAME, "GroupRef"))
                             {
                                 DbHelper.connection.Open();
-                                string QUERY = "INSERT INTO Groupe VALUES (@group,@userId)";
+                                string QUERY = $"INSERT INTO {GroupController.TABLENAME} VALUES (@group,@userId)";
                                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                                 cmd.Parameters.AddWithValue("@group",groupData.Rows[i][0].ToString());
                                 cmd.Parameters.AddWithValue("@userId", Login.username);

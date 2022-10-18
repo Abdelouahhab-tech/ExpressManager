@@ -11,6 +11,7 @@ using Urgent_Manager.Controller;
 using Urgent_Manager.Model;
 using Urgent_Manager.View.DashBoard;
 using ZXing;
+using ZXing.OneD;
 
 namespace Urgent_Manager.View
 {
@@ -295,8 +296,8 @@ namespace Urgent_Manager.View
                 CableModel cable = wireController.fetchCable(bobine.ToUpper());
 
                 Font f = new Font("Arial", 9, FontStyle.Bold);
-                e.Graphics.DrawString("Commande Bobine", f, Brushes.Black, new Point(20,10));
-                e.Graphics.DrawLine(Pens.Black, new Point(5, f.Height + 20), new Point(e.PageBounds.Width - 14, f.Height + 20));
+                e.Graphics.DrawString("Commande Bobine", f, Brushes.Black, new Point(20, 10));
+                e.Graphics.DrawLine(Pens.Black, new Point(5, f.Height + 20), new Point(e.PageBounds.Width - 20, f.Height + 20));
                 e.Graphics.DrawString("Bobine", f, Brushes.Black, new Point(5, f.Height + 40));
                 Rectangle rect = new Rectangle(70, f.Height + 40, e.PageBounds.Width - 70, f.Height + 30);
                 e.Graphics.DrawString(bobine.ToUpper(), f, Brushes.Black, rect);
@@ -306,13 +307,21 @@ namespace Urgent_Manager.View
                 e.Graphics.DrawString(cable.Color.ToUpper(), f, Brushes.Black, new Point(70, f.Height + 120));
                 e.Graphics.DrawString("MC", f, Brushes.Black, new Point(5, f.Height + 160));
                 e.Graphics.DrawString(Environment.MachineName.ToUpper(), f, Brushes.Black, new Point(70, f.Height + 160));
-                BarcodeWriter br = new BarcodeWriter() { Format = BarcodeFormat.CODE_128 };
-                br.Options.Height = 25;
-                br.Options.Margin = 0;
-                br.Options.PureBarcode = true;
-                Image img = br.Write("1P" + bobine.ToUpper());
+                var writer = new BarcodeWriter
+                {
+                    Format = BarcodeFormat.CODE_128,
+                    Options = new Code128EncodingOptions
+                    {
+                        Width = 0,
+                        Height = 15,
+                        PureBarcode = true,
+                        Margin = 0
+                    }
+                };
+                var img = writer.Write("1P" + bobine.ToUpper());
+                var resized = new Bitmap(img, new Size(e.PageBounds.Width - 40, 20));
                 e.Graphics.DrawImage(img, new Point(2, f.Height + 190));
-                e.Graphics.DrawString(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), f, Brushes.Black, new Point(20, img.Height + 210));
+                e.Graphics.DrawString(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), f, Brushes.Black, new Point(10, img.Height + 210));
             }
             catch (Exception ex)
             {
@@ -544,7 +553,7 @@ namespace Urgent_Manager.View
                 {
                     bobine = guna2DataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
                     if(bobine != "")
-                         printDocument1.Print();
+                        printDocument1.Print();
                 }
             }
             catch (Exception)
@@ -556,11 +565,6 @@ namespace Urgent_Manager.View
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
-        }
-
-        private void guna2DataGridView1_AllowUserToOrderColumnsChanged(object sender, EventArgs e)
-        {
-            MessageBox.Show("Ordered");
         }
 
         // Initialize Datagrid View Back Color

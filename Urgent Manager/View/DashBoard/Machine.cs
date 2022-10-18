@@ -24,7 +24,7 @@ namespace Urgent_Manager.View.DashBoard
         {
             gtxtMachineName.Focus();
             cmbZone.Items.Add("All");
-            machineController.FillCombobox("Area", "ZoneName", cmbZone);
+            machineController.FillCombobox(AreaController.TABLENAME, "ZoneName", cmbZone);
             LoadData();
         }
 

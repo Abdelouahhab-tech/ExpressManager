@@ -29,7 +29,7 @@ namespace Urgent_Manager.View.DashBoard
                 lblLoadingMsg.Visible = true;
                 AutoComplete.AutoComplete auto = new AutoComplete.AutoComplete();
                 auto.autoComplete(cmbMachines, DbHelper.connection, "SELECT Machine FROM Machine");
-                auto.autoComplete(cmbGroupe, DbHelper.connection, "SELECT GroupRef FROM Groupe");
+                auto.autoComplete(cmbGroupe, DbHelper.connection, $"SELECT GroupRef FROM {GroupController.TABLENAME}");
                 guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
                 guna2DataGridView1.ScrollBars = ScrollBars.Both;
                 gtxtSearch.Focus();
@@ -340,7 +340,7 @@ namespace Urgent_Manager.View.DashBoard
         {
             if (cmbGroupe.Text.Trim() != "")
             {
-                if (wireController.IsExist(cmbGroupe.Text, "Groupe", "GroupRef"))
+                if (wireController.IsExist(cmbGroupe.Text, GroupController.TABLENAME, "GroupRef"))
                 {
                     lblLoading.Visible = true;
                     await Task.Run(new Action(fetchRecordsPeGroupe));

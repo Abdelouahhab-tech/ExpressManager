@@ -50,7 +50,7 @@ namespace Urgent_Manager.View.DashBoard
             {
                 if (gtxtAreaName.Text.Trim() != "" && cmbParentArea.Text.Trim() != "")
                 {
-                    if (!areaController.IsExist(gtxtAreaName.Text, "Area", "ZoneName"))
+                    if (!areaController.IsExist(gtxtAreaName.Text, AreaController.TABLENAME, "ZoneName"))
                     {
                         AreaModel area = new AreaModel();
                         area.AreaName = gtxtAreaName.Text;
@@ -109,7 +109,7 @@ namespace Urgent_Manager.View.DashBoard
             {
                 if (gtxtAreaName.Text.Trim() != "")
                 {
-                    if (areaController.IsExist(gtxtAreaName.Text, "Area", "ZoneName"))
+                    if (areaController.IsExist(gtxtAreaName.Text, AreaController.TABLENAME, "ZoneName"))
                     {
                         if (cmbParentArea.Text.Trim() != "")
                         {
@@ -155,12 +155,12 @@ namespace Urgent_Manager.View.DashBoard
             {
                 if (gtxtAreaName.Text.Trim() != "")
                 {
-                    if (areaController.IsExist(gtxtAreaName.Text, "Area", "ZoneName"))
+                    if (areaController.IsExist(gtxtAreaName.Text, AreaController.TABLENAME, "ZoneName"))
                     {
                         DialogResult result = MessageBox.Show("Are You Sure You Want To Delete This Area ? You Will Lost All The Data That Is Related With This Area", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                         if (result == DialogResult.Yes)
                         {
-                            areaController.Delete(gtxtAreaName.Text, "Area", "ZoneName");
+                            areaController.Delete(gtxtAreaName.Text, AreaController.TABLENAME, "ZoneName");
                             init();
                         }
                     }
@@ -191,7 +191,7 @@ namespace Urgent_Manager.View.DashBoard
 
         private void getSingleRecord(string areaName)
         {
-            if (areaController.IsExist(areaName, "Area", "ZoneName"))
+            if (areaController.IsExist(areaName, AreaController.TABLENAME, "ZoneName"))
             {
                 AreaModel area = new AreaModel();
                 area = areaController.fetchSingleArea(areaName);

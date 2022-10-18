@@ -3,16 +3,16 @@
   <Profiles />
   <Settings>
     <Setting Name="ServerName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">M15\SQLEXPRESS</Value>
+      <Value Profile="(Default)">10.142.6.16</Value>
     </Setting>
     <Setting Name="DatabaseName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Express</Value>
+      <Value Profile="(Default)">Précontrole</Value>
     </Setting>
     <Setting Name="userName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Aptiv</Value>
+      <Value Profile="(Default)">DB_COUPE_RO</Value>
     </Setting>
     <Setting Name="password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Aptiv22</Value>
+      <Value Profile="(Default)">coupejune21</Value>
     </Setting>
     <Setting Name="isConnect" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -30,7 +30,7 @@
       <Value Profile="(Default)">Abdo47645301995?</Value>
     </Setting>
     <Setting Name="WpcsDirectory" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:\Komax\TopWin\WPCS-Feedback\Job.sdc.arc</Value>
+      <Value Profile="(Default)">D:\Komax\Data\WPCS-Feedback</Value>
     </Setting>
   </Settings>
 </SettingsFile>

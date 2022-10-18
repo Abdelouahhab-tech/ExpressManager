@@ -11,6 +11,7 @@ namespace Urgent_Manager.Controller
 {
     public class GroupController : UserController
     {
+        public static string TABLENAME = "T_Groupe_Coupe";
         // Add Data To Groupe Table
         public void InsertGroup(GroupModel groupe)
         {
@@ -18,7 +19,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "INSERT INTO Groupe VALUES(@groupRef,@userID)";
+                string QUERY = $"INSERT INTO {TABLENAME} VALUES(@groupRef,@userID)";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@groupRef", groupe.Group);
                 cmd.Parameters.AddWithValue("@userID", groupe.UserID);
@@ -48,7 +49,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT G.GroupRef,U.FullName FROM Groupe G,dbo_User U WHERE G.userID=U.userID";
+                string QUERY = $"SELECT G.GroupRef,U.FullName FROM {TABLENAME} G,dbo_User U WHERE G.userID=U.userID";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -87,7 +88,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT G.GroupRef,U.FullName FROM Groupe G,dbo_User U WHERE G.userID=U.userID AND G.GroupRef =@groupRef";
+                string QUERY = $"SELECT G.GroupRef,U.FullName FROM {TABLENAME} G,dbo_User U WHERE G.userID=U.userID AND G.GroupRef =@groupRef";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@groupRef", groupRef);
 

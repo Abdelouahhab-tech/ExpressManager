@@ -39,16 +39,16 @@ namespace Urgent_Manager.View.DashBoard
                 AutoComplete.AutoComplete auto = new AutoComplete.AutoComplete();
                 auto.autoComplete(gtxtCable, DbHelper.connection, "SELECT Cable FROM Cable");
                 auto.autoComplete(gtxtFamily, DbHelper.connection, "SELECT FAM FROM Family");
-                auto.autoComplete(gtxtGroup, DbHelper.connection, "SELECT GroupRef FROM Groupe");
+                auto.autoComplete(gtxtGroup, DbHelper.connection, $"SELECT GroupRef FROM {GroupController.TABLENAME}");
                 auto.autoComplete(gtxtMachine, DbHelper.connection, "SELECT Machine FROM Machine");
                 auto.autoComplete(gtxtMarkerD, DbHelper.connection, "SELECT Color FROM Marker");
                 auto.autoComplete(gtxtMarkerG, DbHelper.connection, "SELECT Color FROM Marker");
                 auto.autoComplete(gtxtProtectionD, DbHelper.connection, "SELECT Type FROM Protection");
                 auto.autoComplete(gtxtProtectionG, DbHelper.connection, "SELECT Type FROM Protection");
-                auto.autoComplete(gtxtSealD, DbHelper.connection, "SELECT Seal FROM Seal");
-                auto.autoComplete(gtxtSealG, DbHelper.connection, "SELECT Seal FROM Seal");
-                auto.autoComplete(gtxtTerminalD, DbHelper.connection, "SELECT TerminalID FROM Terminal");
-                auto.autoComplete(gtxtTerminalG, DbHelper.connection, "SELECT TerminalID FROM Terminal");
+                auto.autoComplete(gtxtSealD, DbHelper.connection, $"SELECT Seal FROM {SealController.TABLENAME}");
+                auto.autoComplete(gtxtSealG, DbHelper.connection, $"SELECT Seal FROM {SealController.TABLENAME}");
+                auto.autoComplete(gtxtTerminalD, DbHelper.connection, $"SELECT TerminalID FROM {TerminalController.TABLENAME}");
+                auto.autoComplete(gtxtTerminalG, DbHelper.connection, $"SELECT TerminalID FROM {TerminalController.TABLENAME}");
                 auto.autoComplete(gtxtToolD, DbHelper.connection, "SELECT ToolID FROM Tool");
                 auto.autoComplete(gtxtToolG, DbHelper.connection, "SELECT ToolID FROM Tool");
             }
@@ -492,7 +492,7 @@ namespace Urgent_Manager.View.DashBoard
         {
             if (gtxtTerminalG.Text.Trim() != "")
             {
-                if (!wireController.IsExist(gtxtTerminalG.Text, "Terminal", "TerminalID"))
+                if (!wireController.IsExist(gtxtTerminalG.Text, TerminalController.TABLENAME, "TerminalID"))
                 {
                     lblTerG.ForeColor = Color.Red;
                     gtxtTerminalG.Focus();
@@ -517,7 +517,7 @@ namespace Urgent_Manager.View.DashBoard
         {
             if (gtxtTerminalD.Text.Trim() != "")
             {
-                if (!wireController.IsExist(gtxtTerminalD.Text, "Terminal", "TerminalID"))
+                if (!wireController.IsExist(gtxtTerminalD.Text, TerminalController.TABLENAME, "TerminalID"))
                 {
                     lblTerD.ForeColor = Color.Red;
                     gtxtTerminalD.Focus();
@@ -530,7 +530,7 @@ namespace Urgent_Manager.View.DashBoard
         {
             if (gtxtSealG.Text.Trim() != "")
             {
-                if (!wireController.IsExist(gtxtSealG.Text, "Seal", "Seal"))
+                if (!wireController.IsExist(gtxtSealG.Text, SealController.TABLENAME, "Seal"))
                 {
                     lblSealG.ForeColor = Color.Red;
                     gtxtSealG.Focus();
@@ -549,7 +549,7 @@ namespace Urgent_Manager.View.DashBoard
         {
             if (gtxtSealD.Text.Trim() != "")
             {
-                if (!wireController.IsExist(gtxtSealD.Text, "Seal", "Seal"))
+                if (!wireController.IsExist(gtxtSealD.Text, SealController.TABLENAME, "Seal"))
                 {
                     lblSealD.ForeColor = Color.Red;
                     gtxtSealD.Focus();
@@ -700,7 +700,7 @@ namespace Urgent_Manager.View.DashBoard
         {
             if (gtxtGroup.Text.Trim() != "")
             {
-                if (!wireController.IsExist(gtxtGroup.Text, "Groupe", "GroupRef"))
+                if (!wireController.IsExist(gtxtGroup.Text, GroupController.TABLENAME, "GroupRef"))
                 {
                     lblGroup.ForeColor = Color.Red;
                     gtxtGroup.Focus();
@@ -941,9 +941,9 @@ namespace Urgent_Manager.View.DashBoard
 
         private void UpdateDataToServer()
         {
+                    int result = 0;
             try
             {
-                    int result = 0;
                     if (wireTest.Rows.Count > 0)
                     {
                         if (wireTest.Columns.Count == 19)
@@ -1028,7 +1028,7 @@ namespace Urgent_Manager.View.DashBoard
             }
             catch (Exception ex)
             {
-                MessageBox.Show("It Was An Error While Processing Your Request\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"{wireTest.Rows[result][0]} It Was An Error While Processing Your Request\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DbHelper.connection.Close();
             }
         }

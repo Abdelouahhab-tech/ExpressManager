@@ -12,6 +12,7 @@ namespace Urgent_Manager.Controller
     public class TerminalController : UserController
     {
 
+        public static string TABLENAME = "T_Terminal_Coupe";
         // Insert Data Into Terminal Table
 
         public void InsertTerminal(TerminalModel Terminal)
@@ -20,7 +21,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "INSERT INTO Terminal VALUES(@TerID,@userID)";
+                string QUERY = $"INSERT INTO {TABLENAME} VALUES(@TerID,@userID)";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@TerID", Terminal.TerID);
                 cmd.Parameters.AddWithValue("@userID", Terminal.UserID);
@@ -50,7 +51,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT T.TerminalID,U.FullName FROM Terminal T,dbo_User U WHERE T.userID=U.userID";
+                string QUERY = $"SELECT T.TerminalID,U.FullName FROM {TABLENAME} T,dbo_User U WHERE T.userID=U.userID";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -89,7 +90,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT T.TerminalID,U.FullName FROM Terminal T,dbo_User U WHERE T.userID=U.userID AND T.TerminalID =@TerID";
+                string QUERY = $"SELECT T.TerminalID,U.FullName FROM {TABLENAME} T,dbo_User U WHERE T.userID=U.userID AND T.TerminalID =@TerID";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@TerID", Terminal);
 

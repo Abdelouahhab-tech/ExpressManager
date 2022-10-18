@@ -12,7 +12,6 @@ namespace Urgent_Manager.Controller
 {
     public class UserController
     {
-
         // Insert Data To dbo_User
        public void InsertUser(UserModel user)
         {
@@ -21,7 +20,7 @@ namespace Urgent_Manager.Controller
 
                     DbHelper.connection.Open();
 
-                    string QUERY = "INSERT INTO dbo_User VALUES(@userID,@Pass,@FullName,@role,@isUpdated,@EntryAgent,@dbOwner)";
+                    string QUERY = $"INSERT INTO dbo_User VALUES(@userID,@Pass,@FullName,@role,@isUpdated,@EntryAgent,@dbOwner)";
 
                     SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                     cmd.Parameters.AddWithValue("@userID", user.UserName);
@@ -84,7 +83,7 @@ namespace Urgent_Manager.Controller
 
                 DbHelper.connection.Open();
 
-                string QUERY = "UPDATE dbo_User SET Pass=@Pass,FullName=@FullName,role=@role,isUpdated=@isUpdated,EntryAgent=@EntryAgent WHERE userID = @id AND DbRole <> 1";
+                string QUERY = $"UPDATE dbo_User SET Pass=@Pass,FullName=@FullName,role=@role,isUpdated=@isUpdated,EntryAgent=@EntryAgent WHERE userID = @id";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 string encryptedPass = Eramake.eCryptography.Encrypt(user.Password);
                 cmd.Parameters.AddWithValue("@Pass", encryptedPass);
@@ -153,7 +152,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = dbRole ? "SELECT * FROM dbo_User" : "SELECT * FROM dbo_User WHERE DbRole <> 1 AND role <> 'Administrator'";
+                string QUERY = dbRole ? $"SELECT * FROM dbo_User" : $"SELECT * FROM dbo_User WHERE DbRole <> 1 AND role <> 'Administrator'";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -174,7 +173,7 @@ namespace Urgent_Manager.Controller
 
                     DbHelper.connection.Close();
                     DbHelper.connection.Open();
-                    string Q = "SELECT * FROM dbo_User WHERE DbRole <> 1 AND userID=@user";
+                    string Q = $"SELECT * FROM dbo_User WHERE DbRole <> 1 AND userID=@user";
                     SqlCommand command = new SqlCommand(Q, DbHelper.connection);
                     command.Parameters.AddWithValue("@user", Login.username);
                     SqlDataReader r = command.ExecuteReader();
@@ -223,7 +222,7 @@ namespace Urgent_Manager.Controller
 
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT * FROM dbo_User WHERE userID=@userID";
+                string QUERY = $"SELECT * FROM dbo_User WHERE userID=@userID";
                 SqlCommand cmd = new SqlCommand(QUERY,DbHelper.connection);
                 cmd.Parameters.AddWithValue("@userID", id);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -265,7 +264,7 @@ namespace Urgent_Manager.Controller
 
                 DbHelper.connection.Open();
 
-                string QUERY = id == Login.username && Login.DbRole == 0 ? "SELECT * FROM dbo_User WHERE userID=@userID" : Login.DbRole == 1 ? "SELECT * FROM dbo_User WHERE userID=@userID" : "SELECT * FROM dbo_User WHERE userID=@userID AND role <> 'Administrator'";
+                string QUERY = id == Login.username && Login.DbRole == 0 ? $"SELECT * FROM dbo_User WHERE userID=@userID" : Login.DbRole == 1 ? $"SELECT * FROM dbo_User WHERE userID=@userID" : $"SELECT * FROM dbo_User WHERE userID=@userID AND role <> 'Administrator'";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@userID", id);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -306,7 +305,7 @@ namespace Urgent_Manager.Controller
 
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT * FROM dbo_User WHERE userID=@userId and Pass=@pass";
+                string QUERY = $"SELECT * FROM dbo_User WHERE userID=@userId and Pass=@pass";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@userId", username);
                 cmd.Parameters.AddWithValue("@pass", password);
@@ -338,7 +337,7 @@ namespace Urgent_Manager.Controller
             try
             {
                 DbHelper.connection.Open();
-                string QUERY = "SELECT isUpdated FROM dbo_User WHERE userID=@userId and isUpdated=@isUpdated";
+                string QUERY = $"SELECT isUpdated FROM dbo_User WHERE userID=@userId and isUpdated=@isUpdated";
                 SqlCommand cmd = new SqlCommand(QUERY,DbHelper.connection);
                 cmd.Parameters.AddWithValue("@userID", username);
                 cmd.Parameters.AddWithValue("@isupdated", 1);
@@ -371,7 +370,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "UPDATE dbo_User SET Pass= @pass,isUpdated=@isUpdated WHERE userID=@userId";
+                string QUERY = $"UPDATE dbo_User SET Pass= @pass,isUpdated=@isUpdated WHERE userID=@userId";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@pass", pass);
                 cmd.Parameters.AddWithValue("@isUpdated", 1);

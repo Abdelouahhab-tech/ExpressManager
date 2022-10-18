@@ -11,14 +11,14 @@ namespace Urgent_Manager.Controller
 {
     public class SealController : UserController
     {
-
+        public static string TABLENAME = "T_Seal_Coupe";
         public void InsertSeal(SealModel seal)
         {
             try
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "INSERT INTO Seal VALUES(@seal,@color,@userID)";
+                string QUERY = $"INSERT INTO {TABLENAME} VALUES(@seal,@color,@userID)";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@seal", seal.SealID);
                 cmd.Parameters.AddWithValue("@color", seal.Color);
@@ -47,7 +47,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "UPDATE Seal SET Color = @color,UserID = @userID WHERE Seal = @seal";
+                string QUERY = $"UPDATE {TABLENAME} SET Color = @color,UserID = @userID WHERE Seal = @seal";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@color", seal.Color);
                 cmd.Parameters.AddWithValue("@userID", seal.UserID);
@@ -78,7 +78,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT S.*,U.FullName FROM Seal S,dbo_User U WHERE S.userID=U.userID";
+                string QUERY = $"SELECT S.*,U.FullName FROM {TABLENAME} S,dbo_User U WHERE S.userID=U.userID";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -118,7 +118,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT S.*,U.FullName FROM Seal S,dbo_User U WHERE S.userID=U.userID AND S.Seal =@seal";
+                string QUERY = $"SELECT S.*,U.FullName FROM {TABLENAME} S,dbo_User U WHERE S.userID=U.userID AND S.Seal =@seal";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@seal", sealRef);
 

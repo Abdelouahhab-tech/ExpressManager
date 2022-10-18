@@ -320,7 +320,6 @@ namespace Urgent_Manager.View.DashBoard
             try
             {
                 OpenFileDialog op = new OpenFileDialog();
-                op.Filter = "Excel File|*.xlsx";
                 if(op.ShowDialog() == DialogResult.OK)
                 {
                     FileStream stream = File.Open(op.FileName, FileMode.Open, FileAccess.Read);
@@ -354,12 +353,19 @@ namespace Urgent_Manager.View.DashBoard
                 {
                     if (wireTest.Columns.Count == 3)
                     {
-                        for(int i = 0;i < wireTest.Rows.Count; i++)
+                        DbHelper.connection.Open();
+                        string Q = "DELETE FROM Urgent";
+                        SqlCommand cmmd = new SqlCommand(Q, DbHelper.connection);
+                        cmmd.ExecuteNonQuery();
+                        DbHelper.connection.Close();
+
+                        for (int i = 0;i < wireTest.Rows.Count; i++)
                         {
                             if (userController.IsExist(wireTest.Rows[i][0].ToString().Trim(), "Wire", "Unico"))
                             {
                                 DateTime date = Convert.ToDateTime(wireTest.Rows[i][1].ToString());
-                                string dateUrgent = date.ToString("dd/MM/yyyy");
+                                string date1 = Convert.ToDateTime(date).Subtract(TimeSpan.FromDays(1)).ToString("dd/MM/yyyy");
+                                string dateUrgent = date.Hour >= 00 && date.Hour < 6 ? date1 : date.ToString("dd/MM/yyyy");
                                 string time = date.ToString("HH:mm");
                                 int h = date.Hour;
                                 string shift = Shift(h);

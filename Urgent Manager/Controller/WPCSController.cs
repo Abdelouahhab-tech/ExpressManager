@@ -21,7 +21,7 @@ namespace Urgent_Manager.Controller
             path = pathName();
         }
 
-        public  bool DeleteUrgent()
+        public bool DeleteUrgent()
         {
             try
             {
@@ -43,13 +43,13 @@ namespace Urgent_Manager.Controller
                 bool isDeleted = false;
                 if(DateTime.Now.Hour >= 00 && DateTime.Now.Hour < 6)
                 {
-                    string date = Convert.ToDateTime(dateUrgent).Subtract(TimeSpan.FromDays(-1)).ToString("dd/MM/yyyy HH:mm:ss");
-                    int isDown = DateTime.Compare(Convert.ToDateTime(list[0].ToString()), Convert.ToDateTime(date));
+                    string date = dateUrgent != "" ? Convert.ToDateTime(dateUrgent).Subtract(TimeSpan.FromDays(-1)).ToString("dd/MM/yyyy HH:mm:ss") : "";
+                    int isDown = date != "" ? DateTime.Compare(Convert.ToDateTime(list[0].ToString()), Convert.ToDateTime(date)) : -1;
                     isDeleted = isDown < 0 ? false : true;
                 }
                 else
                 {
-                    int isDown = DateTime.Compare(Convert.ToDateTime(list[0].ToString()), Convert.ToDateTime(dateUrgent));
+                    int isDown = dateUrgent != "" ? DateTime.Compare(Convert.ToDateTime(list[0].ToString().Trim()), Convert.ToDateTime(dateUrgent)) : -1;
                     isDeleted = isDown < 0 ? false : true;
                 }
                 SortedList<string, string> qty = updateQty();
@@ -74,42 +74,41 @@ namespace Urgent_Manager.Controller
 
         public ArrayList updateStatus()
         {
-            FileStream file = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
-            StreamReader stream = new StreamReader(file);
-            ArrayList list = new ArrayList();
-            try
-            {
-                string line = stream.ReadToEnd();
-                string item = line.Substring(line.LastIndexOf("[JobTerminated]"));
-                string[] lines = item.Split('\n');
-                bool isFirstLineNull = true;
-                foreach (string l in lines)
-                {
-                    if (l.Contains("="))
+                FileStream file = new FileStream(path+@"\Job.sdc.arc", FileMode.Open, FileAccess.Read,FileShare.Read);
+                StreamReader stream = new StreamReader(file);
+                ArrayList list = new ArrayList();
+            try { 
+                    string line = stream.ReadToEnd();
+                    string item = line.Substring(line.LastIndexOf("[JobTerminated]"));
+                    string[] lines = item.Split('\n');
+                    bool isFirstLineNull = true;
+                    foreach (string l in lines)
                     {
-                        string[] items = new string[2];
-                        items = l.Split('=');
-                        if (items[0].Trim() == "ArticleKey")
+                        if (l.Contains("="))
                         {
-                            list.Add(items[1].Trim().ToString());
+                            string[] items = new string[2];
+                            items = l.Split('=');
+                            if (items[0].Trim() == "ArticleKey")
+                            {
+                                list.Add(items[1].Trim().ToString());
+                            }
+                            if (items[0].Trim() == "TotalGoodPieces")
+                            {
+                                list.Add(items[1].Trim().ToString());
+                                return list;
+                            }
+                            if (items[0].Trim() == "DateTimeStamp")
+                            {
+                                list.Add(items[1].Trim().ToString());
+                            }
+                            isFirstLineNull = false;
                         }
-                        if(items[0].Trim() == "TotalGoodPieces")
+                        else
                         {
-                            list.Add(items[1].Trim().ToString());
-                            return list;
+                            if (!isFirstLineNull)
+                                break;
                         }
-                        if (items[0].Trim() == "DateTimeStamp")
-                        {
-                            list.Add(items[1].Trim().ToString());
-                        }
-                        isFirstLineNull = false;
                     }
-                    else
-                    {
-                        if (!isFirstLineNull)
-                            break;
-                    }
-                }
                 return list;
             }
             catch (Exception ex)
@@ -120,42 +119,42 @@ namespace Urgent_Manager.Controller
 
         public SortedList<string,string> updateQty()
         {
-            FileStream file = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
-            StreamReader stream = new StreamReader(file);
             SortedList<string, string> list = new SortedList<string, string>();
             try
             {
-                string line = stream.ReadToEnd();
-                string item = line.Substring(line.LastIndexOf("[JobInterrupted]"));
-                string[] lines = item.Split('\n');
-                bool isFirstLineNull = true;
-                foreach (string l in lines)
-                {
-                    if (l.Contains("="))
+                    FileStream file = new FileStream(path+@"\Producti.sdc.arc", FileMode.Open, FileAccess.Read, FileShare.Read);
+                    StreamReader stream = new StreamReader(file);
+                    string line = stream.ReadToEnd();
+                    string item = line.Substring(line.LastIndexOf("[ProductionInterrupted]"));
+                    string[] lines = item.Split('\n');
+                    bool isFirstLineNull = true;
+                    foreach (string l in lines)
                     {
-                        string[] items = new string[3];
-                        items = l.Split('=');
-                        if (items[0].Trim() == "DateTimeStamp")
+                        if (l.Contains("="))
                         {
-                            list.Add("DateTimeStamp", items[1].Trim().ToString());
+                            string[] items = new string[3];
+                            items = l.Split('=');
+                            if (items[0].Trim() == "DateTimeStamp")
+                            {
+                                list.Add("DateTimeStamp", items[1].Trim().ToString());
+                            }
+                            if (items[0].Trim() == "ArticleKey")
+                            {
+                                list.Add("ArticleKey", items[1].Trim().ToString());
+                            }
+                            if (items[0].Trim() == "TotalGoodPieces")
+                            {
+                                list.Add("TotalGoodPieces", items[1].Trim().ToString());
+                                return list;
+                            }
+                            isFirstLineNull = false;
                         }
-                        if (items[0].Trim() == "ArticleKey")
+                        else
                         {
-                            list.Add("ArticleKey",items[1].Trim().ToString());
+                            if (!isFirstLineNull)
+                                break;
                         }
-                        if (items[0].Trim() == "TotalGoodPieces")
-                        {
-                            list.Add("TotalGoodPieces", items[1].Trim().ToString());
-                            return list;
-                        }
-                        isFirstLineNull = false;
                     }
-                    else
-                    {
-                        if (!isFirstLineNull)
-                            break;
-                    }
-                }
                 return list;
             }
             catch (Exception ex)
@@ -199,7 +198,7 @@ namespace Urgent_Manager.Controller
                 {
                     string unico = urgentController.getUnico(leadCode);
                     DbHelper.connection.Open();
-                    string QUERY = "UPDATE Urgent SET Qty +=@qty,interruptedDate=@date WHERE UrgentUnico=@unico";
+                    string QUERY = "UPDATE Urgent SET Qty=@qty,interruptedDate=@date WHERE UrgentUnico=@unico";
                     SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                     cmd.Parameters.AddWithValue("@qty", Qty);
                     cmd.Parameters.AddWithValue("@unico", unico);

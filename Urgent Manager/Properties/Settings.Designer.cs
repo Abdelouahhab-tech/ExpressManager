@@ -25,7 +25,7 @@ namespace Urgent_Manager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("M15\\SQLEXPRESS")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10.142.6.16")]
         public string ServerName {
             get {
                 return ((string)(this["ServerName"]));
@@ -37,7 +37,7 @@ namespace Urgent_Manager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Express")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Précontrole")]
         public string DatabaseName {
             get {
                 return ((string)(this["DatabaseName"]));
@@ -49,7 +49,7 @@ namespace Urgent_Manager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Aptiv")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DB_COUPE_RO")]
         public string userName {
             get {
                 return ((string)(this["userName"]));
@@ -61,7 +61,7 @@ namespace Urgent_Manager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Aptiv22")]
+        [global::System.Configuration.DefaultSettingValueAttribute("coupejune21")]
         public string password {
             get {
                 return ((string)(this["password"]));
@@ -133,7 +133,7 @@ namespace Urgent_Manager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Komax\\TopWin\\WPCS-Feedback\\Job.sdc.arc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Komax\\Data\\WPCS-Feedback")]
         public string WpcsDirectory {
             get {
                 return ((string)(this["WpcsDirectory"]));

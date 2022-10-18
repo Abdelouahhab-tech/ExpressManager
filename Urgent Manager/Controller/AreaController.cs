@@ -11,6 +11,8 @@ namespace Urgent_Manager.Controller
 {
     public class AreaController : UserController
     {
+
+        public static string TABLENAME = "T_Area_Coupe";
         // Insert Records Into Area Table
 
         public void InsertArea(AreaModel area)
@@ -19,7 +21,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "INSERT INTO Area VALUES(@area,@parentArea,@userid)";
+                string QUERY = $"INSERT INTO {TABLENAME} VALUES(@area,@parentArea,@userid)";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@area", area.AreaName.ToUpper());
                 cmd.Parameters.AddWithValue("@parentArea", area.ParentArea);
@@ -53,7 +55,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "UPDATE Area SET ParentZone=@parentArea,UserID=@userid WHERE ZoneName=@areaName";
+                string QUERY = $"UPDATE {TABLENAME} SET ParentZone=@parentArea,UserID=@userid WHERE ZoneName=@areaName";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@parentArea", area.ParentArea);
                 cmd.Parameters.AddWithValue("@userid", area.UserID);
@@ -88,7 +90,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT A.ZoneName,A.ParentZone,U.FullName FROM Area A,dbo_User U WHERE A.UserID=U.userID ORDER BY ZoneName";
+                string QUERY = $"SELECT A.ZoneName,A.ParentZone,U.FullName FROM {TABLENAME} A,dbo_User U WHERE A.UserID=U.userID ORDER BY A.ZoneName";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -126,7 +128,7 @@ namespace Urgent_Manager.Controller
             {
                 DbHelper.connection.Open();
 
-                string QUERY = "SELECT A.ZoneName,A.ParentZone,U.FullName FROM Area A,dbo_User U WHERE A.UserID=U.userID AND A.ZoneName=@areaName";
+                string QUERY = $"SELECT A.ZoneName,A.ParentZone,U.FullName FROM {TABLENAME} A,dbo_User U WHERE A.UserID=U.userID AND A.ZoneName=@areaName";
                 SqlCommand cmd = new SqlCommand(QUERY, DbHelper.connection);
                 cmd.Parameters.AddWithValue("@areaName", areaName);
                 SqlDataReader reader = cmd.ExecuteReader();

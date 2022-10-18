@@ -105,7 +105,7 @@ namespace Urgent_Manager.Controller
                 {
                     DbHelper.connection.Close();
                     DbHelper.connection.Open();
-                    SqlCommand command = new SqlCommand("UPDATE Urgent SET Qty += @qty WHERE UrgentUnico=@unico", DbHelper.connection);
+                    SqlCommand command = new SqlCommand("UPDATE Urgent SET Qty = @qty WHERE UrgentUnico=@unico", DbHelper.connection);
                     command.Parameters.AddWithValue("@qty", Qty);
                     command.Parameters.AddWithValue("@unico", unico);
                     command.ExecuteNonQuery();
